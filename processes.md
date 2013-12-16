@@ -15,8 +15,26 @@
 + Unit transforms (e.g. eV -> k)
 + Averaging datasets
 + Stacked plots
+<<<<<<< HEAD
 
 
+=======
++ Inset plots
+
+##Electrochemical Analysis
++ Numerical integration
++ Numerical loop integration
++ Stacked plots
++ Multi-plots
++ Inset plots
+
+##IR Spectroscopy
++ Background removal
++ Stacked plots
+
+##Atomic Force Microscopy
++ XY distances between points
+>>>>>>> e20fddd6699c5bb995b22123b43974de92398bbe
 
 
 
