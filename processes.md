@@ -15,10 +15,6 @@
 + Unit transforms (e.g. eV -> k)
 + Averaging datasets
 + Stacked plots
-<<<<<<< HEAD
-
-
-=======
 + Inset plots
 
 ##Electrochemical Analysis
@@ -34,7 +30,7 @@
 
 ##Atomic Force Microscopy
 + XY distances between points
->>>>>>> e20fddd6699c5bb995b22123b43974de92398bbe
+
 
 
 
