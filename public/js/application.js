@@ -3,7 +3,7 @@ define([
   'jquery', 
   'underscore', 
   'backbone',
-  'maprouter', // Request maprouter.js
+  'router'
 ], function($, _, Backbone, Router){
   
   var initialize = function(){

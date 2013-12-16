@@ -1,12 +1,15 @@
 require.config({
   paths: {
-    jquery: 'libs/jquery/jquery-min',
-    underscore: 'libs/underscore/underscore-min',
-    backbone: 'libs/backbone/backbone-min',
-    localStorage: 'libs/backbone/backbone.localStorage-min'
+    jquery: 'http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min',
+    underscore: 'http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min',
+    backbone: 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min'
   },
   shim: 
   { 
+    "jquery": {
+        exports: '$'
+    },
+
     "underscore": {
         deps: [],
         exports: "_"
@@ -20,8 +23,8 @@ require.config({
 
 });
 
-define([
-  'application',
+require([
+  'application'
 ], function(App){
   App.initialize();
 });
