@@ -12,6 +12,7 @@ def basic_stats (data):
 
 	return (y_mean, y_med, y_stdev)
 
+
 def poly_regression (data, order):
 	'''nth order polynomial fit'''
 
@@ -26,9 +27,7 @@ def poly_regression (data, order):
 	return (x_dat, y_fit)
 
 
-#TESTS
-
-if __name__ == '__main__':
+def test():
 
 	dataset = [
 		[1, 2, 3, 4, 5],
@@ -38,3 +37,9 @@ if __name__ == '__main__':
 	print basic_stats(dataset)
 	print poly_regression(dataset, 1)
 	print poly_regression(dataset, 2)
+
+#TESTS
+
+if __name__ == '__main__':
+	test()
+	

@@ -13,6 +13,7 @@ def differentiate (data):
 
 	return (x_dat, dy_dx)
 
+
 def integrate (data):
 	'''computes integral'''
 
@@ -24,8 +25,7 @@ def integrate (data):
 	return integral
 
 
-#TESTS
-if __name__ == '__main__':
+def test():
 
 	import matplotlib.pyplot as plt 
 
@@ -41,3 +41,8 @@ if __name__ == '__main__':
 	plt.show()
 
 	print intgr
+
+#TESTS
+if __name__ == '__main__':
+	test()
+	
