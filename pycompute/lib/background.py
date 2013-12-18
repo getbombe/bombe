@@ -11,3 +11,16 @@ def spline (data):
 
 	return (x_dat, cub_spline(x_dat))
 
+def linear (data, p1, p2):
+	'''given two points, returns the line to subtract'''
+
+	x_dat = data[0]
+	y_dat = data[1]
+
+	coeffs = polyfit(x_dat, y_dat, 1)
+	linear = poly1d (coeffs)
+
+	y_fit = list(linear(x_dat))
+
+	return (x_dat, y_fit)
+
