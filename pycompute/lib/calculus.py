@@ -42,7 +42,7 @@ def test():
 
 	print intgr
 
-#TESTS
+
 if __name__ == '__main__':
 	test()
 	

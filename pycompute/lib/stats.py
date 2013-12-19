@@ -38,7 +38,6 @@ def test():
 	print poly_regression(dataset, 1)
 	print poly_regression(dataset, 2)
 
-#TESTS
 
 if __name__ == '__main__':
 	test()
