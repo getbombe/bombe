@@ -1,13 +1,19 @@
 from numpy import *
+import scipy
+import scipy.fftpack
 
-def fourier (data):
+def fourier (data, real=True):
 	'''FFT on a dataset'''
 
 	x_dat = data[0]
 	y_dat = data[1]
 
-	x_ft = fft.fftfreq(x_dat.size)
-	y_ft = fft.fftshift(fft.fft(y_dat))
+	x_ft = scipy.fftpack.fftfreq(x_dat.size, x_dat[1] - x_dat[0])
+	y_ft = abs(scipy.fft(y_dat))
+
+	if real:
+		x_ft = x_ft[1:len(x_ft) / 2]
+		y_ft = y_ft[1:len(y_ft) / 2]
 
 	return (x_ft, y_ft)
 
@@ -15,8 +21,8 @@ def test():
 
 	import matplotlib.pyplot as plt 
 
-	x = arange(0, 40*pi, 0.1)
-	y = sin(x) + sin(3*x) + sin(5*x)
+	x = arange(0, 20*pi, 0.05)
+	y = sin(x) + sin(2*pi*2.0*x) + sin(2*pi*6.0*x)
 
 	ft = fourier([x, y])
 
