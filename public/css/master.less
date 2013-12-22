@@ -1,21 +1,24 @@
 
 //Base Colors
 @background: #E5E5E5;
-@subtle: #999999;
-@translucent: rgba(255, 255, 255, 0.8);
+@subtle: #777777;
+@translucent: rgba(255, 255, 255, 0.7);
 @highlight: #1F90C1;
 @dark-highlight: #10458F;
 @head-font: #F0F0F1;
 @body-font: #000000;
 
 //Typography
-@import url(http://fonts.googleapis.com/css?family=Lato:100);
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300);
 .main-font {
 	font-family: 'Lato', 'Helvetica Neue', 'Arial';
 	font-weight: 100;
 }
 .big-font {
 	font-size: 26px;
+}
+.strong-font {
+	font-weight: 300;
 }
 
 //Spacing
@@ -61,10 +64,15 @@ h1, h2, h3, h4, h5 {
 
 //Layout
 #upload {
-	text-align: center;
+	background: url('../img/upload.svg') no-repeat center;
+	background-size: 25%;
 	height: 100%;
 	.big-pad;
 	.big-font;
+
+	svg path {
+		fill: @subtle;
+	}
 }
 #title-bar {
 	background: @dark-highlight;
@@ -79,9 +87,23 @@ h1, h2, h3, h4, h5 {
 //Objects
 .text-box {
 	background-color: @translucent;
+	.strong-font;
 	.med-pad;
 	.med-margin;
 	.centered;
+	text-align: center;
 	width: 80%;
+
+	h1, h2, h3, h4, h5 {
+		display: inline;
+		color: @body-font;
+		.strong-font;
+	}
+
+	select {
+		background-color: @translucent;
+		width: 100%;
+		.small-pad;
+	}
 }
 
