@@ -1,7 +1,87 @@
-@bgcolor: #e5e5e5;
 
-body {
-	background-color: @bgcolor;
+//Base Colors
+@background: #E5E5E5;
+@subtle: #999999;
+@translucent: rgba(255, 255, 255, 0.8);
+@highlight: #1F90C1;
+@dark-highlight: #10458F;
+@head-font: #F0F0F1;
+@body-font: #000000;
+
+//Typography
+@import url(http://fonts.googleapis.com/css?family=Lato:100);
+.main-font {
+	font-family: 'Lato', 'Helvetica Neue', 'Arial';
+	font-weight: 100;
+}
+.big-font {
+	font-size: 26px;
 }
 
+//Spacing
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+}
+.no-space {
+	margin: 0;
+}
+.small-pad {
+	padding: .5em;
+}
+.med-pad {
+	padding: 1.5em;
+}
+.big-pad {
+	padding: 2.5em;
+}
+.small-margin {
+	margin: .5em;
+}
+.med-margin {
+	margin: 1.5em;
+}
+.big-margin {
+	margin: 2.5em;
+}
+
+//General
+body {
+	background-color: @background;
+	.main-font;
+	color: @body-font;
+}
+h1, h2, h3, h4, h5 {
+	color: @head-font;
+	text-align: center;
+	.main-font;
+	.no-space;
+}
+
+
+//Layout
+#upload {
+	text-align: center;
+	height: 100%;
+	.big-pad;
+	.big-font;
+}
+#title-bar {
+	background: @dark-highlight;
+	.big-pad;
+}
+#controls {
+	background: @highlight;
+	.big-pad;
+	height: 100%;
+}
+
+//Objects
+.text-box {
+	background-color: @translucent;
+	.med-pad;
+	.med-margin;
+	.centered;
+	width: 80%;
+}
 
