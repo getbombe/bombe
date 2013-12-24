@@ -49,10 +49,11 @@
 }
 
 //General
-body {
+html, body, #body, #dataimport {
 	background-color: @background;
 	.main-font;
 	color: @body-font;
+	min-height: 900px;
 }
 h1, h2, h3, h4, h5 {
 	color: @head-font;
@@ -65,14 +66,10 @@ h1, h2, h3, h4, h5 {
 //Layout
 #upload {
 	background: url('../img/upload.svg') no-repeat center;
-	background-size: 25%;
+	background-size: 15%;
 	height: 100%;
 	.big-pad;
 	.big-font;
-
-	svg path {
-		fill: @subtle;
-	}
 }
 #title-bar {
 	background: @dark-highlight;
@@ -86,24 +83,21 @@ h1, h2, h3, h4, h5 {
 
 //Objects
 .text-box {
-	background-color: @translucent;
 	.strong-font;
-	.med-pad;
-	.med-margin;
+	.small-pad;
+	.small-margin;
 	.centered;
-	text-align: center;
+	text-align: left;
 	width: 80%;
-
-	h1, h2, h3, h4, h5 {
+	h4 {
 		display: inline;
-		color: @body-font;
-		.strong-font;
+		.small-margin;
 	}
-
-	select {
+	select, input {
 		background-color: @translucent;
+		border: 1px @subtle solid;
 		width: 100%;
-		.small-pad;
+		.small-margin;
 	}
 }
 

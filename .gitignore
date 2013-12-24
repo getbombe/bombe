@@ -9,4 +9,4 @@
 *.py[cod]
 *.so
 
-.DS_Store
+*.DS_Store
