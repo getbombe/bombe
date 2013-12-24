@@ -1,1 +1,105 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:100,300);.main-font{font-family:'Lato','Helvetica Neue','Arial';font-weight:100}.big-font{font-size:26px}.strong-font{font-weight:300}.centered{margin-left:auto;margin-right:auto}.no-space{margin:0}.small-pad{padding:.5em}.med-pad{padding:1.5em}.big-pad{padding:2.5em}.small-margin{margin:.5em}.med-margin{margin:1.5em}.big-margin{margin:2.5em}html,body,#body,#dataimport{background-color:#e5e5e5;font-family:'Lato','Helvetica Neue','Arial';font-weight:100;color:#000;min-height:900px}h1,h2,h3,h4,h5{color:#f0f0f1;text-align:center;font-family:'Lato','Helvetica Neue','Arial';font-weight:100;margin:0}#upload{background:url('../img/upload.svg') no-repeat center;background-size:15%;height:100%;padding:2.5em;font-size:26px}#title-bar{background:#10458f;padding:2.5em}#controls{background:#1f90c1;padding:2.5em;height:100%}.text-box{font-weight:300;padding:.5em;margin:.5em;margin-left:auto;margin-right:auto;text-align:left;width:80%}.text-box h4{display:inline;margin:.5em}.text-box select,.text-box input{background-color:rgba(255,255,255,0.7);border:1px #777 solid;width:100%;margin:.5em}
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300);
+.main-font {
+  font-family: 'Lato', 'Helvetica Neue', 'Arial';
+  font-weight: 100;
+}
+.big-font {
+  font-size: 26px;
+}
+.strong-font {
+  font-weight: 300;
+}
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+.no-space {
+  margin: 0;
+}
+.no-pad {
+  padding: 0;
+}
+.small-pad {
+  padding: .5em;
+}
+.med-pad {
+  padding: 1.5em;
+}
+.big-pad {
+  padding: 2.5em;
+}
+.small-margin {
+  margin: .5em;
+}
+.med-margin {
+  margin: 1.5em;
+}
+.big-margin {
+  margin: 2.5em;
+}
+html,
+body,
+#body,
+#dataimport {
+  background-color: #e5e5e5;
+  font-family: 'Lato', 'Helvetica Neue', 'Arial';
+  font-weight: 100;
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  height: 100%;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #f0f0f1;
+  text-align: center;
+  font-family: 'Lato', 'Helvetica Neue', 'Arial';
+  font-weight: 100;
+  margin: 0;
+}
+.container,
+.row {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+#upload {
+  background: url('../img/upload.svg') no-repeat center;
+  background-size: 25%;
+  height: 90%;
+  padding: 2.5em;
+}
+#title-bar {
+  background: #10458f;
+  padding: 1.5em;
+  height: 10%;
+  min-height: 5em;
+}
+#controls {
+  background: #1f90c1;
+  padding: 2.5em;
+  height: 90%;
+}
+.text-box {
+  font-weight: 300;
+  padding: .5em;
+  margin: .5em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  width: 80%;
+}
+.text-box h4 {
+  display: inline;
+  margin: .5em;
+}
+.text-box select,
+.text-box input {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px #777777 solid;
+  width: 100%;
+  margin: .5em;
+}
