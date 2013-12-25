@@ -4,7 +4,7 @@
 @subtle: #777777;
 @translucent: rgba(255, 255, 255, 0.7);
 @highlight: #1F90C1;
-@dark-highlight: #10458F;
+@dark-highlight: #1a62aa;
 @head-font: #F0F0F1;
 @body-font: #000000;
 
@@ -52,13 +52,12 @@
 }
 
 //General
-html, body, #body, #dataimport {
+html, body {
 	background-color: @background;
 	.main-font;
 	.no-space;
 	.no-pad;
 	color: @body-font;
-	height: 100%;
 }
 h1, h2, h3, h4, h5 {
 	color: @head-font;
@@ -66,30 +65,46 @@ h1, h2, h3, h4, h5 {
 	.main-font;
 	.no-space;
 }
-.container, .row {
+
+
+//Layout
+#logo {
+	height:65px;
+	margin: 0 auto;
+	display: block;
+}
+.container {
 	width: 100%;
 	.no-space;
 	.no-pad;
 }
-
-
-//Layout
 #upload {
 	background: url('../img/upload.svg') no-repeat center;
+	background-color: @head-font;
 	background-size: 25%;
-	height: 90%;
+	min-height: 40em;
 	.big-pad;
 }
 #title-bar {
 	background: @dark-highlight;
-	.med-pad;
+	.small-pad;
 	height: 10%;
 	min-height: 5em;
 }
 #controls {
 	background: @highlight;
 	.big-pad;
-	height: 90%;
+	min-height: 40em;
+}
+#footer {
+	color: @body-font;
+	text-align: center;
+	.strong-font;
+	.med-pad;
+
+	hr {
+		border: @subtle 1px solid;
+	}
 }
 
 //Objects
@@ -104,7 +119,7 @@ h1, h2, h3, h4, h5 {
 		display: inline;
 		.small-margin;
 	}
-	select, input {
+	select, input, option {
 		background-color: @translucent;
 		border: 1px @subtle solid;
 		width: 100%;
@@ -112,3 +127,19 @@ h1, h2, h3, h4, h5 {
 	}
 }
 
+//Bootstrap Overrides
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 
+.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, 
+.col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, 
+.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, 
+.col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, 
+.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, 
+.col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, 
+.col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, 
+.col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, 
+.col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, 
+.col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, 
+.col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+	padding-left: 0;
+	padding-right: 0;
+}

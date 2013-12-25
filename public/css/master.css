@@ -38,16 +38,13 @@
   margin: 2.5em;
 }
 html,
-body,
-#body,
-#dataimport {
+body {
   background-color: #e5e5e5;
   font-family: 'Lato', 'Helvetica Neue', 'Arial';
   font-weight: 100;
   margin: 0;
   padding: 0;
   color: #000000;
-  height: 100%;
 }
 h1,
 h2,
@@ -60,28 +57,42 @@ h5 {
   font-weight: 100;
   margin: 0;
 }
-.container,
-.row {
+#logo {
+  height: 65px;
+  margin: 0 auto;
+  display: block;
+}
+.container {
   width: 100%;
   margin: 0;
   padding: 0;
 }
 #upload {
   background: url('../img/upload.svg') no-repeat center;
+  background-color: #f0f0f1;
   background-size: 25%;
-  height: 90%;
+  min-height: 40em;
   padding: 2.5em;
 }
 #title-bar {
-  background: #10458f;
-  padding: 1.5em;
+  background: #1a62aa;
+  padding: .5em;
   height: 10%;
   min-height: 5em;
 }
 #controls {
   background: #1f90c1;
   padding: 2.5em;
-  height: 90%;
+  min-height: 40em;
+}
+#footer {
+  color: #000000;
+  text-align: center;
+  font-weight: 300;
+  padding: 1.5em;
+}
+#footer hr {
+  border: #777777 1px solid;
 }
 .text-box {
   font-weight: 300;
@@ -97,9 +108,61 @@ h5 {
   margin: .5em;
 }
 .text-box select,
-.text-box input {
+.text-box input,
+.text-box option {
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px #777777 solid;
   width: 100%;
   margin: .5em;
+}
+.col-xs-1,
+.col-sm-1,
+.col-md-1,
+.col-lg-1,
+.col-xs-2,
+.col-sm-2,
+.col-md-2,
+.col-lg-2,
+.col-xs-3,
+.col-sm-3,
+.col-md-3,
+.col-lg-3,
+.col-xs-4,
+.col-sm-4,
+.col-md-4,
+.col-lg-4,
+.col-xs-5,
+.col-sm-5,
+.col-md-5,
+.col-lg-5,
+.col-xs-6,
+.col-sm-6,
+.col-md-6,
+.col-lg-6,
+.col-xs-7,
+.col-sm-7,
+.col-md-7,
+.col-lg-7,
+.col-xs-8,
+.col-sm-8,
+.col-md-8,
+.col-lg-8,
+.col-xs-9,
+.col-sm-9,
+.col-md-9,
+.col-lg-9,
+.col-xs-10,
+.col-sm-10,
+.col-md-10,
+.col-lg-10,
+.col-xs-11,
+.col-sm-11,
+.col-md-11,
+.col-lg-11,
+.col-xs-12,
+.col-sm-12,
+.col-md-12,
+.col-lg-12 {
+  padding-left: 0;
+  padding-right: 0;
 }
