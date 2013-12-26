@@ -31,13 +31,12 @@ define([
     var app_router = new AppRouter;
 
     // initialize views
-    var bodyView = new BodyView();
-    var importView = new ImportView();
-    var treeView = new TreeView();
-    var operationView = new OperationView();
+    bodyView = new BodyView();
+    importView = new ImportView();
+    treeView = new TreeView();
+    operationView = new OperationView();
 
-
-    var currentView;
+    var currentView = {hide: function(){}}; // dummy
 
     bodyView.render(); //Load body on all pages
 
@@ -59,11 +58,13 @@ define([
       currentView.hide();
 
       currentView = treeView;
+      console.log(currentView);
       currentView.render();
     });
 
     app_router.on('route:operation', function (actions) {
       // display operation stuff
+      console.log("jhereee")
       currentView.hide();
 
       currentView = operationView;
