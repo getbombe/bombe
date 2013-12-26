@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:100,300);
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,700);
 .main-font {
   font-family: 'Lato', 'Helvetica Neue', 'Arial';
   font-weight: 100;
@@ -8,6 +8,9 @@
 }
 .strong-font {
   font-weight: 300;
+}
+.stronger-font {
+  font-weight: 700;
 }
 .centered {
   margin-left: auto;
@@ -57,6 +60,9 @@ h5 {
   font-weight: 100;
   margin: 0;
 }
+strong {
+  font-weight: 700;
+}
 #logo {
   height: 65px;
   margin: 0 auto;
@@ -71,8 +77,17 @@ h5 {
   background: url('../img/upload.svg') no-repeat center;
   background-color: #f0f0f1;
   background-size: 25%;
-  min-height: 40em;
+  height: 40em;
+  max-height: 40em;
   padding: 2.5em;
+}
+#analysis {
+  padding: 1.5em;
+  height: 40em;
+  background-color: #f0f0f1;
+  max-height: 40em;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 #title-bar {
   background: #1a62aa;
@@ -83,7 +98,8 @@ h5 {
 #controls {
   background: #1f90c1;
   padding: 2.5em;
-  min-height: 40em;
+  height: 40em;
+  max-height: 40em;
 }
 #footer {
   color: #000000;
@@ -114,6 +130,56 @@ h5 {
   border: 1px #777777 solid;
   width: 100%;
   margin: .5em;
+}
+.graph {
+  width: 90%;
+  height: 35em;
+  border: 5px #777777 solid;
+  background: #ffffff;
+  color: #000000;
+  padding: 1.5em;
+  margin: 1.5em;
+  margin-left: auto;
+  margin-right: auto;
+}
+.graph .title {
+  color: #000000;
+}
+.graph .id {
+  color: #f0f0f1;
+  background: #1a62aa;
+  padding: .5em;
+  margin: 0;
+  float: left;
+  max-width: 5em;
+}
+.plot {
+  width: 100%;
+  height: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 300;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding: .5em;
+  border: 1px #777777 solid;
+}
+.tag {
+  padding: 2px;
+  color: #f0f0f1;
+  background: #1a62aa;
+}
+.newgraph {
+  margin: .5em;
+  padding: 1.5em;
+  font-size: 26px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+.newgraph button {
+  width: 100%;
+  font-weight: 700;
 }
 .col-xs-1,
 .col-sm-1,
