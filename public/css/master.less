@@ -98,7 +98,7 @@ strong {
 }
 #title-bar {
 	background: url('/img/bombe.png') no-repeat center;
-	background-size: 15%;
+	background-size: auto 95%;
 	background-color: @dark-highlight;
 	.small-pad;
 	height: 10%;
@@ -146,6 +146,7 @@ strong {
 	border: 5px @subtle solid;
 	background: @blank;
 	color: @body-font;
+	.strong-font;
 	.med-pad;
 	.med-margin;
 	.centered;
@@ -163,12 +164,18 @@ strong {
 		float: left;
 		max-width: 5em;
 	}
+
+	.lineage {
+		.small-pad;
+		.no-space;
+		float: right;
+		max-width: 15em;
+	}
 }
 .plot {
 	width: 100%;
 	height: 85%;
 	.centered;
-	.strong-font;
 	margin-top: 2em;
 	margin-bottom: 2em;
 	.small-pad;
