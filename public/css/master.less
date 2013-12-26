@@ -75,18 +75,13 @@ strong {
 
 
 //Layout
-#logo {
-	height:65px;
-	margin: 0 auto;
-	display: block;
-}
 .container {
 	width: 100%;
 	.no-space;
 	.no-pad;
 }
 #upload {
-	background: url('../img/upload.svg') no-repeat center;
+	background: url('/img/upload.svg') no-repeat center;
 	background-color: @head-font;
 	background-size: 25%;
 	height: 40em;
@@ -102,7 +97,9 @@ strong {
 	overflow-x: hidden;
 }
 #title-bar {
-	background: @dark-highlight;
+	background: url('/img/bombe.png') no-repeat center;
+	background-size: 15%;
+	background-color: @dark-highlight;
 	.small-pad;
 	height: 10%;
 	min-height: 5em;

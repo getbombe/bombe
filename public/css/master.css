@@ -63,18 +63,13 @@ h5 {
 strong {
   font-weight: 700;
 }
-#logo {
-  height: 65px;
-  margin: 0 auto;
-  display: block;
-}
 .container {
   width: 100%;
   margin: 0;
   padding: 0;
 }
 #upload {
-  background: url('../img/upload.svg') no-repeat center;
+  background: url('/img/upload.svg') no-repeat center;
   background-color: #f0f0f1;
   background-size: 25%;
   height: 40em;
@@ -90,7 +85,9 @@ strong {
   overflow-x: hidden;
 }
 #title-bar {
-  background: #1a62aa;
+  background: url('/img/bombe.png') no-repeat center;
+  background-size: 15%;
+  background-color: #1a62aa;
   padding: .5em;
   height: 10%;
   min-height: 5em;
