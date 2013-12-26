@@ -12,6 +12,7 @@ define([
     },
 
     render: function(){
+      this.$el.show();
       var template = _.template(DataImportTemplate, {data: null});
       this.$el.html(template);
     },
