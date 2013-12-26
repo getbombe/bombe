@@ -2,17 +2,17 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/data_import.html'
-], function($, _, Backbone, DataImportTemplate){
+  'text!templates/operation_view.html'
+], function($, _, Backbone, OperationViewTemplate){
 
-  var ImportView = Backbone.View.extend({
+  var OperationView = Backbone.View.extend({
     el: $("#dataimport"),
     
     initialize: function(){
     },
 
     render: function(){
-      var template = _.template(DataImportTemplate, {data: null});
+      var template = _.template(OperationViewTemplate, {data: null});
       this.$el.html(template);
     },
 
@@ -22,6 +22,6 @@ define([
 
   });
 
-  return ImportView;
+  return OperationView;
   
 });

@@ -4,13 +4,18 @@ define([
   'underscore',
   'backbone',
   'views/BodyView',
-  'views/ImportView'
-], function($, _, Backbone, BodyView, ImportView) {
+  'views/ImportView',
+  'views/TreeView',
+  'views/OperationView'
+], function($, _, Backbone, BodyView, ImportView, TreeView, OperationView) {
 
   var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'index',
+
       'import': 'import',
+      'tree': 'tree',
+      'operation': 'operation',
 
       '*actions': 'unmapped'
     }
@@ -27,6 +32,10 @@ define([
 
     // initialize views
     var bodyView = new BodyView();
+    var importView = new ImportView();
+    var treeView = new TreeView();
+    var operationView = new OperationView();
+
 
     var currentView;
 
@@ -39,10 +48,27 @@ define([
 
     app_router.on('route:import', function (actions) {
       // display import stuff
-      currentView = new ImportView();
+      currentView.hide();
+
+      currentView = importView;
       currentView.render();
     });
 
+    app_router.on('route:tree', function (actions) {
+      // display tree stuff
+      currentView.hide();
+
+      currentView = treeView;
+      currentView.render();
+    });
+
+    app_router.on('route:operation', function (actions) {
+      // display operation stuff
+      currentView.hide();
+
+      currentView = operationView;
+      currentView.render();
+    });
 
     app_router.on('route:unmapped', function (actions) {
       // TODO: do a legit landing page
