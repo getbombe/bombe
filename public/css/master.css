@@ -97,6 +97,22 @@ strong {
   height: 40em;
   max-height: 40em;
 }
+#tree {
+  padding: 1.5em;
+  height: 40em;
+  background-color: #f0f0f1;
+  max-height: 40em;
+  overflow: hidden;
+}
+#preview {
+  background-color: #1f90c1;
+  padding: 1.5em;
+  height: 40em;
+  max-height: 40em;
+}
+#preview .graph {
+  height: 30em;
+}
 #footer {
   color: #000000;
   text-align: center;

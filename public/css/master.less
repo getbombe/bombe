@@ -9,6 +9,10 @@
 @head-font: #F0F0F1;
 @body-font: #000000;
 
+//Geometry
+@little-height: 5em;
+@big-height: 40em;
+
 //Typography
 @import url(http://fonts.googleapis.com/css?family=Lato:100,300,700);
 .main-font {
@@ -84,15 +88,15 @@ strong {
 	background: url('/img/upload.svg') no-repeat center;
 	background-color: @head-font;
 	background-size: 25%;
-	height: 40em;
-	max-height: 40em;
+	height: @big-height;
+	max-height: @big-height;
 	.big-pad;
 }
 .analysis {
 	.med-pad;
-	height: 40em;
+	height: @big-height;
 	background-color: @head-font;
-	max-height: 40em;
+	max-height: @big-height;
 	overflow: hidden;
 }
 #title-bar {
@@ -101,13 +105,30 @@ strong {
 	background-color: @dark-highlight;
 	.small-pad;
 	height: 10%;
-	min-height: 5em;
+	min-height: @little-height;
 }
 #controls {
 	background: @highlight;
 	.big-pad;
-	height: 40em;
-	max-height: 40em;
+	height: @big-height;
+	max-height: @big-height;
+}
+#tree {
+	.med-pad;
+	height: @big-height;
+	background-color: @head-font;
+	max-height: @big-height;
+	overflow: hidden;
+}
+#preview {
+	background-color: @highlight;
+	.med-pad;
+	height: @big-height;
+	max-height: @big-height;
+
+	.graph {
+		height: 30em;
+	}
 }
 #footer {
 	color: @body-font;
