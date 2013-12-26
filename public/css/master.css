@@ -142,6 +142,8 @@ strong {
 }
 .graph .title {
   color: #000000;
+  text-align: left;
+  margin-left: 2.5em;
 }
 .graph .id {
   color: #f0f0f1;
