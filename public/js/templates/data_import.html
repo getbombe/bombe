@@ -1,23 +1,66 @@
 <!-- <div id="upload"></div> -->
-<div id="analysis">
-	<div class="graph">
-		<p class="id">#001</p>
-		<p class="lineage"><span class="tag">#001</span> <strong>divided</strong> by <span class="tag">#002</span></p>
-		<h3 class="title">Figure 1</h3>
-		<div class="plot">
-			<p><strong>Divide</strong> <span class="tag">#001</span> by <span class="tag">#002</span></p>
-			<p><strong>Fourier Transform</strong> <span class="tag">#001</span></p>
-			<p><strong>Interpolate</strong> <span class="tag">#001</span></p>
-			<p><strong>Average</strong> <span class="tag">#001</span> and <span class="tag">#002</span></p>
+
+<div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div id="title-bar">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+      	  <div id="analysis" class="col-sm-5">
+			<div class="graph">
+				<p class="id">#001</p>
+				<p class="lineage"><span class="tag">#001</span> <strong>divided</strong> by <span class="tag">#002</span></p>
+				<h3 class="title">Figure 1</h3>
+				<div class="plot">
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="graph">
-		<p class="id">#002</p>
-		<h3 class="title">Figure 2</h3>
-		<div class="plot">
+          <div id="controls" class="col-sm-2">
+            <h3>Data Options</h3>
+            <br>
+            <div class="text-box">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h4>X-Data</h4> 
+                  <select>
+                    <option>Column 1</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="text-box">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h4>Y-Data</h4> 
+                  <select>
+                    <option>Column 2</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="text-box">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h4>Ignore</h4> 
+                  <input type="text" placeholder="#, !, *">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="analysis" class="col-sm-5">
+			<div class="graph">
+				<p class="id">#001</p>
+				<p class="lineage"><span class="tag">#001</span> <strong>divided</strong> by <span class="tag">#002</span></p>
+				<h3 class="title">Figure 1</h3>
+				<div class="plot">
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="newgraph">
-		<button class="btn btn-success"><h1>+</h1></button>
-	</div>
-</div>
+        </div>
+      </div>
+<div id="footer">
+	<hr>
+	<p>&copy; Bombe</p>
+</div> 
