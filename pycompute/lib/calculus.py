@@ -1,48 +1,53 @@
 from numpy import *
 
-def differentiate (data):
-	'''computes derivative'''
+class Calculus:
 
-	x_dat = data[0]
-	y_dat = data[1]
+	@staticmethod
+	def differentiate (data):
+		'''computes derivative'''
 
-	dy_dx = diff(y_dat) / diff(x_dat)
+		x_dat = data[0]
+		y_dat = data[1]
 
-	#Delete last pt because diff() makes dy_dx smaller by 1 element
-	x_dat = delete(x_dat, s_[:1])
+		dy_dx = diff(y_dat) / diff(x_dat)
 
-	return (x_dat, dy_dx)
+		#Delete last pt because diff() makes dy_dx smaller by 1 element
+		x_dat = delete(x_dat, s_[:1])
 
-
-def integrate (data):
-	'''computes integral'''
-
-	x_dat = data[0]
-	y_dat = data[1]
-
-	integral = trapz(y_dat, x_dat)
-
-	return integral
+		return (x_dat, dy_dx)
 
 
-def test():
+	@staticmethod
+	def integrate (data):
+		'''computes integral'''
 
-	import matplotlib.pyplot as plt 
+		x_dat = data[0]
+		y_dat = data[1]
 
-	x = arange(0, 2*pi, 0.1)
-	y = sin(x)
+		integral = trapz(y_dat, x_dat)
 
-	deriv = differentiate([x, y])
-	intgr = integrate([x, y])
+		return integral
 
-	plt.plot (x, y)
-	plt.plot (deriv[0], deriv[1])
 
-	plt.show()
+	@staticmethod
+	def test():
 
-	print intgr
+		import matplotlib.pyplot as plt 
+
+		x = arange(0, 2*pi, 0.1)
+		y = sin(x)
+
+		deriv = differentiate([x, y])
+		intgr = integrate([x, y])
+
+		plt.plot (x, y)
+		plt.plot (deriv[0], deriv[1])
+
+		plt.show()
+
+		print intgr
 
 
 if __name__ == '__main__':
-	test()
+	Calculus.test()
 	

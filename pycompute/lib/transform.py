@@ -2,37 +2,42 @@ from numpy import *
 import scipy
 import scipy.fftpack
 
-def fourier (data, real=True):
-	'''FFT on a dataset'''
+class Transform:
 
-	x_dat = data[0]
-	y_dat = data[1]
+	@staticmethod
+	def fourier (data, real=True):
+		'''FFT on a dataset'''
 
-	x_ft = scipy.fftpack.fftfreq(x_dat.size, x_dat[1] - x_dat[0])
-	y_ft = abs(scipy.fft(y_dat))
+		x_dat = data[0]
+		y_dat = data[1]
 
-	if real:
-		x_ft = x_ft[1:len(x_ft) / 2]
-		y_ft = y_ft[1:len(y_ft) / 2]
+		x_ft = scipy.fftpack.fftfreq(x_dat.size, x_dat[1] - x_dat[0])
+		y_ft = abs(scipy.fft(y_dat))
 
-	return (x_ft, y_ft)
+		if real:
+			x_ft = x_ft[1:len(x_ft) / 2]
+			y_ft = y_ft[1:len(y_ft) / 2]
 
-def test():
+		return (x_ft, y_ft)
 
-	import matplotlib.pyplot as plt 
 
-	x = arange(0, 20*pi, 0.05)
-	y = sin(x) + sin(2*pi*2.0*x) + sin(2*pi*6.0*x)
+	@staticmethod
+	def test():
 
-	ft = fourier([x, y])
+		import matplotlib.pyplot as plt 
 
-	plt.plot (x, y)
-	plt.show()
+		x = arange(0, 20*pi, 0.05)
+		y = sin(x) + sin(2*pi*2.0*x) + sin(2*pi*6.0*x)
 
-	plt.plot (ft[0], ft[1])
-	plt.show()
+		ft = fourier([x, y])
+
+		plt.plot (x, y)
+		plt.show()
+
+		plt.plot (ft[0], ft[1])
+		plt.show()
 
 
 if __name__ == '__main__':
 
-	test()
+	Transform.test()
