@@ -215,6 +215,23 @@ strong {
   width: 100%;
   font-weight: 700;
 }
+.nodebox {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3.5px;
+}
+.nodeTitle {
+  font: 10px sans-serif;
+  font-weight: bold;
+}
+.nodeText {
+  font: 10px sans-serif;
+}
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 3.5px;
+}
 .col-xs-1,
 .col-sm-1,
 .col-md-1,
