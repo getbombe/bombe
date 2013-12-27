@@ -9,6 +9,10 @@
 @head-font: #F0F0F1;
 @body-font: #000000;
 
+//Geometry
+@little-height: 5em;
+@big-height: 100%;
+
 //Typography
 @import url(http://fonts.googleapis.com/css?family=Lato:100,300,700);
 .main-font {
@@ -62,6 +66,8 @@ html, body {
 	.no-space;
 	.no-pad;
 	color: @body-font;
+	min-height: 100%;
+	height: 100%;
 }
 h1, h2, h3, h4, h5 {
 	color: @head-font;
@@ -75,26 +81,35 @@ strong {
 
 
 //Layout
+#body {
+	height: @big-height;
+}
 .container {
 	width: 100%;
+	height: 100%;
 	.no-space;
 	.no-pad;
+}
+#dataimport {
+	height: 100%;
+}
+.row {
+	height: 85%;
 }
 #upload {
 	background: url('/img/upload.svg') no-repeat center;
 	background-color: @head-font;
 	background-size: 25%;
-	height: 40em;
-	max-height: 40em;
+	height: @big-height;
+	max-height: @big-height;
 	.big-pad;
 }
-#analysis {
+.analysis {
 	.med-pad;
-	height: 40em;
+	height: @big-height;
 	background-color: @head-font;
-	max-height: 40em;
-	overflow-y: scroll;
-	overflow-x: hidden;
+	max-height: @big-height;
+	overflow: hidden;
 }
 #title-bar {
 	background: url('/img/bombe.png') no-repeat center;
@@ -102,19 +117,38 @@ strong {
 	background-color: @dark-highlight;
 	.small-pad;
 	height: 10%;
-	min-height: 5em;
+	min-height: @little-height;
 }
 #controls {
 	background: @highlight;
 	.big-pad;
-	height: 40em;
-	max-height: 40em;
+	height: @big-height;
+	max-height: @big-height;
+}
+#tree {
+	.med-pad;
+	height: @big-height;
+	background-color: @head-font;
+	max-height: @big-height;
+	overflow: hidden;
+}
+#preview {
+	background-color: @highlight;
+	.med-pad;
+	height: @big-height;
+	max-height: @big-height;
+
+	.graph {
+		height: 80%;
+	}
 }
 #footer {
 	color: @body-font;
 	text-align: center;
 	.strong-font;
-	.med-pad;
+	.no-pad;
+	.no-space;
+	margin-bottom: 1em;
 
 	hr {
 		border: @subtle 1px solid;
@@ -142,7 +176,7 @@ strong {
 }
 .graph {
 	width: 90%;
-	height: 35em;
+	height: 90%;
 	border: 5px @subtle solid;
 	background: @blank;
 	color: @body-font;
@@ -198,6 +232,29 @@ strong {
 		.stronger-font;
 	}
 }
+
+//D3
+.nodebox {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 3.5px;
+}
+
+.nodeTitle {
+  font: 10px sans-serif;
+  font-weight: bold;
+}
+
+.nodeText {
+  font: 10px sans-serif;
+}
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 3.5px;
+}
+
 
 //Bootstrap Overrides
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 
