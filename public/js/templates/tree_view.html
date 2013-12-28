@@ -146,13 +146,56 @@
   	</script>
   </div>
   <div id="preview" class="col-sm-5">
-    <h3>Graph Preview</h3>
+    <h3>Preview</h3>
     <br>
     <div class="graph">
 		<p class="id">#003</p>
 		<p class="lineage"><span class="tag">#001</span> <strong>divided</strong> by <span class="tag">#002</span></p>
 		<h3 class="title">Fig. 3</h3>
 		<div class="plot">
+			<script>
+			var margin = {top: 20, right: 20, bottom: 30, left: 50},
+			    width = 360 - margin.left - margin.right,
+			    height = 200 - margin.top - margin.bottom;
+
+			var parseDate = d3.time.format("%d-%b-%y").parse;
+
+			var x = d3.time.scale()
+			    .range([0, width]);
+
+			var y = d3.scale.linear()
+			    .range([height, 0]);
+
+			var xAxis = d3.svg.axis()
+			    .scale(x)
+			    .orient("bottom");
+
+			var yAxis = d3.svg.axis()
+			    .scale(y)
+			    .orient("left");
+
+			var svg = d3.select(".plot").append("svg")
+			    .attr("width", width + margin.left + margin.right)
+			    .attr("height", height + margin.top + margin.bottom)
+			  .append("g")
+			    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+			  svg.append("g")
+			      .attr("class", "x axis")
+			      .attr("transform", "translate(0," + height + ")")
+			      .call(xAxis);
+
+			  svg.append("g")
+			      .attr("class", "y axis")
+			      .call(yAxis)
+			    .append("text")
+			      .attr("transform", "rotate(-90)")
+			      .attr("y", 6)
+			      .attr("dy", ".71em")
+			      .style("text-anchor", "end")
+			      .text("Price ($)");
+
+			</script>
 		</div>
 	</div>
   </div>

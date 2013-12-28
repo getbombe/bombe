@@ -245,7 +245,7 @@ strong {
 }
 
 //D3
-.nodebox {
+.node-dot {
   fill: #fff;
   stroke: steelblue;
   stroke-width: 3.5px;
@@ -257,13 +257,29 @@ strong {
 }
 
 .nodeText {
-  font: 10px sans-serif;
+  font-size: 10px;
 }
 
 .link {
   fill: none;
-  stroke: #ccc;
-  stroke-width: 3.5px;
+  stroke: @subtle;
+  stroke-width: 1em;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: @body-font;
+  stroke-width: 1.5px;
 }
 
 

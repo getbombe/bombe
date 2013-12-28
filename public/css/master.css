@@ -228,7 +228,7 @@ strong {
   width: 100%;
   font-weight: 700;
 }
-.nodebox {
+.node-dot {
   fill: #fff;
   stroke: steelblue;
   stroke-width: 3.5px;
@@ -238,12 +238,26 @@ strong {
   font-weight: bold;
 }
 .nodeText {
-  font: 10px sans-serif;
+  font-size: 10px;
 }
 .link {
   fill: none;
-  stroke: #ccc;
-  stroke-width: 3.5px;
+  stroke: #777777;
+  stroke-width: 1em;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.x.axis path {
+  display: none;
+}
+.line {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 1.5px;
 }
 .col-xs-1,
 .col-sm-1,
