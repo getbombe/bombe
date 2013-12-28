@@ -2,7 +2,71 @@
   <div id="tree" class="col-sm-7">
   	<script type="text/javascript">
   		// Setting up json data
-		var jsonRoot = "/public/js"
+		var treeData = {
+		    name: "/",
+		    contents: [
+		        {
+		            name: "Applications",
+		            contents: [
+		                { name: "Mail.app" },
+		                { name: "iPhoto.app" },
+		                { name: "Keynote.app" },
+		                { name: "iTunes.app" },
+		                { name: "XCode.app" },
+		                { name: "Numbers.app" },
+		                { name: "Pages.app" }
+		            ]
+		        },
+		        {
+		            name: "System",
+		            contents: []
+		        },
+		        {
+		            name: "Library",
+		            contents: [
+		                {
+		                    name: "Application Support",
+		                    contents: [
+		                        { name: "Adobe" },
+		                        { name: "Apple" },
+		                        { name: "Google" },
+		                        { name: "Microsoft" }
+		                    ]
+		                },
+		                {
+		                    name: "Languages",
+		                    contents: [
+		                        { name: "Ruby" },
+		                        { name: "Python" },
+		                        { name: "Javascript" },
+		                        { name: "C#" }
+		                    ]
+		                },
+		                {
+		                    name: "Developer",
+		                    contents: [
+		                        { name: "4.2" },
+		                        { name: "4.3" },
+		                        { name: "5.0" },
+		                        { name: "Documentation" }
+		                    ]
+		                }
+		            ]
+		        },
+		        {
+		            name: "opt",
+		            contents: []
+		        },
+		        {
+		            name: "Users",
+		            contents: [
+		                { name: "pavanpodila" },
+		                { name: "admin" },
+		                { name: "test-user" }
+		            ]
+		        }
+		    ]
+		};
 
 		var normFac = 90
 		var fontSize = 10
@@ -39,7 +103,7 @@
 		  .append("g")
 		    .attr("transform", "translate(80,0)");
 
-		update('example.json')
+		update(treeData);
 
 		function update(fileName) {
 		    var jsonPath = [jsonRoot, fileName].join("/")
