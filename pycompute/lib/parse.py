@@ -14,7 +14,14 @@ class Parse:
 				return_data = [row for row in reader]
 
 			return return_data
+
+		elif fmt == 'txt':
+
+			with open(datafile) as f:
+				return np.loadtxt(f, dtype=str)
+
 		else:
+			#TODO: something should probably happen here...
 			pass
 
 		return 1
@@ -22,6 +29,7 @@ class Parse:
 	@staticmethod
 	def test ():
 		print Parse.parse_data('derp.csv', fmt='csv')
+		print Parse.parse_data('derp.txt', fmt='txt')
 
 if __name__ == '__main__':
 	Parse.test()
