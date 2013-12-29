@@ -1,7 +1,7 @@
 <div class="row">
   <div id="tree" class="col-sm-7">
   	<script type="text/javascript">
-  		// Setting up json data
+  		// Setting up dummy json data
 		var treeData = {
 		    name: "/",
 		    contents: [
@@ -70,7 +70,7 @@
 
 		var tree = d3.layout.tree()
 		    .sort(null)
-		    .size([1000, 1000 - 20*14])
+		    .size([1000, 1000 - 20*10])
 		    .children(function(d)
 		    {
 		        return (!d.contents || d.contents.length === 0) ? null : d.contents;
@@ -88,7 +88,7 @@
 		     .append("svg:svg").attr("width", 1000).attr("height", 1000)
 		     .append("svg:g")
 		     .attr("class", "container")
-		     .attr("transform", "translate(" + 20 + ",0)");
+		     .attr("transform", "translate(" + 80 + ",0)");
 
 
 		 // Edges between nodes as a <path class="link" />
@@ -123,11 +123,15 @@
 		         return "translate(" + d.y + "," + d.x + ")";
 		     });
 
-		 nodeGroup.append("svg:circle")
-		     .attr("class", "node-dot")
-		     .attr("r", 10);
+		 nodeGroup.append("rect")
+		     .attr("class", "nodebox")
+		     //.attr("r", 10);
+		     .attr("x", -40/2)
+             .attr("y", -30/2)
+		     .attr("width", 40)
+             .attr("height", 30);
 
-		 nodeGroup.append("svg:text")
+		 /*nodeGroup.append("svg:text")
 		     .attr("text-anchor", function(d)
 		     {
 		         return d.children ? "end" : "start";
@@ -141,7 +145,7 @@
 		     .text(function(d)
 		     {
 		         return d.name;
-		     });
+		     });*/
 		  
   	</script>
   </div>
@@ -154,13 +158,14 @@
 		<h3 class="title">Fig. 3</h3>
 		<div class="plot">
 			<script>
-			var margin = {top: 20, right: 20, bottom: 30, left: 50},
-			    width = 360 - margin.left - margin.right,
-			    height = 200 - margin.top - margin.bottom;
+			//render graph
+			var margin = {top: 20, right: 20, bottom: 40, left: 50},
+			    width = $('.plot').width() - margin.left - margin.right,
+			    height = $('.plot').height() - margin.top - margin.bottom;
 
-			var parseDate = d3.time.format("%d-%b-%y").parse;
+			//var parseDate = d3.time.format("%d-%b-%y").parse;
 
-			var x = d3.time.scale()
+			var x = d3.scale.linear()
 			    .range([0, width]);
 
 			var y = d3.scale.linear()
@@ -183,7 +188,12 @@
 			  svg.append("g")
 			      .attr("class", "x axis")
 			      .attr("transform", "translate(0," + height + ")")
-			      .call(xAxis);
+			      .call(xAxis)
+			     .append("text")
+			      .attr("x", width)
+			      .attr("dy", "2.7em")
+			      .style("text-anchor", "end")
+			      .text("X-Data (Units)");
 
 			  svg.append("g")
 			      .attr("class", "y axis")
@@ -191,9 +201,9 @@
 			    .append("text")
 			      .attr("transform", "rotate(-90)")
 			      .attr("y", 6)
-			      .attr("dy", ".71em")
+			      .attr("dy", "-3em")
 			      .style("text-anchor", "end")
-			      .text("Price ($)");
+			      .text("Y-Data (Units)");
 
 			</script>
 		</div>

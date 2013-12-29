@@ -228,22 +228,20 @@ strong {
   width: 100%;
   font-weight: 700;
 }
-.node-dot {
-  fill: #fff;
-  stroke: steelblue;
-  stroke-width: 3.5px;
-}
-.nodeTitle {
-  font: 10px sans-serif;
-  font-weight: bold;
-}
-.nodeText {
-  font-size: 10px;
+.nodebox {
+  fill: #ffffff;
+  stroke: #777777;
+  stroke-width: 2px;
 }
 .link {
   fill: none;
-  stroke: #777777;
-  stroke-width: 1em;
+  stroke: rgba(100, 100, 100, 0.5);
+  stroke-width: 1.0em;
+}
+.line {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 1.5px;
 }
 .axis path,
 .axis line {
@@ -251,13 +249,8 @@ strong {
   stroke: #000;
   shape-rendering: crispEdges;
 }
-.x.axis path {
-  display: none;
-}
-.line {
-  fill: none;
-  stroke: #000000;
-  stroke-width: 1.5px;
+.dot {
+  stroke: #000;
 }
 .col-xs-1,
 .col-sm-1,

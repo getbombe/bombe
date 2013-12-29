@@ -8,6 +8,7 @@
 @dark-highlight: #1A62AA;
 @head-font: #F0F0F1;
 @body-font: #000000;
+@tree-link: rgba(100, 100, 100, 0.5);
 
 //Geometry
 @little-height: 5em;
@@ -245,26 +246,24 @@ strong {
 }
 
 //D3
-.node-dot {
-  fill: #fff;
-  stroke: steelblue;
-  stroke-width: 3.5px;
-}
-
-.nodeTitle {
-  font: 10px sans-serif;
-  font-weight: bold;
-}
-
-.nodeText {
-  font-size: 10px;
+.nodebox {
+  fill: @blank;
+  stroke: @subtle;
+  stroke-width: 2px;
 }
 
 .link {
   fill: none;
-  stroke: @subtle;
-  stroke-width: 1em;
+  stroke: @tree-link;
+  stroke-width: 1.0em;
 }
+
+.line {
+  fill: none;
+  stroke: @body-font;
+  stroke-width: 1.5px;
+}
+
 .axis path,
 .axis line {
   fill: none;
@@ -272,14 +271,8 @@ strong {
   shape-rendering: crispEdges;
 }
 
-.x.axis path {
-  display: none;
-}
-
-.line {
-  fill: none;
-  stroke: @body-font;
-  stroke-width: 1.5px;
+.dot {
+  stroke: #000;
 }
 
 
