@@ -1,90 +1,10 @@
+<script type="text/javascript" src="/js/tree.js"></script>
+<script type="text/javascript" src="/js/graph.js"></script>
+
 <div class="row">
   <div id="tree" class="col-sm-7">
-  	<script type="text/javascript">
-
-  		var tree = d3.layout.tree()
-		    .sort(null)
-		    .size([1000, 1000 - 20*10])
-		    .children(function(d)
-		    {
-		        return (!d.contents || d.contents.length === 0) ? null : d.contents;
-		    });
-
-  		// Setting up dummy json data
-		d3.json("/uploads/tree.json", function (error, root) {
-
-		var nodes = tree.nodes(root);
-		var links = tree.links(nodes);
-
-		/*
-		     <svg>
-		         <g class="container" />
-		     </svg>
-		  */
-		 var layoutRoot = d3.select('#tree')
-		     .append("svg:svg").attr("width", 1000).attr("height", 1000)
-		     .append("svg:g")
-		     .attr("class", "container")
-		     .attr("transform", "translate(" + 80 + ",0)");
-
-
-		 // Edges between nodes as a <path class="link" />
-		 var link = d3.svg.diagonal()
-		     .projection(function(d)
-		     {
-		         return [d.y, d.x];
-		     });
-
-		 layoutRoot.selectAll("path.link")
-		     .data(links)
-		     .enter()
-		     .append("svg:path")
-		     .attr("class", "link")
-		     .attr("d", link);
-
-
-		 /*
-		     Nodes as
-		     <g class="node">
-		         <circle class="node-dot" />
-		         <text />
-		     </g>
-		  */
-		 var nodeGroup = layoutRoot.selectAll("g.node")
-		     .data(nodes)
-		     .enter()
-		     .append("svg:g")
-		     .attr("class", "node")
-		     .attr("transform", function(d)
-		     {
-		         return "translate(" + d.y + "," + d.x + ")";
-		     });
-
-		 nodeGroup.append("rect")
-		     .attr("class", "nodebox")
-		     //.attr("r", 10);
-		     .attr("x", -40/2)
-             .attr("y", -30/2)
-		     .attr("width", 40)
-             .attr("height", 30);
-
-		 /*nodeGroup.append("svg:text")
-		     .attr("text-anchor", function(d)
-		     {
-		         return d.children ? "end" : "start";
-		     })
-		     .attr("dx", function(d)
-		     {
-		         var gap = 2 * 10;
-		         return d.children ? -gap : gap;
-		     })
-		     .attr("dy", 3)
-		     .text(function(d)
-		     {
-		         return d.name;
-		     });*/
-		});
-		  
+  	<script>
+  		renderTree();
   	</script>
   </div>
   <div id="preview" class="col-sm-5">
@@ -96,88 +16,8 @@
 		<h3 class="title">Fig. 3</h3>
 		<div class="plot">
 			<script>
-			//render graph
-			$(window).resize(function() {
-				renderGraph();
-			});
-
-			$(document).ready( function(){
-				renderGraph();
-			});
-
-			function renderGraph() {
-  			
-			$('.plot').html('');
-
-  			var margin = {top: 20, right: 20, bottom: 40, left: 50};
-		    var width = $('.plot').width() - margin.left - margin.right;
-		    var height = $('.plot').height() - margin.top - margin.bottom;
-
-			var parseDate = d3.time.format("%d-%b-%y").parse;
-
-			var x = d3.time.scale()
-			    .range([0, width]);
-
-			var y = d3.scale.linear()
-			    .range([height, 0]);
-
-			var xAxis = d3.svg.axis()
-			    .scale(x)
-			    .orient("bottom");
-
-			var yAxis = d3.svg.axis()
-			    .scale(y)
-			    .orient("left");
-
-			var line = d3.svg.line()
-			    .x(function(d) { return x(d.date); })
-			    .y(function(d) { return y(d.close); });
-
-			 var svg = d3.select(".plot").append("svg")
-			    .attr("width", width + margin.left + margin.right)
-			    .attr("height", height + margin.top + margin.bottom)
-			  .append("g")
-			    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-
-
-			d3.tsv("/uploads/data.tsv", function(error, data) {
-			  data.forEach(function(d) {
-			    d.date = parseDate(d.date);
-			    d.close = +d.close;
-			  });
-
-
-			  x.domain(d3.extent(data, function(d) { return d.date; }));
-			  y.domain(d3.extent(data, function(d) { return d.close; }));
-
-			
-			  svg.append("g")
-			      .attr("class", "x axis")
-			      .attr("transform", "translate(0," + height + ")")
-			      .call(xAxis)
-			     .append("text")
-			      .attr("x", width)
-			      .attr("dy", "2.7em")
-			      .style("text-anchor", "end")
-			      .text("X-Data (Units)");
-
-			  svg.append("g")
-			      .attr("class", "y axis")
-			      .call(yAxis)
-			    .append("text")
-			      .attr("transform", "rotate(-90)")
-			      .attr("y", 6)
-			      .attr("dy", "-3em")
-			      .style("text-anchor", "end")
-			      .text("Y-Data (Units)");
-
-			  svg.append("path")
-			      .datum(data)
-			      .attr("class", "line")
-			      .attr("d", line);
-			  });
-			};
+				$(window).resize(function() { renderGraph(); });
+				$(document).ready( function(){ renderGraph(); });
 			</script>
 		</div>
 	</div>
