@@ -67,12 +67,13 @@ function renderTree() {
 		     .attr("width", 80)
 		     .attr("height", 60);
 
-		nodeGroup.append("div")
+		/*nodeGroup.append("div")
 			.attr("class", "miniplot")
 			.attr("x", -80/2)
 		    .attr("y", -60/2)
 		    .attr("width", 80)
-		    .attr("height", 60);
+		    .attr("height", 60);*/
 
+		renderMiniGraphs(nodeGroup);
 	});
 }
