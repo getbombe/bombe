@@ -3,6 +3,7 @@ function renderTree() {
 	var tree = d3.layout.tree()
 	    .sort(null)
 	    .size([1000, 1000 - 20*10])
+	    .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; })
 	    .children(function(d)
 	    {
 	        return (!d.contents || d.contents.length === 0) ? null : d.contents;
@@ -61,10 +62,17 @@ function renderTree() {
 
 		 nodeGroup.append("rect")
 		     .attr("class", "nodebox")
-		     //.attr("r", 10);
-		     .attr("x", -40/2)
-		     .attr("y", -30/2)
-		     .attr("width", 40)
-		     .attr("height", 30);
+		     .attr("x", -80/2)
+		     .attr("y", -60/2)
+		     .attr("width", 80)
+		     .attr("height", 60);
+
+		nodeGroup.append("div")
+			.attr("class", "miniplot")
+			.attr("x", -80/2)
+		    .attr("y", -60/2)
+		    .attr("width", 80)
+		    .attr("height", 60);
+
 	});
 }

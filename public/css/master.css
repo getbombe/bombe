@@ -173,7 +173,7 @@ strong {
 .graph {
   width: 90%;
   height: 90%;
-  border: 5px #777777 solid;
+  border: 2px #777777 solid;
   background: #ffffff;
   color: #000000;
   font-weight: 300;
@@ -206,10 +206,10 @@ strong {
   height: 85%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2em;
-  margin-bottom: 2em;
-  padding: .5em;
-  border: 1px #777777 solid;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  padding: 0;
+  overflow: hidden;
 }
 .tag {
   padding: 2px;
@@ -231,7 +231,7 @@ strong {
 .nodebox {
   fill: #ffffff;
   stroke: #777777;
-  stroke-width: 2px;
+  stroke-width: 1px;
 }
 .link {
   fill: none;

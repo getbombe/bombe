@@ -1,11 +1,18 @@
-<script type="text/javascript" src="/js/tree.js"></script>
 <script type="text/javascript" src="/js/graph.js"></script>
+<script type="text/javascript" src="/js/tree.js"></script>
+
+<script>
+	$(window).resize(function() { 
+		renderGraph(); 
+	});
+	$(document).ready( function(){ 
+		renderTree();
+		renderGraph(); 
+	});
+</script>
 
 <div class="row">
   <div id="tree" class="col-sm-7">
-  	<script>
-  		renderTree();
-  	</script>
   </div>
   <div id="preview" class="col-sm-5">
     <h3>Preview</h3>
@@ -15,10 +22,7 @@
 		<p class="lineage"><span class="tag">#001</span> <strong>divided</strong> by <span class="tag">#002</span></p>
 		<h3 class="title">Fig. 3</h3>
 		<div class="plot">
-			<script>
-				$(window).resize(function() { renderGraph(); });
-				$(document).ready( function(){ renderGraph(); });
-			</script>
+			
 		</div>
 	</div>
   </div>
