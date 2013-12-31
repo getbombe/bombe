@@ -64,7 +64,7 @@ define([
 
     app_router.on('route:operation', function (actions) {
       // display operation stuff
-      console.log("jhereee")
+      //console.log("jhereee")  <-- wat [Eddie]
       currentView.hide();
 
       currentView = operationView;
