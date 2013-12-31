@@ -74,6 +74,6 @@ function renderTree() {
 		    .attr("width", 80)
 		    .attr("height", 60);*/
 
-		renderMiniGraphs(nodeGroup);
+		renderMiniGraphs();
 	});
 }

@@ -75,42 +75,61 @@ function renderGraph() {
 	});	
 }
 
-function renderMiniGraphs(nodes) {
+function renderMiniGraphs() {
 	
-	var margin = {top: 5, right: 5, bottom: 5, left: 5};
-    var width = $(this).width() - margin.left - margin.right;
-    var height = $(this).height() - margin.top - margin.bottom;
+	$('.node').each( function (index) {
+	    var width = 60;
+	    var height = 40;
 
-	var parseDate = d3.time.format("%d-%b-%y").parse;
+		var parseDate = d3.time.format("%d-%b-%y").parse;
 
-	var x = d3.time.scale()
-	    .range([0, width]);
+		var x = d3.time.scale()
+		    .range([0, width]);
 
-	var y = d3.scale.linear()
-	    .range([height, 0]);
+		var y = d3.scale.linear()
+		    .range([height, 0]);
 
-	var line = d3.svg.line()
-	    .x(function(d) { return x(d.date); })
-	    .y(function(d) { return y(d.close); });
+		var line = d3.svg.line()
+		    .x(function(d) { return x(d.date); })
+		    .y(function(d) { return y(d.close); });
 
-	 var svg = nodes.append("svg")
-	    .attr("width", width + margin.left + margin.right)
-	    .attr("height", height + margin.top + margin.bottom)
-	  .append("g")
-	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		 /*var svg = d3.select(this).append("svg")
+		    .attr("width", width + margin.left + margin.right)
+		    .attr("height", height + margin.top + margin.bottom)
+		    .attr("x", xpos)
+		    .attr("y", ypos)
+		    .append("g")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");*/
 
+		var obj = d3.select(this);
 
+		 /*obj.append("rect")
+		     .attr("class", "nodebox")
+		     .attr("width", 100)
+		     .attr("height", 160)
+		     .attr("x", -80/2)
+		     .attr("y", -60/2);*/
 
-	d3.tsv("/uploads/data.tsv", function(error, data) {
-	  data.forEach(function(d) {
-	    d.date = parseDate(d.date);
-	    d.close = +d.close;
-	  });
+		d3.tsv("/uploads/data.tsv", function(error, data) {
+		  data.forEach(function(d) {
+		    d.date = parseDate(d.date);
+		    d.close = +d.close;
+		  });
 
-	  svg.append("path")
-	      .datum(data)
-	      .attr("class", "line")
-	      .attr("d", line);
-	  });
+		  x.domain(d3.extent(data, function(d) { return d.date; }));
+		  y.domain(d3.extent(data, function(d) { return d.close; }));
+
+		  obj.append("path")
+		      .datum(data)
+		      .attr("class", "line")
+		      .attr("d", line)
+		     .attr("transform", function(d)
+		     {
+		         return "translate(" + -30 + "," + -20 + ")";
+		     });
+		      
+		});
+	});
+	
 
 }
