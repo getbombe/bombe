@@ -1,4 +1,4 @@
-function renderTree() {
+function renderTree(treeData) {
 
 	var tree = d3.layout.tree()
 	    .sort(null)
@@ -10,7 +10,7 @@ function renderTree() {
 	    });
 
 	// Setting up dummy json data
-	d3.json("/uploads/tree.json", function (error, root) {
+	d3.json(treeData, function (error, root) {
 
 		var nodes = tree.nodes(root);
 		var links = tree.links(nodes);

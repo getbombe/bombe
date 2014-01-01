@@ -2,12 +2,15 @@
 <script type="text/javascript" src="/js/tree.js"></script>
 
 <script>
-	$(window).resize(function() { 
-		renderGraph(); 
+	$(window).resize(function() {
+		data = ["/uploads/data.tsv"]; 
+		renderGraph(data); 
 	});
 	$(document).ready( function(){ 
-		renderTree();
-		renderGraph(); 
+		renderTree("/uploads/tree.json");
+		
+		data = ["/uploads/data.tsv"];
+		renderGraph(data); 
 	});
 </script>
 
