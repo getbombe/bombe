@@ -27,25 +27,25 @@ class Background:
 
 
 	@staticmethod
-	def linear (data, pts):
+	def linear (data):
 		'''given two points, returns the line to subtract'''
 
-		x_dat = json.loads(data['x'])
-		y_dat = json.loads(data['y'])
+		i1 = int(data['p1'])
+		i2 = int(data['p2'])
+		p1 = [data['data']['x'][i1], data['data']['y'][i1]]
+		p2 = [data['data']['x'][i2], data['data']['y'][i2]]
 
-		coeffs = polyfit([x_dat[pts['p1']], x_dat[pts['p2']]], [y_dat[pts['p1']], y_dat[pts['p2']]], 1)
+		coeffs = polyfit(p1, p2, 1)
 		linear = poly1d (coeffs)
 
-		y_fit = list(linear(x_dat))
+		y_fit = linear(data['data']['x'])
 
 		dict = {
-			"x" : list(x_dat),
-			"y" : y_fit
+			"x" : list(data['data']['x']),
+			"y" : list(y_fit)
 		}
 
-		ret_json = json.dumps(dict)
-
-		return ret_json
+		return dict
 
 
 	@staticmethod
