@@ -6,44 +6,31 @@ class Stats:
 	def basic_stats (data):
 		'''basic descriptive stats'''
 
-		x_dat = data[0]
-		y_dat = data[1]
+		x_dat = data['data']['x']
+		y_dat = data['data']['y']
 
-		y_mean = mean(y_dat)
-		y_med = median(y_dat)
-		y_stdev = std(y_dat)
+		data['mean'] = mean(y_dat)
+		data['med'] = median(y_dat)
+		data['stdev'] = std(y_dat)
 
-		return (y_mean, y_med, y_stdev)
+		return data
 
 
 	@staticmethod
-	def poly_regression (data, order):
+	def poly_regression (data):
 		'''nth order polynomial fit'''
 
-		x_dat = data[0]
-		y_dat = data[1]
+		x_dat = data['data']['x']
+		y_dat = data['data']['y']
+		order = int(data['order'])
+		res = float(data['res'])
+
+		x_itp = list(linspace(x_dat[0], x_dat[len(x_dat)-1], len(x_dat) * res))
 
 		coeffs = polyfit(x_dat, y_dat, order)
 		polynom = poly1d (coeffs)
 
-		y_fit = list(polynom(x_dat))
+		data['data']['x'] = x_itp
+		data['data']['y'] = list(polynom(x_itp))
 
-		return (x_dat, y_fit)
-
-
-	@staticmethod
-	def test():
-
-		dataset = [
-			[1, 2, 3, 4, 5],
-			[1, 4, 9, 16, 25]
-		]
-
-		print basic_stats(dataset)
-		print poly_regression(dataset, 1)
-		print poly_regression(dataset, 2)
-
-
-if __name__ == '__main__':
-	Stats.test()
-	
+		return data

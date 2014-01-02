@@ -32,27 +32,4 @@ class Calculus:
 		data['integral'] = integral
 
 		return data
-
-
-	@staticmethod
-	def test():
-
-		import matplotlib.pyplot as plt 
-
-		x = arange(0, 2*pi, 0.1)
-		y = sin(x)
-
-		deriv = differentiate([x, y])
-		intgr = integrate([x, y])
-
-		plt.plot (x, y)
-		plt.plot (deriv[0], deriv[1])
-
-		plt.show()
-
-		print intgr
-
-
-if __name__ == '__main__':
-	Calculus.test()
 	

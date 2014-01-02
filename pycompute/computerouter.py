@@ -1,6 +1,8 @@
 from lib.background import *
 from lib.transform import *
 from lib.calculus import *
+from lib.stats import *
+from lib.graphical import *
 
 class ComputeRouter:
 	''' static, and should be used that way '''
@@ -12,6 +14,13 @@ class ComputeRouter:
 		#calculus
 		'calculus_differentiate': Calculus.differentiate,
 		'calculus_integrate': Calculus.integrate,
+
+		#graphical
+		'graphical_xy_dists' : Graphical.xy_dists,
+
+		#statistics and fitting
+		'stats_basic_stats' : Stats.basic_stats,
+		'stats_poly_regression' : Stats.poly_regression,
 
 		#transforms
 		'transform_fourier': Transform.fourier
@@ -58,11 +67,14 @@ if __name__ == '__main__':
 	#create dummy json data
 	data = dict()
 	data['data'] = {
-		'x': ['1','2','3','4','5','6'],
-		'y': ['1','4','9','16','25','36']
+		'x': ['1','2','3','4','5'],
+		'y': ['1','4','9','16','25']
 	}
 	data['p1'] = '1'
 	data['p2'] = '3'
+	data['order'] = '2'
+	data['res'] = '10'
+	data['real'] = 'True'
 	data = json.dumps(data)
 
 	'''TEST BACKGROUND FUNCTIONS'''
@@ -82,5 +94,21 @@ if __name__ == '__main__':
 
 	print intg['integral']
 	plt.plot(diff['data']['x'], diff['data']['y'])
+	plt.show()
+
+	'''TEST GRAPHICAL FUNCTIONS'''
+	dxdy = cr.compute('graphical_xy_dists', data)
+	print (dxdy['dx'], dxdy['dy']) 
+
+	'''TEST STATS FUNCTIONS'''
+	bas_stats = cr.compute('stats_basic_stats', data)
+	polr = cr.compute('stats_poly_regression', data)
+	print (bas_stats['mean'], bas_stats['med'], bas_stats['stdev'])
+	plt.plot(polr['data']['x'], polr['data']['y'])
+	plt.show()
+
+	'''TEST TRANSFORM FUNCTIONS'''
+	ftr = cr.compute('transform_fourier', data)
+	plt.plot(ftr['data']['x'], ftr['data']['y'])
 	plt.show()
 
