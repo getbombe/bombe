@@ -1,6 +1,7 @@
 
 //Base Colors
 @background: #E5E5E5;
+@dark-back: #333333;
 @subtle: #777777;
 @blank: #FFFFFF;
 @translucent: rgba(255, 255, 255, 0.7);
@@ -8,7 +9,7 @@
 @dark-highlight: #1A62AA;
 @head-font: #F0F0F1;
 @body-font: #000000;
-@tree-link: rgba(100, 100, 100, 0.5);
+@tree-link: rgba(150, 150, 150, 0.5);
 
 //Geometry
 @little-height: 5em;
@@ -103,7 +104,16 @@ strong {
 	background-size: 25%;
 	height: @big-height;
 	max-height: @big-height;
+	text-align: center;
 	.big-pad;
+	.strong-font;
+
+	p {
+		margin: 50% auto 0 auto;
+		width: 60%;
+		padding: 1.5em;
+		background: @translucent;
+	}
 }
 .analysis {
 	.med-pad;
@@ -121,7 +131,7 @@ strong {
 	min-height: @little-height;
 }
 #controls {
-	background: @highlight;
+	background: @dark-back;
 	.big-pad;
 	height: @big-height;
 	max-height: @big-height;
@@ -145,7 +155,7 @@ strong {
 	overflow: scroll;
 }
 #preview {
-	background-color: @highlight;
+	background-color: @dark-back;
 	.med-pad;
 	height: @big-height;
 	max-height: @big-height;
@@ -189,7 +199,7 @@ strong {
 .graph {
 	width: 90%;
 	height: 90%;
-	border: 2px @subtle solid;
+	//border: 2px @subtle solid;
 	background: @blank;
 	color: @body-font;
 	.strong-font;
@@ -233,46 +243,46 @@ strong {
 	color: @head-font;
 	background: @dark-highlight;
 }
-.newgraph {
-	.small-margin;
-	.med-pad;
-	.big-font;
-	.centered;
-	width: 90%;
-	button {
-		width: 100%;
-		.stronger-font;
-	}
+.tag:hover {
+	background: @highlight;
 }
 
 //D3
 .nodebox {
-  fill: @blank;
-  stroke: @subtle;
-  stroke-width: 1px;
+	fill: @blank;
+	stroke: @tree-link;
+	stroke-width: 2px;
+}
+
+.nodebox:hover {
+ 	stroke: @highlight;
 }
 
 .link {
-  fill: none;
-  stroke: @tree-link;
-  stroke-width: 1.0em;
+	fill: none;
+	stroke: @tree-link;
+	stroke-width: 1.5em;
+}
+
+.link:hover {
+	stroke: @highlight;
 }
 
 .line {
-  fill: none;
-  stroke: @body-font;
-  stroke-width: 1.5px;
+	fill: none;
+	stroke: @body-font;
+	stroke-width: 1.0px;
 }
 
 .axis path,
 .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
 }
 
 .dot {
-  stroke: #000;
+	stroke: #000;
 }
 
 

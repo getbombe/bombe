@@ -86,7 +86,15 @@ strong {
   background-size: 25%;
   height: 100%;
   max-height: 100%;
+  text-align: center;
   padding: 2.5em;
+  font-weight: 300;
+}
+#upload p {
+  margin: 50% auto 0 auto;
+  width: 60%;
+  padding: 1.5em;
+  background: rgba(255, 255, 255, 0.7);
 }
 .analysis {
   padding: 1.5em;
@@ -104,7 +112,7 @@ strong {
   min-height: 5em;
 }
 #controls {
-  background: #1f90c1;
+  background: #333333;
   padding: 2.5em;
   height: 100%;
   max-height: 100%;
@@ -130,7 +138,7 @@ strong {
   overflow: scroll;
 }
 #preview {
-  background-color: #1f90c1;
+  background-color: #333333;
   padding: 1.5em;
   height: 100%;
   max-height: 100%;
@@ -173,7 +181,6 @@ strong {
 .graph {
   width: 90%;
   height: 90%;
-  border: 2px #777777 solid;
   background: #ffffff;
   color: #000000;
   font-weight: 300;
@@ -230,18 +237,24 @@ strong {
 }
 .nodebox {
   fill: #ffffff;
-  stroke: #777777;
-  stroke-width: 1px;
+  stroke: rgba(150, 150, 150, 0.5);
+  stroke-width: 2px;
+}
+.nodebox:hover {
+  stroke: #1f90c1;
 }
 .link {
   fill: none;
-  stroke: rgba(100, 100, 100, 0.5);
-  stroke-width: 1.0em;
+  stroke: rgba(150, 150, 150, 0.5);
+  stroke-width: 1.5em;
+}
+.link:hover {
+  stroke: #1f90c1;
 }
 .line {
   fill: none;
   stroke: #000000;
-  stroke-width: 1.5px;
+  stroke-width: 1.0px;
 }
 .axis path,
 .axis line {
