@@ -28,8 +28,17 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+
+// ROUTES
+// point to public
 app.use('/', express.static(path.join(__dirname, '../public')));
-app.get('/users', user.list);
+
+// GET routes
+app.get('/users', user.list); // demo purposes
+
+// POST routes
+app.post('/register', user.register);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
