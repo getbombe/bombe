@@ -6,27 +6,32 @@ class Calculus:
 	def differentiate (data):
 		'''computes derivative'''
 
-		x_dat = data[0]
-		y_dat = data[1]
+		x_dat = data['data']['x']
+		y_dat = data['data']['y']
 
 		dy_dx = diff(y_dat) / diff(x_dat)
 
 		#Delete last pt because diff() makes dy_dx smaller by 1 element
 		x_dat = delete(x_dat, s_[:1])
 
-		return (x_dat, dy_dx)
+		data['data']['x'] = x_dat
+		data['data']['y'] = dy_dx
+
+		return data
 
 
 	@staticmethod
 	def integrate (data):
 		'''computes integral'''
 
-		x_dat = data[0]
-		y_dat = data[1]
+		x_dat = data['data']['x']
+		y_dat = data['data']['y']
 
 		integral = trapz(y_dat, x_dat)
 
-		return integral
+		data['integral'] = integral
+
+		return data
 
 
 	@staticmethod
