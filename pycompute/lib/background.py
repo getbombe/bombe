@@ -1,5 +1,6 @@
 from numpy import *
 from scipy.interpolate import interp1d
+import json
 
 class Background:
 
@@ -10,12 +11,19 @@ class Background:
 		x_dat = data[0]
 		y_dat = data[1]
 
-		x_itp = linspace(x_dat[0], x_dat[x_dat.size-1], x_dat.size * res)
+		x_itp = list(linspace(x_dat[0], x_dat[x_dat.size-1], x_dat.size * res))
 
-		#cub_spline = interp1d(x_dat, y_dat, kind='cubic')
 		cub_spline = interp1d(x_dat, y_dat, kind='cubic')
+		y_itp = list(cub_spline(x_itp))
 
-		return (x_itp, cub_spline(x_itp))
+		dict = {
+			"x" : x_itp,
+			"y" : y_itp
+		}
+
+		ret_json = json.dumps(dict)
+
+		return ret_json
 
 
 	@staticmethod
@@ -25,12 +33,19 @@ class Background:
 		x_dat = data[0]
 		y_dat = data[1]
 
-		coeffs = polyfit(x_dat, y_dat, 1)
+		coeffs = polyfit([p1[0], p2[0]], [p1[1], p2[1]], 1)
 		linear = poly1d (coeffs)
 
 		y_fit = list(linear(x_dat))
 
-		return (x_dat, y_fit)
+		dict = {
+			"x" : list(x_dat),
+			"y" : y_fit
+		}
+
+		ret_json = json.dumps(dict)
+
+		return ret_json
 
 
 	@staticmethod
@@ -38,15 +53,15 @@ class Background:
 
 		import matplotlib.pyplot as plt 
 
-		x = arange(0, 20)
+		x = linspace(0, 20)
 		y = sin(20*x) + cos(25*x)
 
-		spl = spline([x,y])
-		lin = linear([x, y], [x[1], y[1]], [x[10], y[10]])
+		spl = json.loads(Background.spline([x,y], res=5))
+		lin = json.loads(Background.linear([x, y], [x[1], y[1]], [x[10], y[10]]))
 
 		plt.scatter(x, y)
-		plt.plot(spl[0], spl[1])
-		plt.plot(lin[0], lin[1])
+		plt.plot(spl['x'], spl['y'])
+		plt.plot(lin['x'], lin['y'])
 		plt.show()
 
 
