@@ -1,11 +1,28 @@
 from lib.background import *
 from lib.transform import *
+from lib.calculus import *
+from lib.stats import *
+from lib.graphical import *
 
 class ComputeRouter:
 	''' static, and should be used that way '''
 	computeMap = {
+		#background removal and interpolation
 		'background_linear': Background.linear,
 		'background_spline': Background.spline,
+
+		#calculus
+		'calculus_differentiate': Calculus.differentiate,
+		'calculus_integrate': Calculus.integrate,
+
+		#graphical
+		'graphical_xy_dists' : Graphical.xy_dists,
+
+		#statistics and fitting
+		'stats_basic_stats' : Stats.basic_stats,
+		'stats_poly_regression' : Stats.poly_regression,
+
+		#transforms
 		'transform_fourier': Transform.fourier
 	}
 
@@ -29,31 +46,6 @@ class ComputeRouter:
 		postprocdata = self.dataPostprocess(data)
 		return result
 
-
-if __name__ == '__main__':
-	cr = ComputeRouter()
-	
-	#create dummy json data
-	data = dict()
-	data['data'] = {
-		'x': ['1','2','3','4','5','6'],
-		'y': ['1','4','5','3','0','2']
-	}
-	data['p1'] = '1'
-	data['p2'] = '3'
-	data = json.dumps(data)
-
-	#linear fit on two points
-	lin = cr.compute('background_linear', data)
-
-	#spline fit
-	spl = cr.compute('background_spline', data)
-	
-	import matplotlib.pyplot as plt 
-	plt.plot(lin['data']['x'], lin['data']['y'])
-	plt.plot(spl['data']['x'], spl['data']['y'])
-	plt.show()
-
 '''
 DATA OBJECT JSON FORMAT
 
@@ -66,3 +58,57 @@ data = {
 	'param2' : 'value2'
 }
 '''
+
+if __name__ == '__main__':
+	import matplotlib.pyplot as plt 
+
+	cr = ComputeRouter()
+	
+	#create dummy json data
+	data = dict()
+	data['data'] = {
+		'x': ['1','2','3','4','5'],
+		'y': ['1','4','9','16','25']
+	}
+	data['p1'] = '1'
+	data['p2'] = '3'
+	data['order'] = '2'
+	data['res'] = '10'
+	data['real'] = 'True'
+	data = json.dumps(data)
+
+	'''TEST BACKGROUND FUNCTIONS'''
+	#linear fit on two points
+	lin = cr.compute('background_linear', data)
+
+	#spline fit
+	spl = cr.compute('background_spline', data)	
+	
+	plt.plot(lin['data']['x'], lin['data']['y'])
+	plt.plot(spl['data']['x'], spl['data']['y'])
+	plt.show()
+
+	'''TEST CALCULUS FUNCTIONS'''
+	diff = cr.compute('calculus_differentiate', data)
+	intg = cr.compute('calculus_integrate', data)
+
+	print intg['integral']
+	plt.plot(diff['data']['x'], diff['data']['y'])
+	plt.show()
+
+	'''TEST GRAPHICAL FUNCTIONS'''
+	dxdy = cr.compute('graphical_xy_dists', data)
+	print (dxdy['dx'], dxdy['dy']) 
+
+	'''TEST STATS FUNCTIONS'''
+	bas_stats = cr.compute('stats_basic_stats', data)
+	polr = cr.compute('stats_poly_regression', data)
+	print (bas_stats['mean'], bas_stats['med'], bas_stats['stdev'])
+	plt.plot(polr['data']['x'], polr['data']['y'])
+	plt.show()
+
+	'''TEST TRANSFORM FUNCTIONS'''
+	ftr = cr.compute('transform_fourier', data)
+	plt.plot(ftr['data']['x'], ftr['data']['y'])
+	plt.show()
+

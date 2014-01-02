@@ -5,39 +5,24 @@ import scipy.fftpack
 class Transform:
 
 	@staticmethod
-	def fourier (data, real=True):
+	def fourier (data):
 		'''FFT on a dataset'''
 
-		x_dat = data[0]
-		y_dat = data[1]
+		x_dat = data['data']['x']
+		y_dat = data['data']['y']
+		real = bool(data['real'] == 'True')
 
-		x_ft = scipy.fftpack.fftfreq(x_dat.size, x_dat[1] - x_dat[0])
+		#assume a constant spacing equal to 1st space
+		dx = x_dat[1] - x_dat[0]
+
+		x_ft = scipy.fftpack.fftfreq(len(x_dat), dx)
 		y_ft = abs(scipy.fft(y_dat))
 
 		if real:
 			x_ft = x_ft[1:len(x_ft) / 2]
 			y_ft = y_ft[1:len(y_ft) / 2]
 
-		return (x_ft, y_ft)
+		data['data']['x'] = x_ft
+		data['data']['y'] = y_ft
 
-
-	@staticmethod
-	def test():
-
-		import matplotlib.pyplot as plt 
-
-		x = arange(0, 20*pi, 0.05)
-		y = sin(x) + sin(2*pi*2.0*x) + sin(2*pi*6.0*x)
-
-		ft = fourier([x, y])
-
-		plt.plot (x, y)
-		plt.show()
-
-		plt.plot (ft[0], ft[1])
-		plt.show()
-
-
-if __name__ == '__main__':
-
-	Transform.test()
+		return data

@@ -5,11 +5,12 @@ import json
 class Background:
 
 	@staticmethod
-	def spline (data, res=10):
+	def spline (data):
 		'''cubic spline'''
 
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
+		res = float(data['res'])
 
 		x_itp = list(linspace(x_dat[0], x_dat[len(x_dat)-1], len(x_dat) * res))
 
