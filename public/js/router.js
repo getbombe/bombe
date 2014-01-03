@@ -3,11 +3,12 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'models/SessionModel',
   'views/BodyView',
   'views/ImportView',
   'views/TreeView',
   'views/OperationView'
-], function($, _, Backbone, BodyView, ImportView, TreeView, OperationView) {
+], function($, _, Backbone, SessionModel, BodyView, ImportView, TreeView, OperationView) {
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -20,23 +21,22 @@ define([
       '*actions': 'unmapped'
     }
   });
-  
-  var _trackPageview = function() {
-    var url;
-    url = Backbone.history.getFragment();
-    return _gaq.push(['_trackPageview', "/" + url]);
-  };
 
   var initialize = function(){
     var app_router = new AppRouter;
 
-    // initialize views
-    bodyView = new BodyView();
-    importView = new ImportView();
-    treeView = new TreeView();
-    operationView = new OperationView();
+    // THE session... singular. put all shared stuff in this variable
+    var session = new SessionModel;
 
-    var currentView = {hide: function(){}}; // dummy
+    // initialize views
+    bodyView = new BodyView(session);
+
+    //loginView = new LoginView(session);
+    //registerView = new RegisterView(session);
+
+    importView = new ImportView(session);
+    treeView = new TreeView(session);
+    operationView = new OperationView(session);
 
     bodyView.render(); //Load body on all pages
 
@@ -45,30 +45,27 @@ define([
       alert("Hello, you've reached the future home of our landing page.")
     });
 
-    app_router.on('route:import', function (actions) {
-      // display import stuff
+    var currentView = {hide: function(){}}; // dummy
+    var switchView = function(newView){
       currentView.hide();
 
-      currentView = importView;
-      currentView.render();
+      currentView = newView;
+      currentView.show();
+    }
+
+    app_router.on('route:import', function (actions) {
+      // display import stuff
+      switchView(importView);
     });
 
     app_router.on('route:tree', function (actions) {
       // display tree stuff
-      currentView.hide();
-
-      currentView = treeView;
-      console.log(currentView);
-      currentView.render();
+      switchView(treeView);
     });
 
     app_router.on('route:operation', function (actions) {
       // display operation stuff
-      //console.log("jhereee")  <-- wat [Eddie]
-      currentView.hide();
-
-      currentView = operationView;
-      currentView.render();
+      switchView(operationView);
     });
 
     app_router.on('route:unmapped', function (actions) {

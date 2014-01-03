@@ -2,21 +2,21 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/operation_view.html'
-], function($, _, Backbone, OperationViewTemplate){
+  'text!templates/data_import.html'
+], function($, _, Backbone, DataImportTemplate){
 
-  var OperationView = Backbone.View.extend({
-    el: $("#dataimport"),
+  var ImportView = Backbone.View.extend({
+    el: $("#login"),
     session: null,
 
     rendered: false,
-    
+
     initialize: function(session){
       this.session = session;
     },
 
     render: function(){
-      var template = _.template(OperationViewTemplate, {data: null});
+      var template = _.template(LoginTemplate, {data: null});
       this.$el.html(template);
     },
 
@@ -33,6 +33,6 @@ define([
     }
   });
 
-  return OperationView;
+  return ImportView;
   
 });

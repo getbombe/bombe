@@ -7,20 +7,30 @@ define([
 
   var TreeView = Backbone.View.extend({
     el: $("#dataimport"),
+    session: null,
+
+    rendered: false,
     
-    initialize: function(){
+    initialize: function(session){
+      this.session = session;
     },
 
     render: function(){
-      this.$el.show();
       var template = _.template(TreeViewTemplate, {data: null});
       this.$el.html(template);
     },
 
     hide: function(){
       this.$el.hide();
-    }
+    },
 
+    show: function(){
+      this.$el.show();
+      if(!this.rendered) {
+        this.render();
+        this.rendered = true;
+      }
+    }
   });
 
   return TreeView;
