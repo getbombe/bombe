@@ -41,7 +41,6 @@ function renderTree(treeData) {
 		     .attr("class", "link")
 		     .attr("d", link);
 
-
 		 /*
 		     Nodes as
 		     <g class="node">
@@ -66,13 +65,6 @@ function renderTree(treeData) {
 		     .attr("y", -60/2)
 		     .attr("width", 80)
 		     .attr("height", 60);
-
-		/*nodeGroup.append("div")
-			.attr("class", "miniplot")
-			.attr("x", -80/2)
-		    .attr("y", -60/2)
-		    .attr("width", 80)
-		    .attr("height", 60);*/
 
 		renderMiniGraphs();
 	});

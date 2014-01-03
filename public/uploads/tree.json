@@ -1,30 +1,21 @@
 {
-    "name": "/",
+    "id": "001",
     "contents": [
         {
-            "name": "Applications",
+            "id": "002",
             "contents": [
-                { "name": "Mail.app" },
-                { "name": "iPhoto.app" },
-                { "name": "Keynote.app" },
-                { "name": "Pages.app" }
+                { "id": "004" },
+                { "id": "NEW" }
             ]
         },
         {
-            "name": "System",
-            "contents": []
-        },
-        {
-            "name": "opt",
-            "contents": []
-        },
-        {
-            "name": "Users",
+            "id": "003",
             "contents": [
-                { "name": "pavanpodila" },
-                { "name": "admin" },
-                { "name": "test-user" }
+                {"id" : "NEW"}
             ]
+        },
+        {
+            "id": "NEW"
         }
     ]
 }
