@@ -5,10 +5,12 @@ define([
   'backbone',
   'models/SessionModel',
   'views/BodyView',
+  'views/LoginView',
+  'views/RegisterView',
   'views/ImportView',
   'views/TreeView',
   'views/OperationView'
-], function($, _, Backbone, SessionModel, BodyView, ImportView, TreeView, OperationView) {
+], function($, _, Backbone, SessionModel, BodyView, LoginView, RegisterView, ImportView, TreeView, OperationView) {
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -17,6 +19,8 @@ define([
       'import': 'import',
       'tree': 'tree',
       'operation': 'operation',
+      'login': 'login',
+      'register': 'register',
 
       '*actions': 'unmapped'
     }
@@ -31,8 +35,8 @@ define([
     // initialize views
     bodyView = new BodyView(session);
 
-    //loginView = new LoginView(session);
-    //registerView = new RegisterView(session);
+    loginView = new LoginView(session);
+    registerView = new RegisterView(session);
 
     importView = new ImportView(session);
     treeView = new TreeView(session);
@@ -52,6 +56,16 @@ define([
       currentView = newView;
       currentView.show();
     }
+
+    app_router.on('route:login', function (actions) {
+      // display import stuff
+      switchView(loginView);
+    });
+
+    app_router.on('route:register', function (actions) {
+      // display import stuff
+      switchView(registerView);
+    });
 
     app_router.on('route:import', function (actions) {
       // display import stuff

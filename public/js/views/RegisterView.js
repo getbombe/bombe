@@ -2,11 +2,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/data_import.html'
-], function($, _, Backbone, DataImportTemplate){
+  'text!templates/register_view.html'
+], function($, _, Backbone, RegisterViewTemplate){
 
-  var ImportView = Backbone.View.extend({
-    el: $("#dataimport"),
+  var RegisterView = Backbone.View.extend({
+    el: $("#registration"),
     session: null,
 
     rendered: false,
@@ -16,7 +16,7 @@ define([
     },
 
     render: function(){
-      var template = _.template(DataImportTemplate, {data: null});
+      var template = _.template(RegisterViewTemplate, {data: null});
       this.$el.html(template);
     },
 
@@ -33,6 +33,6 @@ define([
     }
   });
 
-  return ImportView;
+  return RegisterView;
   
 });

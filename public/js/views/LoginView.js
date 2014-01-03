@@ -2,10 +2,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/data_import.html'
-], function($, _, Backbone, DataImportTemplate){
+  'text!templates/login_view.html'
+], function($, _, Backbone, LoginViewTemplate){
 
-  var ImportView = Backbone.View.extend({
+  var LoginView = Backbone.View.extend({
     el: $("#login"),
     session: null,
 
@@ -16,7 +16,7 @@ define([
     },
 
     render: function(){
-      var template = _.template(LoginTemplate, {data: null});
+      var template = _.template(LoginViewTemplate, {data: null});
       this.$el.html(template);
     },
 
@@ -33,6 +33,6 @@ define([
     }
   });
 
-  return ImportView;
+  return LoginView;
   
 });
