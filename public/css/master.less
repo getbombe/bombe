@@ -9,6 +9,10 @@
 @head-font: @body-font;
 @body-font: #000000;
 @tree-link: rgba(119, 119, 119, 0.5);
+@error-bg-red: #FF6666;
+@error-text-red: #990000;
+@success-bg-green: #66FF66;
+@success-text-green: #009900;
 
 //Geometry
 @little-height: 6%;
@@ -314,4 +318,16 @@ strong {
 .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
 	padding-left: 0;
 	padding-right: 0;
+}
+
+.errordisplay{
+	background-color:	@error-bg-red;
+	color: @error-text-red;
+	display: none;
+}
+
+.successdisplay{
+	background-color:	@success-bg-green;
+	color: @success-text-green;
+	display: none;
 }

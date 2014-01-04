@@ -320,3 +320,13 @@ strong {
   padding-left: 0;
   padding-right: 0;
 }
+.errordisplay {
+  background-color: #ff6666;
+  color: #990000;
+  display: none;
+}
+.successdisplay {
+  background-color: #66ff66;
+  color: #009900;
+  display: none;
+}

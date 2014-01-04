@@ -30,10 +30,18 @@ var register = function(req, res){
 		
 		if(err){
 			console.log(err);
-			res.write("error");
+			res.write(JSON.stringify(
+				{
+					success: false
+				}
+			));
 		} else {
 			console.log(result);
-			res.write("success");
+			res.write(JSON.stringify(
+				{
+					success: true
+				}
+			));
 		}
 
 		res.end();

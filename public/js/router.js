@@ -68,16 +68,31 @@ define([
     });
 
     app_router.on('route:import', function (actions) {
+      if(!session.isLoggedIn){
+        window.location.href = "#/login";
+        return;
+      }
+
       // display import stuff
       switchView(importView);
     });
 
     app_router.on('route:tree', function (actions) {
+      if(!session.isLoggedIn){
+        window.location.href = "#/login";
+        return;
+      }
+
       // display tree stuff
       switchView(treeView);
     });
 
     app_router.on('route:operation', function (actions) {
+      if(!session.isLoggedIn){
+        window.location.href = "#/login";
+        return;
+      }
+
       // display operation stuff
       switchView(operationView);
     });
