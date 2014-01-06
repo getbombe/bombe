@@ -9,19 +9,21 @@ define([
   'views/RegisterView',
   'views/ImportView',
   'views/TreeView',
-  'views/OperationView'
-], function($, _, Backbone, SessionModel, BodyView, LoginView, RegisterView, ImportView, TreeView, OperationView) {
+  'views/OperationView',
+  'views/SettingsView',
+  'views/ProfileView'
+], function($, _, Backbone, SessionModel, BodyView, LoginView, RegisterView, ImportView, TreeView, OperationView, SettingsView, ProfileView) {
 
   var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'tree',
-
       'import': 'import',
+      'settings': 'settings',
+      'profile': 'profile',
       'tree': 'tree',
       'operation': 'operation',
       'login': 'login',
       'register': 'register',
-
       '*actions': 'unmapped'
     }
   });
@@ -37,6 +39,8 @@ define([
 
     loginView = new LoginView(session);
     registerView = new RegisterView(session);
+    profileView = new ProfileView(session);
+    settingsView = new SettingsView(session);
 
     importView = new ImportView(session);
     treeView = new TreeView(session);
@@ -75,6 +79,26 @@ define([
 
       // display import stuff
       switchView(importView);
+    });
+
+    app_router.on('route:settings', function (actions) {
+      if(!session.isLoggedIn){
+        window.location.href = "#/login";
+        return;
+      }
+
+      // display import stuff
+      switchView(settingsView);
+    });
+
+    app_router.on('route:profile', function (actions) {
+      if(!session.isLoggedIn){
+        window.location.href = "#/login";
+        return;
+      }
+
+      // display import stuff
+      switchView(profileView);
     });
 
     app_router.on('route:tree', function (actions) {

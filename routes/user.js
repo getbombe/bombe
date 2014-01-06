@@ -74,7 +74,7 @@ var login = function(req, res){
 			res.write(JSON.stringify(
 				{
 					success: false,
-					error: "cannot find user"
+					error: "User not found!"
 				}
 			));
 		} else {
@@ -93,7 +93,7 @@ var login = function(req, res){
 				res.write(JSON.stringify(
 					{
 						success: false,
-						error: "wrong password"
+						error: "Incorrect password!"
 					}
 				));
 			}
