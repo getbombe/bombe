@@ -114,7 +114,7 @@ table {
 #tagline #tagline-container {
   padding: 1.5em;
   width: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
 }
 #upload {
   background: url('/img/upload.svg') no-repeat center;
@@ -129,7 +129,7 @@ table {
   margin: 40% auto 0 auto;
   width: 60%;
   padding: 1.5em;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
 }
 .analysis {
   padding: 1.5em;
@@ -256,7 +256,7 @@ nav ul img {
 .text-box select,
 .text-box input,
 .text-box option {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
   border: 1px #777777 solid;
   width: 100%;
   margin: .5em;
