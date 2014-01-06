@@ -6,7 +6,7 @@ define([
 ], function($, _, Backbone, OperationViewTemplate){
 
   var OperationView = Backbone.View.extend({
-    el: $("#dataimport"),
+    el: $("#operation"),
     session: null,
 
     rendered: false,

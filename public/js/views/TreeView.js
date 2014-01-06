@@ -6,7 +6,7 @@ define([
 ], function($, _, Backbone, TreeViewTemplate){
 
   var TreeView = Backbone.View.extend({
-    el: $("#dataimport"),
+    el: $("#tree"),
     session: null,
 
     rendered: false,
@@ -18,7 +18,7 @@ define([
     render: function(){
       var template = _.template(TreeViewTemplate, {data: null});
       this.$el.html(template);
-      console.log(this.session);
+      //console.log(this.session);
     },
 
     hide: function(){

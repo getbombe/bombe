@@ -112,7 +112,7 @@ form {
   padding: 2.5em;
 }
 #upload p {
-  margin: 60% auto 0 auto;
+  margin: 40% auto 0 auto;
   width: 60%;
   padding: 1.5em;
   background: rgba(255, 255, 255, 0.7);
@@ -173,7 +173,7 @@ nav ul img {
   color: #000000;
   margin-top: 2em;
 }
-#tree {
+#treeview {
   padding: 1.5em;
   height: 100%;
   background-color: #e5e5e5;
@@ -183,12 +183,13 @@ nav ul img {
 #preview {
   background-color: #e5e5e5;
   border-left: 1px #777777 solid;
+  text-align: center;
   padding: 1.5em;
   height: 100%;
   max-height: 100%;
 }
 #preview .graph {
-  height: 80%;
+  height: 70%;
 }
 #footer {
   color: #000000;
@@ -217,6 +218,10 @@ nav ul img {
 .text-box option {
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px #777777 solid;
+  width: 100%;
+  margin: .5em;
+}
+.text-box button {
   width: 100%;
   margin: .5em;
 }
@@ -261,6 +266,13 @@ nav ul img {
   margin-bottom: 1em;
   padding: 0;
   overflow: hidden;
+}
+.operate {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: .5em;
+  margin: .5em;
 }
 .tag {
   padding: 2px;

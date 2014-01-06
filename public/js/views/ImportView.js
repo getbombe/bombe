@@ -2,11 +2,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/data_import.html'
+  'text!templates/import_view.html'
 ], function($, _, Backbone, DataImportTemplate){
 
   var ImportView = Backbone.View.extend({
-    el: $("#dataimport"),
+    el: $("#import"),
     session: null,
 
     rendered: false,

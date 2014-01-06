@@ -133,7 +133,7 @@ form {
 	.big-pad;
 
 	p {
-		margin: 60% auto 0 auto;
+		margin: 40% auto 0 auto;
 		width: 60%;
 		padding: 1.5em;
 		background: @translucent;
@@ -201,7 +201,7 @@ nav {
 		margin-top: 2em;
 	}
 }
-#tree {
+#treeview {
 	.med-pad;
 	height: @max-height;
 	background-color: @background;
@@ -211,12 +211,13 @@ nav {
 #preview {
 	background-color: @background;
 	border-left: 1px @subtle solid;
+	text-align: center;
 	.med-pad;
 	height: @max-height;
 	max-height: @max-height;
 
 	.graph {
-		height: 80%;
+		height: 70%;
 	}
 }
 #footer {
@@ -245,6 +246,11 @@ nav {
 	select, input, option {
 		background-color: @translucent;
 		border: 1px @subtle solid;
+		width: 100%;
+		.small-margin;
+	}
+
+	button {
 		width: 100%;
 		.small-margin;
 	}
@@ -290,6 +296,12 @@ nav {
 	margin-bottom: 1em;
 	.no-pad;
 	overflow: hidden;
+}
+.operate {
+	width: 50%;
+	.centered;
+	.small-pad;
+	.small-margin;
 }
 .tag {
 	padding: 2px;
