@@ -6,9 +6,6 @@
 .big-font {
   font-size: 26px;
 }
-.strong-font {
-  font-weight: 300;
-}
 .stronger-font {
   font-weight: 700;
 }
@@ -40,6 +37,11 @@
 .big-margin {
   margin: 2.5em;
 }
+.bordered {
+  border: 1px solid #777777;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
 html,
 body {
   background-color: #e5e5e5;
@@ -67,8 +69,15 @@ strong {
   font-weight: 700;
 }
 form {
+  width: 80%;
+  background-color: #ffffff;
+  border: 1px solid #777777;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   margin: 2.5em;
-  padding: .5em;
+  padding: 2.5em;
+  margin-left: auto;
+  margin-right: auto;
 }
 #body {
   width: 100%;
@@ -101,7 +110,6 @@ form {
   max-height: 100%;
   text-align: center;
   padding: 2.5em;
-  font-weight: 300;
 }
 #upload p {
   margin: 60% auto 0 auto;
@@ -185,7 +193,6 @@ nav ul img {
 #footer {
   color: #000000;
   text-align: center;
-  font-weight: 300;
   padding: 0;
   margin: 0;
   margin-bottom: 1em;
@@ -194,7 +201,6 @@ nav ul img {
   border: #777777 1px solid;
 }
 .text-box {
-  font-weight: 300;
   padding: .5em;
   margin: .5em;
   margin-left: auto;
@@ -219,11 +225,13 @@ nav ul img {
   height: 90%;
   background: #ffffff;
   color: #000000;
-  font-weight: 300;
   padding: 1.5em;
   margin: 1.5em;
   margin-left: auto;
   margin-right: auto;
+  border: 1px solid #777777;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 .graph .title {
   color: #000000;
@@ -282,8 +290,8 @@ nav ul img {
 }
 .nodebox {
   fill: #ffffff;
-  stroke: rgba(119, 119, 119, 0.5);
-  stroke-width: 2px;
+  stroke: #777777;
+  stroke-width: 0.8px;
 }
 .nodebox:hover {
   stroke: #1f90c1;
