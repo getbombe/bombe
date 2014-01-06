@@ -85,6 +85,9 @@ h1, h2, h3, h4, h5 {
 strong {
 	.stronger-font;
 }
+form {
+	.big-margin;
+}
 
 
 //Layout
@@ -319,15 +322,27 @@ strong {
 	padding-left: 0;
 	padding-right: 0;
 }
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
 
 .errordisplay{
-	background-color:	@error-bg-red;
+	background-color: @error-bg-red;
 	color: @error-text-red;
+	text-align: center;
 	display: none;
+	width: 100%;
+	.med-pad;
+	.no-space;
 }
 
 .successdisplay{
-	background-color:	@success-bg-green;
+	background-color: @success-bg-green;
 	color: @success-text-green;
+	text-align: center;
 	display: none;
+	width: 100%;
+	.med-pad;
+	.no-space;
 }
