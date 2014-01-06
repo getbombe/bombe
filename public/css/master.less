@@ -28,6 +28,9 @@
 .big-font {
 	font-size: 26px;
 }
+.small-font {
+	font-size: 14px;
+}
 .stronger-font {
 	font-weight: 700;
 }
@@ -90,12 +93,7 @@ strong {
 	.stronger-font;
 }
 form {
-	width: 70%;
-	background-color: @blank;
-	.bordered;
-	.big-margin;
-	.big-pad;
-	.centered;
+	.small-font;
 }
 table {
 	.big-pad;
@@ -236,10 +234,17 @@ nav {
 }
 
 //Objects
+.logo {
+	.no-space;
+	.small-pad;
+	display: block;
+	.centered;
+	width: 30%;
+}
 .card-box {
 	width: 70%;
 	.big-pad;
-	.big-margin;
+	.med-margin;
 	.centered;
 	text-align: left;
 	.big-font;
@@ -334,8 +339,9 @@ nav {
 	text-align: center;
 	display: none;
 	width: 100%;
-	.med-pad;
+	.small-pad;
 	.no-space;
+	margin-bottom: 1em;
 }
 
 .successdisplay{
@@ -344,8 +350,9 @@ nav {
 	text-align: center;
 	display: none;
 	width: 100%;
-	.med-pad;
+	.small-pad;
 	.no-space;
+	margin-bottom: 1em;
 }
 
 //D3

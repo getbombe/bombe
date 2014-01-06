@@ -6,6 +6,9 @@
 .big-font {
   font-size: 26px;
 }
+.small-font {
+  font-size: 14px;
+}
 .stronger-font {
   font-weight: 700;
 }
@@ -69,15 +72,7 @@ strong {
   font-weight: 700;
 }
 form {
-  width: 70%;
-  background-color: #ffffff;
-  border: 1px solid #777777;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  margin: 2.5em;
-  padding: 2.5em;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 14px;
 }
 table {
   padding: 2.5em;
@@ -204,10 +199,18 @@ nav ul img {
 #footer hr {
   border: #777777 1px solid;
 }
+.logo {
+  margin: 0;
+  padding: .5em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
 .card-box {
   width: 70%;
   padding: 2.5em;
-  margin: 2.5em;
+  margin: 1.5em;
   margin-left: auto;
   margin-right: auto;
   text-align: left;
@@ -309,8 +312,9 @@ nav ul img {
   text-align: center;
   display: none;
   width: 100%;
-  padding: 1.5em;
+  padding: .5em;
   margin: 0;
+  margin-bottom: 1em;
 }
 .successdisplay {
   background-color: #66ff66;
@@ -318,8 +322,9 @@ nav ul img {
   text-align: center;
   display: none;
   width: 100%;
-  padding: 1.5em;
+  padding: .5em;
   margin: 0;
+  margin-bottom: 1em;
 }
 .nodebox {
   fill: #ffffff;
