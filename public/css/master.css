@@ -31,6 +31,9 @@
 .big-pad {
   padding: 2.5em;
 }
+.huge-pad {
+  padding: 10em;
+}
 .small-margin {
   margin: .5em;
 }
@@ -99,6 +102,19 @@ table {
 .row {
   height: 100%;
   width: 100%;
+}
+#tagline {
+  padding: 10em;
+  color: #ffffff;
+  background: url('/img/tagline.jpg') no-repeat;
+  background-size: 100% auto;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+}
+#tagline #tagline-container {
+  padding: 1.5em;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
 }
 #upload {
   background: url('/img/upload.svg') no-repeat center;

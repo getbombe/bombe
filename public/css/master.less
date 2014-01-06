@@ -4,6 +4,7 @@
 @subtle: #777777;
 @blank: #FFFFFF;
 @translucent: rgba(255, 255, 255, 0.7);
+@dark-translucent: rgba(0, 0, 0, 0.7);
 @highlight: #1F90C1;
 @dark-highlight: #1A62AA;
 @head-font: @body-font;
@@ -54,6 +55,9 @@
 }
 .big-pad {
 	padding: 2.5em;
+}
+.huge-pad {
+	padding: 10em;
 }
 .small-margin {
 	margin: .5em;
@@ -123,6 +127,24 @@ table {
 .row {
 	height: @max-height;
 	width: 100%;
+}
+#tagline {
+	.huge-pad;
+	color: @blank;
+	background: url('/img/tagline.jpg') no-repeat;
+	background-size: 100% auto;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+
+	#tagline-container {
+		.med-pad;
+		width: 100%;
+		background: @dark-translucent;
+	}
+
+	p {
+		//background: @translucent;
+	}
 }
 #upload {
 	background: url('/img/upload.svg') no-repeat center;
