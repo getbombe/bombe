@@ -14,7 +14,7 @@ define([
 
   var AppRouter = Backbone.Router.extend({
     routes: {
-      '': 'index',
+      '': 'tree',
 
       'import': 'import',
       'tree': 'tree',

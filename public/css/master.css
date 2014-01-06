@@ -68,6 +68,7 @@ strong {
 }
 form {
   margin: 2.5em;
+  padding: .5em;
 }
 #body {
   width: 100%;
@@ -117,13 +118,32 @@ form {
 }
 #title-bar {
   background: url('/img/bombe.png') no-repeat;
-  background-position: center;
+  background-position: left center;
   background-size: auto 100%;
   background-color: #1a62aa;
   padding: 0;
   margin: 0;
   height: 6%;
   min-height: 2.5em;
+}
+nav {
+  overflow: hidden;
+  height: 100%;
+  float: right;
+  text-align: right;
+}
+nav ul {
+  list-style-type: none;
+  padding-right: 1em;
+}
+nav ul li {
+  display: inline;
+}
+nav ul img {
+  width: 2.0em;
+  margin: .5em;
+  padding-right: .5em;
+  padding-top: .2em;
 }
 #controls {
   background: #e5e5e5;
@@ -242,6 +262,24 @@ form {
 .tag:hover {
   background: #1f90c1;
 }
+.errordisplay {
+  background-color: #ff6666;
+  color: #990000;
+  text-align: center;
+  display: none;
+  width: 100%;
+  padding: 1.5em;
+  margin: 0;
+}
+.successdisplay {
+  background-color: #66ff66;
+  color: #009900;
+  text-align: center;
+  display: none;
+  width: 100%;
+  padding: 1.5em;
+  margin: 0;
+}
 .nodebox {
   fill: #ffffff;
   stroke: rgba(119, 119, 119, 0.5);
@@ -326,22 +364,4 @@ form {
 .row {
   margin-left: 0;
   margin-right: 0;
-}
-.errordisplay {
-  background-color: #ff6666;
-  color: #990000;
-  text-align: center;
-  display: none;
-  width: 100%;
-  padding: 1.5em;
-  margin: 0;
-}
-.successdisplay {
-  background-color: #66ff66;
-  color: #009900;
-  text-align: center;
-  display: none;
-  width: 100%;
-  padding: 1.5em;
-  margin: 0;
 }

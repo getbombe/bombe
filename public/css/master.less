@@ -87,6 +87,7 @@ strong {
 }
 form {
 	.big-margin;
+	.small-pad;
 }
 
 
@@ -140,13 +141,40 @@ form {
 }
 #title-bar {
 	background: url('/img/bombe.png') no-repeat;
-	background-position: center;
+	background-position: left center;
 	background-size: auto 100%;
 	background-color: @dark-highlight;
 	.no-pad;
 	.no-space;
 	height: @little-height;
 	min-height: 2.5em;
+}
+nav {
+	overflow: hidden;
+	height: @max-height;
+	float: right;
+	text-align: right;
+
+	ul {
+		list-style-type: none;
+		padding-right: 1em;
+
+		li {
+			display: inline;
+		}
+		
+
+		img {
+			width: 2.0em;
+			.small-margin;
+			padding-right: .5em;
+			padding-top: .2em;
+		}
+
+		li:hover {
+			
+		}
+	}
 }
 #controls {
 	background: @background;
@@ -266,6 +294,25 @@ form {
 .tag:hover {
 	background: @highlight;
 }
+.errordisplay{
+	background-color: @error-bg-red;
+	color: @error-text-red;
+	text-align: center;
+	display: none;
+	width: 100%;
+	.med-pad;
+	.no-space;
+}
+
+.successdisplay{
+	background-color: @success-bg-green;
+	color: @success-text-green;
+	text-align: center;
+	display: none;
+	width: 100%;
+	.med-pad;
+	.no-space;
+}
 
 //D3
 .nodebox {
@@ -306,6 +353,7 @@ form {
 }
 
 
+
 //Bootstrap Overrides
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 
 .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, 
@@ -325,24 +373,4 @@ form {
 .row {
 	margin-left: 0;
 	margin-right: 0;
-}
-
-.errordisplay{
-	background-color: @error-bg-red;
-	color: @error-text-red;
-	text-align: center;
-	display: none;
-	width: 100%;
-	.med-pad;
-	.no-space;
-}
-
-.successdisplay{
-	background-color: @success-bg-green;
-	color: @success-text-green;
-	text-align: center;
-	display: none;
-	width: 100%;
-	.med-pad;
-	.no-space;
 }
