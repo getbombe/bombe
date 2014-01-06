@@ -66,7 +66,9 @@ function renderTree(treeData) {
 		     .attr("width", 80)
 		     .attr("height", 60);
 
-		renderMiniGraphs();
+        data = "/uploads/data.tsv"
+
+		renderMiniGraphs(data);
 	});
 }
 

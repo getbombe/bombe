@@ -77,7 +77,7 @@ function renderGraph(data) {
 	});	
 }
 
-function renderMiniGraphs() {
+function renderMiniGraphs(data) {
 	
 	$('.node').each( function (index) {
 	    var width = 60;
@@ -112,7 +112,7 @@ function renderMiniGraphs() {
 		     .attr("x", -80/2)
 		     .attr("y", -60/2);*/
 
-		d3.tsv("/uploads/data.tsv", function(error, data) {
+		d3.tsv(data, function(error, data) {
 		  data.forEach(function(d) {
 		    d.date = parseDate(d.date);
 		    d.close = +d.close;

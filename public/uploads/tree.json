@@ -5,17 +5,17 @@
             "id": "002",
             "contents": [
                 { "id": "004" },
-                { "id": "NEW" }
+                { "id": "new" }
             ]
         },
         {
             "id": "003",
             "contents": [
-                {"id" : "NEW"}
+                {"id" : "new"}
             ]
         },
         {
-            "id": "NEW"
+            "id": "new"
         }
     ]
 }
