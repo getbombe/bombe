@@ -3,7 +3,7 @@ define([
   'underscore',
   'backbone',
   'utility',
-  'text!templates/data_import.html',
+  'text!templates/import_view.html',
   'jquery.form'
 ], function($, _, Backbone, Util, DataImportTemplate){
 
