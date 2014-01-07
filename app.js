@@ -5,7 +5,10 @@
 
 var express = require('express');
 var routes = require('./routes');
+
 var user = require('./routes/user');
+var upload = require('./routes/upload');
+
 var http = require('http');
 var path = require('path');
 
@@ -39,6 +42,7 @@ app.use('/', express.static(path.join(__dirname, '../public')));
 // POST routes
 app.post('/register', user.register);
 app.post('/login', user.login);
+app.post('/upload', upload.upload);
 
 
 http.createServer(app).listen(app.get('port'), function(){

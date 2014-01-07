@@ -1,9 +1,15 @@
-<script src="/js/parse.js"></script>
-<script>
-	parse('/uploads/data.csv');
-</script>
-
 <div class="row">
+  <form id="importform"
+        enctype="multipart/form-data"
+        action="../upload"
+        method="post">
+    <div id="import" class="form-group">
+      <label for="inputfile">File input</label>
+      <input type="file" name="uploadedfile" id="inputfile">
+      <p class="help-block">Upload your 2 column file here.</p>
+      <button class="btn btn-primary" id="import">Upload</button>
+    </div>
+  </form>
   <div id="upload" class="col-sm-8">
   	<p>Drag data here or <button class="btn btn-primary">browse for files</button></p>
   </div>

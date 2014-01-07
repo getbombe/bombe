@@ -2,8 +2,10 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/data_import.html'
-], function($, _, Backbone, DataImportTemplate){
+  'utility',
+  'text!templates/data_import.html',
+  'jquery.form'
+], function($, _, Backbone, Util, DataImportTemplate){
 
   var ImportView = Backbone.View.extend({
     el: $("#dataimport"),
@@ -18,6 +20,18 @@ define([
     render: function(){
       var template = _.template(DataImportTemplate, {data: null});
       this.$el.html(template);
+
+      // triggers
+      // TODO: write these as events
+      this.$el.find("form#importform").change(function(){
+        $(this).ajaxSubmit({
+          error: function(xhr) {
+          },
+
+          success: function(response) {
+          }
+        });
+      });
     },
 
     hide: function(){
