@@ -18,6 +18,10 @@ define([
     render: function(){
       var template = _.template(TreeViewTemplate, {data: null});
       this.$el.html(template);
+<<<<<<< HEAD
+=======
+      //console.log(this.session);
+>>>>>>> 68afd8212d84296a4826990c5c97ba3b8bea3132
     },
 
     hide: function(){

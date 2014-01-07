@@ -1,27 +1,42 @@
 <div class="row">
-  <div class="errordisplay"></div>
-  <div class="successdisplay"></div>
-  <form role="form">
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input type="text" class="form-control" id="email" placeholder="Email Address">
+  <div class="jumbotron" id="tagline">
+    <div id="tagline-container">
+      <p><strong>We've set out to change the way scientists gather, process and analyze experimental data.</strong></p>
+      <br>
+      <p>Bombe is a powerful cloud-based data analytics platform designed for scientists, by scientists. We believe the best use of scientists' time is working on the problems that matter, not fumbling around with software.</p>
     </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" class="form-control" id="password" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <label for="firstname">First Name</label>
-      <input type="text" class="form-control" id="firstname" placeholder="First Name">
-    </div>
-    <div class="form-group">
-      <label for="lastname">Last Name</label>
-      <input type="text" class="form-control" id="lastname" placeholder="Last Name">
-    </div>
-    <div class="form-group">
-      <label for="institution">Institution (optional)</label>
-      <input type="text" class="form-control" id="institution" placeholder="Insitution">
-    </div>
-    <button id="register" type="button" class="btn btn-primary">Register</button>
-  </form>
+  </div>
+  <div class="card-box">
+    <h1>Register a New Account</h1>
+    <br>
+    <div class="errordisplay"></div>
+    <div class="successdisplay"></div>
+    <form role="form">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="text" class="form-control" id="email" placeholder="Email Address">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input type="text" class="form-control" id="firstname" placeholder="First Name">
+      </div>
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+      </div>
+      <div class="form-group">
+        <label for="institution">Institution (optional)</label>
+        <input type="text" class="form-control" id="institution" placeholder="Institution">
+      </div>
+      <button id="register" type="button" class="btn btn-primary">Register</button> 
+    </form>
+  </div>
+  <div class="card-box">
+  <p class="text-center">Already have an account?</p> 
+  <p class="text-center"><a href="/#/login" ><button id="signup" type="button" class="btn btn-success">Log In</button></a></p>
+  </div>
 </div>

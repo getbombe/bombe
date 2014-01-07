@@ -6,8 +6,8 @@
 .big-font {
   font-size: 26px;
 }
-.strong-font {
-  font-weight: 300;
+.small-font {
+  font-size: 14px;
 }
 .stronger-font {
   font-weight: 700;
@@ -31,6 +31,9 @@
 .big-pad {
   padding: 2.5em;
 }
+.huge-pad {
+  padding: 10em;
+}
 .small-margin {
   margin: .5em;
 }
@@ -39,6 +42,11 @@
 }
 .big-margin {
   margin: 2.5em;
+}
+.bordered {
+  border: 1px solid #777777;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 html,
 body {
@@ -66,6 +74,12 @@ h5 {
 strong {
   font-weight: 700;
 }
+form {
+  font-size: 14px;
+}
+table {
+  padding: 2.5em;
+}
 #body {
   width: 100%;
   height: 100%;
@@ -89,6 +103,19 @@ strong {
   height: 100%;
   width: 100%;
 }
+#tagline {
+  padding: 10em;
+  color: #ffffff;
+  background: url('/img/tagline.jpg') no-repeat;
+  background-size: 100% auto;
+  border-radius: 0;
+  -webkit-border-radius: 0;
+}
+#tagline #tagline-container {
+  padding: 1.5em;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
 #upload {
   background: url('/img/upload.svg') no-repeat center;
   background-color: #e5e5e5;
@@ -97,13 +124,12 @@ strong {
   max-height: 100%;
   text-align: center;
   padding: 2.5em;
-  font-weight: 300;
 }
 #upload p {
-  margin: 60% auto 0 auto;
+  margin: 40% auto 0 auto;
   width: 60%;
   padding: 1.5em;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
 }
 .analysis {
   padding: 1.5em;
@@ -114,13 +140,32 @@ strong {
 }
 #title-bar {
   background: url('/img/bombe.png') no-repeat;
-  background-position: center;
+  background-position: left center;
   background-size: auto 100%;
   background-color: #1a62aa;
   padding: 0;
   margin: 0;
   height: 6%;
   min-height: 2.5em;
+}
+nav {
+  overflow: hidden;
+  height: 100%;
+  float: right;
+  text-align: right;
+}
+nav ul {
+  list-style-type: none;
+  padding-right: 1em;
+}
+nav ul li {
+  display: inline;
+}
+nav ul img {
+  width: 2.0em;
+  margin: .5em;
+  padding-right: .5em;
+  padding-top: .2em;
 }
 #controls {
   background: #e5e5e5;
@@ -142,7 +187,7 @@ strong {
   color: #000000;
   margin-top: 2em;
 }
-#tree {
+#treeview {
   padding: 1.5em;
   height: 100%;
   background-color: #e5e5e5;
@@ -152,17 +197,17 @@ strong {
 #preview {
   background-color: #e5e5e5;
   border-left: 1px #777777 solid;
+  text-align: center;
   padding: 1.5em;
   height: 100%;
   max-height: 100%;
 }
 #preview .graph {
-  height: 80%;
+  height: 60%;
 }
 #footer {
   color: #000000;
   text-align: center;
-  font-weight: 300;
   padding: 0;
   margin: 0;
   margin-bottom: 1em;
@@ -170,8 +215,33 @@ strong {
 #footer hr {
   border: #777777 1px solid;
 }
+.logo {
+  margin: 0;
+  padding: .5em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+.card-box {
+  width: 70%;
+  padding: 2.5em;
+  margin: 1.5em;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  font-size: 26px;
+  border: 1px solid #777777;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #ffffff;
+}
+.card-box input,
+.card-box select,
+.card-box option {
+  width: 90%;
+}
 .text-box {
-  font-weight: 300;
   padding: .5em;
   margin: .5em;
   margin-left: auto;
@@ -186,8 +256,12 @@ strong {
 .text-box select,
 .text-box input,
 .text-box option {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.8);
   border: 1px #777777 solid;
+  width: 100%;
+  margin: .5em;
+}
+.text-box button {
   width: 100%;
   margin: .5em;
 }
@@ -196,11 +270,13 @@ strong {
   height: 90%;
   background: #ffffff;
   color: #000000;
-  font-weight: 300;
   padding: 1.5em;
   margin: 1.5em;
   margin-left: auto;
   margin-right: auto;
+  border: 1px solid #777777;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 .graph .title {
   color: #000000;
@@ -231,6 +307,13 @@ strong {
   padding: 0;
   overflow: hidden;
 }
+.operate {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: .5em;
+  margin: .5em;
+}
 .tag {
   padding: 2px;
   color: #ffffff;
@@ -239,10 +322,30 @@ strong {
 .tag:hover {
   background: #1f90c1;
 }
+.errordisplay {
+  background-color: #ff6666;
+  color: #990000;
+  text-align: center;
+  display: none;
+  width: 100%;
+  padding: .5em;
+  margin: 0;
+  margin-bottom: 1em;
+}
+.successdisplay {
+  background-color: #66ff66;
+  color: #009900;
+  text-align: center;
+  display: none;
+  width: 100%;
+  padding: .5em;
+  margin: 0;
+  margin-bottom: 1em;
+}
 .nodebox {
   fill: #ffffff;
-  stroke: rgba(119, 119, 119, 0.5);
-  stroke-width: 2px;
+  stroke: #777777;
+  stroke-width: 0.8px;
 }
 .nodebox:hover {
   stroke: #1f90c1;
@@ -320,13 +423,7 @@ strong {
   padding-left: 0;
   padding-right: 0;
 }
-.errordisplay {
-  background-color: #ff6666;
-  color: #990000;
-  display: none;
-}
-.successdisplay {
-  background-color: #66ff66;
-  color: #009900;
-  display: none;
+.row {
+  margin-left: 0;
+  margin-right: 0;
 }

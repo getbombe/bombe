@@ -2,10 +2,15 @@ define([
   'jquery',
   'underscore',
   'backbone',
+<<<<<<< HEAD
   'utility',
   'text!templates/data_import.html',
   'jquery.form'
 ], function($, _, Backbone, Util, DataImportTemplate){
+=======
+  'text!templates/import_view.html'
+], function($, _, Backbone, DataImportTemplate){
+>>>>>>> 68afd8212d84296a4826990c5c97ba3b8bea3132
 
   var ImportView = Backbone.View.extend({
     el: $("#import"),

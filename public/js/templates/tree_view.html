@@ -3,30 +3,33 @@
 
 <script>
 	$(window).resize(function() {
-		data = ["/uploads/data.tsv"]; 
+		data = ["/uploads/data.tsv", "/uploads/data.tsv", "/uploads/data.tsv"]; 
 		renderGraph(data); 
+		return false;
 	});
 	$(document).ready( function(){ 
 		renderTree("/uploads/tree.json");
 		
-		data = ["/uploads/data.tsv"];
+		data = ["/uploads/data.tsv", "/uploads/data.tsv" , "/uploads/data.tsv"];
 		renderGraph(data); 
+		return false;
 	});
 </script>
 
 <div class="row">
-  <div id="tree" class="col-sm-7">
+  <div id="treeview" class="col-sm-7">
   </div>
   <div id="preview" class="col-sm-5">
     <h3>Preview</h3>
-    <br>
     <div class="graph">
 		<p class="id">#003</p>
 		<p class="lineage"><span class="tag">#001</span> <strong>divided</strong> by <span class="tag">#002</span></p>
 		<h3 class="title">Fig. 3</h3>
-		<div class="plot">
-			
+		<div class="plot">		
 		</div>
 	</div>
+	<a href="/#/operation"><button class="btn btn-primary operate">Edit Graph</button></a>
+	<button class="btn btn-success operate">Export Graph</button>
+	<button class="btn btn-danger operate">Delete Graph</button>
   </div>
 </div>

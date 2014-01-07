@@ -3,7 +3,8 @@
 @background: #E5E5E5;
 @subtle: #777777;
 @blank: #FFFFFF;
-@translucent: rgba(255, 255, 255, 0.7);
+@translucent: rgba(255, 255, 255, 0.8);
+@dark-translucent: rgba(0, 0, 0, 0.8);
 @highlight: #1F90C1;
 @dark-highlight: #1A62AA;
 @head-font: @body-font;
@@ -28,8 +29,8 @@
 .big-font {
 	font-size: 26px;
 }
-.strong-font {
-	font-weight: 300;
+.small-font {
+	font-size: 14px;
 }
 .stronger-font {
 	font-weight: 700;
@@ -55,6 +56,9 @@
 .big-pad {
 	padding: 2.5em;
 }
+.huge-pad {
+	padding: 10em;
+}
 .small-margin {
 	margin: .5em;
 }
@@ -63,6 +67,13 @@
 }
 .big-margin {
 	margin: 2.5em;
+}
+
+//Decoration
+.bordered {
+	border: 1px solid @subtle;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 //General
@@ -84,6 +95,12 @@ h1, h2, h3, h4, h5 {
 }
 strong {
 	.stronger-font;
+}
+form {
+	.small-font;
+}
+table {
+	.big-pad;
 }
 
 
@@ -111,6 +128,24 @@ strong {
 	height: @max-height;
 	width: 100%;
 }
+#tagline {
+	.huge-pad;
+	color: @blank;
+	background: url('/img/tagline.jpg') no-repeat;
+	background-size: 100% auto;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+
+	#tagline-container {
+		.med-pad;
+		width: 100%;
+		background: @dark-translucent;
+	}
+
+	p {
+		//background: @translucent;
+	}
+}
 #upload {
 	background: url('/img/upload.svg') no-repeat center;
 	background-color: @background;
@@ -119,10 +154,9 @@ strong {
 	max-height: @max-height;
 	text-align: center;
 	.big-pad;
-	.strong-font;
 
 	p {
-		margin: 60% auto 0 auto;
+		margin: 40% auto 0 auto;
 		width: 60%;
 		padding: 1.5em;
 		background: @translucent;
@@ -137,13 +171,40 @@ strong {
 }
 #title-bar {
 	background: url('/img/bombe.png') no-repeat;
-	background-position: center;
+	background-position: left center;
 	background-size: auto 100%;
 	background-color: @dark-highlight;
 	.no-pad;
 	.no-space;
 	height: @little-height;
 	min-height: 2.5em;
+}
+nav {
+	overflow: hidden;
+	height: @max-height;
+	float: right;
+	text-align: right;
+
+	ul {
+		list-style-type: none;
+		padding-right: 1em;
+
+		li {
+			display: inline;
+		}
+		
+
+		img {
+			width: 2.0em;
+			.small-margin;
+			padding-right: .5em;
+			padding-top: .2em;
+		}
+
+		li:hover {
+			
+		}
+	}
 }
 #controls {
 	background: @background;
@@ -163,7 +224,7 @@ strong {
 		margin-top: 2em;
 	}
 }
-#tree {
+#treeview {
 	.med-pad;
 	height: @max-height;
 	background-color: @background;
@@ -173,18 +234,18 @@ strong {
 #preview {
 	background-color: @background;
 	border-left: 1px @subtle solid;
+	text-align: center;
 	.med-pad;
 	height: @max-height;
 	max-height: @max-height;
 
 	.graph {
-		height: 80%;
+		height: 60%;
 	}
 }
 #footer {
 	color: @body-font;
 	text-align: center;
-	.strong-font;
 	.no-pad;
 	.no-space;
 	margin-bottom: 1em;
@@ -195,8 +256,28 @@ strong {
 }
 
 //Objects
+.logo {
+	.no-space;
+	.small-pad;
+	display: block;
+	.centered;
+	width: 30%;
+}
+.card-box {
+	width: 70%;
+	.big-pad;
+	.med-margin;
+	.centered;
+	text-align: left;
+	.big-font;
+	.bordered;
+	background: @blank;
+
+	input, select, option {
+		width: 90%;
+	}
+}
 .text-box {
-	.strong-font;
 	.small-pad;
 	.small-margin;
 	.centered;
@@ -212,6 +293,11 @@ strong {
 		width: 100%;
 		.small-margin;
 	}
+
+	button {
+		width: 100%;
+		.small-margin;
+	}
 }
 .graph {
 	width: 90%;
@@ -219,10 +305,10 @@ strong {
 	//border: 2px @subtle solid;
 	background: @blank;
 	color: @body-font;
-	.strong-font;
 	.med-pad;
 	.med-margin;
 	.centered;
+	.bordered;
 
 	.title {
 		color: @body-font;
@@ -255,6 +341,12 @@ strong {
 	.no-pad;
 	overflow: hidden;
 }
+.operate {
+	width: 50%;
+	.centered;
+	.small-pad;
+	.small-margin;
+}
 .tag {
 	padding: 2px;
 	color: @blank;
@@ -263,12 +355,33 @@ strong {
 .tag:hover {
 	background: @highlight;
 }
+.errordisplay{
+	background-color: @error-bg-red;
+	color: @error-text-red;
+	text-align: center;
+	display: none;
+	width: 100%;
+	.small-pad;
+	.no-space;
+	margin-bottom: 1em;
+}
+
+.successdisplay{
+	background-color: @success-bg-green;
+	color: @success-text-green;
+	text-align: center;
+	display: none;
+	width: 100%;
+	.small-pad;
+	.no-space;
+	margin-bottom: 1em;
+}
 
 //D3
 .nodebox {
 	fill: @blank;
-	stroke: @tree-link;
-	stroke-width: 2px;
+	stroke: @subtle;
+	stroke-width: 0.8px;
 }
 
 .nodebox:hover {
@@ -303,6 +416,7 @@ strong {
 }
 
 
+
 //Bootstrap Overrides
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 
 .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, 
@@ -319,15 +433,7 @@ strong {
 	padding-left: 0;
 	padding-right: 0;
 }
-
-.errordisplay{
-	background-color:	@error-bg-red;
-	color: @error-text-red;
-	display: none;
-}
-
-.successdisplay{
-	background-color:	@success-bg-green;
-	color: @success-text-green;
-	display: none;
+.row {
+	margin-left: 0;
+	margin-right: 0;
 }

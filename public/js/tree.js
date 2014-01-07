@@ -20,7 +20,7 @@ function renderTree(treeData) {
 		         <g class="container" />
 		     </svg>
 		  */
-		 var layoutRoot = d3.select('#tree')
+		 var layoutRoot = d3.select('#treeview')
 		     .append("svg:svg").attr("width", 1000).attr("height", 1000)
 		     .append("svg:g")
 		     .attr("class", "container")
@@ -66,7 +66,9 @@ function renderTree(treeData) {
 		     .attr("width", 80)
 		     .attr("height", 60);
 
-		renderMiniGraphs();
+        data = "/uploads/data.tsv"
+
+		renderMiniGraphs(data);
 	});
 }
 

@@ -3,6 +3,7 @@ from lib.transform import *
 from lib.calculus import *
 from lib.stats import *
 from lib.graphical import *
+from lib.export import *
 
 class ComputeRouter:
 	''' static, and should be used that way '''
@@ -14,6 +15,9 @@ class ComputeRouter:
 		#calculus
 		'calculus_differentiate': Calculus.differentiate,
 		'calculus_integrate': Calculus.integrate,
+
+		#export
+		'export_pdf': Export.pdf,
 
 		#graphical
 		'graphical_xy_dists' : Graphical.xy_dists,
@@ -50,10 +54,16 @@ class ComputeRouter:
 DATA OBJECT JSON FORMAT
 
 data = {
+	'userid': '0001',
+	'graphid': '1234',
 	'data' : {
 		'x' : ['1', '2', '3'],
 		'y' : ['4.5', '-3', '0']
 	},
+	'unit' : {
+		'x' : 'km',
+		'y' : 'km/h'
+	}
 	'param1' : 'value1',
 	'param2' : 'value2'
 }
@@ -66,9 +76,15 @@ if __name__ == '__main__':
 	
 	#create dummy json data
 	data = dict()
+	data['userid'] = '0001'
+	data['graphid'] = '1234'
 	data['data'] = {
 		'x': ['1','2','3','4','5'],
 		'y': ['1','4','9','16','25']
+	}
+	data['unit'] = {
+		'x': 'km',
+		'y': 'km/h'
 	}
 	data['p1'] = '1'
 	data['p2'] = '3'
@@ -95,6 +111,10 @@ if __name__ == '__main__':
 	print intg['integral']
 	plt.plot(diff['data']['x'], diff['data']['y'])
 	plt.show()
+
+	'''TEST EXPORT FUNCTIONS'''
+	expr = cr.compute('export_pdf', data)
+	print expr['filename']
 
 	'''TEST GRAPHICAL FUNCTIONS'''
 	dxdy = cr.compute('graphical_xy_dists', data)

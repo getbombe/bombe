@@ -2,11 +2,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'text!templates/tree_view.html'
-], function($, _, Backbone, TreeViewTemplate){
+  'text!templates/profile_view.html'
+], function($, _, Backbone, ProfileViewTemplate){
 
-  var TreeView = Backbone.View.extend({
-    el: $("#tree"),
+  var ProfileView = Backbone.View.extend({
+    el: $("#profile"),
     session: null,
 
     rendered: false,
@@ -16,7 +16,7 @@ define([
     },
 
     render: function(){
-      var template = _.template(TreeViewTemplate, {data: null});
+      var template = _.template(ProfileViewTemplate, {data: null});
       this.$el.html(template);
     },
 
@@ -33,6 +33,6 @@ define([
     }
   });
 
-  return TreeView;
+  return ProfileView;
   
 });
