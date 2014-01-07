@@ -80,8 +80,8 @@ function renderGraph(data) {
 function renderMiniGraphs(data) {
 	
 	$('.node').each( function (index) {
-	    var width = 60;
-	    var height = 40;
+	    var width = 130;
+	    var height = 90;
 
 		var parseDate = d3.time.format("%d-%b-%y").parse;
 
@@ -127,7 +127,7 @@ function renderMiniGraphs(data) {
 		      .attr("d", line)
 		     .attr("transform", function(d)
 		     {
-		         return "translate(" + -30 + "," + -20 + ")";
+		         return "translate(" + -65 + "," + -45 + ")";
 		     });
 		      
 		});

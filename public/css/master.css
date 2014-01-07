@@ -353,10 +353,7 @@ nav ul img {
 .link {
   fill: none;
   stroke: rgba(119, 119, 119, 0.5);
-  stroke-width: 1.0em;
-}
-.link:hover {
-  stroke: #1f90c1;
+  stroke-width: 0.2em;
 }
 .line {
   fill: none;

@@ -3,7 +3,7 @@ function renderTree(treeData) {
 	var tree = d3.layout.tree()
 	    .sort(null)
 	    .size([1000, 1000 - 20*10])
-	    .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; })
+	    .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2); })
 	    .children(function(d)
 	    {
 	        return (!d.contents || d.contents.length === 0) ? null : d.contents;
@@ -61,10 +61,10 @@ function renderTree(treeData) {
 
 		 nodeGroup.append("rect")
 		     .attr("class", "nodebox")
-		     .attr("x", -80/2)
-		     .attr("y", -60/2)
-		     .attr("width", 80)
-		     .attr("height", 60);
+		     .attr("x", -150/2)
+		     .attr("y", -100/2)
+		     .attr("width", 150)
+		     .attr("height", 100);
 
         data = "/uploads/data.tsv"
 
