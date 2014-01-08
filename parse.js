@@ -1,7 +1,7 @@
 var fs = require('fs');
 var csv = require('csv');
 var dataFileName = "public/uploads/data.tsv"
-var delimiter = "," //e.g. can also use whitespace: " "
+var delimiter = "\t" //e.g. can also use whitespace: " "
 var csvString = "";
 
 function isdef(ob) {
@@ -31,7 +31,7 @@ function csv2json (csvdata, args) {
 	var csvheaders = splitCSV(csvlines[0], delim);
 	var csvrows = csvlines.slice(1, csvlines.length);
 
-	console.log(csvheaders);
+	//console.log(csvheaders);
 	var ret = {};
 
 	for (var h in csvheaders) {
@@ -75,10 +75,10 @@ csv()
 //.to.path(__dirname+'/'+dataFileName+'.parsed')
 .on('record', function(row,index){
 	csvString += row + '\n';
-	console.log('#'+index+' '+JSON.stringify(row));
+	//console.log('#'+index+' '+JSON.stringify(row));
 })
 .on('end', function(count){
-	console.log('csvString: '+csvString);
+	//console.log('csvString: '+csvString);
 	
 	var output_json = csv2json(csvString, {
         delim: delimiter,
