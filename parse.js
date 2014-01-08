@@ -1,7 +1,7 @@
 
 var fs = require('fs');
 var csv = require('csv');
-var dataFileName = "public/uploads/data.csv"
+var dataFileName = "public/uploads/data.tsv"
 var delimiter = "," //e.g. can also use whitespace: " "
 var csvString = "";
 
