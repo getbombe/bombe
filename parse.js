@@ -1,4 +1,3 @@
-
 var fs = require('fs');
 var csv = require('csv');
 var dataFileName = "public/uploads/data.csv"
@@ -32,9 +31,15 @@ function csv2json (csvdata, args) {
 	var csvheaders = splitCSV(csvlines[0], delim);
 	var csvrows = csvlines.slice(1, csvlines.length);
 
+	console.log(csvheaders);
 	var ret = {};
-	ret.headers = csvheaders;
-	ret.rows = [];
+
+	for (var h in csvheaders) {
+		ret[csvheaders[h]] = [];
+	}
+
+	//ret['headers'] = csvheaders;
+	//ret['rows'] = [];
 
 	for(var r in csvrows) {
 		if (csvrows.hasOwnProperty(r)) {
@@ -54,11 +59,11 @@ function csv2json (csvdata, args) {
 						item = item*1;
 					}
 
-					rowob[csvheaders[i]] = item;
+					ret[csvheaders[i]].push(item);
 				}
 			}
 
-			ret.rows.push(rowob);
+			//ret.rows.push(rowob);
 		}
 	}
 
@@ -69,11 +74,11 @@ csv()
 .from.stream(fs.createReadStream(__dirname+'/'+dataFileName))
 //.to.path(__dirname+'/'+dataFileName+'.parsed')
 .on('record', function(row,index){
-	csvString += JSON.stringify(row) + '\n';
+	csvString += row + '\n';
 	console.log('#'+index+' '+JSON.stringify(row));
 })
 .on('end', function(count){
-	console.log('Number of lines: '+count);
+	console.log('csvString: '+csvString);
 	
 	var output_json = csv2json(csvString, {
         delim: delimiter,
