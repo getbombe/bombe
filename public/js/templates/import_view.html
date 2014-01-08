@@ -1,17 +1,20 @@
 <div class="row">
-  <form id="importform"
-        enctype="multipart/form-data"
-        action="../upload"
-        method="post">
-    <div id="import" class="form-group">
-      <label for="inputfile">File input</label>
-      <input type="file" name="uploadedfile" id="inputfile">
-      <p class="help-block">Upload your 2 column file here.</p>
-      <button class="btn btn-primary" id="import">Upload</button>
-    </div>
-  </form>
   <div id="upload" class="col-sm-8">
-  	<p>Drag data here or <button class="btn btn-primary">browse for files</button></p>
+    <div id="upload-container">
+      <form id="importform"
+          enctype="multipart/form-data"
+          action="../upload"
+          method="post">
+      <div id="import" class="form-group">
+        <!-- <label for="inputfile">File input</label> -->
+        <span class="help-block"> Upload your two-column data file here</span> <br>
+         <input type="file" name="uploadedfile" id="inputfile">
+        <br>
+        <button class="btn btn-primary" id="import">Upload</button>
+      </div>
+      </form>
+    </div>
+  	<!-- <p>Drag data here or <button class="btn btn-primary">browse for files</button></p> -->
   </div>
   <div id="controls" class="col-sm-4">
     <h3>Data Options</h3>
@@ -47,7 +50,7 @@
     <div class="text-box">
       <div class="row">
         <div class="col-lg-12">
-          <button class="btn btn-success">Upload</button>
+          <a href="/#/tree"><button class="btn btn-primary">Done</button></a>
         </div>
       </div>
     </div>

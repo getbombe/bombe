@@ -155,11 +155,16 @@ table {
 	text-align: center;
 	.big-pad;
 
-	p {
-		margin: 40% auto 0 auto;
-		width: 60%;
-		padding: 1.5em;
+	#upload-container {
+		margin: 35% auto 0 auto;
+		width: 70%;
+		.med-pad;
 		background: @translucent;
+
+		input {
+			text-align: center;
+			.centered;
+		}
 	}
 }
 .analysis {
@@ -391,12 +396,12 @@ nav {
 .link {
 	fill: none;
 	stroke: @tree-link;
-	stroke-width: 1.0em;
+	stroke-width: 0.2em;
 }
 
-.link:hover {
-	stroke: @highlight;
-}
+// .link:hover {
+// 	stroke: @highlight;
+// }
 
 .line {
 	fill: none;

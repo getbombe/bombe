@@ -125,11 +125,16 @@ table {
   text-align: center;
   padding: 2.5em;
 }
-#upload p {
-  margin: 40% auto 0 auto;
-  width: 60%;
+#upload #upload-container {
+  margin: 35% auto 0 auto;
+  width: 70%;
   padding: 1.5em;
   background: rgba(255, 255, 255, 0.8);
+}
+#upload #upload-container input {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 .analysis {
   padding: 1.5em;
@@ -353,10 +358,7 @@ nav ul img {
 .link {
   fill: none;
   stroke: rgba(119, 119, 119, 0.5);
-  stroke-width: 1.0em;
-}
-.link:hover {
-  stroke: #1f90c1;
+  stroke-width: 0.2em;
 }
 .line {
   fill: none;
