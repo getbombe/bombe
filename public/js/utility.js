@@ -28,6 +28,18 @@ define([
 			.done(onDone)
 			.fail(onFail)
 			.always(onAlways);
+		},
+
+		logAction: function(email, useraction, entity){
+			this.ajaxPOST("/log",
+						  {
+						  	email: email,
+						  	useraction: useraction,
+						  	entity: entity
+						  },
+						  function(){},
+						  function(){ console.log("Did not log correctly"); },
+						  function(){});
 		}
 	};
 

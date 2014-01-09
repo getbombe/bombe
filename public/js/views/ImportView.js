@@ -20,7 +20,7 @@ define([
     render: function(){
       var template = _.template(DataImportTemplate, {data: null});
       this.$el.html(template);
-
+      
       // triggers
       // TODO: write these as events
       this.$el.find("form#importform").change(function(){

@@ -1,4 +1,4 @@
-var UserModel = require('../models/UserModel.js');
+var LogModel = require('../models/LogModel.js');
 var mongoose = require('mongoose');
 
 // log entry
@@ -11,20 +11,16 @@ var entry = function(req, res){
 	db.on('error', console.error.bind(console, 'connection error:'));
 
 	var email = req.body.email;
-	var firstname = req.body.firstname;
-	var lastname = req.body.lastname;
-	var institution = req.body.institution;
-	var password = simpleauth.generateKey(req.body.password);
+	var useraction = req.body.useraction;
+	var entity = req.body.entity;
 
-	var newUser = new UserModel({
+	var newLog = new LogModel({
 		email: email,
-		firstname: firstname,
-		lastname: lastname,
-		institution: institution,
-		password: password
+		useraction: useraction,
+		entity: entity
 	});
 
-	newUser.save(function (err, result){
+	newLog.save(function (err, result){
 		res.writeHead(200, { 'Content-Type': 'application/json' });
 		
 		if(err){
