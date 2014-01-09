@@ -85,6 +85,11 @@ $(document).ready( function(){
             //renderGraph(d); 
             //console.log("test");
         });
+
+        $(".node").click( function(){
+            console.log($(this).attr("id"));
+            //renderGraph(d, $(this).attr("id")); <--- This is where I left off! Need to update renderGraph() -EDDIE
+        });
     });
     
      
