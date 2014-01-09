@@ -8,7 +8,7 @@ var routes = require('./routes');
 
 var user = require('./routes/user');
 var upload = require('./routes/upload');
-var
+var log = require('./routes/log');
 
 var http = require('http');
 var path = require('path');
