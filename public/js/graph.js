@@ -77,23 +77,25 @@ function renderGraph(data) {
 	});	
 }
 
-function renderMiniGraphs(data) {
-	
+function miniGraph(treeData) {
+
 	$('.node').each( function (index) {
 	    var width = 130;
 	    var height = 90;
+	    var id = $(this).attr("id");
+	    console.log(id);
 
-		var parseDate = d3.time.format("%d-%b-%y").parse;
+		//var parseDate = d3.time.format("%d-%b-%y").parse;
 
-		var x = d3.time.scale()
+		var x = d3.scale.linear()
 		    .range([0, width]);
 
 		var y = d3.scale.linear()
 		    .range([height, 0]);
 
 		var line = d3.svg.line()
-		    .x(function(d) { return x(d.date); })
-		    .y(function(d) { return y(d.close); });
+		    .x(function(d) { return x(d.x); })
+		    .y(function(d) { return y(d.y); });
 
 		 /*var svg = d3.select(this).append("svg")
 		    .attr("width", width + margin.left + margin.right)
@@ -112,24 +114,38 @@ function renderMiniGraphs(data) {
 		     .attr("x", -80/2)
 		     .attr("y", -60/2);*/
 
-		d3.tsv(data, function(error, data) {
-		  data.forEach(function(d) {
-		    d.date = parseDate(d.date);
-		    d.close = +d.close;
-		  });
 
-		  x.domain(d3.extent(data, function(d) { return d.date; }));
-		  y.domain(d3.extent(data, function(d) { return d.close; }));
+		xData = treeData.data.data.x.map(function(d){return parseFloat(d)});
+		yData = treeData.data.data.y.map(function(d){return parseFloat(d)});
+		
+		data = [];
 
-		  obj.append("path")
-		      .datum(data)
-		      .attr("class", "line")
-		      .attr("d", line)
-		     .attr("transform", function(d)
-		     {
-		         return "translate(" + -65 + "," + -45 + ")";
-		     });
+		for (i = 0; i < xData.length; i++) {
+			var row = {
+				"x": xData[i],
+				"y": yData[i]
+			}
+			data.push (row);			
+		}
+
+		//console.log(data);
+		//console.log(treeData['data'].graphid);
+		
+		x.domain(d3.extent(xData));
+		y.domain(d3.extent(yData));
+
+		//console.log(d3.extent(xData));
+		//console.log(d3.extent(yData));
+
+	  	obj.append("path")
+	      	.datum(data)
+	      	.attr("class", "line")
+	      	.attr("d", line)
+	     	.attr("transform", function(d)
+		    {
+	         	return "translate(" + -65 + "," + -45 + ")";
+	     	});
 		      
-		});
+		
 	});
 }
