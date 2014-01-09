@@ -114,9 +114,36 @@ function miniGraph(treeData) {
 		     .attr("x", -80/2)
 		     .attr("y", -60/2);*/
 
+		var xyData = null;
 
-		xData = treeData.data.data.x.map(function(d){return parseFloat(d)});
-		yData = treeData.data.data.y.map(function(d){return parseFloat(d)});
+		function writeXYData (data) {
+			if (data != undefined && data != null) {
+				xyData = data;
+			}
+		}
+
+		function findDataById (tree, id) {
+		
+			console.log(tree);
+			if (tree.data.graphid == id) {
+				console.log("Returned: " + tree.data.data);
+				writeXYData(tree.data.data);
+			}
+			else if (tree.children instanceof Array) {
+				//console.log(tree.children);
+				tree.children.forEach( function(child){
+					 findDataById (child, id); 
+				});
+			} 
+		}
+
+		findDataById(treeData, id);
+
+		xData = xyData.x.map(function(d){return parseFloat(d)});
+		yData = xyData.y.map(function(d){return parseFloat(d)});
+
+		console.log(xData);
+		console.log(yData);
 		
 		data = [];
 
@@ -128,7 +155,7 @@ function miniGraph(treeData) {
 			data.push (row);			
 		}
 
-		//console.log(data);
+		console.log(data);
 		//console.log(treeData['data'].graphid);
 		
 		x.domain(d3.extent(xData));
