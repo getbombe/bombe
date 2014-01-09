@@ -3,17 +3,19 @@ function renderTree(treeData) {
 	var tree = d3.layout.tree()
 	    .sort(null)
 	    .size([1000, 1000 - 20*10])
-	    .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2); })
+	    .separation(function(a, b) { return (a.parent == b.parent ? 1.5 : 2); })
 	    .children(function(d)
 	    {
 	        return (!d.contents || d.contents.length === 0) ? null : d.contents;
 	    });
 
-	// Setting up dummy json data
+	// Setting up json data
 	d3.json(treeData, function (error, root) {
 
 		var nodes = tree.nodes(root);
 		var links = tree.links(nodes);
+
+        //console.log(nodes);
 
 		/*
 		     <svg>
@@ -54,10 +56,19 @@ function renderTree(treeData) {
 		     .enter()
 		     .append("svg:g")
 		     .attr("class", "node")
+             //.attr("id", 'test')//nodes['id'])
 		     .attr("transform", function(d)
 		     {
 		         return "translate(" + d.y + "," + d.x + ")";
 		     });
+
+        /*nodes.forEach( function(node){ 
+            if (node['id'] == 'new') {
+                node.append("circ")
+                .attr("r", 10)
+                .attr("class", "new-circ");
+            }
+        });*/
 
 		 nodeGroup.append("rect")
 		     .attr("class", "nodebox")
@@ -71,3 +82,16 @@ function renderTree(treeData) {
 		renderMiniGraphs(data);
 	});
 }
+
+$(window).resize(function() {
+    data = ["/uploads/data.tsv", "/uploads/data.tsv", "/uploads/data.tsv"]; 
+    renderGraph(data); 
+    return false;
+});
+$(document).ready( function(){ 
+    renderTree("/uploads/tree.json");
+    
+    data = ["/uploads/data.tsv", "/uploads/data.tsv" , "/uploads/data.tsv"];
+    renderGraph(data); 
+    return false;
+});

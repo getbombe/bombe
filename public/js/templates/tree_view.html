@@ -1,21 +1,6 @@
 <script type="text/javascript" src="/js/graph.js"></script>
 <script type="text/javascript" src="/js/tree.js"></script>
 
-<script>
-	$(window).resize(function() {
-		data = ["/uploads/data.tsv", "/uploads/data.tsv", "/uploads/data.tsv"]; 
-		renderGraph(data); 
-		return false;
-	});
-	$(document).ready( function(){ 
-		renderTree("/uploads/tree.json");
-		
-		data = ["/uploads/data.tsv", "/uploads/data.tsv" , "/uploads/data.tsv"];
-		renderGraph(data); 
-		return false;
-	});
-</script>
-
 <div class="row">
   <div id="treeview" class="col-sm-7">
   </div>
@@ -28,8 +13,15 @@
 		<div class="plot">		
 		</div>
 	</div>
+
 	<a href="/#/operation"><button class="btn btn-primary operate">Edit Graph</button></a>
+
+	<a href="/#/operation"><button class="btn btn-primary operate">Transform Graph</button></a>
+
 	<button class="btn btn-success operate">Export Graph</button>
+
 	<button class="btn btn-danger operate">Delete Graph</button>
+
+
   </div>
 </div>

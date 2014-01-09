@@ -2,7 +2,7 @@ function renderGraph(data) {
 	
 	$('.plot').each( function(index) {
 	    if ($(this).parent().parent().parent().parent().css('display') != 'none') {
-	    	console.log($(this).parent().parent().parent().parent().css('display'));
+	    	//console.log($(this).parent().parent().parent().parent().css('display'));
 			$(this).html('');
 
 			var margin = {top: 20, right: 20, bottom: 40, left: 50};
@@ -35,7 +35,7 @@ function renderGraph(data) {
 			  .append("g")
 			    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-			console.log("index: " + index);
+			//console.log("index: " + index);
 			d3.tsv(data[index], function(error, data) {
 			    
 			  data.forEach(function(d) {
