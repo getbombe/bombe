@@ -18,6 +18,53 @@ define([
     render: function(){
       var template = _.template(TreeViewTemplate, {data: null});
       this.$el.html(template);
+
+      var treeData = JSON.parse(this.session.tree);
+
+      console.log(treeData);
+
+      window.idBefore = null;
+      window.idAfter = null;
+      if ($('#plot-preview').height() != 0) {
+          window.opHeight = $('#plot-preview').height();
+          window.opWidth = $('#plot-preview').width();
+      }
+      renderTree(treeData);
+      renderGraph(treeData, 0, "#plot-preview");
+
+      $(window).resize(function() {
+          if ($('#plot-preview').height() != 0) {
+              window.opHeight = $('#plot-preview').height();
+              window.opWidth = $('#plot-preview').width();
+          }
+          renderGraph(treeData, 0, "#plot-preview"); 
+          //console.log("test");
+      });
+
+      $(".node").click( function(){
+          //console.log($(this).attr("id"));
+          renderGraph(treeData, $(this).attr("id"), "#plot-preview");
+      });
+
+      $("#delete-graph").click( function(){
+          var graphid = $("#plot-preview-titlebar .graphid").html();
+          console.log("deleted:" + graphid);
+      });
+
+      $("#edit-graph").click( function(){
+          var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
+          window.idAfter = graphid;
+          findTreeDataParent(treeData, graphid);
+          //console.log(window.idBefore);
+          //console.log (window.idAfter);
+          renderGraph(treeData, window.idBefore, "#plot-before");
+          renderGraph(treeData, window.idAfter, "#plot-after");
+          window.location.replace("/#/operation");
+          //console.log("edited:" + ".node #" + graphid);
+          //console.log(d3.selectAll(".node")[0][graphid]);
+          //console.log(d3.selectAll(".node")[0][graphid].parentNode);
+      });
+
     },
 
     hide: function(){
@@ -153,51 +200,3 @@ function delById (tree, id) {
         });
     } 
 }
-
-$(document).ready( function(){ 
-
-    //console.log(d);
-    window.treeData = d;
-    window.idBefore = null;
-    window.idAfter = null;
-    if ($('#plot-preview').height() != 0) {
-        window.opHeight = $('#plot-preview').height();
-        window.opWidth = $('#plot-preview').width();
-    }
-    renderTree(treeData);
-    renderGraph(treeData, 0, "#plot-preview");
-
-    $(window).resize(function() {
-        if ($('#plot-preview').height() != 0) {
-            window.opHeight = $('#plot-preview').height();
-            window.opWidth = $('#plot-preview').width();
-        }
-        renderGraph(treeData, 0, "#plot-preview"); 
-        //console.log("test");
-    });
-
-    $(".node").click( function(){
-        //console.log($(this).attr("id"));
-        renderGraph(treeData, $(this).attr("id"), "#plot-preview");
-    });
-
-    $("#delete-graph").click( function(){
-        var graphid = $("#plot-preview-titlebar .graphid").html();
-        console.log("deleted:" + graphid);
-    });
-
-    $("#edit-graph").click( function(){
-        var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
-        window.idAfter = graphid;
-        findTreeDataParent(treeData, graphid);
-        //console.log(window.idBefore);
-        //console.log (window.idAfter);
-        renderGraph(treeData, window.idBefore, "#plot-before");
-        renderGraph(treeData, window.idAfter, "#plot-after");
-        window.location.replace("/#/operation");
-        //console.log("edited:" + ".node #" + graphid);
-        //console.log(d3.selectAll(".node")[0][graphid]);
-        //console.log(d3.selectAll(".node")[0][graphid].parentNode);
-    });
-   
-});

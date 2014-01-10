@@ -51,7 +51,7 @@ class ComputeRouter:
 		return result
 
 '''
-DATA OBJECT JSON FORMAT
+DATA OBJECT JSON FORMAT (where the outer DATA is a graph object)
 
 data = {
 	'userid': '0001',
