@@ -76,19 +76,30 @@ function renderTree(treeData) {
 }
 
 $(document).ready( function(){ 
-    treeData = $.getJSON("/uploads/tree.json", function (d) {
+    $.getJSON("/uploads/tree.json", function (d) {
         //console.log(d);
-        renderTree(d);
-        renderGraph(d, 0000);
+        window.treeData = d;
+        renderTree(treeData);
+        renderGraph(treeData, 0, "#plot-preview");
 
         $(window).resize(function() {
-            renderGraph(d, 0000); 
+            renderGraph(treeData, 0, "#plot-preview"); 
             //console.log("test");
         });
 
         $(".node").click( function(){
-            console.log($(this).attr("id"));
-            renderGraph(d, $(this).attr("id"));
+            //console.log($(this).attr("id"));
+            renderGraph(treeData, $(this).attr("id"), "#plot-preview");
+        });
+
+        $("#delete-graph").click( function(){
+            var graphid = $("#plot-preview-titlebar .graphid").html();
+            console.log("deleted:" + graphid);
+        });
+
+        $("#edit-graph").click( function(){
+            var graphid = $("#plot-preview-titlebar .graphid").html();
+            console.log("edited:" + graphid);
         });
     });
 });

@@ -288,13 +288,10 @@ nav ul img {
   text-align: left;
   margin-left: 2.5em;
 }
-.graph .id {
-  color: #ffffff;
-  background: #1a62aa;
-  padding: .5em;
+.graph .graphid {
+  color: #1a62aa;
+  padding: 0;
   margin: 0;
-  float: left;
-  max-width: 5em;
 }
 .graph .lineage {
   padding: .5em;
