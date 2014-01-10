@@ -2,8 +2,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'utility',
   'text!templates/tree_view.html'
-], function($, _, Backbone, TreeViewTemplate){
+], function($, _, Backbone, Util, TreeViewTemplate){
 
   var TreeView = Backbone.View.extend({
     el: $("#tree"),
@@ -12,6 +13,7 @@ define([
     rendered: false,
     
     initialize: function(session){
+      //console.log(this.session);
       this.session = session;
     },
 
@@ -19,9 +21,28 @@ define([
       var template = _.template(TreeViewTemplate, {data: null});
       this.$el.html(template);
 
-      var treeData = JSON.parse(this.session.tree);
+      var that = this;
+      // get the tree
+      Util.ajaxPOST("../getTree",
+                    {
+                      email:that.session.email
+                    },
+                    function(data){ that.session.tree = data.tree; },
+                    function(){ console.log("could not get tree"); },
+                    function(){});
 
-      console.log(treeData);
+      try {
+        console.log("TREE: " + this.session.tree);
+        var treeData = JSON.parse(this.session.tree); 
+
+       } 
+       catch (e) {
+         window.location.replace("/#/import");
+         //console.log(e);
+         return;
+       }
+
+      //console.log(treeData);
 
       window.idBefore = null;
       window.idAfter = null;
@@ -30,20 +51,27 @@ define([
           window.opWidth = $('#plot-preview').width();
       }
       renderTree(treeData);
-      renderGraph(treeData, 0, "#plot-preview");
+      Util.renderGraph(treeData, 0, "#plot-preview");
+
+      if ($("#plot-preview-titlebar .graphid").html() == 0) {
+        $("#edit-graph").attr("disabled", "disabled");
+      }
+      else {
+        $("#edit-graph").removeAttr("disabled");
+      }
 
       $(window).resize(function() {
           if ($('#plot-preview').height() != 0) {
               window.opHeight = $('#plot-preview').height();
               window.opWidth = $('#plot-preview').width();
           }
-          renderGraph(treeData, 0, "#plot-preview"); 
+          Util.renderGraph(treeData, 0, "#plot-preview"); 
           //console.log("test");
       });
 
       $(".node").click( function(){
           //console.log($(this).attr("id"));
-          renderGraph(treeData, $(this).attr("id"), "#plot-preview");
+          Util.renderGraph(treeData, $(this).attr("id"), "#plot-preview");
       });
 
       $("#delete-graph").click( function(){
@@ -52,18 +80,104 @@ define([
       });
 
       $("#edit-graph").click( function(){
-          var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
-          window.idAfter = graphid;
-          findTreeDataParent(treeData, graphid);
-          //console.log(window.idBefore);
-          //console.log (window.idAfter);
-          renderGraph(treeData, window.idBefore, "#plot-before");
-          renderGraph(treeData, window.idAfter, "#plot-after");
-          window.location.replace("/#/operation");
-          //console.log("edited:" + ".node #" + graphid);
-          //console.log(d3.selectAll(".node")[0][graphid]);
-          //console.log(d3.selectAll(".node")[0][graphid].parentNode);
+        var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
+        window.idAfter = graphid;
+        findTreeDataParent(treeData, graphid);
+        //console.log(window.idBefore);
+        //console.log (window.idAfter);
+        //Util.renderGraph(treeData, window.idBefore, "#plot-before");
+        //Util.renderGraph(treeData, window.idAfter, "#plot-after");
+        window.location.replace("/#/operation");
+        //console.log("edited:" + ".node #" + graphid);
+        //console.log(d3.selectAll(".node")[0][graphid]);
+        //console.log(d3.selectAll(".node")[0][graphid].parentNode);
       });
+
+      $("#create-graph").click ( function(){
+        var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
+        window.idBefore = graphid;
+        window.idAfter = "new";
+        Util.renderGraph(treeData, window.idBefore, "#plot-before");
+        Util.renderGraph(treeData, window.idAfter, "#plot-after");
+        window.location.replace("/#/operation");
+      });
+
+      function renderTree(treeData) {
+
+          var tree = d3.layout.tree()
+              .sort(null)
+              .size([1000, 1000 - 20*10])
+              .separation(function(a, b) { return (a.parent == b.parent ? 0.5 : 1); })
+              .children(function(d)
+              {
+                  return (!d.children || d.children.length === 0) ? null : d.children;
+              });
+
+          var nodes = tree.nodes(treeData);
+          var links = tree.links(nodes);
+
+            //console.log(nodes);
+
+          /*
+               <svg>
+                   <g class="container" />
+               </svg>
+            */
+           var layoutRoot = d3.select('#treeview')
+               .append("svg:svg").attr("width", 1000).attr("height", 1000)
+               .append("svg:g")
+               .attr("class", "container")
+               .attr("transform", "translate(" + 80 + ",0)");
+
+
+           // Edges between nodes as a <path class="link" />
+           var link = d3.svg.diagonal()
+               .projection(function(d)
+               {
+                   return [d.y, d.x];
+               });
+
+           layoutRoot.selectAll("path.link")
+               .data(links)
+               .enter()
+               .append("svg:path")
+               .attr("class", "link")
+               .attr("d", link);
+
+           /*
+               Nodes as
+               <g class="node">
+                   <circle class="node-dot" />
+                   <text />
+               </g>
+            */
+
+           var nodeGroup = layoutRoot.selectAll("g.node")
+               .data(nodes)
+               .enter()
+               .append("svg:g")
+               .attr("class", "node")
+                 .attr("id", function(d){return d.data.graphid})
+               .attr("transform", function(d)
+               {
+                   return "translate(" + d.y + "," + d.x + ")";
+               });
+
+            // nodes.forEach( function(node){ 
+            //     node.attr("id", node.data.graphid)
+            // });
+
+           nodeGroup.append("rect")
+               .attr("class", "nodebox")
+               .attr("x", -150/2)
+               .attr("y", -100/2)
+               .attr("width", 150)
+               .attr("height", 100);
+
+            //data = "/uploads/data.tsv"
+
+          Util.miniGraph(treeData);
+        }
 
     },
 
@@ -73,93 +187,17 @@ define([
 
     show: function(){
       this.$el.show();
-      if(!this.rendered) {
-        this.render();
-        this.rendered = true;
-      }
+      this.render();
+      // if(!this.rendered) {
+      //   this.render();
+      //   this.rendered = true;
+      // }
     }
   });
 
   return TreeView;
   
 });
-
-function renderTree(treeData) {
-
-  var tree = d3.layout.tree()
-      .sort(null)
-      .size([1000, 1000 - 20*10])
-      .separation(function(a, b) { return (a.parent == b.parent ? 0.5 : 1); })
-      .children(function(d)
-      {
-          return (!d.children || d.children.length === 0) ? null : d.children;
-      });
-
-  var nodes = tree.nodes(treeData);
-  var links = tree.links(nodes);
-
-    //console.log(nodes);
-
-  /*
-       <svg>
-           <g class="container" />
-       </svg>
-    */
-   var layoutRoot = d3.select('#treeview')
-       .append("svg:svg").attr("width", 1000).attr("height", 1000)
-       .append("svg:g")
-       .attr("class", "container")
-       .attr("transform", "translate(" + 80 + ",0)");
-
-
-   // Edges between nodes as a <path class="link" />
-   var link = d3.svg.diagonal()
-       .projection(function(d)
-       {
-           return [d.y, d.x];
-       });
-
-   layoutRoot.selectAll("path.link")
-       .data(links)
-       .enter()
-       .append("svg:path")
-       .attr("class", "link")
-       .attr("d", link);
-
-   /*
-       Nodes as
-       <g class="node">
-           <circle class="node-dot" />
-           <text />
-       </g>
-    */
-
-   var nodeGroup = layoutRoot.selectAll("g.node")
-       .data(nodes)
-       .enter()
-       .append("svg:g")
-       .attr("class", "node")
-         .attr("id", function(d){return d.data.graphid})
-       .attr("transform", function(d)
-       {
-           return "translate(" + d.y + "," + d.x + ")";
-       });
-
-    // nodes.forEach( function(node){ 
-    //     node.attr("id", node.data.graphid)
-    // });
-
-   nodeGroup.append("rect")
-       .attr("class", "nodebox")
-       .attr("x", -150/2)
-       .attr("y", -100/2)
-       .attr("width", 150)
-       .attr("height", 100);
-
-    //data = "/uploads/data.tsv"
-
-  miniGraph(treeData);
-}
 
 function writeTreeParent (id) {
     if (id != undefined && id != null) {

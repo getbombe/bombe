@@ -14,6 +14,7 @@ define([
     rendered: false,
 
     initialize: function(session){
+      //console.log(this.session);
       this.session = session;
     },
 
@@ -25,7 +26,7 @@ define([
 
       // triggers
       // TODO: write these as events
-      this.$el.find("form#importform").change(function(){
+      $("#importform").change(function(){
         $(this).ajaxSubmit({
           url: "../upload",
           type: "post",
@@ -33,7 +34,7 @@ define([
           data: { email: that.session.email },
 
           error: function(xhr) {
-            alert("error: cound not import file");
+            alert("error: could not import file");
           },
 
           success: function(response) {
@@ -43,7 +44,7 @@ define([
 
             var data = {
               "userid": that.session.email,
-              "graphid": "-1", //TODO
+              "graphid": "0", //TODO
               "data": {
                 "x": res.x,
                 "y": res.y
@@ -61,6 +62,8 @@ define([
             tree.data = data;
             tree.children = [];
 
+            //that.session.tree = tree;
+
             // save initial tree
             Util.ajaxPOST("../newtree",
                           {
@@ -68,11 +71,14 @@ define([
                             email: that.session.email
                           },
                           function(){},
-                          function(){ console.log("failed to save initital tree"); },
+                          function(){ console.log("error: failed to save initial tree"); },
                           function(){});
           }
         });
       });
+      
+      console.log("IMPORT: " +this.session.tree);
+      //this.session.tree = that.session.tree;
     },
 
     hide: function(){
@@ -81,6 +87,7 @@ define([
 
     show: function(){
       this.$el.show();
+      //this.render();
       if(!this.rendered) {
         this.render();
         this.rendered = true;

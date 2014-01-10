@@ -57,7 +57,6 @@ define([
                      },
                      function(){}
                     );
-
       });
     },
 
