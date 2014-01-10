@@ -212,6 +212,10 @@
                     "x" : "km",
                     "y" : "km/h"
                 },
+                "label" : {
+                    "x" : "Distance",
+                    "y" : "Speed"
+                },
                 "param1" : "value1",
                 "param2" : "value2"
             },
@@ -227,6 +231,10 @@
                         "unit" : {
                             "x" : "km",
                             "y" : "km/h"
+                        },
+                        "label" : {
+                            "x" : "Distance",
+                            "y" : "Speed"
                         },
                         "param1" : "value1",
                         "param2" : "value2"
@@ -244,6 +252,10 @@
                                     "x" : "km",
                                     "y" : "km/h"
                                 },
+                                "label" : {
+                                    "x" : "Distance",
+                                    "y" : "Speed"
+                                },
                                 "param1" : "value1",
                                 "param2" : "value2"
                             },
@@ -260,6 +272,10 @@
                                             "x" : "km",
                                             "y" : "km/h"
                                         },
+                                        "label" : {
+                                            "x" : "Distance",
+                                            "y" : "Speed"
+                                        },
                                         "param1" : "value1",
                                         "param2" : "value2"
                                     }
@@ -275,6 +291,10 @@
                                         "unit" : {
                                             "x" : "km",
                                             "y" : "km/h"
+                                        },
+                                        "label" : {
+                                            "x" : "Distance",
+                                            "y" : "Speed"
                                         },
                                         "param1" : "value1",
                                         "param2" : "value2"
@@ -295,6 +315,10 @@
                         "unit" : {
                             "x" : "km",
                             "y" : "km/h"
+                        },
+                        "label" : {
+                            "x" : "Distance",
+                            "y" : "Speed"
                         },
                         "param1" : "value1",
                         "param2" : "value2"
