@@ -1,5 +1,8 @@
 var fs = require('fs');
 var csv = require('csv');
+var StringDecoder = require('string_decoder').StringDecoder;
+var decoder = new StringDecoder('utf8');
+
 var dataFileName = "public/uploads/data.tsv"
 var delimiter = "\t" //e.g. can also use whitespace: " "
 var csvString = "";

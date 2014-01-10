@@ -21,10 +21,14 @@ define([
       var template = _.template(DataImportTemplate, {data: null});
       this.$el.html(template);
       
+      var that = this;
+
       // triggers
       // TODO: write these as events
       this.$el.find("form#importform").change(function(){
         $(this).ajaxSubmit({
+          data: { email: that.session.email },
+
           error: function(xhr) {
           },
 

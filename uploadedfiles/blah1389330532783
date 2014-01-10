@@ -1,46 +1,9 @@
 var fs = require('fs');
 var csv = require('csv');
-
-var StringDecoder = require('string_decoder').StringDecoder;
-var decoder = new StringDecoder('utf8');
-
 var dataFileName = "public/uploads/data.tsv"
-var delimiter = "," //e.g. can also use whitespace: " "
+var delimiter = "\t" //e.g. can also use whitespace: " "
 var csvString = "";
 
-var fs = require("fs");
-
-var upload = function(req, res){
-	console.log(req.body);
-	fs.readFile(req.files.uploadedfile.path, function (err, data) {
-		var email = req.body.email;
-
-		var newPath = __dirname + "/../uploadedfiles/" + email + Date.now();
-		console.log(newPath);
-
-		res.end();
-
-		fs.writeFile(newPath, data, function (err) {
-			console.log(err);
-		});
-
-		console.log(data);
-
-		var strData = decoder.write(data);
-
-		var output_json = csv2json(strData, {
-	        delim: delimiter,
-	        textdelim: "\""
-	    });
-
-	    console.log(output_json);
-
-	});
-};
-
-
-
-// parser
 function isdef(ob) {
 	if(typeof(ob) == "undefined") return false;
 	return true;
@@ -107,5 +70,23 @@ function csv2json (csvdata, args) {
 	return ret;
 }
 
+csv()
+.from.stream(fs.createReadStream(__dirname+'/'+dataFileName))
+//.to.path(__dirname+'/'+dataFileName+'.parsed')
+.on('record', function(row,index){
+	csvString += row + '\n';
+	//console.log('#'+index+' '+JSON.stringify(row));
+})
+.on('end', function(count){
+	//console.log('csvString: '+csvString);
+	
+	var output_json = csv2json(csvString, {
+        delim: delimiter,
+        textdelim: "\""
+    });
 
-exports.upload = upload;
+	console.log("Converted CSV to JSON:", output_json);
+})
+.on('error', function(error){
+	console.log(error.message);
+});
