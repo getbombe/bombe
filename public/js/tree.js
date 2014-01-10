@@ -78,6 +78,7 @@ function renderTree(treeData) {
 function writeTreeParent (id) {
     if (id != undefined && id != null) {
         window.idBefore = id;
+        console.log("ParentID: " + id);
     }
 }
 
@@ -86,12 +87,30 @@ function findTreeDataParent (tree, id) {
     currId = tree.data.graphid;
 
     if (tree.children instanceof Array) {
-        //console.log(tree.children);
         tree.children.forEach( function(child){
             if (child.data.graphid == id) {
                 writeTreeParent(currId);
+                return;
             }
-            findTreeDataParent (child, id); 
+            else {
+                findTreeDataParent (child, id); 
+            }
+            
+        });
+    } 
+}
+
+function delById (tree, id) {
+        
+    //console.log(tree);
+    if (tree.data.graphid == id) {
+        //console.log("Returned: " + tree.data.data);
+        writeXYData(tree.data.data);
+    }
+    else if (tree.children instanceof Array) {
+        //console.log(tree.children);
+        tree.children.forEach( function(child){
+             findDataById (child, id); 
         });
     } 
 }

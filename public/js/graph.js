@@ -15,7 +15,7 @@ function renderGraph(treeData, id, viewid) {
 	    var height = $(viewid).height() - margin.top - margin.bottom;
 
 	    if ((viewid == "#plot-before" || viewid == "#plot-after") && window.opHeight != undefined && window.opWidth != undefined) {
-	    	console.log (window.opHeight);
+	    	//console.log (window.opHeight);
 			width = window.opWidth - margin.left - margin.right;
 	    	height = window.opHeight - margin.top - margin.bottom;
 		}	

@@ -18,6 +18,7 @@ define([
     render: function(){
       var template = _.template(ProfileViewTemplate, {data: null});
       this.$el.html(template);
+      $("#user-email").html(this.session.email);
     },
 
     hide: function(){

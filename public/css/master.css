@@ -342,6 +342,14 @@ nav ul img {
   margin: 0;
   margin-bottom: 1em;
 }
+.infodisplay {
+  background-color: #1f90c1;
+  color: #ffffff;
+  text-align: center;
+  width: 100%;
+  padding: .5em;
+  margin: 0;
+}
 .nodebox {
   fill: #ffffff;
   stroke: #777777;

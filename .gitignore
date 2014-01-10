@@ -8,3 +8,5 @@
 *.so
 
 *.DS_Store
+
+uploadedfiles/*
