@@ -26,8 +26,8 @@ define([
 
       // triggers
       // TODO: write these as events
-      $("#importform").change(function(){
-        $(this).ajaxSubmit({
+      $("#inputfile").change(function(){
+        $("#importform").ajaxSubmit({
           url: "../upload",
           type: "post",
 
@@ -50,12 +50,12 @@ define([
                 "y": res.y
               },
               "unit": {
-                "x": "todoooo",
-                "y": "todoooo"
+                "x": "Units",
+                "y": "Units"
               },
               "label": {
-                "x": "TODOOO",
-                "y": "TODOOO"
+                "x": "X-Label",
+                "y": "Y-Label"
               }
             };
 
@@ -75,17 +75,19 @@ define([
                           function(){});
 
             //Draw uploaded graph
-            $("#upload").css("background", "#fff");
-            Util.renderGraph(tree, 0, "#upload");
+            // $("#upload").css("background", "#fff");
+            // Util.renderGraph(tree, 0, "#upload");
 
-            $(window).resize( function () {
-              Util.renderGraph(tree, 0, "#upload");
-            });
+            // $(window).resize( function () {
+            //   Util.renderGraph(tree, 0, "#upload");
+            // });
+            console.log("IMPORT: " +that.session.tree);
+            window.location.href = "/#/tree";
           }
         });
       });
       
-      console.log("IMPORT: " +this.session.tree);
+      
       //this.session.tree = that.session.tree;
     },
 
@@ -95,11 +97,11 @@ define([
 
     show: function(){
       this.$el.show();
-      //this.render();
-      if(!this.rendered) {
-        this.render();
-        this.rendered = true;
-      }
+      this.render();
+      // if(!this.rendered) {
+      //   this.render();
+      //   this.rendered = true;
+      // }
     }
   });
 

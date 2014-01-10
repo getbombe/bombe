@@ -32,8 +32,8 @@ define([
                     function(){});
 
       try {
-        console.log("TREE: " + this.session.tree);
-        var treeData = JSON.parse(this.session.tree); 
+        console.log("TREE: " + that.session.tree);
+        var treeData = JSON.parse(that.session.tree); 
 
        } 
        catch (e) {
@@ -71,6 +71,10 @@ define([
 
       $("#delete-graph").click( function(){
           console.log("deleted:" + graphid);
+          treeData = prune(treeData, graphid);
+          console.log(that.session);
+          that.session.tree = JSON.stringify(treeData);
+          renderTree(treeData);
       });
 
       if (graphid != 0) {
@@ -221,21 +225,6 @@ function findTreeDataParent (tree, id) {
                 findTreeDataParent (child, id); 
             }
             
-        });
-    } 
-}
-
-function delById (tree, id) {
-        
-    //console.log(tree);
-    if (tree.data.graphid == id) {
-        //console.log("Returned: " + tree.data.data);
-        writeXYData(tree.data.data);
-    }
-    else if (tree.children instanceof Array) {
-        //console.log(tree.children);
-        tree.children.forEach( function(child){
-             findDataById (child, id); 
         });
     } 
 }
