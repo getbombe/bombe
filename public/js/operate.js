@@ -9,15 +9,33 @@
 // return false;
 // });
 
-$(document).ready( function(){ 
-    
-    //console.log(d);
-    renderGraph(treeData, 0, "#plot-before");
-    renderGraph(treeData, 2, "#plot-after");
+$(document).ready( function(){  
+ 
+ 	if ($('#plot-before').height() != 0) {
+	    window.opHeight = $('#plot-before').height();
+	    window.opWidth = $('#plot-before').width();
+	}
+    renderGraph(treeData, window.idBefore, "#plot-before");
+    renderGraph(treeData, window.idAfter, "#plot-after");
 
     $(window).resize(function() {
-        renderGraph(treeData, 0, "#plot-before");
-    	renderGraph(treeData, 2, "#plot-after");
+ 
+    	if ($('#plot-before').height() != 0) {
+		    window.opHeight = $('#plot-before').height();
+		    window.opWidth = $('#plot-before').width();
+		}
+    	renderGraph(treeData, window.idBefore, "#plot-before");
+    	renderGraph(treeData, window.idAfter, "#plot-after");
         //console.log("test");
     });
+
+    /*$("#edit-graph").click( function(){
+	
+    	console.log(window.idBefore);
+   	 	console.log (window.idAfter);
+        renderGraph(treeData, window.idBefore, "#plot-before");
+    	renderGraph(treeData, window.idAfter, "#plot-after");
+    
+
+	});*/
 });

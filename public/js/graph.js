@@ -1,7 +1,7 @@
 function renderGraph(treeData, id, viewid) {
 	
 	
-    if ($(viewid).parent().parent().parent().parent().css('display') != 'none') {
+    //if ($(viewid).parent().parent().parent().parent().css('display') != 'none' && viewid == "#plot-preview") {
     	//console.log($(this).parent().parent().parent().parent().css('display'));
 		$(viewid).html('');
 
@@ -13,6 +13,17 @@ function renderGraph(treeData, id, viewid) {
 		var margin = {top: 20, right: 20, bottom: 40, left: 50};
 	    var width = $(viewid).width() - margin.left - margin.right;
 	    var height = $(viewid).height() - margin.top - margin.bottom;
+
+	    if ((viewid == "#plot-before" || viewid == "#plot-after") && window.opHeight != undefined && window.opWidth != undefined) {
+	    	console.log (window.opHeight);
+			width = window.opWidth - margin.left - margin.right;
+	    	height = window.opHeight - margin.top - margin.bottom;
+		}	
+
+		if (viewid == "#plot-preview" && window.preHeight != undefined && window.preWidth != undefined) {
+			width = window.preWidth - margin.left - margin.right;
+	    	height = window.preHeight - margin.top - margin.bottom;
+		}
 
 		//var parseDate = d3.time.format("%d-%b-%y").parse;
 
@@ -109,7 +120,7 @@ function renderGraph(treeData, id, viewid) {
 		    .attr("class", "line")
 		    .attr("d", line);
 		
-	}	
+	//}
 }
 
 function miniGraph(treeData) {

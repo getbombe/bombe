@@ -75,14 +75,45 @@ function renderTree(treeData) {
 	miniGraph(treeData);
 }
 
+function writeTreeParent (id) {
+    if (id != undefined && id != null) {
+        window.idBefore = id;
+    }
+}
+
+function findTreeDataParent (tree, id) {
+    
+    currId = tree.data.graphid;
+
+    if (tree.children instanceof Array) {
+        //console.log(tree.children);
+        tree.children.forEach( function(child){
+            if (child.data.graphid == id) {
+                writeTreeParent(currId);
+            }
+            findTreeDataParent (child, id); 
+        });
+    } 
+}
+
 $(document).ready( function(){ 
     $.getJSON("/uploads/tree.json", function (d) {
         //console.log(d);
         window.treeData = d;
+        window.idBefore = null;
+        window.idAfter = null;
+        if ($('#plot-preview').height() != 0) {
+            window.opHeight = $('#plot-preview').height();
+            window.opWidth = $('#plot-preview').width();
+        }
         renderTree(treeData);
         renderGraph(treeData, 0, "#plot-preview");
 
         $(window).resize(function() {
+            if ($('#plot-preview').height() != 0) {
+                window.opHeight = $('#plot-preview').height();
+                window.opWidth = $('#plot-preview').width();
+            }
             renderGraph(treeData, 0, "#plot-preview"); 
             //console.log("test");
         });
@@ -98,8 +129,17 @@ $(document).ready( function(){
         });
 
         $("#edit-graph").click( function(){
-            var graphid = $("#plot-preview-titlebar .graphid").html();
-            console.log("edited:" + graphid);
+            var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
+            window.idAfter = graphid;
+            findTreeDataParent(treeData, graphid);
+            //console.log(window.idBefore);
+            //console.log (window.idAfter);
+            renderGraph(treeData, window.idBefore, "#plot-before");
+            renderGraph(treeData, window.idAfter, "#plot-after");
+            window.location.replace("/#/operation");
+            //console.log("edited:" + ".node #" + graphid);
+            //console.log(d3.selectAll(".node")[0][graphid]);
+            //console.log(d3.selectAll(".node")[0][graphid].parentNode);
         });
     });
 });
