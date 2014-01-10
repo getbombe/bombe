@@ -7,20 +7,22 @@
   <div id="preview" class="col-sm-5">
     <h3>Preview</h3>
     <div class="graph">
-		<p class="id">#003</p>
-		<p class="lineage"><span class="tag">#001</span> <strong>divided</strong> by <span class="tag">#002</span></p>
-		<h3 class="title">Fig. 3</h3>
-		<div class="plot">		
+    	<div id="plot-preview-titlebar">
+			<p class="text-left">Graph: #<span class="graphid"></span></p>
+			<!-- <p class="lineage"><span class="tag">#001</span> <strong>divided</strong> by <span class="tag">#002</span></p> -->
+			<!-- <h3 class="title">Fig. 3</h3> -->
+		</div>
+		<div graphid="" id="plot-preview" class="plot">		
 		</div>
 	</div>
 
-	<a href="/#/operation"><button class="btn btn-primary operate">Edit Graph</button></a>
+	<button id="edit-graph" class="btn btn-primary operate">Edit Graph</button>
 
-	<a href="/#/operation"><button class="btn btn-primary operate">Transform Graph</button></a>
+	<a href="/#/operation"><button class="btn btn-success operate">Create New Graph</button></a>
 
-	<button class="btn btn-success operate">Export Graph</button>
+	<button class="btn btn-info operate">Export Graph</button>
 
-	<button class="btn btn-danger operate">Delete Graph</button>
+	<button id="delete-graph" class="btn btn-danger operate">Delete Graph</button>
 
 
   </div>

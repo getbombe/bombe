@@ -9,20 +9,33 @@
 // return false;
 // });
 
-$(document).ready( function(){ 
-    treeData = $.getJSON("/uploads/tree.json", function (d) {
-        //console.log(d);
-        renderTree(d);
-        renderGraph(d, 0000);
+$(document).ready( function(){  
+ 
+ 	if ($('#plot-before').height() != 0) {
+	    window.opHeight = $('#plot-before').height();
+	    window.opWidth = $('#plot-before').width();
+	}
+    renderGraph(treeData, window.idBefore, "#plot-before");
+    renderGraph(treeData, window.idAfter, "#plot-after");
 
-        $(window).resize(function() {
-            renderGraph(d, 0000); 
-            //console.log("test");
-        });
-
-        $(".node").click( function(){
-            console.log($(this).attr("id"));
-            renderGraph(d, $(this).attr("id"));
-        });
+    $(window).resize(function() {
+ 
+    	if ($('#plot-before').height() != 0) {
+		    window.opHeight = $('#plot-before').height();
+		    window.opWidth = $('#plot-before').width();
+		}
+    	renderGraph(treeData, window.idBefore, "#plot-before");
+    	renderGraph(treeData, window.idAfter, "#plot-after");
+        //console.log("test");
     });
+
+    /*$("#edit-graph").click( function(){
+	
+    	console.log(window.idBefore);
+   	 	console.log (window.idAfter);
+        renderGraph(treeData, window.idBefore, "#plot-before");
+    	renderGraph(treeData, window.idAfter, "#plot-after");
+    
+
+	});*/
 });
