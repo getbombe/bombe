@@ -41,19 +41,19 @@ define([
          return;
        }
 
-      if ($('#plot-before').height() != 0) {
-        window.opHeight = $('#plot-before').height();
-        window.opWidth = $('#plot-before').width();
-      }
+      // if ($('#plot-before').height() != 0) {
+      //   window.opHeight = $('#plot-before').height();
+      //   window.opWidth = $('#plot-before').width();
+      // }
       Util.renderGraph(treeData, window.idBefore, "#plot-before");
       Util.renderGraph(treeData, window.idAfter, "#plot-after");
 
       $(window).resize(function() {
    
-        if ($('#plot-before').height() != 0) {
-          window.opHeight = $('#plot-before').height();
-          window.opWidth = $('#plot-before').width();
-      }
+      //   if ($('#plot-before').height() != 0) {
+      //     window.opHeight = $('#plot-before').height();
+      //     window.opWidth = $('#plot-before').width();
+      // }
         Util.renderGraph(treeData, window.idBefore, "#plot-before");
         Util.renderGraph(treeData, window.idAfter, "#plot-after");
           //console.log("test");

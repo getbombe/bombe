@@ -46,25 +46,20 @@ define([
 
       window.idBefore = null;
       window.idAfter = null;
-      if ($('#plot-preview').height() != 0) {
-          window.opHeight = $('#plot-preview').height();
-          window.opWidth = $('#plot-preview').width();
-      }
+      // if ($('#plot-preview').height() != 0) {
+      //     window.opHeight = $('#plot-preview').height();
+      //     window.opWidth = $('#plot-preview').width();
+      // }
       renderTree(treeData);
       Util.renderGraph(treeData, 0, "#plot-preview");
 
-      if ($("#plot-preview-titlebar .graphid").html() == 0) {
-        $("#edit-graph").attr("disabled", "disabled");
-      }
-      else {
-        $("#edit-graph").removeAttr("disabled");
-      }
+      var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
 
       $(window).resize(function() {
-          if ($('#plot-preview').height() != 0) {
-              window.opHeight = $('#plot-preview').height();
-              window.opWidth = $('#plot-preview').width();
-          }
+      //     if ($('#plot-preview').height() != 0) {
+      //         window.opHeight = $('#plot-preview').height();
+      //         window.opWidth = $('#plot-preview').width();
+      //     }
           Util.renderGraph(treeData, 0, "#plot-preview"); 
           //console.log("test");
       });
@@ -75,23 +70,29 @@ define([
       });
 
       $("#delete-graph").click( function(){
-          var graphid = $("#plot-preview-titlebar .graphid").html();
           console.log("deleted:" + graphid);
       });
 
-      $("#edit-graph").click( function(){
-        var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
-        window.idAfter = graphid;
-        findTreeDataParent(treeData, graphid);
-        //console.log(window.idBefore);
-        //console.log (window.idAfter);
-        //Util.renderGraph(treeData, window.idBefore, "#plot-before");
-        //Util.renderGraph(treeData, window.idAfter, "#plot-after");
-        window.location.replace("/#/operation");
-        //console.log("edited:" + ".node #" + graphid);
-        //console.log(d3.selectAll(".node")[0][graphid]);
-        //console.log(d3.selectAll(".node")[0][graphid].parentNode);
-      });
+      if (graphid != 0) {
+        $("#edit-graph").click( function(){
+          window.idAfter = graphid;
+          findTreeDataParent(treeData, graphid);
+          //console.log(window.idBefore);
+          //console.log (window.idAfter);
+          //Util.renderGraph(treeData, window.idBefore, "#plot-before");
+          //Util.renderGraph(treeData, window.idAfter, "#plot-after");
+          window.location.href = "/#/operation";
+          //console.log("edited:" + ".node #" + graphid);
+          //console.log(d3.selectAll(".node")[0][graphid]);
+          //console.log(d3.selectAll(".node")[0][graphid].parentNode);
+        });
+      }
+      else {
+        $("#edit-graph").click( function(){
+          window.location.href = "/#/import";
+        });
+      }
+      
 
       $("#create-graph").click ( function(){
         var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
@@ -99,7 +100,7 @@ define([
         window.idAfter = "new";
         Util.renderGraph(treeData, window.idBefore, "#plot-before");
         Util.renderGraph(treeData, window.idAfter, "#plot-after");
-        window.location.replace("/#/operation");
+        window.location.href = "/#/operation";
       });
 
       function renderTree(treeData) {

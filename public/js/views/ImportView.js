@@ -73,6 +73,14 @@ define([
                           function(){},
                           function(){ console.log("error: failed to save initial tree"); },
                           function(){});
+
+            //Draw uploaded graph
+            $("#upload").css("background", "#fff");
+            Util.renderGraph(tree, 0, "#upload");
+
+            $(window).resize( function () {
+              Util.renderGraph(tree, 0, "#upload");
+            });
           }
         });
       });

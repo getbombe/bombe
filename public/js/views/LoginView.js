@@ -48,7 +48,7 @@ define([
 
                           // redirect upon login
                           if (that.session.tree != undefined){
-                            window.location.href = "#//tree";  
+                            window.location.href = "/#/tree";  
                           }
                           else {
                             window.location.href = "/#/import";
