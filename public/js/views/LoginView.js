@@ -37,6 +37,15 @@ define([
                           that.session.email = email;
                           that.session.apiKey = data.key;
 
+                          // get the tree
+                          Util.ajaxPOST("../getTree",
+                                        {
+                                          email:that.session.email
+                                        },
+                                        function(data){ that.session.tree = data.tree; },
+                                        function(){ console.log("could not get tree"); },
+                                        function(){});
+
                           // redirect upon login
                           window.location.href = "#/tree";
                         } else {

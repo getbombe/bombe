@@ -9,6 +9,7 @@ var routes = require('./routes');
 var user = require('./routes/user');
 var upload = require('./routes/upload');
 var log = require('./routes/log');
+var tree = require('./routes/tree');
 
 var http = require('http');
 var path = require('path');
@@ -44,6 +45,8 @@ app.use('/', express.static(path.join(__dirname, '../public')));
 app.post('/register', user.register);
 app.post('/login', user.login);
 app.post('/upload', upload.upload);
+app.post('/newtree', tree.init);
+app.post('/gettree', tree.getTree);
 
 app.post('/log', log.entry);
 

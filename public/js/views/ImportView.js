@@ -27,12 +27,49 @@ define([
       // TODO: write these as events
       this.$el.find("form#importform").change(function(){
         $(this).ajaxSubmit({
+          url: "../upload",
+          type: "post",
+
           data: { email: that.session.email },
 
           error: function(xhr) {
+            alert("error: cound not import file");
           },
 
           success: function(response) {
+            var res = response.tree;
+
+            var tree = {};
+
+            var data = {
+              "userid": that.session.email,
+              "graphid": "-1", //TODO
+              "data": {
+                "x": res.x,
+                "y": res.y
+              },
+              "unit": {
+                "x": "todoooo",
+                "y": "todoooo"
+              },
+              "label": {
+                "x": "TODOOO",
+                "y": "TODOOO"
+              }
+            };
+
+            tree.data = data;
+            tree.children = [];
+
+            // save initial tree
+            Util.ajaxPOST("../newtree",
+                          {
+                            tree: JSON.stringify(tree),
+                            email: that.session.email
+                          },
+                          function(){},
+                          function(){ console.log("failed to save initital tree"); },
+                          function(){});
           }
         });
       });

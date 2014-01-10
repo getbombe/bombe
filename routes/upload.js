@@ -18,13 +18,9 @@ var upload = function(req, res){
 		var newPath = __dirname + "/../uploadedfiles/" + email + Date.now();
 		console.log(newPath);
 
-		res.end();
-
 		fs.writeFile(newPath, data, function (err) {
 			console.log(err);
 		});
-
-		console.log(data);
 
 		var strData = decoder.write(data);
 
@@ -35,6 +31,15 @@ var upload = function(req, res){
 
 	    console.log(output_json);
 
+	    res.writeHead(200, { 'Content-Type': 'application/json' });
+		
+		res.write(JSON.stringify(
+			{
+				tree: output_json
+			}
+		));
+
+		res.end();
 	});
 };
 
@@ -65,7 +70,8 @@ function csv2json (csvdata, args) {
 	//var textdelim = isdef(args.textdelim) ? args.textdelim : "";
 
 	var csvlines = csvdata.split("\n");
-	var csvheaders = splitCSV(csvlines[0], delim);
+	var csvheaders = ["x", "y"];
+	var csvlabels = splitCSV(csvlines[0], delim);
 	var csvrows = csvlines.slice(1, csvlines.length);
 
 	//console.log(csvheaders);
@@ -87,7 +93,7 @@ function csv2json (csvdata, args) {
 			if(row.length == 0) break;
 
 			var rowob = {};
-			for(var i in rowitems) {
+			for(var i = 0 ; i < 2; i ++) { // only x y
 				if (rowitems.hasOwnProperty(i)) {
 					var item = rowitems[i];
 
