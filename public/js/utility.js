@@ -103,6 +103,10 @@ define([
 					}
 				}
 
+				if (id == "new") {
+					return;
+				}
+
 				function findDataById (tree, id) {
 				
 					//console.log(tree);

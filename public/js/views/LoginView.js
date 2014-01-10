@@ -47,7 +47,13 @@ define([
                                         function(){});
 
                           // redirect upon login
-                          window.location.href = "#/tree";
+                          if (that.session.tree != undefined){
+                            window.location.href = "#//tree";  
+                          }
+                          else {
+                            window.location.href = "/#/import";
+                          }
+                          
                         } else {
                           that.displayErrorMessage(data.error);
                         }

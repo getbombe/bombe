@@ -37,7 +37,7 @@ define([
 
        } 
        catch (e) {
-         window.location.replace("/#/import");
+         //window.location.replace("/#/import");
          //console.log(e);
          return;
        }

@@ -36,8 +36,8 @@ define([
 
        } 
        catch (e) {
-         window.location.replace("/#/tree");
-         //console.log(e);
+         //window.location.replace("/#/tree");
+         console.log(e);
          return;
        }
 
