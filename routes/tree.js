@@ -8,7 +8,7 @@ var init = function(req, res){
     	mongoose.connect('mongodb://localhost/bombe');
 	}
 	var db = mongoose.connection;
-	db.once('error', console.error.bind(console, 'connection error:'));
+	//db.once('error', console.error.bind(console, 'connection error:'));
 
 	var email = req.body.email;
 	var tree = req.body.tree;
@@ -72,7 +72,7 @@ var getTree = function(req, res){
     	mongoose.connect('mongodb://localhost/bombe');
 	}
 	var db = mongoose.connection;
-	db.once('error', console.error.bind(console, 'connection error:'));
+	//db.once('error', console.error.bind(console, 'connection error:'));
 
 	var email = req.body.email;
 

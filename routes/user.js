@@ -9,7 +9,7 @@ var register = function(req, res){
     	mongoose.connect('mongodb://localhost/bombe');
 	}
 	var db = mongoose.connection;
-	db.once('error', console.error.bind(console, 'connection error:'));
+	//db.once('error', console.error.bind(console, 'connection error:'));
 
 	var email = req.body.email;
 	var firstname = req.body.firstname;
@@ -56,7 +56,7 @@ var login = function(req, res){
     	mongoose.connect('mongodb://localhost/bombe');
 	}
 	var db = mongoose.connection;
-	db.once('error', console.error.bind(console, 'connection error:'));
+	//db.once('error', console.error.bind(console, 'connection error:'));
 
 	var email = req.body.email;
 	var password = simpleauth.generateKey(req.body.password);
