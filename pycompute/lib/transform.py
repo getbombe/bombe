@@ -22,7 +22,7 @@ class Transform:
 			x_ft = x_ft[1:len(x_ft) / 2]
 			y_ft = y_ft[1:len(y_ft) / 2]
 
-		data['data']['x'] = x_ft
-		data['data']['y'] = y_ft
+		data['data']['x'] = list(x_ft)
+		data['data']['y'] = list(y_ft)
 
 		return data

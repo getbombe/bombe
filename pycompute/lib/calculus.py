@@ -14,8 +14,8 @@ class Calculus:
 		#Delete last pt because diff() makes dy_dx smaller by 1 element
 		x_dat = delete(x_dat, s_[:1])
 
-		data['data']['x'] = x_dat
-		data['data']['y'] = dy_dx
+		data['data']['x'] = list(x_dat)
+		data['data']['y'] = list(dy_dx)
 
 		return data
 

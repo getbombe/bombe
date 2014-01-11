@@ -34,8 +34,8 @@ class ComputeRouter:
 		''' convert data from JSON '''
 
 		data = json.loads(data)
-		data['data']['x'] = map(float, data['data']['x'])
-		data['data']['y'] = map(float, data['data']['y'])
+		data['data']['x'] = list(map(float, data['data']['x']))
+		data['data']['y'] = list(map(float, data['data']['y']))
 
 		return data
 
