@@ -37,6 +37,8 @@ define([
                           that.session.email = email;
                           that.session.apiKey = data.key;
 
+                          //console.log(that.session.email);
+
                           Util.logAction(that.session.email, "Logged In", "null");
 
                           // get the tree
@@ -45,12 +47,15 @@ define([
                                           email:that.session.email
                                         },
                                         function(data){ 
-                                          that.session.tree = JSON.parse(data.tree);
                                           // redirect upon login
-                                          if (that.session.tree != undefined){
+                                          if (that.session.tree instanceof Object){
+                                            //console.log("1");
+                                            that.session.tree = JSON.parse(data.tree);
+                                            //console.log("2");
                                             window.location.href = "/#/tree";  
                                           }
                                           else {
+                                            //console.log("3");
                                             window.location.href = "/#/import";
                                           } 
                                         },

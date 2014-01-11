@@ -112,6 +112,7 @@ define([
 
       $("#export-graph").click(function(){
         //console.log(that.session.activeNode.data);
+        $("#export-graph").attr("disabled", "disabled");
         var tempDat = jQuery.extend({}, JSON.decycle(that.session.activeNode.data));
         delete tempDat['children'];
         tempDat = JSON.stringify(tempDat);
@@ -129,7 +130,9 @@ define([
                           //console.log("2");
                           var filename = res.result.filename;
                           console.log(filename);
+                          
                           window.open("http://compute.getbombe.com/static/uploads/" + filename);
+                          $("#export-graph").removeAttr("disabled");
                         },
                         function(){ console.log("Compute failed."); },
                         function(){}
