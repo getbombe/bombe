@@ -18,7 +18,7 @@ class Transform:
 		x_ft = scipy.fftpack.fftfreq(len(x_dat), dx)
 		y_ft = abs(scipy.fft(y_dat))
 
-		if real:
+		if real is True:
 			x_ft = x_ft[1:len(x_ft) / 2]
 			y_ft = y_ft[1:len(y_ft) / 2]
 
