@@ -43,5 +43,7 @@ class Export:
 		print path + "/" + name
 
 		fig.savefig(path + "/" + name, format='pdf')
+		fig.clf()
+		plt.close()
 
 		return data
