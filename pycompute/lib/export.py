@@ -27,12 +27,12 @@ class Export:
 		plt.xticks(size='x-small')
 		plt.yticks(size='x-small')
 
-		#path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'uploads'))
+		path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '/static/uploads/'))
 
 		name = str(data['userid']) + '_' + str(data['graphid']) + '.pdf'
 
 		data['filename'] = name
 
-		plt.savefig(name, format='pdf')
+		plt.savefig(path + name, format='pdf')
 
 		return data
