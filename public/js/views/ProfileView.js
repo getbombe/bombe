@@ -2,8 +2,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'utility',
   'text!templates/profile_view.html'
-], function($, _, Backbone, ProfileViewTemplate){
+], function($, _, Backbone, Util, ProfileViewTemplate){
 
   var ProfileView = Backbone.View.extend({
     el: $("#profile"),
@@ -31,6 +32,26 @@ define([
         this.render();
         this.rendered = true;
       }
+
+      var op = 'calculus_differentiate';
+      var data = {
+        'userid': '0001',
+        'graphid': '1234',
+        'data' : {
+          'x' : ['1', '2', '3'],
+          'y' : ['4.5', '-3', '0']
+        },
+        'unit' : {
+          'x' : 'km',
+          'y' : 'km/h'
+        },
+        'param1' : 'value1',
+        'param2' : 'value2'
+      };
+
+
+
+
     }
   });
 
