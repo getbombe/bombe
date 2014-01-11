@@ -35,6 +35,10 @@ define([
 
       var that = this;
 
+      //Detect new nodes
+
+      
+
         try {
         console.log("TREE: " + this.session.tree);
         var treeData = JSON.parse(this.session.tree); 
