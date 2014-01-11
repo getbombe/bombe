@@ -76,7 +76,7 @@ define([
       window.idAfter = null;
 
       renderTree(this.session.tree);
-      Util.activateNodeById(this.session, treeData, 0);
+      Util.activateNodeById(this.session, treeData, 1);
       Util.renderGraph(this.session.activeNode, "#plot-preview");
 
       var graphid = this.session.activeNode['data']['graphid'];
@@ -118,6 +118,7 @@ define([
       }
 
       $("#export-graph").click(function(){
+        console.log(that.session.activeNode.data);
         Util.ajaxPOST("http://compute.getbombe.com/compute",
                         {
                           operation: "export_pdf",

@@ -46,7 +46,7 @@ define([
 
             var data = {
               "userid": that.session.email,
-              "graphid": "0", //TODO
+              "graphid": "1", //TODO
               "data": {
                 "x": res.x,
                 "y": res.y
