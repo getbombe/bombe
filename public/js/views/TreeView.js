@@ -47,30 +47,23 @@ define([
         }
         this.session.activeNode['data']['children'].push(this.session.newNode);
         //console.log(this.session.activeNode);
-        console.log(this.session.tree);
-
-        //renderTree(this.session.tree);
-        this.session.newNode = null;
+        console.log(this.session.newNode);
 
         Util.ajaxPOST("../newtree",
               {
-                tree: JSON.stringify(this.session.tree),
+                tree: JSON.stringify(JSON.decycle(this.session.tree)),
                 email: this.session.email
               },
               function(){
               },
               function(){ console.log("error: failed to save updated tree"); },
               function(){});
+  
+         this.session.newNode = null;
       }
 
-        try {
-        //console.log("TREE: " + this.session.tree);
-        
-
-       } 
-       catch (e) {
-         return;
-       }
+       //renderTree(this.session.tree);
+     
 
       window.idBefore = null;
       window.idAfter = null;
@@ -127,8 +120,8 @@ define([
                         function(res){
                           //console.log(res);
                           Util.logAction(that.session.email, "Exported Graph", that.session.activeNode.data);
-                          var filename = res.filename;
-                          console.log(data.filename);
+                          var filename = res.result.filename;
+                          console.log(res);
                         },
                         function(){ console.log("Compute failed."); },
                         function(){}
