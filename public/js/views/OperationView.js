@@ -45,8 +45,7 @@ define([
       //   window.opHeight = $('#plot-before').height();
       //   window.opWidth = $('#plot-before').width();
       // }
-      Util.renderGraph(treeData, window.idBefore, "#plot-before");
-      Util.renderGraph(treeData, window.idAfter, "#plot-after");
+      Util.renderGraph(that.session.activeNode, "#plot-before");
 
       $(window).resize(function() {
    
@@ -54,14 +53,51 @@ define([
       //     window.opHeight = $('#plot-before').height();
       //     window.opWidth = $('#plot-before').width();
       // }
-        Util.renderGraph(treeData, window.idBefore, "#plot-before");
-        Util.renderGraph(treeData, window.idAfter, "#plot-after");
+        Util.renderGraph(that.session.activeNode, "#plot-before");
+        Util.renderGraph(that.session.newNode, "#plot-after");
           //console.log("test");
       });
 
 
       this.$el.find("select#opselect").change(function(){
-        alert(this.value);
+        var op = false;
+        var data = {
+            'data' : {
+              'x' : that.session.activeNode.data.data.x,
+              'y' : that.session.activeNode.data.data.y
+            }
+        };
+
+        if(this.value == "calculus_differentiate"){
+          op = "calculus_differentiate";
+        } else if(this.value == "stats_poly_regression_reg"){
+          op = "stats_poly_regression";
+          data.order = 1;
+          data.res = 10;
+        } else if(this.value == "stats_poly_regression_spl"){
+          op = "stats_poly_regression";
+          data.res = 10;
+        } else if(this.value == "transform_fourier"){
+          op = "transform_fourier";
+          real = "True";
+        } else {
+          // select
+        }
+
+        if(op){
+          Util.ajaxPOST("http://compute.getbombe.com/compute",
+                        {
+                          operation: op,
+                          data: JSON.stringify(data)
+                        },
+                        function(res){ 
+                          data.data = res.result.data;
+                          Util.renderGraph(data, "#plot-after");
+                          that.session.newNode = data;
+                        },
+                        function(){ console.log("Compute failed."); },
+                        function(){});
+        }
       });
     },
 
