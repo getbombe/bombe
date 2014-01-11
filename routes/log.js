@@ -8,7 +8,7 @@ var entry = function(req, res){
     	mongoose.connect('mongodb://localhost/bombe');
 	}
 	var db = mongoose.connection;
-	db.on('error', console.error.bind(console, 'connection error:'));
+	db.once('error', console.error.bind(console, 'connection error:'));
 
 	var email = req.body.email;
 	var useraction = req.body.useraction;
