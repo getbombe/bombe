@@ -58,6 +58,7 @@ define([
                 "x" : "X-Data",
                 "y" : "Y-Data"
             },
+            "userid" : that.session.email;
         };
 
         if(this.value == "calculus_differentiate"){
