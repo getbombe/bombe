@@ -8,7 +8,8 @@ define([
         isLoggedIn: false,
         email: null,
         apiKey: null,
-        tree: null
+        tree: null,
+        activeNode: null
       },
 
       initialize: function( options ) {
