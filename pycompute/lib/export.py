@@ -4,6 +4,7 @@ matplotlib.use('Agg')
 
 import matplotlib.pyplot as plt
 import os
+import datetime
 
 class Export:
 
@@ -32,7 +33,7 @@ class Export:
 
 		name = str(data['userid']) + '_' + str(data['graphid']) + '.pdf'
 
-		data['filename'] = name
+		data['filename'] = name + str(time.time)
 
 		print path
 		print name

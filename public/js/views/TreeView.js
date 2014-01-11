@@ -111,7 +111,7 @@ define([
       }
 
       $("#export-graph").click(function(){
-        console.log(that.session.activeNode.data);
+        //console.log(that.session.activeNode.data);
         Util.ajaxPOST("http://compute.getbombe.com/compute",
                         {
                           operation: "export_pdf",
@@ -121,8 +121,8 @@ define([
                           //console.log(res);
                           Util.logAction(that.session.email, "Exported Graph", that.session.activeNode.data);
                           var filename = res.result.filename;
+                          console.log(filename);
                           window.open("http://compute.getbombe.com/static/uploads/" + filename);
-                          console.log(res);
                         },
                         function(){ console.log("Compute failed."); },
                         function(){}
