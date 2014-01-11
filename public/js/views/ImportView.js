@@ -74,21 +74,11 @@ define([
                           function(){ console.log("error: failed to save initial tree"); },
                           function(){});
 
-            //Draw uploaded graph
-            // $("#upload").css("background", "#fff");
-            // Util.renderGraph(tree, 0, "#upload");
-
-            // $(window).resize( function () {
-            //   Util.renderGraph(tree, 0, "#upload");
-            // });
             console.log("IMPORT: " +that.session.tree);
             window.location.href = "/#/tree";
           }
         });
       });
-      
-      
-      //this.session.tree = that.session.tree;
     },
 
     hide: function(){
@@ -97,11 +87,11 @@ define([
 
     show: function(){
       this.$el.show();
-      this.render();
-      // if(!this.rendered) {
-      //   this.render();
-      //   this.rendered = true;
-      // }
+      
+      if(!this.rendered) {
+        this.render();
+        this.rendered = true;
+      }
     }
   });
 

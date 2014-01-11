@@ -13,7 +13,6 @@ define([
     rendered: false,
     
     initialize: function(session){
-      //console.log(this.session);
       this.session = session;
     },
 
@@ -21,51 +20,14 @@ define([
       var template = _.template(TreeViewTemplate, {data: null});
       this.$el.html(template);
 
-      var that = this;
-      // get the tree
-      Util.ajaxPOST("../getTree",
-                    {
-                      email:that.session.email
-                    },
-                    function(data){ that.session.tree = data.tree; },
-                    function(){ console.log("could not get tree"); },
-                    function(){});
-
-      try {
-        console.log("TREE: " + that.session.tree);
-        var treeData = JSON.parse(that.session.tree); 
-
-       } 
-       catch (e) {
-         //window.location.replace("/#/import");
-         //console.log(e);
-         return;
-       }
-
-      //console.log(treeData);
-
-      window.idBefore = null;
-      window.idAfter = null;
-      // if ($('#plot-preview').height() != 0) {
-      //     window.opHeight = $('#plot-preview').height();
-      //     window.opWidth = $('#plot-preview').width();
-      // }
-      renderTree(treeData);
-      Util.renderGraph(treeData, 0, "#plot-preview");
-
       var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
 
       $(window).resize(function() {
-      //     if ($('#plot-preview').height() != 0) {
-      //         window.opHeight = $('#plot-preview').height();
-      //         window.opWidth = $('#plot-preview').width();
-      //     }
           Util.renderGraph(treeData, 0, "#plot-preview"); 
-          //console.log("test");
+       
       });
 
       $(".node").click( function(){
-          //console.log($(this).attr("id"));
           Util.renderGraph(treeData, $(this).attr("id"), "#plot-preview");
       });
 
@@ -78,25 +40,16 @@ define([
       });
 
       if (graphid != 0) {
+        $("#edit-graph").removeAttr("disabled");
         $("#edit-graph").click( function(){
           window.idAfter = graphid;
           findTreeDataParent(treeData, graphid);
-          //console.log(window.idBefore);
-          //console.log (window.idAfter);
-          //Util.renderGraph(treeData, window.idBefore, "#plot-before");
-          //Util.renderGraph(treeData, window.idAfter, "#plot-after");
           window.location.href = "/#/operation";
-          //console.log("edited:" + ".node #" + graphid);
-          //console.log(d3.selectAll(".node")[0][graphid]);
-          //console.log(d3.selectAll(".node")[0][graphid].parentNode);
         });
       }
       else {
-        $("#edit-graph").click( function(){
-          window.location.href = "/#/import";
-        });
+        $("#edit-graph").attr("disabled", "disabled");
       }
-      
 
       $("#create-graph").click ( function(){
         var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
@@ -106,6 +59,34 @@ define([
         Util.renderGraph(treeData, window.idAfter, "#plot-after");
         window.location.href = "/#/operation";
       });
+
+    },
+
+    hide: function(){
+      this.$el.hide();
+    },
+
+    show: function(){
+      this.$el.show();
+      if(!this.rendered) {
+        this.render();
+        this.rendered = true;
+      }
+        try {
+        console.log("TREE: " + this.session.tree);
+        var treeData = JSON.parse(this.session.tree); 
+
+       } 
+       catch (e) {
+         return;
+       }
+
+      window.idBefore = null;
+      window.idAfter = null;
+
+      renderTree(treeData);
+      Util.renderGraph(treeData, 0, "#plot-preview");
+      
 
       function renderTree(treeData) {
 
@@ -121,13 +102,6 @@ define([
           var nodes = tree.nodes(treeData);
           var links = tree.links(nodes);
 
-            //console.log(nodes);
-
-          /*
-               <svg>
-                   <g class="container" />
-               </svg>
-            */
            var layoutRoot = d3.select('#treeview')
                .append("svg:svg").attr("width", 1000).attr("height", 1000)
                .append("svg:g")
@@ -149,14 +123,6 @@ define([
                .attr("class", "link")
                .attr("d", link);
 
-           /*
-               Nodes as
-               <g class="node">
-                   <circle class="node-dot" />
-                   <text />
-               </g>
-            */
-
            var nodeGroup = layoutRoot.selectAll("g.node")
                .data(nodes)
                .enter()
@@ -168,10 +134,6 @@ define([
                    return "translate(" + d.y + "," + d.x + ")";
                });
 
-            // nodes.forEach( function(node){ 
-            //     node.attr("id", node.data.graphid)
-            // });
-
            nodeGroup.append("rect")
                .attr("class", "nodebox")
                .attr("x", -150/2)
@@ -179,24 +141,8 @@ define([
                .attr("width", 150)
                .attr("height", 100);
 
-            //data = "/uploads/data.tsv"
-
           Util.miniGraph(treeData);
         }
-
-    },
-
-    hide: function(){
-      this.$el.hide();
-    },
-
-    show: function(){
-      this.$el.show();
-      this.render();
-      // if(!this.rendered) {
-      //   this.render();
-      //   this.rendered = true;
-      // }
     }
   });
 

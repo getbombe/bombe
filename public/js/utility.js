@@ -42,6 +42,17 @@ define([
 						  function(){});
 		},
 
+		activateNodeById: function(session, tree, id){
+			if (tree.data.graphid == id && id != null && id != undefined) {
+				session.activeNode = tree;
+			}
+			else if (tree.children instanceof Array) {
+				tree.children.forEach( function(child){
+				  activateNodeById(child, id); 
+				});
+			} 
+		},
+
 		renderGraph: function(treeData, id, viewid) {
 	
 	
@@ -58,16 +69,16 @@ define([
 			    var width = $(viewid).width() - margin.left - margin.right;
 			    var height = $(viewid).height() - margin.top - margin.bottom;
 
-			    if ((viewid == "#plot-before" || viewid == "#plot-after") && window.opHeight != undefined && window.opWidth != undefined) {
-			    	//console.log (window.opHeight);
-					width = window.opWidth - margin.left - margin.right;
-			    	height = window.opHeight - margin.top - margin.bottom;
-				}	
+			 //    if ((viewid == "#plot-before" || viewid == "#plot-after") && window.opHeight != undefined && window.opWidth != undefined) {
+			 //    	//console.log (window.opHeight);
+				// 	width = window.opWidth - margin.left - margin.right;
+			 //    	height = window.opHeight - margin.top - margin.bottom;
+				// }	
 
-				if (viewid == "#plot-preview" && window.preHeight != undefined && window.preWidth != undefined) {
-					width = window.preWidth - margin.left - margin.right;
-			    	height = window.preHeight - margin.top - margin.bottom;
-				}
+				// if (viewid == "#plot-preview" && window.preHeight != undefined && window.preWidth != undefined) {
+				// 	width = window.preWidth - margin.left - margin.right;
+			 //    	height = window.preHeight - margin.top - margin.bottom;
+				// }
 
 				//var parseDate = d3.time.format("%d-%b-%y").parse;
 
@@ -150,6 +161,7 @@ define([
 				    .append("text")
 				    .attr("x", width)
 				    .attr("dy", "2.7em")
+				    //.attr("class", "edit")
 				    .style("text-anchor", "end")
 				    .text(xyData.label.x + " (" + xyData.unit.x + ")");
 
@@ -159,6 +171,7 @@ define([
 				    .append("text")
 				    .attr("transform", "rotate(-90)")
 				    .attr("y", 6)
+				    //.attr("class", "edit")
 				    .attr("dy", "-3em")
 				    .style("text-anchor", "end")
 				    .text(xyData.label.y + " (" + xyData.unit.y + ")");
