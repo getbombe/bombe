@@ -48,7 +48,16 @@ define([
 
         //renderTree(this.session.tree);
         this.session.newNode = null;
-        
+
+        Util.ajaxPOST("../newtree",
+              {
+                tree: JSON.stringify(this.session.tree),
+                email: this.session.email
+              },
+              function(){
+              },
+              function(){ console.log("error: failed to save updated tree"); },
+              function(){});
       }
 
         try {
