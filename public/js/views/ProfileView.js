@@ -20,7 +20,6 @@ define([
       var template = _.template(ProfileViewTemplate, {data: null});
       this.$el.html(template);
       $("#user-email").html(this.session.email);
-      $(".edit").editable("test");
     },
 
     hide: function(){
@@ -50,7 +49,14 @@ define([
         'param2' : 'value2'
       };
 
-
+      Util.ajaxPOST("http://compute.getbombe.com/compute",
+                    {
+                      operation: op,
+                      data: data
+                    },
+                    function(data){ console.log(data); },
+                    function(){},
+                    function(){});
 
 
     }
