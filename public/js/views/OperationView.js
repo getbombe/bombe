@@ -58,6 +58,10 @@ define([
           //console.log("test");
       });
 
+      $("#operate-done").click( function() {
+        window.location.href = "/#/tree";
+      });
+
 
       this.$el.find("select#opselect").change(function(){
         var op = false;
