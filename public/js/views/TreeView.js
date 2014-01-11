@@ -31,7 +31,7 @@ define([
         this.render();
         this.rendered = true;
       }
-      d3.select("svg").remove();
+      //d3.select("svg").remove();
 
       var that = this;
       var treeData = this.session.tree; 
@@ -82,9 +82,11 @@ define([
       $("#delete-graph").click( function(){
           console.log("deleted:" + graphid);
           Util.activateNodeById(that.session, treeData, $(this).attr("id"));
-          delete that.session.activeNode;
+          //delete that.session.tree;
+          console.log(that.session.tree);
+          //console.log(that.session.activeNode);
           that.$el.find("#treeview").html("");
-          renderTree(treeData);
+          renderTree(that.session.tree);
       });
 
       if (graphid != 0) {
@@ -116,6 +118,8 @@ define([
 
       function renderTree(treeData) {
 
+          console.log(treeData);
+
           that.$el.find("#treeview").html("");
 
           var tree = d3.layout.tree()
@@ -124,7 +128,7 @@ define([
               .separation(function(a, b) { return (a.parent == b.parent ? 0.5 : 1); })
               .children(function(d)
               {
-                  return (!d.children || d.children.length === 0) ? null : d.children;
+                  return (!d.data.children || d.data.children.length === 0) ? null : d.data.children;
               });
 
           var nodes = tree.nodes(treeData);
