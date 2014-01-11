@@ -19,6 +19,7 @@ define([
       var template = _.template(ProfileViewTemplate, {data: null});
       this.$el.html(template);
       $("#user-email").html(this.session.email);
+      $(".edit").editable("test");
     },
 
     hide: function(){

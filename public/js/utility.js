@@ -150,6 +150,7 @@ define([
 				    .append("text")
 				    .attr("x", width)
 				    .attr("dy", "2.7em")
+				    //.attr("class", "edit")
 				    .style("text-anchor", "end")
 				    .text(xyData.label.x + " (" + xyData.unit.x + ")");
 
@@ -159,6 +160,7 @@ define([
 				    .append("text")
 				    .attr("transform", "rotate(-90)")
 				    .attr("y", 6)
+				    //.attr("class", "edit")
 				    .attr("dy", "-3em")
 				    .style("text-anchor", "end")
 				    .text(xyData.label.y + " (" + xyData.unit.y + ")");

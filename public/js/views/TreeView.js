@@ -96,7 +96,6 @@ define([
           window.location.href = "/#/import";
         });
       }
-      
 
       $("#create-graph").click ( function(){
         var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
