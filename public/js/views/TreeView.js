@@ -78,6 +78,7 @@ define([
       });
 
       if (graphid != 0) {
+        $("#edit-graph").removeAttr("disabled");
         $("#edit-graph").click( function(){
           window.idAfter = graphid;
           findTreeDataParent(treeData, graphid);
@@ -92,9 +93,7 @@ define([
         });
       }
       else {
-        $("#edit-graph").click( function(){
-          window.location.href = "/#/import";
-        });
+        $("#edit-graph").attr("disabled", "disabled");
       }
 
       $("#create-graph").click ( function(){
