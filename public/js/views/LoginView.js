@@ -42,18 +42,18 @@ define([
                                         {
                                           email:that.session.email
                                         },
-                                        function(data){ that.session.tree = data.tree; },
+                                        function(data){ 
+                                          that.session.tree = data.tree;
+                                          // redirect upon login
+                                          if (that.session.tree != undefined){
+                                            window.location.href = "/#/tree";  
+                                          }
+                                          else {
+                                            window.location.href = "/#/import";
+                                          } 
+                                        },
                                         function(){ console.log("could not get tree"); },
                                         function(){});
-
-                          // redirect upon login
-                          if (that.session.tree != undefined){
-                            window.location.href = "/#/tree";  
-                          }
-                          else {
-                            window.location.href = "/#/import";
-                          }
-                          
                         } else {
                           that.displayErrorMessage(data.error);
                         }
