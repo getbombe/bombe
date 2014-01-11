@@ -9,6 +9,7 @@ define([
         email: null,
         apiKey: null,
         tree: null,
+        newNode: null,
         activeNode: null
       },
 

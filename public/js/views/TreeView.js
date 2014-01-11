@@ -44,15 +44,14 @@ define([
          return;
        }
 
-      var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
-
-
       window.idBefore = null;
       window.idAfter = null;
 
       renderTree(treeData);
       Util.activateNodeById(this.session, treeData, 0);
       Util.renderGraph(this.session.activeNode, "#plot-preview");
+
+      var graphid = this.session.activeNode['data']['graphid'];
 
       $(".node").click( function(){
           Util.activateNodeById(that.session, treeData, $(this).attr("id"));
@@ -65,11 +64,10 @@ define([
       });
 
       $("#delete-graph").click( function(){
-          // console.log("deleted:" + graphid);
-          // treeData = prune(treeData, graphid);
-          // console.log(that.session);
-          // that.session.tree = JSON.stringify(treeData);
-          // renderTree(treeData);
+          console.log("deleted:" + graphid);
+          Util.activateNodeById(that.session, treeData, $(this).attr("id"));
+          delete that.session.activeNode;
+          renderTree(treeData);
       });
 
       if (graphid != 0) {

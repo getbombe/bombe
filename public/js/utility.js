@@ -57,13 +57,15 @@ define([
 
 		renderGraph: function(graph, viewid) {
 	
-	
+				if (graph == null) {
+					return;
+				}
 		    //if ($(viewid).parent().parent().parent().parent().css('display') != 'none' && viewid == "#plot-preview") {
 		    	//console.log($(this).parent().parent().parent().parent().css('display'));
 				$(viewid).html('');
 
 				var titleid = viewid + "-titlebar";
-				var id = graph['graphid'];
+				var id = graph['data']['graphid'];
 
 				//console.log (titleid + " .graphid");
 				$(titleid + " .graphid").html(id);
