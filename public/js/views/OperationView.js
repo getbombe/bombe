@@ -65,7 +65,15 @@ define([
             'data' : {
               'x' : that.session.activeNode.data.data.x,
               'y' : that.session.activeNode.data.data.y
-            }
+            },
+            "unit" : {
+                "x" : "Units",
+                "y" : "Units"
+            },
+            "label" : {
+                "x" : "X-Label",
+                "y" : "Y-Label"
+            },
         };
 
         if(this.value == "calculus_differentiate"){
@@ -75,11 +83,11 @@ define([
           data.order = 1;
           data.res = 10;
         } else if(this.value == "stats_poly_regression_spl"){
-          op = "stats_poly_regression";
+          op = "background_spline";
           data.res = 10;
         } else if(this.value == "transform_fourier"){
           op = "transform_fourier";
-          real = "True";
+          data.real = "True";
         } else {
           // select
         }
@@ -90,10 +98,11 @@ define([
                           operation: op,
                           data: JSON.stringify(data)
                         },
-                        function(res){ 
+                        function(res){
+                          console.log(res);
                           data.data = res.result.data;
-                          Util.renderGraph(data, "#plot-after");
-                          that.session.newNode = data;
+                          Util.renderGraph({data: data}, "#plot-after");
+                          that.session.newNode = {data: data};
                         },
                         function(){ console.log("Compute failed."); },
                         function(){});
