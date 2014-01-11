@@ -31,9 +31,9 @@ class Export:
 		#path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '/static/uploads'))
 		path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, 'static/uploads'))
 
-		name = str(data['userid']) + '_' + str(data['graphid']) + '.pdf'
+		name = str(data['userid']) + '_' + str(data['graphid']) + str(time.time()) + '.pdf'
 
-		data['filename'] = name + str(time.time)
+		data['filename'] = name 
 
 		print path
 		print name
