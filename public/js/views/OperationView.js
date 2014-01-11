@@ -103,7 +103,7 @@ define([
                           data: JSON.stringify(data)
                         },
                         function(res){
-                          console.log(res);
+                          //console.log(res);
                           data.data = res.result.data;
                           Util.renderGraph({data: data}, "#plot-after");
                           that.session.newNode = {data: data};

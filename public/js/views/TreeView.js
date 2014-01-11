@@ -36,11 +36,20 @@ define([
       var that = this;
 
       //Detect new nodes
+      if (this.session.newNode != null) {
+        //console.log(this.session.activeNode);
+        if (!(this.session.activeNode['data']['children'] instanceof Array)) {
+          this.session.activeNode['data']['children'] = [];
+        }
+        this.session.activeNode['data']['children'].push(this.session.newNode);
+        console.log(this.session.activeNode);
+        console.log(this.session.tree);
 
-      
+        this.session.newNode = null;
+      }
 
         try {
-        console.log("TREE: " + this.session.tree);
+        //console.log("TREE: " + this.session.tree);
         var treeData = JSON.parse(this.session.tree); 
 
        } 
@@ -92,11 +101,11 @@ define([
         window.idBefore = graphid;
         window.idAfter = "new";
 
-        Util.activateNodeById(that.session, treeData, window.idBefore);
-        Util.renderGraph(that.session.activeNode, "#plot-before");
-
         Util.activateNodeById(that.session, treeData, window.idAfter);
         Util.renderGraph(that.session.activeNode, "#plot-after");
+
+        Util.activateNodeById(that.session, treeData, window.idBefore);
+        Util.renderGraph(that.session.activeNode, "#plot-before");
 
         window.location.href = "/#/operation";
       });

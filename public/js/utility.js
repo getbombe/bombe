@@ -44,8 +44,9 @@ define([
 
 		activateNodeById: function(session, tree, id){
 			if (tree.data.graphid == id && id != null && id != undefined) {
-				console.log(session);
+				//console.log(session);
 				session.activeNode = tree;
+				console.log(session.activeNode);
 			}
 			else if (tree.children instanceof Array) {
 				tree.children.forEach( function(child){
