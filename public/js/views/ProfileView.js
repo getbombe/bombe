@@ -52,7 +52,7 @@ define([
       Util.ajaxPOST("http://compute.getbombe.com/compute",
                     {
                       operation: op,
-                      data: data
+                      data: JSON.stringify(data)
                     },
                     function(data){ console.log(data); },
                     function(){},
