@@ -23,7 +23,7 @@ define([
 			$.ajax({
 				type: "POST",
 				url: dest,
-				data: data
+				data: JSON.stringify(data)
 			})
 			.done(onDone)
 			.fail(onFail)
