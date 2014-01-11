@@ -73,7 +73,7 @@ define([
 				//console.log (titleid + " .graphid");
 				$(titleid + " .graphid").html(id);
 
-				var margin = {top: 20, right: 20, bottom: 40, left: 50};
+				var margin = {top: 20, right: 20, bottom: 40, left: 70};
 			    var width = $(viewid).width() - margin.left - margin.right;
 			    var height = $(viewid).height() - margin.top - margin.bottom;
 
@@ -150,7 +150,7 @@ define([
 				    .attr("transform", "rotate(-90)")
 				    .attr("y", 6)
 				    //.attr("class", "edit")
-				    .attr("dy", "-3em")
+				    .attr("dy", "-3.7em")
 				    .style("text-anchor", "end")
 				    .text(xyData.label.y + " (" + xyData.unit.y + ")");
 

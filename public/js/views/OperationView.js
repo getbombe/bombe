@@ -55,8 +55,8 @@ define([
                 "y" : "Units"
             },
             "label" : {
-                "x" : "X-Label",
-                "y" : "Y-Label"
+                "x" : "X-Data",
+                "y" : "Y-Data"
             },
         };
 

@@ -13,9 +13,12 @@ class Export:
 		x_unit = data['unit']['x']
 		y_unit = data['unit']['y']
 
+		x_label = data['label']['x']
+		y_label = data['label']['y']
+
 		plt.plot(x_dat, y_dat, 'k-')
-		plt.xlabel(x_unit)
-		plt.ylabel(y_unit)
+		plt.xlabel(x_label + " ("+x_unit+")")
+		plt.ylabel(y_label + " ("+y_unit+")")
 
 		plt.xticks(size='x-small')
 		plt.yticks(size='x-small')

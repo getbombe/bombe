@@ -349,11 +349,15 @@ nav ul img {
   width: 100%;
   padding: .5em;
   margin: 0;
+  margin-top: 3em;
 }
 .nodebox {
   fill: #ffffff;
   stroke: #777777;
   stroke-width: 0.8px;
+}
+.nodebox .active {
+  stroke: #1f90c1;
 }
 .nodebox:hover {
   stroke: #1f90c1;

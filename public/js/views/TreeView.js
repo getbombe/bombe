@@ -74,6 +74,10 @@ define([
           Util.renderGraph(that.session.activeNode, "#plot-preview");
       });
 
+      // $(".nodebox").click( function(){
+      //   $(".nodebox").css("class", "active");
+      // });
+
       $(window).resize(function() {
           Util.renderGraph(that.session.activeNode, "#plot-preview");
        
