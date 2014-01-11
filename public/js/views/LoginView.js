@@ -37,6 +37,8 @@ define([
                           that.session.email = email;
                           that.session.apiKey = data.key;
 
+                          Util.logAction(that.session.email, "Logged In", "null");
+
                           // get the tree
                           Util.ajaxPOST("../getTree",
                                         {
@@ -76,6 +78,9 @@ define([
 
     show: function(){
       this.$el.show();
+
+      Util.logAction(this.session.email, "Viewed Login Page", "null");
+
       if(!this.rendered) {
         this.render();
         this.rendered = true;

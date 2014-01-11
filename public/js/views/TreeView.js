@@ -27,6 +27,9 @@ define([
 
     show: function(){
       this.$el.show();
+
+      Util.logAction(this.session.email, "Viewed Tree Page", "null");
+
       if(!this.rendered) {
         this.render();
         this.rendered = true;
@@ -113,6 +116,7 @@ define([
                         },
                         function(res){
                           //console.log(res);
+                          Util.logAction(that.session.email, "Exported Graph", that.session.activeNode.data);
                           var filename = res.filename;
                           console.log(data.filename);
                         },
@@ -131,6 +135,8 @@ define([
 
         Util.activateNodeById(that.session, treeData, window.idBefore);
         Util.renderGraph(that.session.activeNode, "#plot-before");
+
+        Util.logAction(that.session.email, "Created New Graph", "null");
 
         window.location.href = "/#/operation";
       });
