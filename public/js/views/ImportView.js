@@ -70,12 +70,11 @@ define([
                             tree: JSON.stringify(tree),
                             email: that.session.email
                           },
-                          function(){},
+                          function(){
+                            console.log("IMPORT: " +that.session.tree);
+                            window.location.href = "/#/tree";},
                           function(){ console.log("error: failed to save initial tree"); },
                           function(){});
-
-            console.log("IMPORT: " +that.session.tree);
-            window.location.href = "/#/tree";
           }
         });
       });

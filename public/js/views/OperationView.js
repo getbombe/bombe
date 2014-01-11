@@ -22,13 +22,13 @@ define([
 
       var that = this;
       // get the tree
-      Util.ajaxPOST("../getTree",
-                    {
-                      email:that.session.email
-                    },
-                    function(data){ that.session.tree = data.tree; },
-                    function(){ console.log("could not get tree"); },
-                    function(){});
+      // Util.ajaxPOST("../getTree",
+      //               {
+      //                 email:that.session.email
+      //               },
+      //               function(data){ that.session.tree = data.tree; },
+      //               function(){ console.log("could not get tree"); },
+      //               function(){});
 
       try {
         console.log("OPERATION: " + this.session.tree);
