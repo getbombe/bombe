@@ -115,7 +115,7 @@ define([
         Util.ajaxPOST("http://compute.getbombe.com/compute",
                         {
                           operation: "export_pdf",
-                          data: JSON.stringify(that.session.activeNode.data)
+                          data: JSON.stringify(JSON.decycle(that.session.activeNode.data))
                         },
                         function(res){
                           //console.log(res);
