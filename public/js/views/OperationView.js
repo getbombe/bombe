@@ -85,6 +85,7 @@ define([
                         function(res){
                           //console.log(res);
                           data.data = res.result.data;
+                          data.graphid = Math.floor(Math.random() * (100000000 -  + 1)) + 1;
                           Util.renderGraph({data: data}, "#plot-after");
                           that.session.newNode = {data: data};
                         },

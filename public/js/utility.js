@@ -46,11 +46,11 @@ define([
 			if (tree.data.graphid == id && id != null && id != undefined) {
 				//console.log(session);
 				session.activeNode = tree;
-				console.log(session.activeNode);
+				//console.log(session.activeNode);
 			}
 			else if (tree.children instanceof Array) {
 				tree.children.forEach( function(child){
-					console.log("recur");
+					//console.log("recur");
 				  activateNodeById(session, child, id); 
 				});
 			}

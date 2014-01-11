@@ -31,9 +31,10 @@ define([
         this.render();
         this.rendered = true;
       }
-      this.$el.find("#treeview").html("");
+      d3.select("svg").remove();
 
       var that = this;
+      var treeData = this.session.tree; 
 
       //Detect new nodes
       if (this.session.newNode != null) {
@@ -42,15 +43,17 @@ define([
           this.session.activeNode['data']['children'] = [];
         }
         this.session.activeNode['data']['children'].push(this.session.newNode);
-        console.log(this.session.activeNode);
+        //console.log(this.session.activeNode);
         console.log(this.session.tree);
 
+        //renderTree(this.session.tree);
         this.session.newNode = null;
+        
       }
 
         try {
         //console.log("TREE: " + this.session.tree);
-        var treeData = this.session.tree; 
+        
 
        } 
        catch (e) {
@@ -60,7 +63,7 @@ define([
       window.idBefore = null;
       window.idAfter = null;
 
-      renderTree(treeData);
+      renderTree(this.session.tree);
       Util.activateNodeById(this.session, treeData, 0);
       Util.renderGraph(this.session.activeNode, "#plot-preview");
 
@@ -112,6 +115,8 @@ define([
       
 
       function renderTree(treeData) {
+
+          that.$el.find("#treeview").html("");
 
           var tree = d3.layout.tree()
               .sort(null)

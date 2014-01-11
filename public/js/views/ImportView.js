@@ -71,7 +71,7 @@ define([
                             email: that.session.email
                           },
                           function(){
-                            console.log("IMPORT: " + that.session.tree);
+                            //console.log("IMPORT: " + that.session.tree);
                             that.session.tree = tree;
                             window.location.href = "/#/tree";
                           },
