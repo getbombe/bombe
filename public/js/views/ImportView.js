@@ -71,8 +71,10 @@ define([
                             email: that.session.email
                           },
                           function(){
-                            console.log("IMPORT: " +that.session.tree);
-                            window.location.href = "/#/tree";},
+                            console.log("IMPORT: " + that.session.tree);
+                            that.session.tree = JSON.stringify(tree);
+                            window.location.href = "/#/tree";
+                          },
                           function(){ console.log("error: failed to save initial tree"); },
                           function(){});
           }
