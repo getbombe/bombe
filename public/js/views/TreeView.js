@@ -72,6 +72,7 @@ define([
         this.render();
         this.rendered = true;
       }
+      this.$el.find("#treeview").html("");
         try {
         console.log("TREE: " + this.session.tree);
         var treeData = JSON.parse(this.session.tree); 
