@@ -28,9 +28,6 @@ class Export:
 		ax.set_xlabel(x_label + " ("+x_unit+")")
 		ax.set_ylabel(y_label + " ("+y_unit+")")
 
-		ax.set_xticklabels(size='x-small')
-		ax.set_yticklabels(size='x-small')
-
 		#path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '/static/uploads'))
 		path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, 'static/uploads'))
 
