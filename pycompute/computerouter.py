@@ -41,8 +41,6 @@ class ComputeRouter:
 
 	def dataPostprocess(self, data):
 		''' turn data back into JSON '''
-		#data['data']['x'] = list(data['data']['x'])
-		#data['data']['y'] = list(data['data']['y'])
 		data = json.dumps(data)
 		return data
 
