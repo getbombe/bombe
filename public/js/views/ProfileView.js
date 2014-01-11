@@ -32,33 +32,6 @@ define([
         this.render();
         this.rendered = true;
       }
-
-      var op = 'calculus_differentiate';
-      var data = {
-        'userid': '0001',
-        'graphid': '1234',
-        'data' : {
-          'x' : ['1', '2', '3'],
-          'y' : ['4.5', '-3', '0']
-        },
-        'unit' : {
-          'x' : 'km',
-          'y' : 'km/h'
-        },
-        'param1' : 'value1',
-        'param2' : 'value2'
-      };
-
-      Util.ajaxPOST("http://compute.getbombe.com/compute",
-                    {
-                      operation: op,
-                      data: JSON.stringify(data)
-                    },
-                    function(data){ console.log(data); },
-                    function(){},
-                    function(){});
-
-
     }
   });
 

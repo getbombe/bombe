@@ -44,16 +44,18 @@ define([
 
 		activateNodeById: function(session, tree, id){
 			if (tree.data.graphid == id && id != null && id != undefined) {
+				console.log(session);
 				session.activeNode = tree;
 			}
 			else if (tree.children instanceof Array) {
 				tree.children.forEach( function(child){
-				  activateNodeById(child, id); 
+					console.log("recur");
+				  activateNodeById(session, child, id); 
 				});
 			} 
 		},
 
-		renderGraph: function(treeData, id, viewid) {
+		renderGraph: function(graph, viewid) {
 	
 	
 		    //if ($(viewid).parent().parent().parent().parent().css('display') != 'none' && viewid == "#plot-preview") {
@@ -61,6 +63,7 @@ define([
 				$(viewid).html('');
 
 				var titleid = viewid + "-titlebar";
+				var id = graph['graphid'];
 
 				//console.log (titleid + " .graphid");
 				$(titleid + " .graphid").html(id);
@@ -106,35 +109,7 @@ define([
 				  	.append("g")
 				    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-				var xyData = null;
-
-				function writeXYData (data) {
-					if (data != undefined && data != null) {
-						xyData = data;
-					}
-				}
-
-				if (id == "new") {
-					return;
-				}
-
-				function findDataById (tree, id) {
-				
-					//console.log(tree);
-					if (tree.data.graphid == id) {
-						//console.log("Returned: " + tree.data.data);
-						writeXYData(tree.data);
-					}
-					else if (tree.children instanceof Array) {
-						//console.log(tree.children);
-						tree.children.forEach( function(child){
-							 findDataById (child, id); 
-						});
-					} 
-				}
-
-				findDataById(treeData, id);
-
+				var xyData = graph['data'];
 				
 				xData = xyData.data.x.map(function(d){return parseFloat(d)});
 				yData = xyData.data.y.map(function(d){return parseFloat(d)});
@@ -149,11 +124,9 @@ define([
 					data.push (row);			
 				}
 
-
 				x.domain(d3.extent(xData));
 				y.domain(d3.extent(yData));
-
-				
+			
 				svg.append("g")
 				    .attr("class", "x axis")
 				    .attr("transform", "translate(0," + height + ")")

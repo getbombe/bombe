@@ -19,24 +19,57 @@ define([
     render: function(){
       var template = _.template(TreeViewTemplate, {data: null});
       this.$el.html(template);
+    },
+
+    hide: function(){
+      this.$el.hide();
+    },
+
+    show: function(){
+      this.$el.show();
+      if(!this.rendered) {
+        this.render();
+        this.rendered = true;
+      }
+      this.$el.find("#treeview").html("");
+
+      var that = this;
+
+        try {
+        console.log("TREE: " + this.session.tree);
+        var treeData = JSON.parse(this.session.tree); 
+
+       } 
+       catch (e) {
+         return;
+       }
 
       var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
 
+
+      window.idBefore = null;
+      window.idAfter = null;
+
+      renderTree(treeData);
+      Util.activateNodeById(this.session, treeData, 0);
+      Util.renderGraph(this.session.activeNode, "#plot-preview");
+
+      $(".node").click( function(){
+          Util.activateNodeById(that.session, treeData, $(this).attr("id"));
+          Util.renderGraph(that.session.activeNode, "#plot-preview");
+      });
+
       $(window).resize(function() {
-          Util.renderGraph(treeData, 0, "#plot-preview"); 
+          Util.renderGraph(that.session.activeNode, "#plot-preview");
        
       });
 
-      $(".node").click( function(){
-          Util.renderGraph(treeData, $(this).attr("id"), "#plot-preview");
-      });
-
       $("#delete-graph").click( function(){
-          console.log("deleted:" + graphid);
-          treeData = prune(treeData, graphid);
-          console.log(that.session);
-          that.session.tree = JSON.stringify(treeData);
-          renderTree(treeData);
+          // console.log("deleted:" + graphid);
+          // treeData = prune(treeData, graphid);
+          // console.log(that.session);
+          // that.session.tree = JSON.stringify(treeData);
+          // renderTree(treeData);
       });
 
       if (graphid != 0) {
@@ -55,38 +88,15 @@ define([
         var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
         window.idBefore = graphid;
         window.idAfter = "new";
-        Util.renderGraph(treeData, window.idBefore, "#plot-before");
-        Util.renderGraph(treeData, window.idAfter, "#plot-after");
+
+        Util.activateNodeById(that.session, treeData, window.idBefore);
+        Util.renderGraph(that.session.activeNode, "#plot-before");
+
+        Util.activateNodeById(that.session, treeData, window.idAfter);
+        Util.renderGraph(that.session.activeNode, "#plot-after");
+
         window.location.href = "/#/operation";
       });
-
-    },
-
-    hide: function(){
-      this.$el.hide();
-    },
-
-    show: function(){
-      this.$el.show();
-      if(!this.rendered) {
-        this.render();
-        this.rendered = true;
-      }
-      this.$el.find("#treeview").html("");
-        try {
-        console.log("TREE: " + this.session.tree);
-        var treeData = JSON.parse(this.session.tree); 
-
-       } 
-       catch (e) {
-         return;
-       }
-
-      window.idBefore = null;
-      window.idAfter = null;
-
-      renderTree(treeData);
-      Util.renderGraph(treeData, 0, "#plot-preview");
       
 
       function renderTree(treeData) {
