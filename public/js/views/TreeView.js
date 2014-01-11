@@ -105,11 +105,11 @@ define([
         $("#edit-graph").attr("disabled", "disabled");
       }
 
-      $("export-graph").click(function(){
+      $("#export-graph").click(function(){
         Util.ajaxPOST("http://compute.getbombe.com/compute",
                         {
                           operation: "export_pdf",
-                          data: JSON.stringify(this.session.activeNode.data)
+                          data: JSON.stringify(that.session.activeNode.data)
                         },
                         function(res){
                           //console.log(res);
