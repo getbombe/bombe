@@ -58,6 +58,11 @@ define([
         Util.renderGraph(treeData, window.idAfter, "#plot-after");
           //console.log("test");
       });
+
+
+      this.$el.find("select#opselect").change(function(){
+        alert(this.value);
+      });
     },
 
     hide: function(){
