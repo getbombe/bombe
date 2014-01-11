@@ -121,6 +121,7 @@ define([
                           //console.log(res);
                           Util.logAction(that.session.email, "Exported Graph", that.session.activeNode.data);
                           var filename = res.result.filename;
+                          window.open("http://compute.getbombe.com/static/uploads/" + filename);
                           console.log(res);
                         },
                         function(){ console.log("Compute failed."); },
