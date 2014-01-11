@@ -29,7 +29,7 @@ class Export:
 
 		path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'uploads'))
 
-		name = path + '/' + data['userid'] + '_' + data['graphid'] + '.pdf'
+		name = path + '/' + str(data['userid']) + '_' + str(data['graphid']) + '.pdf'
 
 		data['filename'] = name
 
