@@ -67,6 +67,7 @@ define([
           console.log("deleted:" + graphid);
           Util.activateNodeById(that.session, treeData, $(this).attr("id"));
           delete that.session.activeNode;
+          that.$el.find("#treeview").html("");
           renderTree(treeData);
       });
 
