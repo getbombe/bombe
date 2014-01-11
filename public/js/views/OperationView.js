@@ -65,10 +65,10 @@ define([
         } else if(this.value == "stats_poly_regression_reg"){
           op = "stats_poly_regression";
           data.order = 1;
-          data.res = 10;
+          data.res = 1;
         } else if(this.value == "stats_poly_regression_spl"){
           op = "background_spline";
-          data.res = 10;
+          data.res = 1;
         } else if(this.value == "transform_fourier"){
           op = "transform_fourier";
           data.real = "True";

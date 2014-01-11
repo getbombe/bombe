@@ -101,6 +101,22 @@ define([
         $("#edit-graph").attr("disabled", "disabled");
       }
 
+      $("export-graph").click(function(){
+        Util.ajaxPOST("http://compute.getbombe.com/compute",
+                        {
+                          operation: "export_pdf",
+                          data: JSON.stringify(this.session.activeNode.data)
+                        },
+                        function(res){
+                          //console.log(res);
+                          var filename = res.filename;
+                          console.log(data.filename);
+                        },
+                        function(){ console.log("Compute failed."); },
+                        function(){}
+                      );
+      });
+
       $("#create-graph").click ( function(){
         var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
         window.idBefore = graphid;
@@ -201,8 +217,7 @@ function findTreeDataParent (tree, id) {
             }
             else {
                 findTreeDataParent (child, id); 
-            }
-            
+            }  
         });
     } 
 }
