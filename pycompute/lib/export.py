@@ -28,7 +28,7 @@ class Export:
 		plt.yticks(size='x-small')
 
 		#path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '/static/uploads'))
-		path = '../static/uploads'
+		path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, 'static/uploads'))
 
 		name = str(data['userid']) + '_' + str(data['graphid']) + '.pdf'
 
