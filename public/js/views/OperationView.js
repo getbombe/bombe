@@ -21,26 +21,6 @@ define([
       this.$el.html(template);
 
       var that = this;
-      // get the tree
-      // Util.ajaxPOST("../getTree",
-      //               {
-      //                 email:that.session.email
-      //               },
-      //               function(data){ that.session.tree = data.tree; },
-      //               function(){ console.log("could not get tree"); },
-      //               function(){});
-
-      try {
-        console.log("OPERATION: " + this.session.tree);
-        var treeData = JSON.parse(this.session.tree); 
-
-       } 
-       catch (e) {
-         //window.location.replace("/#/tree");
-         console.log(e);
-         return;
-       }
-
       // if ($('#plot-before').height() != 0) {
       //   window.opHeight = $('#plot-before').height();
       //   window.opWidth = $('#plot-before').width();

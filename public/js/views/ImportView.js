@@ -72,7 +72,7 @@ define([
                           },
                           function(){
                             console.log("IMPORT: " + that.session.tree);
-                            that.session.tree = JSON.stringify(tree);
+                            that.session.tree = tree;
                             window.location.href = "/#/tree";
                           },
                           function(){ console.log("error: failed to save initial tree"); },

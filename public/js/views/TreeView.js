@@ -50,7 +50,7 @@ define([
 
         try {
         //console.log("TREE: " + this.session.tree);
-        var treeData = JSON.parse(this.session.tree); 
+        var treeData = this.session.tree; 
 
        } 
        catch (e) {

@@ -53,7 +53,7 @@ define([
 					console.log("recur");
 				  activateNodeById(session, child, id); 
 				});
-			} 
+			}
 		},
 
 		renderGraph: function(graph, viewid) {

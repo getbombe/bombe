@@ -43,7 +43,7 @@ define([
                                           email:that.session.email
                                         },
                                         function(data){ 
-                                          that.session.tree = data.tree;
+                                          that.session.tree = JSON.parse(data.tree);
                                           // redirect upon login
                                           if (that.session.tree != undefined){
                                             window.location.href = "/#/tree";  
