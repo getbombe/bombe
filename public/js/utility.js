@@ -42,7 +42,9 @@ define([
 						  function(){});
 		},
 
-		activateNodeById: function(session, tree, id){
+		activateNodeById:
+		 function(session, tree, id){
+		 	var that = this;
 			if (tree.data.graphid == id && id != null && id != undefined) {
 				//console.log(session);
 				session.activeNode = tree;
@@ -51,7 +53,7 @@ define([
 			else if (tree.children instanceof Array) {
 				tree.children.forEach( function(child){
 					//console.log("recur");
-				  activateNodeById(session, child, id); 
+				  that.activateNodeById(session, child, id); 
 				});
 			}
 		},
