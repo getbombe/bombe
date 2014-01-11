@@ -112,15 +112,21 @@ define([
 
       $("#export-graph").click(function(){
         //console.log(that.session.activeNode.data);
-        var dat = JSON.stringify(JSON.decycle(that.session.activeNode.data));
+        var tempDat = jQuery.extend({}, JSON.decycle(that.session.activeNode.data));
+        delete tempDat['children'];
+        tempDat = JSON.stringify(tempDat);
+        //var dat = JSON.decycle(JSON.decycle(that.session.activeNode.data));
+        console.log(tempDat);
         Util.ajaxPOST("http://compute.getbombe.com/compute",
                         {
                           operation: "export_pdf",
-                          data: dat
+                          data: tempDat
                         },
                         function(res){
                           //console.log(res);
-                          Util.logAction(that.session.email, "Exported Graph", that.session.activeNode.data);
+                          //console.log("1");
+                          Util.logAction(that.session.email, "Exported Graph", JSON.decycle(that.session.activeNode.data));
+                          //console.log("2");
                           var filename = res.result.filename;
                           console.log(filename);
                           window.open("http://compute.getbombe.com/static/uploads/" + filename);
@@ -149,7 +155,7 @@ define([
 
       function renderTree(treeData) {
 
-          console.log(treeData);
+          //console.log(treeData);
 
           that.$el.find("#treeview").html("");
 
