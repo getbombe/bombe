@@ -33,6 +33,10 @@ class Export:
 
 		data['filename'] = name
 
+		print path
+		print name
+		print path + "/" + name
+
 		plt.savefig(path + "/" + name, format='pdf')
 
 		return data
