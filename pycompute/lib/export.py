@@ -21,12 +21,15 @@ class Export:
 		x_label = data['label']['x']
 		y_label = data['label']['y']
 
-		plt.plot(x_dat, y_dat, 'k-')
-		plt.xlabel(x_label + " ("+x_unit+")")
-		plt.ylabel(y_label + " ("+y_unit+")")
+		fig = plt.figure()
+		ax = fig.add_subplot(111)
 
-		plt.xticks(size='x-small')
-		plt.yticks(size='x-small')
+		ax.plot(x_dat, y_dat, 'k-')
+		ax.set_xlabel(x_label + " ("+x_unit+")")
+		ax.set_ylabel(y_label + " ("+y_unit+")")
+
+		ax.set_xticklabels(size='x-small')
+		ax.set_yticklabels(size='x-small')
 
 		#path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '/static/uploads'))
 		path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, 'static/uploads'))
@@ -39,6 +42,6 @@ class Export:
 		print name
 		print path + "/" + name
 
-		plt.savefig(path + "/" + name, format='pdf')
+		fig.savefig(path + "/" + name, format='pdf')
 
 		return data
