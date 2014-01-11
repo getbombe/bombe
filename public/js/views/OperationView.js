@@ -55,8 +55,8 @@ define([
                 "y" : "Units"
             },
             "label" : {
-                "x" : "X-Label",
-                "y" : "Y-Label"
+                "x" : "X-Data",
+                "y" : "Y-Data"
             },
         };
 
@@ -65,10 +65,10 @@ define([
         } else if(this.value == "stats_poly_regression_reg"){
           op = "stats_poly_regression";
           data.order = 1;
-          data.res = 10;
+          data.res = 1;
         } else if(this.value == "stats_poly_regression_spl"){
           op = "background_spline";
-          data.res = 10;
+          data.res = 1;
         } else if(this.value == "transform_fourier"){
           op = "transform_fourier";
           data.real = "True";
@@ -84,6 +84,7 @@ define([
                         },
                         function(res){
                           //console.log(res);
+                          Util.logAction(that.session.email, "Transformed Graph", $("#opselect").value);
                           data.data = res.result.data;
                           data.graphid = Math.floor(Math.random() * (100000000 -  + 1)) + 1;
                           Util.renderGraph({data: data}, "#plot-after");
@@ -101,6 +102,9 @@ define([
 
     show: function(){
       this.$el.show();
+
+      Util.logAction(this.session.email, "Viewed Operation Page", "null");
+
       this.render();
       // if(!this.rendered) {
       //   this.render();

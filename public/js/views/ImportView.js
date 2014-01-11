@@ -42,6 +42,8 @@ define([
 
             var tree = {};
 
+            Util.logAction(that.session.email, "Uploaded Raw Data", "null");
+
             var data = {
               "userid": that.session.email,
               "graphid": "0", //TODO
@@ -72,6 +74,8 @@ define([
                           },
                           function(){
                             //console.log("IMPORT: " + that.session.tree);
+                            Util.logAction(that.session.email, "Uploaded Tree Data", JSON.stringify(tree));
+
                             that.session.tree = tree;
                             window.location.href = "/#/tree";
                           },
@@ -89,6 +93,8 @@ define([
     show: function(){
       this.$el.show();
       
+      Util.logAction(this.session.email, "Viewed Import Page", "null");
+
       if(!this.rendered) {
         this.render();
         this.rendered = true;

@@ -2,8 +2,9 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'utility',
   'text!templates/settings_view.html'
-], function($, _, Backbone, SettingsViewTemplate){
+], function($, _, Backbone, Util, SettingsViewTemplate){
 
   var SettingsView = Backbone.View.extend({
     el: $("#settings"),
@@ -26,6 +27,9 @@ define([
 
     show: function(){
       this.$el.show();
+
+      Util.logAction(this.session.email, "Viewed Settings Page", "null");
+
       if(!this.rendered) {
         this.render();
         this.rendered = true;

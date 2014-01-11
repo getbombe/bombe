@@ -28,6 +28,7 @@ define([
 
     show: function(){
       this.$el.show();
+      Util.logAction(this.session.email, "Viewed Profile Page", "null");
       if(!this.rendered) {
         this.render();
         this.rendered = true;

@@ -27,6 +27,9 @@ define([
 
     show: function(){
       this.$el.show();
+
+      Util.logAction(this.session.email, "Viewed Tree Page", "null");
+
       if(!this.rendered) {
         this.render();
         this.rendered = true;
@@ -83,6 +86,10 @@ define([
           Util.renderGraph(that.session.activeNode, "#plot-preview");
       });
 
+      // $(".nodebox").click( function(){
+      //   $(".nodebox").css("class", "active");
+      // });
+
       $(window).resize(function() {
           Util.renderGraph(that.session.activeNode, "#plot-preview");
        
@@ -110,6 +117,23 @@ define([
         $("#edit-graph").attr("disabled", "disabled");
       }
 
+      $("#export-graph").click(function(){
+        Util.ajaxPOST("http://compute.getbombe.com/compute",
+                        {
+                          operation: "export_pdf",
+                          data: JSON.stringify(that.session.activeNode.data)
+                        },
+                        function(res){
+                          //console.log(res);
+                          Util.logAction(that.session.email, "Exported Graph", that.session.activeNode.data);
+                          var filename = res.filename;
+                          console.log(data.filename);
+                        },
+                        function(){ console.log("Compute failed."); },
+                        function(){}
+                      );
+      });
+
       $("#create-graph").click ( function(){
         var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
         window.idBefore = graphid;
@@ -120,6 +144,8 @@ define([
 
         Util.activateNodeById(that.session, treeData, window.idBefore);
         Util.renderGraph(that.session.activeNode, "#plot-before");
+
+        Util.logAction(that.session.email, "Created New Graph", "null");
 
         window.location.href = "/#/operation";
       });
@@ -210,8 +236,7 @@ function findTreeDataParent (tree, id) {
             }
             else {
                 findTreeDataParent (child, id); 
-            }
-            
+            }  
         });
     } 
 }
