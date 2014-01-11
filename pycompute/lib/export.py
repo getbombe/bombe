@@ -5,6 +5,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import os
 import time
+import math
 
 class Export:
 
@@ -31,7 +32,7 @@ class Export:
 		#path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '/static/uploads'))
 		path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, 'static/uploads'))
 
-		name = str(data['userid']) + '_' + str(data['graphid']) + str(time.time()) + '.pdf'
+		name = str(data['userid']) + '_' + str(data['graphid']) + str(math.floor(time.time())) + '.pdf'
 
 		data['filename'] = name 
 
