@@ -48,7 +48,7 @@ define([
                                         },
                                         function(data){ 
                                           // redirect upon login
-                                          if (that.session.tree instanceof Object){
+                                          if (data.tree){
                                             //console.log("1");
                                             that.session.tree = JSON.parse(data.tree);
                                             //console.log("2");
