@@ -26,6 +26,9 @@ html, body {
 	font-size: 20px;
 	@media screen and (max-width: 480px) {font-size: 12px;}
 }
+p {
+	padding: 1em;
+}
 h1, h2, h3, h4 {
 	.main-font;
 	margin: 0;
@@ -47,7 +50,7 @@ form {
 		.rounded;
 	} 
 	#submit-button {
-		width: 60%;
+		width: 8em;
 		padding: 0.2em 1em 0.2em 1em;
 		margin-top: 1em;
 		font-size: 18px;
@@ -110,8 +113,18 @@ form {
 			display: block;
 			font-size: 20px;
 			padding: 0.4em 1.2em;
-			margin: 4em auto;
+			margin: 2em auto;
 			.thin-font;
+
+			a {
+				text-decoration: none;
+				color: @white;
+			}
+			a:hover {
+				text-decoration: none;
+				border: none;
+			}
+
 			@media screen and (max-width: 480px) {font-size: 12px;}
 		}
 	}	
@@ -136,19 +149,53 @@ form {
 }
 
 .block {
-	padding: 6em;
+	padding: 4em;
 	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
 }
 .contrast-block {
-	padding: 6em;
+	padding: 4em;
 	background: @tertiary;
 	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
 }
 .dark-block {
-	padding: 6em;
+	padding: 4em;
 	color: @white;
 	background: @black;
 	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
+}
+
+.inst {
+	display: inline;
+	padding: 0;
+	margin: 1em;
+	height: 5em;
+}
+.social {
+	padding: 0.3em;
+	margin:  0 0.3em;
+	.bordered;
+}
+
+a.darkencss {
+    display: inline-block;
+    //background: black;
+    padding: 0;
+}
+a.darkencss img {
+    display: block;
+   
+    -webkit-transition: all 0.5s linear;
+       -moz-transition: all 0.5s linear;
+        -ms-transition: all 0.5s linear;
+         -o-transition: all 0.5s linear;
+            transition: all 0.5s linear;
+}
+a.darkencss:hover img {
+    -webkit-filter: brightness(20%);
+}
+a.darkencss:hover img.social {
+    border: 4px @primary solid;
+    -webkit-filter: brightness(100%);
 }
 
 //Bootstrap Overrides

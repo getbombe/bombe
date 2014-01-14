@@ -22,6 +22,9 @@ body {
     font-size: 12px;
   }
 }
+p {
+  padding: 1em;
+}
 h1,
 h2,
 h3,
@@ -59,7 +62,7 @@ form #email-input {
   }
 }
 form #submit-button {
-  width: 60%;
+  width: 8em;
   padding: 0.2em 1em 0.2em 1em;
   margin-top: 1em;
   font-size: 18px;
@@ -128,8 +131,16 @@ form #submit-button {
   display: block;
   font-size: 20px;
   padding: 0.4em 1.2em;
-  margin: 4em auto;
+  margin: 2em auto;
   font-weight: 100;
+}
+.jumbotron .header #signup a {
+  text-decoration: none;
+  color: #ffffff;
+}
+.jumbotron .header #signup a:hover {
+  text-decoration: none;
+  border: none;
 }
 @media screen and (max-width: 480px) {
   .jumbotron .header #signup {
@@ -157,7 +168,7 @@ form #submit-button {
   }
 }
 .block {
-  padding: 6em;
+  padding: 4em;
 }
 @media screen and (max-width: 480px) {
   .block {
@@ -166,7 +177,7 @@ form #submit-button {
   }
 }
 .contrast-block {
-  padding: 6em;
+  padding: 4em;
   background: #e5e5e5;
 }
 @media screen and (max-width: 480px) {
@@ -176,7 +187,7 @@ form #submit-button {
   }
 }
 .dark-block {
-  padding: 6em;
+  padding: 4em;
   color: #ffffff;
   background: #000000;
 }
@@ -185,6 +196,36 @@ form #submit-button {
     font-size: 14px;
     padding: 2em;
   }
+}
+.inst {
+  display: inline;
+  padding: 0;
+  margin: 1em;
+  height: 5em;
+}
+.social {
+  padding: 0.3em;
+  margin: 0 0.3em;
+  border: 4px #1f90c1 solid;
+}
+a.darkencss {
+  display: inline-block;
+  padding: 0;
+}
+a.darkencss img {
+  display: block;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  -ms-transition: all 0.5s linear;
+  -o-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+}
+a.darkencss:hover img {
+  -webkit-filter: brightness(20%);
+}
+a.darkencss:hover img.social {
+  border: 4px #1a62aa solid;
+  -webkit-filter: brightness(100%);
 }
 .col-xs-1,
 .col-sm-1,

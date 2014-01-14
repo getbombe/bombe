@@ -17,7 +17,7 @@
           <img id="logo-image" src="img/logo.png">
           <hr>
           <h3>Data made <em>easy</em>.</h3>
-          <button id="signup" class="btn btn-success">Sign Up</button>
+         <div id="signup"><a class="scroll" data-easing="easeInOutCubic" data-url="false" data-speed="700" href="#email" ><button id="signup" class="btn btn-success"> Sign Up</button></a></div>
         </div>
       </div>
 
@@ -31,40 +31,46 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-lg-4 col-sm-12">
-          <div class="contrast-block">
+      
+
+      <div class="block">
+        <div class="row">
+          <div class="col-lg-4 col-sm-12">
+          
             <img class="feature-img img-circle" src="img/tree.svg">
             <p class='text-center'>
               See your data in elegant, technical graphs optimized for science. Work in your browser and publish directly to PDF.
             </p>
           </div>
-        </div>
+        
       
-        <div class="col-lg-4 col-sm-12">
-          <div class="contrast-block">
+          <div class="col-lg-4 col-sm-12">
+          
             <img class="feature-img img-circle" src="img/gauge.svg">
             <p class='text-center'>
               Want to do a Fourier transform? Do it in a single click. Need a custom Python script? You can do it right in Bombe.
             </p>
+          
           </div>
-        </div>
       
-        <div class="col-lg-4 col-sm-12">
-          <div class="contrast-block">
+          <div class="col-lg-4 col-sm-12">
+          
             <img class="feature-img img-circle" src="img/user.svg">
             <p class='text-center'>
               Process data as a team! Work in real time with your colleagues from around the world and analyze data together.
             </p>
           </div>
-        </div>
+        
       </div>
+    </div>
+
+      <hr>
 
       <div class="block">
         <div class="row">
           <div class="col-lg-12 col-sm-12">
             <h2 class='text-center'>
-              How do you use <strong>Bombe</strong>? It's just three simple steps.
+              How do you use Bombe? It's just <strong>three</strong> simple steps.
             </h2>
             <br>
           </div>
@@ -94,19 +100,9 @@
           </div> 
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-lg-12 col-sm-12">
-          <div class="contrast-block">
-            <h1 class="text-uppercase text-center">Bombe is used by scientists at:</h1>
-            
-          </div>
-        </div>
-      </div>
-      
+      <hr>
         
-
-      <div class="row">
+      <div  id="email" class="row">
         <div class="col-lg-12 col-sm-12">
           <div class="block">
             <h2 class='text-center'>
@@ -122,13 +118,29 @@
 
       <div class="row">
         <div class="col-lg-12 col-sm-12">
-          <div class="dark-block">
-            <h2 class='text-center'>
-              Keep in touch with us.
-            </h2>
-            <p class="text-center">
+          <div class="contrast-block">
+            <h3 class="text-uppercase text-center">Bombe is used by scientists at</h3>
+            <div class="text-center">
+              <a target="_blank" class="darkencss" href="http://www.wlu.ca"><img class="inst" src="img/laurier_logo.svg"> </a>
+              <a target="_blank" class="darkencss" href="http://www.uoguelph.ca/"><img class="inst" src="img/uog_logo.svg"></a>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-lg-12 col-sm-12">
+          <div class="dark-block">
+            <h4 class="text-center">
+              Keep in touch with us: <a href="mailto:info@getbombe.com">info@getbombe.com</a>
+            </h4>
+            <p class="text-center"> 
+              <a target="_blank" class="darkencss" href="http://www.twitter.com/getbombe"><img class="social img-circle" src="img/twitter-48.png"></a>
+              <a target="_blank" class="darkencss" href="http://www.linkedin.com/company/bombe"><img class="social img-circle" src="img/linkedin-48.png"></a>
+              <a target="_blank" class="darkencss" href="https://plus.google.com/105662869578307699796" rel="publisher"><img class="social img-circle" src="img/googleplus-48.png"></a>
+              <a target="_blank" class="darkencss" href="http://www.facebook.com/getbombe"><img class="social img-circle" src="img/facebook-48.png"></a>
             </p>
+            <br>
           </div>
         </div>
       </div>
@@ -146,5 +158,6 @@
       ga('send', 'pageview');
 
     </script>
+    <script src="js/smooth-scroll.js"></script>
   </body>
 </html>
