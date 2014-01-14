@@ -75,6 +75,11 @@ form #submit-button {
 .bordered {
   border: 4px #1f90c1 solid;
 }
+@media screen and (max-width: 480px) {
+  .bordered {
+    border: 2px #1f90c1 solid;
+  }
+}
 .rounded {
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -164,6 +169,11 @@ form #submit-button {
 }
 @media screen and (max-width: 480px) {
   .explain-img {
+    border: 2px #1f90c1 solid;
+  }
+}
+@media screen and (max-width: 480px) {
+  .explain-img {
     margin: 2.5em auto 0.5em auto;
   }
 }
@@ -203,10 +213,25 @@ form #submit-button {
   margin: 1em;
   height: 5em;
 }
+@media screen and (max-width: 480px) {
+  .inst {
+    height: 2em;
+  }
+}
 .social {
   padding: 0.3em;
   margin: 0 0.3em;
   border: 4px #1f90c1 solid;
+}
+@media screen and (max-width: 480px) {
+  .social {
+    border: 2px #1f90c1 solid;
+  }
+}
+@media screen and (max-width: 480px) {
+  .social {
+    height: 3em;
+  }
 }
 a.darkencss {
   display: inline-block;
@@ -226,6 +251,11 @@ a.darkencss:hover img {
 a.darkencss:hover img.social {
   border: 4px #1a62aa solid;
   -webkit-filter: brightness(100%);
+}
+@media screen and (max-width: 480px) {
+  a.darkencss:hover img.social {
+    border: 2px #1a62aa solid;
+  }
 }
 .col-xs-1,
 .col-sm-1,
