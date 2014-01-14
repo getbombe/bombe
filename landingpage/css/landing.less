@@ -7,10 +7,13 @@
 @translucent-black: rgba(0,0,0,0.8);
 
 //Typography
-@import url(http://fonts.googleapis.com/css?family=Lato:300,700);
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,700);
 .main-font {
 	font-family: 'Lato', 'Helvetica Neue', 'Arial';
 	font-weight: 300;
+}
+.thin-font {
+	font-weight: 100;
 }
 .strong-font {
 	font-weight: 700;
@@ -21,16 +24,45 @@ html, body {
 	height: 100%;
 	.main-font;
 	font-size: 20px;
+	@media screen and (max-width: 480px) {font-size: 12px;}
 }
 h1, h2, h3, h4 {
 	.main-font;
+	margin: 0;
+	padding: 0;
+	@media screen and (max-width: 480px) {font-size: 16px;}
+}
+form {
+	width: 100%;
+	padding: 1em;
+	margin: 2em auto;
+	text-align: center;
+
+	#email-input {
+		width: 60%;
+		height: 2.2em;
+		padding: 1em;
+		font-size: 18px;
+		@media screen and (max-width: 480px) {font-size: 12px;}
+		.rounded;
+	} 
+	#submit-button {
+		width: 60%;
+		padding: 0.2em 1em 0.2em 1em;
+		margin-top: 1em;
+		font-size: 18px;
+		@media screen and (max-width: 480px) {font-size: 12px;}
+	}
+
 }
 
 //Geometry
+.bordered {
+	border: 4px @secondary solid;
+}
 .rounded {
-	border: 2px @white;
-	-webkit-border-radius: 15px;
-	border-radius: 15px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 
 //Objects
@@ -46,18 +78,17 @@ h1, h2, h3, h4 {
     background-repeat:no-repeat;
     background-attachment: fixed;
     background-size:cover;
-    -webkit-filter: brightness(75%); 
+    -webkit-filter: brightness(45%); 
     z-index: -9999;
 }
 .jumbotron {
 	min-height: 100%;
+	padding: 0;
+	margin: 0;
 	padding-top: 10em;
 	text-align: center;
 	background: transparent;
-
-	hr {
-		margin-top: 2em;
-	}
+	@media screen and (max-width: 480px) {font-size: 18px;}
 
 	h3 {
 		color: white;	
@@ -68,18 +99,56 @@ h1, h2, h3, h4 {
 		padding: 3em;
 		margin: 0 auto;
 		-webkit-filter: none;
-		//background: @translucent-black;
-		.rounded;
+		@media screen and (max-width: 480px) {font-size: 12px;}
 
-		.logo-image {
+		#logo-image {
 			width: 60%;
+			@media screen and (max-width: 480px) {width: 100%;}
 		}
-	}
-	
+
+		#signup {	
+			display: block;
+			font-size: 20px;
+			padding: 0.4em 1.2em;
+			margin: 4em auto;
+			.thin-font;
+			@media screen and (max-width: 480px) {font-size: 12px;}
+		}
+	}	
+}
+
+.feature-img {
+	background: @primary;
+	display: block;
+	margin: 1em auto;
+	padding: 0.8em;
+	height: 4em;
+}
+
+.explain-img {
+	background: transparent;
+	display: block;
+	margin: 2.5em auto 1em auto;
+	padding: .3em;
+	height: 5em;
+	.bordered;
+	@media screen and (max-width: 480px) {margin: 2.5em auto 0.5em auto;}
 }
 
 .block {
 	padding: 6em;
+	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
+}
+.contrast-block {
+	padding: 6em;
+	background: @tertiary;
+	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
+}
+.dark-block {
+	padding: 6em;
+	color: @white;
+	background: @black;
+	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
 }
 
 //Bootstrap Overrides

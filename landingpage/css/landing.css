@@ -1,7 +1,10 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:300,700);
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,700);
 .main-font {
   font-family: 'Lato', 'Helvetica Neue', 'Arial';
   font-weight: 300;
+}
+.thin-font {
+  font-weight: 100;
 }
 .strong-font {
   font-weight: 700;
@@ -13,17 +16,65 @@ body {
   font-weight: 300;
   font-size: 20px;
 }
+@media screen and (max-width: 480px) {
+  html,
+  body {
+    font-size: 12px;
+  }
+}
 h1,
 h2,
 h3,
 h4 {
   font-family: 'Lato', 'Helvetica Neue', 'Arial';
   font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+@media screen and (max-width: 480px) {
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-size: 16px;
+  }
+}
+form {
+  width: 100%;
+  padding: 1em;
+  margin: 2em auto;
+  text-align: center;
+}
+form #email-input {
+  width: 60%;
+  height: 2.2em;
+  padding: 1em;
+  font-size: 18px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+@media screen and (max-width: 480px) {
+  form #email-input {
+    font-size: 12px;
+  }
+}
+form #submit-button {
+  width: 60%;
+  padding: 0.2em 1em 0.2em 1em;
+  margin-top: 1em;
+  font-size: 18px;
+}
+@media screen and (max-width: 480px) {
+  form #submit-button {
+    font-size: 12px;
+  }
+}
+.bordered {
+  border: 4px #1f90c1 solid;
 }
 .rounded {
-  border: 2px #ffffff;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
 }
 #background {
   position: absolute;
@@ -35,17 +86,21 @@ h4 {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  -webkit-filter: brightness(75%);
+  -webkit-filter: brightness(45%);
   z-index: -9999;
 }
 .jumbotron {
   min-height: 100%;
+  padding: 0;
+  margin: 0;
   padding-top: 10em;
   text-align: center;
   background: transparent;
 }
-.jumbotron hr {
-  margin-top: 2em;
+@media screen and (max-width: 480px) {
+  .jumbotron {
+    font-size: 18px;
+  }
 }
 .jumbotron h3 {
   color: white;
@@ -55,15 +110,81 @@ h4 {
   padding: 3em;
   margin: 0 auto;
   -webkit-filter: none;
-  border: 2px #ffffff;
-  -webkit-border-radius: 15px;
-  border-radius: 15px;
 }
-.jumbotron .header .logo-image {
+@media screen and (max-width: 480px) {
+  .jumbotron .header {
+    font-size: 12px;
+  }
+}
+.jumbotron .header #logo-image {
   width: 60%;
+}
+@media screen and (max-width: 480px) {
+  .jumbotron .header #logo-image {
+    width: 100%;
+  }
+}
+.jumbotron .header #signup {
+  display: block;
+  font-size: 20px;
+  padding: 0.4em 1.2em;
+  margin: 4em auto;
+  font-weight: 100;
+}
+@media screen and (max-width: 480px) {
+  .jumbotron .header #signup {
+    font-size: 12px;
+  }
+}
+.feature-img {
+  background: #1a62aa;
+  display: block;
+  margin: 1em auto;
+  padding: 0.8em;
+  height: 4em;
+}
+.explain-img {
+  background: transparent;
+  display: block;
+  margin: 2.5em auto 1em auto;
+  padding: .3em;
+  height: 5em;
+  border: 4px #1f90c1 solid;
+}
+@media screen and (max-width: 480px) {
+  .explain-img {
+    margin: 2.5em auto 0.5em auto;
+  }
 }
 .block {
   padding: 6em;
+}
+@media screen and (max-width: 480px) {
+  .block {
+    font-size: 14px;
+    padding: 2em;
+  }
+}
+.contrast-block {
+  padding: 6em;
+  background: #e5e5e5;
+}
+@media screen and (max-width: 480px) {
+  .contrast-block {
+    font-size: 14px;
+    padding: 2em;
+  }
+}
+.dark-block {
+  padding: 6em;
+  color: #ffffff;
+  background: #000000;
+}
+@media screen and (max-width: 480px) {
+  .dark-block {
+    font-size: 14px;
+    padding: 2em;
+  }
 }
 .col-xs-1,
 .col-sm-1,
