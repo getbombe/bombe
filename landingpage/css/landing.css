@@ -110,6 +110,11 @@ form #submit-button {
     font-size: 18px;
   }
 }
+@media screen and (max-height: 540px) {
+  .jumbotron {
+    padding-top: 2em;
+  }
+}
 .jumbotron h3 {
   color: white;
 }
@@ -122,6 +127,11 @@ form #submit-button {
 @media screen and (max-width: 480px) {
   .jumbotron .header {
     font-size: 12px;
+  }
+}
+@media screen and (max-height: 540px) {
+  .jumbotron .header {
+    padding: 1.5em;
   }
 }
 .jumbotron .header #logo-image {
@@ -150,6 +160,11 @@ form #submit-button {
 @media screen and (max-width: 480px) {
   .jumbotron .header #signup {
     font-size: 12px;
+  }
+}
+@media screen and (max-height: 540px) {
+  .jumbotron .header #signup {
+    margin-top: 0.5em;
   }
 }
 .feature-img {
