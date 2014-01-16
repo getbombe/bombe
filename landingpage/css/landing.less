@@ -82,7 +82,7 @@ form {
     background-image: url("../img/background.jpg");
     background-repeat:no-repeat;
     background-attachment: fixed;
-    background-size:cover;
+    background-size:100% 100%;
     -webkit-filter: brightness(45%); 
     z-index: -9999;
 }
@@ -110,6 +110,7 @@ form {
 
 		#logo-image {
 			width: 60%;
+			-webkit-filter: none;
 			@media screen and (max-width: 480px) {width: 100%;}
 		}
 
@@ -118,6 +119,7 @@ form {
 			font-size: 20px;
 			padding: 0.4em 1.2em;
 			margin: 2em auto;
+			-webkit-filter: none;
 			.thin-font;
 
 			a {
