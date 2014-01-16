@@ -152,8 +152,8 @@
 
     </div>
 
+    <!-- custom -->
     <script>
-      <!-- custom -->
       $("#submit-button").click(function(){
         var email = $("#email-input").val();
         $.ajax({
@@ -163,6 +163,14 @@
         })
         $("form#emailinput").hide();
         $("div#thankyou").show();
+      });
+      $('#emailinput').keypress(function(e) {
+        if(e.which == 13) {
+          e.preventDefault();
+          $(this).blur();
+          $('#submit-button').focus().click();
+          return false;
+        }
       });
     </script>
 
