@@ -10,6 +10,7 @@ var user = require('./routes/user');
 var upload = require('./routes/upload');
 var log = require('./routes/log');
 var tree = require('./routes/tree');
+var landing = require('./routes/landing');
 
 var http = require('http');
 var path = require('path');
@@ -47,6 +48,7 @@ app.post('/login', user.login);
 app.post('/upload', upload.upload);
 app.post('/newtree', tree.init);
 app.post('/gettree', tree.getTree);
+app.post('/landingpageemail', landing.email);
 
 app.post('/log', log.entry);
 

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="shortcut icon" href="img/favicon.ico">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <title>Bombe</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/landing.css">
@@ -108,10 +109,13 @@
             <h2 class='text-center'>
              Be the first to know - Bombe is launching <strong>soon</strong>.
             </h2>
-            <form>
+            <form id="emailinput">
               <input id="email-input" type="text" placeholder="Email Address"> <br>
-              <button id="submit-button" class="btn btn-success">Notify Me!</button>
+              <a id="submit-button" class="btn btn-success">Notify Me!</a>
             </form>
+            <div id="thankyou" style="display:none">
+              <br/><br/><br/><br/>
+              <h3 class="text-center">Thank you and sit tight! We will let you know when we launch.</h3><br/><br/><br/>
           </div>
         </div>
       </div>
@@ -124,7 +128,7 @@
               <a target="_blank" class="darkencss" href="http://www.wlu.ca"><img class="inst" src="img/laurier_logo.svg"> </a>
               <a target="_blank" class="darkencss" href="http://www.uoguelph.ca/"><img class="inst" src="img/uog_logo.svg"></a>
             </div>
-          </div>
+          </div>1
         </div>
       </div>
 
@@ -147,6 +151,20 @@
       </div>
 
     </div>
+
+    <script>
+      <!-- custom -->
+      $("#submit-button").click(function(){
+        var email = $("#email-input").val();
+        $.ajax({
+          url: "http://app.getbombe.com/landingpageemail",
+          data: { email: email },
+          type: "POST"
+        })
+        $("form#emailinput").hide();
+        $("div#thankyou").show();
+      });
+    </script>
 
     <!-- Google Analytics -->
     <script>
