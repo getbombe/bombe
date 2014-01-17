@@ -89,8 +89,14 @@ define([
       });
 
       $("#delete-graph").click( function(){
-          console.log("deleted:" + graphid);
-          Util.activateNodeById(that.session, treeData, $(this).attr("id"));
+          if(that.session.activeNode.data.graphid == that.session.tree.data.graphid) {
+            that.session.tree == {}
+            renderTree(that.session.tree);
+            return;
+          }
+
+          console.log("deleted:" + that.session.activeNode.data.graphid);
+          Util.deleteNode(that.session.tree,that.session.tree, that.session.activeNode.data.graphid)
           //delete that.session.tree;
           console.log(that.session.tree);
           //console.log(that.session.activeNode);

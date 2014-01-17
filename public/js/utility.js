@@ -42,8 +42,7 @@ define([
 						  function(){});
 		},
 
-		activateNodeById:
-		 function(session, tree, id){
+		activateNodeById: function(session, tree, id){
 		 	var that = this;
 			if (tree.data.graphid == id && id != null && id != undefined) {
 				//console.log(session);
@@ -56,6 +55,23 @@ define([
 				  that.activateNodeById(session, child, id); 
 				});
 			}
+		},
+
+		deleteNode: function(ot, tree, graphid){
+			if (!(tree.children instanceof Array)) return false;
+
+			for (var i = 0; i < tree.children.length; i++) {
+				if (tree.children[i].data.graphid == graphid){
+					tree.children.splice(i,1);
+					console.log(tree.children);
+					console.log(tree);
+					return true;
+				} else {
+					if (this.deleteNode(ot, tree.children[i], graphid)) return true;
+				}
+			}
+
+			return false;
 		},
 
 		renderGraph: function(graph, viewid) {
