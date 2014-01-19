@@ -117,6 +117,9 @@
               <br/><br/><br/><br/>
               <h3 class="text-center">Thank you and sit tight! We will let you know when we launch.</h3><br/><br/><br/>
           </div>
+          <div id="warning" style="display:none">
+            <p class="text-center">Please enter a valid email address!</p>
+          </div>
         </div>
       </div>
 
@@ -154,17 +157,34 @@
 
     <!-- custom -->
     <script>
+      function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+      }
+
       $("#submit-button").click(function(){
+
         ga('send', 'event', 'button', 'click', 'email');
         var email = $("#email-input").val();
-        $.ajax({
-          url: "http://app.getbombe.com/landingpageemail",
-          data: { email: email },
-          type: "POST"
-        })
-        $("form#emailinput").hide();
-        $("div#thankyou").show();
+        
+        if (isEmail(email)) {
+          $.ajax({
+            url: "http://app.getbombe.com/landingpageemail",
+            data: { email: email },
+            type: "POST"
+          })
+          $("form#emailinput").hide();
+          $("div#warning").hide();
+          $("div#thankyou").show();
+        }
+        else {
+          $("#email-input").val("");
+          $("div#warning").show();
+        }
+
       });
+
+
       $('#emailinput').keypress(function(e) {
         if(e.which == 13) {
           e.preventDefault();
