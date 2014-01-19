@@ -155,6 +155,7 @@
     <!-- custom -->
     <script>
       $("#submit-button").click(function(){
+        ga('send', 'event', 'button', 'click', 'email');
         var email = $("#email-input").val();
         $.ajax({
           url: "http://app.getbombe.com/landingpageemail",
