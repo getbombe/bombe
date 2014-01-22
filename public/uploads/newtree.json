@@ -1,0 +1,75 @@
+{
+    "graphid": "AHJFDFD_S_DFDSFSF",
+    "children": [
+        {
+            "graphid": "SOIDJFISJOIEJFIE",
+            "children": [
+                { 
+                    "graphid": "DJIOFSDJFOSDF",
+                    "children": [
+                        {
+                            "data": {
+                                        "userid": "0001",
+                                        "graphid": "3",
+                                        "data" : {
+                                            "x" : ["1", "2", "3"],
+                                            "y" : ["4.5", "30", "0"]
+                                        },
+                                        "unit" : {
+                                            "x" : "km",
+                                            "y" : "km/h"
+                                        },
+                                        "label" : {
+                                            "x" : "Distance",
+                                            "y" : "Speed"
+                                        },
+                                        "param1" : "value1",
+                                        "param2" : "value2"
+                                    }
+                        },
+                        {
+                            "data": {
+                                        "userid": "0001",
+                                        "graphid": "4",
+                                        "data" : {
+                                            "x" : ["1", "2", "3"],
+                                            "y" : ["4.5", "-3", "10"]
+                                        },
+                                        "unit" : {
+                                            "x" : "km",
+                                            "y" : "km/h"
+                                        },
+                                        "label" : {
+                                            "x" : "Distance",
+                                            "y" : "Speed"
+                                        },
+                                        "param1" : "value1",
+                                        "param2" : "value2"
+                                    }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "data": {
+                        "userid": "0001",
+                        "graphid": "5",
+                        "data" : {
+                            "x" : ["1", "2", "3"],
+                            "y" : ["4.5", "-3", "-10"]
+                        },
+                        "unit" : {
+                            "x" : "km",
+                            "y" : "km/h"
+                        },
+                        "label" : {
+                            "x" : "Distance",
+                            "y" : "Speed"
+                        },
+                        "param1" : "value1",
+                        "param2" : "value2"
+                    }
+        }
+    ]
+}
