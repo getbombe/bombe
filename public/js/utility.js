@@ -62,9 +62,11 @@ define([
 
 			for (var i = 0; i < tree.children.length; i++) {
 				if (tree.children[i].data.graphid == graphid){
+					//console.log(tree);
 					tree.children.splice(i,1);
 					console.log(tree.children);
 					console.log(tree);
+					console.log(ot);
 					return true;
 				} else {
 					if (this.deleteNode(ot, tree.children[i], graphid)) return true;

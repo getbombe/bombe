@@ -90,18 +90,21 @@ define([
 
       $("#delete-graph").click( function(){
           if(that.session.activeNode.data.graphid == that.session.tree.data.graphid) {
-            that.session.tree == {}
+            that.session.tree = {};
+            that.$el.find("#plot-preview").html("");
             renderTree(that.session.tree);
             return;
           }
 
-          console.log("deleted:" + that.session.activeNode.data.graphid);
-          Util.deleteNode(that.session.tree,that.session.tree, that.session.activeNode.data.graphid)
+          //console.log("deleted:" + that.session.activeNode.data.graphid);
+          Util.deleteNode(treeData, treeData, that.session.activeNode.data.graphid);
           //delete that.session.tree;
-          console.log(that.session.tree);
+          //console.log(that.session.tree);
           //console.log(that.session.activeNode);
           that.$el.find("#treeview").html("");
           renderTree(that.session.tree);
+          console.log(that.session.tree);
+          return;
       });
 
       if (graphid != 0) {
