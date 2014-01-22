@@ -22,6 +22,7 @@ define([
 
       // login button triggers
       var that = this;
+
       this.$el.find("#login").click(function(){
         var email = that.$el.find("input#email").val();
         var password = that.$el.find("input#password").val();
@@ -70,6 +71,15 @@ define([
                      },
                      function(){}
                     );
+      });
+
+      $('.form-group').keypress(function(e) {
+        if(e.which == 13) {
+          e.preventDefault();
+          $(this).blur();
+          that.$el.find('#login').focus().click();
+          return false;
+        }
       });
     },
 
