@@ -117,18 +117,17 @@ table {
   background: rgba(0, 0, 0, 0.8);
 }
 #upload {
-  background: url('/img/upload.svg') no-repeat center;
   background-color: #e5e5e5;
-  background-size: 25%;
   height: 100%;
   max-height: 100%;
   text-align: center;
   padding: 2.5em;
 }
 #upload #upload-container {
-  margin: 35% auto 0 auto;
+  margin: 10% auto 10% auto;
   width: 70%;
-  padding: 1.5em;
+  height: 70%;
+  padding: 2.5em;
   background: rgba(255, 255, 255, 0.8);
 }
 #upload #upload-container input {
