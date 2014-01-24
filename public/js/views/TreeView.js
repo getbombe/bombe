@@ -34,21 +34,18 @@ define([
         this.render();
         this.rendered = true;
       }
-      //d3.select("svg").remove();
 
       var that = this;
       var treeData = this.session.tree; 
 
       //Detect new nodes
       if (this.session.newNode != null) {
-        //console.log(this.session.activeNode);
+
         if (!(this.session.activeNode['data']['children'] instanceof Array)) {
           this.session.activeNode['data']['children'] = [];
         }
         this.session.activeNode['data']['children'].push(this.session.newNode);
-        //console.log(this.session.activeNode);
-        console.log(this.session.newNode);
-
+        
         Util.ajaxPOST("../newtree",
               {
                 tree: JSON.stringify(JSON.decycle(this.session.tree)),
@@ -62,7 +59,7 @@ define([
          this.session.newNode = null;
       }
 
-       //renderTree(this.session.tree);
+      $("#label").editable();
      
 
       window.idBefore = null;
@@ -79,10 +76,6 @@ define([
           Util.renderGraph(that.session.activeNode, "#plot-preview");
       });
 
-      // $(".nodebox").click( function(){
-      //   $(".nodebox").css("class", "active");
-      // });
-
       $(window).resize(function() {
           Util.renderGraph(that.session.activeNode, "#plot-preview");
        
@@ -96,11 +89,7 @@ define([
             return;
           }
 
-          //console.log("deleted:" + that.session.activeNode.data.graphid);
           Util.deleteNode(treeData, treeData, that.session.activeNode.data.graphid);
-          //delete that.session.tree;
-          //console.log(that.session.tree);
-          //console.log(that.session.activeNode);
           that.$el.find("#treeview").html("");
           renderTree(that.session.tree);
           console.log(that.session.tree);
@@ -120,12 +109,11 @@ define([
       }
 
       $("#export-graph").click(function(){
-        //console.log(that.session.activeNode.data);
+
         $("#export-graph").attr("disabled", "disabled");
         var tempDat = jQuery.extend({}, JSON.decycle(that.session.activeNode.data));
         delete tempDat['children'];
         tempDat = JSON.stringify(tempDat);
-        //var dat = JSON.decycle(JSON.decycle(that.session.activeNode.data));
         console.log(tempDat);
         Util.ajaxPOST("http://compute.getbombe.com/compute",
                         {
@@ -133,12 +121,10 @@ define([
                           data: tempDat
                         },
                         function(res){
-                          //console.log(res);
-                          //console.log("1");
+          
                           Util.logAction(that.session.email, "Exported Graph", JSON.decycle(that.session.activeNode.data));
-                          //console.log("2");
+                      
                           var filename = res.result.filename;
-                          console.log(filename);
                           
                           window.open("http://compute.getbombe.com/static/uploads/" + filename);
                           $("#export-graph").removeAttr("disabled");
@@ -166,8 +152,6 @@ define([
       
 
       function renderTree(treeData) {
-
-          //console.log(treeData);
 
           that.$el.find("#treeview").html("");
 

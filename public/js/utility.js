@@ -89,8 +89,6 @@ define([
 
 				var that = this;
 
-			  $("#label").editable();
-
 				$(titleid + " .graphid").html(id);
 
 				var margin = {top: 20, right: 20, bottom: 40, left: 70};
