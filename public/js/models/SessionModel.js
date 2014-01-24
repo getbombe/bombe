@@ -25,7 +25,7 @@ define([
 
           var that = this;
           Util.ajaxPOST("/data/load",
-                        { email: that.email 
+                        { email: that.email, 
                           key: key },
                         function(data){
                           that.graphData[key] = data.graphData;
@@ -45,7 +45,7 @@ define([
         // ONLY CALL THIS AFTER CALLING saveTempData
         var that = this;
         Util.ajaxPOST("/data/save",
-                      { email: that.email
+                      { email: that.email,
                         data: data
                       },
                       function(returnData){
