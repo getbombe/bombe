@@ -193,12 +193,17 @@ define([
                    return "translate(" + d.y + "," + d.x + ")";
                });
 
-           nodeGroup.append("rect")
+           /*nodeGroup.append("rect")
                .attr("class", "nodebox")
                .attr("x", -150/2)
                .attr("y", -100/2)
                .attr("width", 150)
-               .attr("height", 100);
+               .attr("height", 100);*/
+            nodeGroup.append("circle")
+              .attr("class", "nodebox")
+              .attr("x", -150/2)
+              .attr("y", -100/2)
+              .attr("r", 60);
 
           Util.miniGraph(treeData);
         }

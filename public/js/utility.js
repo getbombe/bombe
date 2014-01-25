@@ -168,8 +168,8 @@ define([
 		miniGraph: function(treeData) {
 
 			$('.node').each( function (index) {
-			    var width = 130;
-			    var height = 90;
+			    var width = 90;
+			    var height = 60;
 			    var id = $(this).attr("id");
 
 				var x = d3.scale.linear()
@@ -234,7 +234,7 @@ define([
 			      	.attr("d", line)
 			     	.attr("transform", function(d)
 				    {
-			         	return "translate(" + -65 + "," + -45 + ")";
+			         	return "translate(" + -42 + "," + -25 + ")";
 			     	});
 				      
 				
