@@ -17,7 +17,7 @@
 
 //Geometry
 @little-height: 3%;
-@big-height: 97%;
+@big-height: 100%;
 @max-height : 100%;
 
 //Typography
@@ -249,6 +249,10 @@ nav {
 	height: @max-height;
 	max-height: @max-height;
 
+	-webkit-box-shadow: -2px -3px 2px @subtle;
+  -moz-box-shadow:    -2px -3px 2px @subtle;
+  box-shadow:         -2px -3px 2px @subtle;
+
 	.graph {
 		height: 60%;
 	}
@@ -408,7 +412,7 @@ nav {
 	margin-top: 3em;
 }
 #graphModal, #setupModal {
-	padding-top: @little-height;
+	padding-top: 10%;
 }
 
 //D3
