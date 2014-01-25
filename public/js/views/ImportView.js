@@ -24,6 +24,27 @@ define([
       
       var that = this;
 
+      $("#setup-graph").click(function() {
+        this.blur();
+        $("#setupModal").modal({
+          remote: false
+        });  
+      });
+
+      $("#setup-done").click(function() {
+        window.location.href="/#/tree";
+      });
+
+      $('#tab1').click(function (e) {
+          e.preventDefault();
+          $('#tab1').tab('show');
+      });
+      $('#tab2').click(function (e) {
+          e.preventDefault();
+          $('#tab2').tab('show');
+          Util.renderGraph(that.session.tree, "#import-preview");
+      });
+
       // triggers
       // TODO: write these as events
       $("#inputfile").change(function(){
@@ -75,9 +96,12 @@ define([
                             Util.logAction(that.session.email, "Uploaded Tree Data", JSON.stringify(tree));
 
                             that.session.tree = tree;
+
+                            // $("#tab2").tab("show", function() {
+                            //   Util.renderGraph(tree, "#import-preview");
+                            // });
                             $("#tab2").click();
-                            Util.renderGraph(tree, "#step2");
-                            //window.location.href = "/#/tree";
+
                           },
                           function(){ console.log("error: failed to save initial tree"); },
                           function(){});
