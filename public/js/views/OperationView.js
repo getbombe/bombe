@@ -40,6 +40,7 @@ define([
 
       $("#operate-done").click( function() {
         window.location.href = "/#/tree";
+        ga('send', 'event', 'button', 'click', 'operate');
       });
 
 

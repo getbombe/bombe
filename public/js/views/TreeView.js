@@ -114,7 +114,7 @@ define([
         var tempDat = jQuery.extend({}, JSON.decycle(that.session.activeNode.data));
         delete tempDat['children'];
         tempDat = JSON.stringify(tempDat);
-        console.log(tempDat);
+
         Util.ajaxPOST("http://compute.getbombe.com/compute",
                         {
                           operation: "export_pdf",
@@ -123,6 +123,7 @@ define([
                         function(res){
           
                           Util.logAction(that.session.email, "Exported Graph", JSON.decycle(that.session.activeNode.data));
+                          ga('send', 'event', 'button', 'click', 'export');
                       
                           var filename = res.result.filename;
                           
