@@ -3,8 +3,9 @@ define([
   'underscore',
   'backbone',
   'utility',
-  'text!templates/tree_view.html'
-], function($, _, Backbone, Util, TreeViewTemplate){
+  'text!templates/tree_view.html', 
+  'bootstrap'
+], function($, _, Backbone, Util, TreeViewTemplate, Bootstrap){
 
   var TreeView = Backbone.View.extend({
     el: $("#tree"),
@@ -59,9 +60,6 @@ define([
          this.session.newNode = null;
       }
 
-      $("#label").editable();
-     
-
       window.idBefore = null;
       window.idAfter = null;
 
@@ -96,17 +94,12 @@ define([
           return;
       });
 
-      if (graphid != 0) {
-        $("#edit-graph").removeAttr("disabled");
-        $("#edit-graph").click( function(){
-          window.idAfter = graphid;
-          findTreeDataParent(treeData, graphid);
-          window.location.href = "/#/operation";
-        });
-      }
-      else {
-        $("#edit-graph").attr("disabled", "disabled");
-      }
+      $("#edit-graph").click(function() {
+        this.blur();
+        $("#graphModal").modal({
+          remote: false
+        });  
+      });
 
       $("#export-graph").click(function(){
 

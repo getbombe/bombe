@@ -110,6 +110,7 @@ table {
 	height: @max-height;
 	.no-space;
 	.no-pad;
+	padding-top: @little-height;
 }
 .container {
 	width: 100%;
@@ -182,6 +183,11 @@ table {
 	.no-space;
 	height: @little-height;
 	min-height: 2.5em;
+
+	-webkit-box-shadow: 2px 2px 2px @subtle;
+  -moz-box-shadow:    2px 2px 2px @subtle;
+  box-shadow:         2px 2px 2px @subtle;
+  z-index:99999;
 }
 nav {
 	overflow: hidden;
@@ -346,10 +352,10 @@ nav {
 	overflow: hidden;
 }
 .operate {
-	width: 45%;
-	//.centered;
 	.small-pad;
-	.small-margin;
+	padding-left: 2em;
+	padding-right: 2em;
+	.no-space;
 }
 .tag {
 	padding: 2px;
@@ -389,6 +395,9 @@ nav {
 	.small-pad;
 	.no-space;
 	margin-top: 3em;
+}
+#graphModal{
+	padding-top: @little-height;
 }
 
 //D3

@@ -9,22 +9,37 @@
     <div class="graph">
     	<div id="plot-preview-titlebar">
 			<p class="text-left">Graph: #<span class="graphid"></span></p>
-			<!-- <p class="lineage"><span class="tag">#001</span> <strong>divided</strong> by <span class="tag">#002</span></p> -->
-			<!-- <h3 class="title">Fig. 3</h3> -->
 		</div>
 		<div graphid="" id="plot-preview" class="plot">		
 		</div>
-		<a id="label" data-type="text" data-pk="1" data-title="Change label:">derp</a>
 	</div>
 
-	<!-- <button id="edit-graph" class="btn btn-primary operate">Edit Graph</button> -->
-
-	<button id="create-graph" class="btn btn-success operate">Create New Graph</button>
-
-	<button id="export-graph" class="btn btn-info operate">Export Graph</button>
-
-	<button id="delete-graph" class="btn btn-danger operate">Delete Graph</button>
-
+	<div class="btn-group">
+		<button id="create-graph" class="btn btn-default operate">Create</button>
+		<button id="edit-graph" class="btn btn-default operate">Edit</button>
+		<button id="export-graph" class="btn btn-default operate">Export</button>
+		<button id="delete-graph" class="btn btn-default operate">Delete</button>
+	</div>
+	<!-- Modal -->
+	<div class="modal fade" id="graphModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel">Configure Graph</h4>
+	      </div>
+	      <div class="modal-body">
+	        GRAPH EDITING OPTIONS HERE
+	      </div>
+	      <div class="modal-footer">
+	      	<div class="btn-group">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-success">Save</button>
+		       </div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
   </div>
 </div>

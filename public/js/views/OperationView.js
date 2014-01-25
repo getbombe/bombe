@@ -21,21 +21,12 @@ define([
       this.$el.html(template);
 
       var that = this;
-      // if ($('#plot-before').height() != 0) {
-      //   window.opHeight = $('#plot-before').height();
-      //   window.opWidth = $('#plot-before').width();
-      // }
+    
       Util.renderGraph(that.session.activeNode, "#plot-before");
 
       $(window).resize(function() {
-   
-      //   if ($('#plot-before').height() != 0) {
-      //     window.opHeight = $('#plot-before').height();
-      //     window.opWidth = $('#plot-before').width();
-      // }
         Util.renderGraph(that.session.activeNode, "#plot-before");
         Util.renderGraph(that.session.newNode, "#plot-after");
-          //console.log("test");
       });
 
       $("#operate-done").click( function() {
@@ -108,10 +99,10 @@ define([
       Util.logAction(this.session.email, "Viewed Operation Page", "null");
 
       this.render();
-      // if(!this.rendered) {
-      //   this.render();
-      //   this.rendered = true;
-      // }
+       if(!this.rendered) {
+         this.render();
+         this.rendered = true;
+       }
     }
   });
 
