@@ -64,8 +64,6 @@ define([
             tree.data = data;
             tree.children = [];
 
-            //that.session.tree = tree;
-
             // save initial tree
             Util.ajaxPOST("../newtree",
                           {
@@ -77,7 +75,9 @@ define([
                             Util.logAction(that.session.email, "Uploaded Tree Data", JSON.stringify(tree));
 
                             that.session.tree = tree;
-                            window.location.href = "/#/tree";
+                            $("#tab2").click();
+                            Util.renderGraph(tree, "#step2");
+                            //window.location.href = "/#/tree";
                           },
                           function(){ console.log("error: failed to save initial tree"); },
                           function(){});

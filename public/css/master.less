@@ -1,6 +1,6 @@
 
 //Base Colors
-@background: #E5E5E5;
+@background: #EAEAEA;
 @subtle: #777777;
 @blank: #FFFFFF;
 @translucent: rgba(255, 255, 255, 0.8);
@@ -155,11 +155,12 @@ table {
 	.big-pad;
 
 	#upload-container {
-		margin: 10% auto 10% auto;
-		width: 70%;
-		height: 70%;
-		.big-pad;
-		background: @translucent;
+		background-color: @blank;
+		margin: 5% auto 5% auto;
+		width: 90%;
+		height: 90%;
+		.med-pad;
+		.bordered;
 
 		input {
 			text-align: center;
@@ -251,6 +252,10 @@ nav {
 	.graph {
 		height: 60%;
 	}
+}
+#step2 {
+	width: 100%;
+	height: 100%;
 }
 #footer {
 	color: @body-font;
@@ -364,6 +369,9 @@ nav {
 .tag:hover {
 	background: @highlight;
 }
+.help-block {
+	margin-top: @little-height;
+}
 .errordisplay{
 	background-color: @error-bg-red;
 	color: @error-text-red;
@@ -374,7 +382,6 @@ nav {
 	.no-space;
 	margin-bottom: 1em;
 }
-
 .successdisplay{
 	background-color: @success-bg-green;
 	color: @success-text-green;
