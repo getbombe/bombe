@@ -14,7 +14,6 @@ define([
     rendered: false,
 
     initialize: function(session){
-      //console.log(this.session);
       this.session = session;
     },
 
@@ -22,6 +21,12 @@ define([
       var template = _.template(DataImportTemplate, {data: null});
       this.$el.html(template);
       
+      //In case user went back to this screen to edit root graph for reasons unknown...
+      if (this.session.tree) {
+        this.session.activeNode = this.session.tree;  
+      }
+      
+
       var that = this;
 
       $("#setup-graph").click(function() {
@@ -29,7 +34,24 @@ define([
         $("#setupModal").modal({
           remote: false
         });  
+
+        $("#xLabel").val(that.session.activeNode.data.label.x);
+        $("#yLabel").val(that.session.activeNode.data.label.y);
+        $("#xUnit").val(that.session.activeNode.data.unit.x);
+        $("#yUnit").val(that.session.activeNode.data.unit.y);
+
+        $("#setupModalSubmit").click(function(){
+          that.session.activeNode.data.label.x = $("#xLabel").val();
+          that.session.activeNode.data.label.y = $("#yLabel").val();
+          that.session.activeNode.data.unit.x = $("#xUnit").val();
+          that.session.activeNode.data.unit.y = $("#yUnit").val();
+          Util.renderGraph(that.session.activeNode, "#import-preview");
+        });
       });
+
+      $(window).resize(function() {
+        Util.renderGraph(that.session.activeNode, "#import-preview");
+      })
 
       $("#setup-done").click(function() {
         window.location.href="/#/tree";
@@ -96,10 +118,8 @@ define([
                             Util.logAction(that.session.email, "Uploaded Tree Data", JSON.stringify(tree));
 
                             that.session.tree = tree;
+                            that.session.activeNode = tree;
 
-                            // $("#tab2").tab("show", function() {
-                            //   Util.renderGraph(tree, "#import-preview");
-                            // });
                             $("#tab2").click();
 
                           },

@@ -96,9 +96,22 @@ define([
 
       $("#edit-graph").click(function() {
         this.blur();
-        $("#graphModal").modal({
+        $("#setupModal").modal({
           remote: false
-        });  
+        });
+
+        $("#xLabel").val(that.session.activeNode.data.label.x);
+        $("#yLabel").val(that.session.activeNode.data.label.y);
+        $("#xUnit").val(that.session.activeNode.data.unit.x);
+        $("#yUnit").val(that.session.activeNode.data.unit.y);
+
+        $("#setupModalSubmit").click(function(){
+          that.session.activeNode.data.label.x = $("#xLabel").val();
+          that.session.activeNode.data.label.y = $("#yLabel").val();
+          that.session.activeNode.data.unit.x = $("#xUnit").val();
+          that.session.activeNode.data.unit.y = $("#yUnit").val();
+          Util.renderGraph(that.session.activeNode, "#plot-preview");
+        });
       });
 
       $("#export-graph").click(function(){

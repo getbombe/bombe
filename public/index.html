@@ -61,6 +61,44 @@
         <div id="registration" class="viewcontainer">
         </div>
 
+        <!-- Universal Graph Config Modal -->
+        <div class="modal fade" id="setupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Configure Graph</h4>
+              </div>
+              <div class="modal-body text-left">
+                <form role="form" class="text-left">
+                  <div class="form-group">
+                    <label for="xLabel">X-Axis Label</label>
+                    <input type="text" id="xLabel" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="yLabel">Y-Axis Label</label>
+                    <input type="text" id="yLabel" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="xUnit">X-Axis Units</label>
+                    <input type="text" id="xUnit" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="yUnit">Y-Axis Units</label>
+                    <input type="text" id="yUnit" class="form-control">
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-success" data-dismiss="modal" id="setupModalSubmit">Save</button>
+                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 <!-- UserVoice JavaScript SDK (only needed once on a page) -->
