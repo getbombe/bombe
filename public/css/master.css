@@ -48,6 +48,11 @@
   -webkit-border-radius: 3px;
   border-radius: 3px;
 }
+.shadowed {
+  -webkit-box-shadow: 0px 2px 2px #777777;
+  -moz-box-shadow: 0px 2px 2px #777777;
+  box-shadow: 0px 2px 2px #777777;
+}
 html,
 body {
   background-color: #eaeaea;
@@ -91,7 +96,7 @@ table {
   height: inherit;
   margin: 0;
   padding: 0;
-  padding-top: 3%;
+  padding-top: 35px;
 }
 .viewcontainer {
   display: none;
@@ -152,10 +157,10 @@ table {
   background-color: #1a62aa;
   padding: 0;
   margin: 0;
-  height: 3%;
-  -webkit-box-shadow: 2px 2px 2px #777777;
-  -moz-box-shadow: 2px 2px 2px #777777;
-  box-shadow: 2px 2px 2px #777777;
+  height: 35px;
+  -webkit-box-shadow: 0px 2px 2px #777777;
+  -moz-box-shadow: 0px 2px 2px #777777;
+  box-shadow: 0px 2px 2px #777777;
   z-index: 99999;
 }
 nav {
@@ -211,9 +216,9 @@ nav ul img {
   padding: 1.5em;
   height: 100%;
   max-height: 100%;
-  -webkit-box-shadow: -2px -3px 2px #777777;
-  -moz-box-shadow: -2px -3px 2px #777777;
-  box-shadow: -2px -3px 2px #777777;
+  -webkit-box-shadow: 0px 2px 2px #777777;
+  -moz-box-shadow: 0px 2px 2px #777777;
+  box-shadow: 0px 2px 2px #777777;
 }
 #preview .graph {
   height: 60%;
@@ -344,7 +349,7 @@ nav ul img {
   background: #1f90c1;
 }
 .help-block {
-  margin-top: 3%;
+  margin-top: 35px;
 }
 .errordisplay {
   background-color: #ff6666;

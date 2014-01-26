@@ -16,7 +16,7 @@
 @success-text-green: #009900;
 
 //Geometry
-@little-height: 3%;
+@little-height: 35px;
 @big-height: 100%;
 @max-height : 100%;
 
@@ -74,6 +74,11 @@
 	border: 1px solid @subtle;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
+}
+.shadowed {
+	-webkit-box-shadow: 0px 2px 2px @subtle;
+  -moz-box-shadow:    0px 2px 2px @subtle;
+  box-shadow:         0px 2px 2px @subtle;
 }
 
 //General
@@ -182,10 +187,8 @@ table {
 	.no-pad;
 	.no-space;
 	height: @little-height;
+	.shadowed;
 
-	-webkit-box-shadow: 2px 2px 2px @subtle;
-  -moz-box-shadow:    2px 2px 2px @subtle;
-  box-shadow:         2px 2px 2px @subtle;
   z-index:99999;
 }
 nav {
@@ -248,9 +251,7 @@ nav {
 	height: @max-height;
 	max-height: @max-height;
 
-	-webkit-box-shadow: -2px -3px 2px @subtle;
-  -moz-box-shadow:    -2px -3px 2px @subtle;
-  box-shadow:         -2px -3px 2px @subtle;
+	.shadowed;
 
 	.graph {
 		height: 60%;
