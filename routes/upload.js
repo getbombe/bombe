@@ -1,22 +1,20 @@
 var fs = require('fs');
 var csv = require('csv');
+var strsplit = require('strsplit');
 
 var StringDecoder = require('string_decoder').StringDecoder;
 var decoder = new StringDecoder('utf8');
 
-var dataFileName = "public/uploads/data.tsv"
-var delimiter = "," //e.g. can also use whitespace: " "
+//var delimiter = "," //e.g. can also use whitespace: " " or "\t"
 var csvString = "";
 
 var fs = require("fs");
 
 var upload = function(req, res){
-	console.log(req.body);
 	fs.readFile(req.files.uploadedfile.path, function (err, data) {
 		var email = req.body.email;
 
 		var newPath = __dirname + "/../uploadedfiles/" + email + Date.now();
-		console.log(newPath);
 
 		fs.writeFile(newPath, data, function (err) {
 			console.log(err);
@@ -25,13 +23,10 @@ var upload = function(req, res){
 		var strData = decoder.write(data);
 
 		var output_json = csv2json(strData, {
-	        delim: delimiter,
 	        textdelim: "\""
 	    });
 
-	    console.log(output_json);
-
-	    res.writeHead(200, { 'Content-Type': 'application/json' });
+	  res.writeHead(200, { 'Content-Type': 'application/json' });
 		
 		res.write(JSON.stringify(
 			{
@@ -43,46 +38,35 @@ var upload = function(req, res){
 	});
 };
 
-
-
-// parser
-function isdef(ob) {
-	if(typeof(ob) == "undefined") return false;
-	return true;
-}
-
 function splitCSV(str, sep) {
-    for (var foo = str.split(sep = sep || ","), x = foo.length - 1, tl; x >= 0; x--) {
-        if (foo[x].replace(/"\s+$/, '"').charAt(foo[x].length - 1) == '"') {
-            if ((tl = foo[x].replace(/^\s+"/, '"')).length > 1 && tl.charAt(0) == '"') {
-                foo[x] = foo[x].replace(/^\s*"|"\s*$/g, '').replace(/""/g, '"');
-            } else if (x) {
-                foo.splice(x - 1, 2, [foo[x - 1], foo[x]].join(sep));
-            } else foo = foo.shift().split(sep).concat(foo);
-        } else foo[x].replace(/""/g, '"');
-    } return foo;
+    if (!(sep == " ")) {
+    	return strsplit(str, sep);
+    } else {
+    	return strsplit(str, /\s+/);
+    }
 };
 
 function csv2json (csvdata, args) {
 	args = args || {};
-	var delim = isdef(args.delim) ? args.delim : ",";
-	// Unused
-	//var textdelim = isdef(args.textdelim) ? args.textdelim : "";
+	var delim = "";
 
 	var csvlines = csvdata.split("\n");
 	var csvheaders = ["x", "y"];
-	var csvlabels = splitCSV(csvlines[0], delim);
 	var csvrows = csvlines.slice(1, csvlines.length);
 
-	//console.log(csvheaders);
+	//Try to autodetect if the delim should be tabs or commas
+	if (splitCSV(csvlines[0], " ").length > splitCSV(csvlines[0], ",").length) {
+		delim = " ";
+	} else {
+		delim = ",";
+	}
+
+
 	var ret = {};
 
 	for (var h in csvheaders) {
 		ret[csvheaders[h]] = [];
 	}
-
-	//ret['headers'] = csvheaders;
-	//ret['rows'] = [];
 
 	for(var r in csvrows) {
 		if (csvrows.hasOwnProperty(r)) {
@@ -105,8 +89,6 @@ function csv2json (csvdata, args) {
 					ret[csvheaders[i]].push(item);
 				}
 			}
-
-			//ret.rows.push(rowob);
 		}
 	}
 
