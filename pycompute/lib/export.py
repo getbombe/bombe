@@ -29,7 +29,6 @@ class Export:
 		ax.set_xlabel(x_label + " ("+x_unit+")")
 		ax.set_ylabel(y_label + " ("+y_unit+")")
 
-		#path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', '/static/uploads'))
 		path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), os.pardir, 'static/uploads'))
 
 		name = str(data['userid']) + '_' + str(data['graphid']) + str(math.floor(time.time())) + '.pdf'

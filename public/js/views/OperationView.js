@@ -55,11 +55,11 @@ define([
 
         if(this.value == "calculus_differentiate"){
           op = "calculus_differentiate";
-        } else if(this.value == "stats_poly_regression_reg"){
+        } else if(this.value == "stats_poly_regression"){
           op = "stats_poly_regression";
           data.order = 1;
           data.res = 1;
-        } else if(this.value == "stats_poly_regression_spl"){
+        } else if(this.value == "background_spline"){
           op = "background_spline";
           data.res = 1;
         } else if(this.value == "transform_fourier"){
@@ -76,7 +76,6 @@ define([
                           data: JSON.stringify(data)
                         },
                         function(res){
-                          //console.log(res);
                           Util.logAction(that.session.email, "Transformed Graph", $("#opselect").value);
                           data.data = res.result.data;
                           data.graphid = Math.floor(Math.random() * (100000000 -  + 1)) + 1;
