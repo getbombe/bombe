@@ -62,12 +62,12 @@
         </div>
 
         <!-- Universal Graph Config Modal -->
-        <div class="modal fade" id="setupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="setupModal" tabindex="-1" role="dialog" aria-labelledby="setupModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Configure Graph</h4>
+                <h4 class="modal-title" id="setupModalLabel">Configure Graph</h4>
               </div>
               <div class="modal-body text-left">
                 <form role="form" class="text-left">
@@ -93,7 +93,28 @@
                 <div class="btn-group">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-success" data-dismiss="modal" id="setupModalSubmit">Save</button>
-                 </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Universal Graph Export Modal -->
+        <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exportModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="exportModalLabel">Download Graph</h4>
+              </div>
+              <div id="exportModal-body" class="modal-body text-center">
+                
+              </div>
+              <div class="modal-footer">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
               </div>
             </div>
           </div>

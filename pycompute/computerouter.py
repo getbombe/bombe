@@ -17,7 +17,7 @@ class ComputeRouter:
 		'calculus_integrate': Calculus.integrate,
 
 		#export
-		'export_pdf': Export.pdf,
+		'export_export': Export.export,
 
 		#graphical
 		'graphical_xy_dists' : Graphical.xy_dists,
@@ -91,6 +91,7 @@ if __name__ == '__main__':
 	data['order'] = '2'
 	data['res'] = '10'
 	data['real'] = 'True'
+	data['graphtype'] = 'pdf'
 	data = json.dumps(data)
 
 	'''TEST BACKGROUND FUNCTIONS'''
@@ -113,7 +114,7 @@ if __name__ == '__main__':
 	plt.show()
 
 	'''TEST EXPORT FUNCTIONS'''
-	expr = cr.compute('export_pdf', data)
+	expr = cr.compute('export_export', data)
 	print expr['filename']
 
 	'''TEST GRAPHICAL FUNCTIONS'''

@@ -123,7 +123,7 @@ define([
 
         Util.ajaxPOST("http://compute.getbombe.com/compute",
                         {
-                          operation: "export_pdf",
+                          operation: "export_export",
                           data: tempDat
                         },
                         function(res){
@@ -131,9 +131,15 @@ define([
                           Util.logAction(that.session.email, "Exported Graph", JSON.decycle(that.session.activeNode.data));
                           ga('send', 'event', 'button', 'click', 'export');
                       
-                          var filename = res.result.filename;
+                          var filename_pdf = res.result.filename_pdf;
+                          var filename_svg = res.result.filename_svg;
+                          var filename_eps = res.result.filename_eps;
                           
-                          window.open("http://compute.getbombe.com/static/uploads/" + filename);
+                          $("#exportModal-body").append('Download your graph in the following formats:');
+                          $("#exportModal-body").append(' <a target="_blank" href="http://compute.getbombe.com/static/uploads/' + filename_pdf + '">PDF</a>');
+                          $("#exportModal-body").append(' <a target="_blank" href="http://compute.getbombe.com/static/uploads/' + filename_svg + '">SVG</a>');
+                          $("#exportModal-body").append(' <a target="_blank" href="http://compute.getbombe.com/static/uploads/' + filename_eps + '">EPS</a>');
+                          $("#exportModal").modal();
                           $("#export-graph").removeAttr("disabled");
                         },
                         function(){ console.log("Compute failed."); },

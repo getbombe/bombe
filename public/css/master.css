@@ -381,7 +381,8 @@ nav ul img {
   margin-top: 3em;
 }
 #graphModal,
-#setupModal {
+#setupModal,
+#exportModal {
   padding-top: 10%;
 }
 .nodebox {
