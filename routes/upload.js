@@ -55,7 +55,7 @@ function csv2json (csvdata, args) {
 	var csvrows = csvlines.slice(1, csvlines.length);
 
 	//Try to autodetect if the delim should be tabs or commas
-	if (splitCSV(csvlines[0], " ").length > splitCSV(csvlines[0], ",").length) {
+	if (csvrows[0].search(",") == -1) {
 		delim = " ";
 	} else {
 		delim = ",";
