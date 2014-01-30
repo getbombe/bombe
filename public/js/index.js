@@ -4,7 +4,8 @@ require.config({
     underscore: 'http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min',
     backbone: 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min',
     'jquery.form': 'http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.46/jquery.form',
-    bootstrap: 'http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min'
+    bootstrap: 'http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min',
+    slider: '/js/lib/bootstrap-slider'
   },
   shim: 
   { 
@@ -28,7 +29,12 @@ require.config({
 
     "bootstrap": {
         deps: ["jquery"]
+    },
+
+    "slider": {
+        deps: ["jquery", "bootstrap"]
     }
+
   }    
 
 });

@@ -12,7 +12,7 @@ class Background:
 		y_dat = data['data']['y']
 		res = float(data['res'])
 
-		x_itp = list(linspace(x_dat[0], x_dat[len(x_dat)-1], len(x_dat) * res))
+		x_itp = list(linspace(x_dat[0], x_dat[len(x_dat)-1], round(len(x_dat) * res)))
 
 		cub_spline = interp1d(x_dat, y_dat, kind='cubic')
 		y_itp = list(cub_spline(x_itp))

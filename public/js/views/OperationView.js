@@ -3,8 +3,10 @@ define([
   'underscore',
   'backbone',
   'utility',
+  'bootstrap',
+  'slider',
   'text!templates/operation_view.html'
-], function($, _, Backbone, Util, OperationViewTemplate){
+], function($, _, Backbone, Util, Bootstrap, Slider, OperationViewTemplate){
 
   var OperationView = Backbone.View.extend({
     el: $("#operation"),
@@ -53,39 +55,77 @@ define([
             "userid" : that.session.email
         };
 
-        if(this.value == "calculus_differentiate"){
-          op = "calculus_differentiate";
-        } else if(this.value == "stats_poly_regression"){
-          op = "stats_poly_regression";
+        op = this.value;
+        $(".slider").hide();
+        $("#operate-slider").unbind();
+
+        if(op == "stats_poly_regression"){
+          $(".slider").show();
+          $("#operate-slider").unbind();
+          $("#operate-slider").slider({
+            min: "1",
+            max: "10",
+            step: "1",
+            value: "1",
+            tooltip: "show"
+          });
+          $("#operate-help").html("<p>Choose polynomial order</p>");
+          $("#operate-slider").on("slideStop", function(){
+            data.order = parseFloat($(".tooltip-inner").html());
+            data.data.x = that.session.activeNode.data.data.x;
+            data.data.y = that.session.activeNode.data.data.y;
+            compute(op, data);
+          });
           data.order = 1;
           data.res = 1;
-        } else if(this.value == "background_spline"){
-          op = "background_spline";
+        } else if(op == "background_spline"){
+          $(".slider").show();
+          $("#operate-slider").unbind();
+          $("#operate-slider").slider({
+            min: "1",
+            max: "20",
+            step: "1",
+            value: "10",
+            tooltip: "show"
+          });
+          $("#operate-help").html("<p>Choose spline roughness</p>");
+          $("#operate-slider").on("slideStop", function(){
+            data.res = parseFloat($(".tooltip-inner").html()) / 10.0;
+            data.data.x = that.session.activeNode.data.data.x;
+            data.data.y = that.session.activeNode.data.data.y;
+            compute(op, data);
+          });
           data.res = 1;
-        } else if(this.value == "transform_fourier"){
-          op = "transform_fourier";
+          
+        } else if(op == "transform_fourier"){
           data.real = "True";
         } else {
           // select
         }
 
-        if(op){
+        compute(op, data);
+
+      });
+
+      function compute (op, data){
+        if(op && data){
           Util.ajaxPOST("http://compute.getbombe.com/compute",
                         {
                           operation: op,
-                          data: JSON.stringify(data)
+                          data: JSON.stringify(JSON.decycle(data))
                         },
                         function(res){
                           Util.logAction(that.session.email, "Transformed Graph", $("#opselect").value);
                           data.data = res.result.data;
-                          data.graphid = Math.floor(Math.random() * (100000000 -  + 1)) + 1;
+                          data.graphid = Math.floor(Math.random() * (100000000 - 1)) + 1;
                           Util.renderGraph({data: data}, "#plot-after");
                           that.session.newNode = {data: data};
                         },
                         function(){ console.log("Compute failed."); },
                         function(){});
         }
-      });
+      }
+
     },
 
     hide: function(){
