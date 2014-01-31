@@ -53,7 +53,7 @@ define([
                                             //console.log("1");
                                             that.session.tree = JSON.parse(data.tree);
                                             //console.log("2");
-                                            window.location.href = "/#/tree";  
+                                            window.location.href = "/#/tree";
                                           }
                                           else {
                                             //console.log("3");

@@ -39,7 +39,8 @@ var register = function(req, res){
 			console.log(result);
 			res.write(JSON.stringify(
 				{
-					success: true
+					success: true,
+					key: simpleauth.generateKey(email)
 				}
 			));
 		}

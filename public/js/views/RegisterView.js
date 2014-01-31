@@ -39,7 +39,10 @@ define([
                      },
                      function(data){
                         if(data.success){
-                          that.displaySuccessMessage();
+                          that.session.isLoggedIn = true;
+                          that.session.email = email;
+                          that.session.apiKey = data.key;
+                          window.location.href = "/#/import";
                         } else {
                           that.displayErrorMessage();
                         }
