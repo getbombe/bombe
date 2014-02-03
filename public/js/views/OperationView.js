@@ -116,7 +116,7 @@ define([
           //   data.data.y = that.session.activeNode.data.data.y;
           //   compute(op, data);
           // });
-          data.sigma = 1;
+          data.sigma = 20;
         } else {
           // select
         }

@@ -1,7 +1,8 @@
 from numpy import *
 import scipy
 import scipy.fftpack
-import scipy.ndimage.filters
+import scipy.signal
+
 
 class Transform:
 
@@ -30,13 +31,15 @@ class Transform:
 
 	@staticmethod
 	def gaussian_filter (data):
-		'''Gaussian filtering'''
+		'''Gaussian window convolution'''
 
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
 
-		sigma = data['sigma']
+		sigma = float(data['sigma'])
 
-		data['data']['y'] = list(scipy.ndimage.filters.gaussian_filter(y_dat, sigma))
+		 
+		gs = list(scipy.signal.gaussian(len(y_dat), sigma))
+		data['data']['y'] = list(scipy.signal.convolve(y_dat, gs, mode='same'))
 
 		return data
