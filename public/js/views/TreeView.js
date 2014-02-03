@@ -147,6 +147,7 @@ define([
                       );
       });
 
+
       $("#create-graph").click ( function(){
         var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
         window.idBefore = graphid;

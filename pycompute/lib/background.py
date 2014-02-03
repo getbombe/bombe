@@ -33,7 +33,7 @@ class Background:
 		res = float(data['res'])
 
 		s = UnivariateSpline(x_dat, y_dat, s=res)
-		ys = s(x_dat)
+		ys = list(s(x_dat))
 
 		if data['removal'] == 'subtract':
 			data['data']['y'] -= ys

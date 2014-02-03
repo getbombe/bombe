@@ -37,6 +37,6 @@ class Transform:
 
 		sigma = data['sigma']
 
-		data['data']['y'] = scipy.ndimage.filters.gaussian_filter(y_dat, sigma)
+		data['data']['y'] = list(scipy.ndimage.filters.gaussian_filter(y_dat, sigma))
 
 		return data
