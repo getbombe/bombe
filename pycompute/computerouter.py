@@ -27,7 +27,8 @@ class ComputeRouter:
 		'stats_poly_regression' : Stats.poly_regression,
 
 		#transforms
-		'transform_fourier': Transform.fourier
+		'transform_fourier': Transform.fourier,
+		'transform_gaussian_filter': Transform.gaussian_filter
 	}
 
 	def dataPreprocess(self, data):
@@ -75,15 +76,16 @@ if __name__ == '__main__':
 	cr = ComputeRouter()
 	
 	#create dummy json data
+	arr = arange(0, 10, 0.5)
 	data = dict()
 	data['userid'] = '0001'
 	data['graphid'] = '1234'
 	data['data'] = {
-		'x': ['1','2','3','4','5'],
-		'y': ['1','4','9','16','25']
+		'x': ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+		'y': ['1', '4', '9', '16', '25', '36', '49', '64', '81', '100']
 	}
 	data['unit'] = {
-		'x': 'km',
+		'x': 't',
 		'y': 'km/h'
 	}
 	data['p1'] = '1'
@@ -92,6 +94,11 @@ if __name__ == '__main__':
 	data['res'] = '10'
 	data['real'] = 'True'
 	data['graphtype'] = 'pdf'
+	data['sigma'] = '3'
+	data['label'] = {}
+	data['label']['x'] = 'derp'
+	data['label']['y'] = 'derp'
+	data['filename'] = 'derp'
 	data = json.dumps(data)
 
 	'''TEST BACKGROUND FUNCTIONS'''
@@ -131,5 +138,9 @@ if __name__ == '__main__':
 	'''TEST TRANSFORM FUNCTIONS'''
 	ftr = cr.compute('transform_fourier', data)
 	plt.plot(ftr['data']['x'], ftr['data']['y'])
+	plt.show()
+
+	gaus = cr.compute('transform_gaussian_filter', data)
+	plt.plot(gaus['data']['x'], gaus['data']['y'])
 	plt.show()
 

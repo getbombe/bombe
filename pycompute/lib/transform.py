@@ -1,6 +1,7 @@
 from numpy import *
 import scipy
 import scipy.fftpack
+import scipy.ndimage.filters
 
 class Transform:
 
@@ -24,5 +25,18 @@ class Transform:
 
 		data['data']['x'] = list(x_ft)
 		data['data']['y'] = list(y_ft)
+
+		return data
+
+	@staticmethod
+	def gaussian_filter (data):
+		'''Gaussian filtering'''
+
+		x_dat = data['data']['x']
+		y_dat = data['data']['y']
+
+		sigma = data['sigma']
+
+		data['data']['y'] = scipy.ndimage.filters.gaussian_filter(y_dat, sigma)
 
 		return data
