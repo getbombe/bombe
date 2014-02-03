@@ -36,7 +36,7 @@ class Background:
 		ys = list(s(x_dat))
 
 		if data['removal'] == 'subtract':
-			data['data']['y'] -= ys
+			data['data']['y'] = list(subtract(y_dat, ys)) 
 		elif data['removal'] == 'divide':
 			data['data']['y'] = list(divide(y_dat, ys))
 		else:

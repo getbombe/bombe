@@ -100,23 +100,26 @@ define([
         } else if(op == "transform_fourier"){
           data.real = "True";
         } else if (op == "transform_gaussian_filter") {
-          // $(".slider").show();
-          // $("#operate-slider").unbind();
-          // $("#operate-slider").slider({
-          //   min: "1",
-          //   max: "100",
-          //   step: "10",
-          //   value: "10",
-          //   tooltip: "show"
-          // });
-          // $("#operate-help").html("<p>Choose gaussian sigma-value</p>");
-          // $("#operate-slider").on("slideStop", function(){
-          //   data.res = parseFloat($(".tooltip-inner").html());
-          //   data.data.x = that.session.activeNode.data.data.x;
-          //   data.data.y = that.session.activeNode.data.data.y;
-          //   compute(op, data);
-          // });
-          data.sigma = 20;
+          $(".slider").show();
+          $("#operate-slider").unbind();
+          $("#operate-slider").slider({
+            min: "1",
+            max: "100",
+            step: "10",
+            value: "10",
+            tooltip: "show"
+          });
+          $("#operate-help").html("<p>Choose gaussian sigma-value</p>");
+          $("#operate-slider").on("slideStop", function(){
+            data.res = parseFloat($(".tooltip-inner").html());
+            data.data.x = that.session.activeNode.data.data.x;
+            data.data.y = that.session.activeNode.data.data.y;
+            compute(op, data);
+          });
+          data.sigma = 10;
+        } else if (op == "background_spline_smooth") {
+          data.res = 1;
+          data.removal = 'subtract';
         } else {
           // select
         }
