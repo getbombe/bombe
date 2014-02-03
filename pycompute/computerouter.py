@@ -7,10 +7,12 @@ from lib.export import *
 
 class ComputeRouter:
 	''' static, and should be used that way '''
+	
 	computeMap = {
 		#background removal and interpolation
 		'background_linear': Background.linear,
 		'background_spline': Background.spline,
+		'background_spline_smooth': Background.spline_smooth,
 
 		#calculus
 		'calculus_differentiate': Calculus.differentiate,
@@ -99,17 +101,17 @@ if __name__ == '__main__':
 	data['label']['x'] = 'derp'
 	data['label']['y'] = 'derp'
 	data['filename'] = 'derp'
+	data['removal'] = 'divide'
 	data = json.dumps(data)
 
 	'''TEST BACKGROUND FUNCTIONS'''
-	#linear fit on two points
 	lin = cr.compute('background_linear', data)
-
-	#spline fit
 	spl = cr.compute('background_spline', data)	
+	spl_sm = cr.compute('background_spline_smooth', data)
 	
 	plt.plot(lin['data']['x'], lin['data']['y'])
 	plt.plot(spl['data']['x'], spl['data']['y'])
+	plt.plot(spl_sm['data']['x'], spl_sm['data']['y'])
 	plt.show()
 
 	'''TEST CALCULUS FUNCTIONS'''

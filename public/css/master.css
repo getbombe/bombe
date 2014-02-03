@@ -168,6 +168,7 @@ nav {
   height: 100%;
   float: right;
   text-align: right;
+  padding-top: 15px;
 }
 nav ul {
   list-style-type: none;
@@ -175,6 +176,14 @@ nav ul {
 }
 nav ul li {
   display: inline;
+  padding: 15px;
+}
+nav ul li a {
+  color: #ffffff;
+}
+nav ul li a:hover {
+  color: #1f90c1;
+  text-decoration: none;
 }
 nav ul img {
   width: 2.0em;

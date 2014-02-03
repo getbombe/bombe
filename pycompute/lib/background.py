@@ -1,12 +1,13 @@
 from numpy import *
 from scipy.interpolate import interp1d
+from scipy.interpolate import UnivariateSpline
 import json
 
 class Background:
 
 	@staticmethod
 	def spline (data):
-		'''cubic spline'''
+		'''cubic spline interpolation'''
 
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
@@ -18,8 +19,29 @@ class Background:
 		y_itp = list(cub_spline(x_itp))
 
 		data['data']['x'] = x_itp
-		data['data']['y'] = y_itp
 
+		data['data']['y'] = y_itp	
+
+		return data
+
+	@staticmethod
+	def spline_smooth (data):
+		'''spline smoothing w/ optional removal'''
+
+		x_dat = data['data']['x']
+		y_dat = data['data']['y']
+		res = float(data['res'])
+
+		s = UnivariateSpline(x_dat, y_dat, s=res)
+		ys = s(x_dat)
+
+		if data['removal'] == 'subtract':
+			data['data']['y'] -= ys
+		elif data['removal'] == 'divide':
+			data['data']['y'] = list(divide(y_dat, ys))
+		else:
+			data['data']['y'] = ys
+		
 		return data
 
 
