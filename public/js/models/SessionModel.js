@@ -5,6 +5,8 @@ define([
 ], function(_, Backbone, Util) {
 
   var SessionModel = Backbone.Model.extend({
+      graphData: [],
+
   		defaults : {
         isLoggedIn: false,
         email: null,
@@ -12,49 +14,50 @@ define([
         tree: null,
         newNode: null,
         activeNode: null,
-
-        graphData: []
       },
 
       initialize: function( options ) {
         // none so far
   		},
 
-      getGraphData: function(key, callback) {
-          if (this.graphData[key]) return this.graphData[key]
+      // TODO: make this not async
+      getGraphData: function(key) {
+        if (this.graphData[key]) return this.graphData[key]
 
-          var that = this;
-          Util.ajaxPOST("/data/load",
-                        { email: that.email, 
-                          key: key },
-                        function(data){
-                          that.graphData[key] = data.graphData;
-                          callback(key);
-                        },
-                        function(err){ console.log("Error loading graph: " + err); },
-                        function(){});
-      },
-
-      saveTempData: function(data, treeLocation) {
-        var tempId = Math.floor(Math.random() * (100000000 -  + 1)) + 1;
-        this.graphData[tempId] = data;
-        treeLocation.graphid = tempId;
-      },
-
-      saveGraphData: function(data, treeLocation) {
-        // ONLY CALL THIS AFTER CALLING saveTempData
         var that = this;
-        Util.ajaxPOST("/data/save",
-                      { email: that.email,
-                        data: data
-                      },
-                      function(returnData){
-                        var permId = returnData.id;
-                        that.graphData[permId] = data;
-                        treeLocation.graphid = permId;
-                      },
-                      function(err){ console.log("Error saving graph: " + err); },
-                      function(){});
+        $.ajax({
+          type: "POST",
+          url: "/data/load",
+          async: false,
+          data:
+            { email: that.email, 
+              key: key },
+        })
+        .done(function(data){
+          that.graphData[key] = data.graphData;
+          return that.graphData[key];
+        })
+        .fail(function() { console.log("Failed to load key: " + key); return []; });
+      },
+
+      saveGraphData: function(data) {
+        var that = this;
+        var ret;
+        $.ajax({
+          type: "POST",
+          url: "/data/save",
+          async: false,
+          data:
+            { email: that.email,
+              data: data
+            },
+        })
+        .done(function(returnData){
+          that.graphData[returnData.key] = data;
+          ret = returnData.key;
+        })
+        .fail(function(err) { console.log("Failed to save data: " + err); ret = -1; });
+        return ret;
       }
     });
 

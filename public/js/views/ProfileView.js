@@ -27,6 +27,14 @@ define([
     },
 
     show: function(){
+      var key = this.session.saveGraphData([1,2,3,4,5,6,7]);
+      console.log(key);
+
+      console.log("------");
+
+      var dataa = this.session.getGraphData(key);
+      console.log(dataa);
+
       this.$el.show();
       Util.logAction(this.session.email, "Viewed Profile Page", "null");
       if(!this.rendered) {
