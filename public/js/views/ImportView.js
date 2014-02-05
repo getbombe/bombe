@@ -55,7 +55,7 @@ define([
                         function(){ console.log("data change went awry..."); },
                         function(){});
 
-          Util.renderGraph(that.session.activeNode, "#plot-preview", that.session);
+          Util.renderGraph(that.session.activeNode, "#import-preview", that.session);
         });
       });
 
