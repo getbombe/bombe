@@ -116,6 +116,7 @@ define([
                         function(){});
 
           Util.renderGraph(that.session.activeNode, "#plot-preview", that.session);
+          $(this).unbind();
         });
       });
 
