@@ -27,6 +27,7 @@ define([
     },
 
     show: function(){
+      console.log(this.session.tree);
       this.$el.show();
 
       Util.logAction(this.session.email, "Viewed Tree Page", "null");
@@ -42,55 +43,49 @@ define([
       //Detect new nodes
       if (this.session.newNode != null) {
 
-        if (!(this.session.activeNode['data']['children'] instanceof Array)) {
-          this.session.activeNode['data']['children'] = [];
+        if (!(this.session.activeNode.children instanceof Array)) {
+          this.session.activeNode.children = [];
         }
-        this.session.activeNode['data']['children'].push(this.session.newNode);
+        this.session.activeNode.children.push(this.session.newNode);
         
-        Util.ajaxPOST("../newtree",
-              {
-                tree: JSON.stringify(JSON.decycle(this.session.tree)),
-                email: this.session.email
-              },
-              function(){
-              },
-              function(){ console.log("error: failed to save updated tree"); },
-              function(){});
+        this.updateSessionTree(this.session.tree, this.session.email);
   
-         this.session.newNode = null;
+        this.session.newNode = null;
       }
 
       window.idBefore = null;
       window.idAfter = null;
 
       renderTree(this.session.tree);
-      Util.activateNodeById(this.session, treeData, 1);
-      Util.renderGraph(this.session.activeNode, "#plot-preview");
+      this.session.activeNode = this.session.tree
+      Util.renderGraph(this.session.activeNode, "#plot-preview", this.session);
 
-      var graphid = this.session.activeNode['data']['graphid'];
+      var graphid = this.session.activeNode.graphid;
 
       $(".node").click( function(){
           Util.activateNodeById(that.session, treeData, $(this).attr("id"));
-          Util.renderGraph(that.session.activeNode, "#plot-preview");
+          Util.renderGraph(that.session.activeNode, "#plot-preview", that.session);
       });
 
       $(window).resize(function() {
-          Util.renderGraph(that.session.activeNode, "#plot-preview");
+          Util.renderGraph(that.session.activeNode, "#plot-preview", that.session);
        
       });
 
       $("#delete-graph").click( function(){
-          if(that.session.activeNode.data.graphid == that.session.tree.data.graphid) {
+          if(that.session.activeNode.graphid == that.session.tree.graphid) {
             that.session.tree = {};
             that.$el.find("#plot-preview").html("");
+
+            that.updateSessionTree(that.session.tree, that.session.email);
             renderTree(that.session.tree);
             return;
           }
 
-          Util.deleteNode(treeData, treeData, that.session.activeNode.data.graphid);
-          that.$el.find("#treeview").html("");
+          Util.deleteNode(treeData, that.session.activeNode.graphid);
+
+          that.updateSessionTree(that.session.tree, that.session.email);
           renderTree(that.session.tree);
-          console.log(that.session.tree);
           return;
       });
 
@@ -100,25 +95,39 @@ define([
           remote: false
         });
 
-        $("#xLabel").val(that.session.activeNode.data.label.x);
-        $("#yLabel").val(that.session.activeNode.data.label.y);
-        $("#xUnit").val(that.session.activeNode.data.unit.x);
-        $("#yUnit").val(that.session.activeNode.data.unit.y);
+        $("#xLabel").val(that.session.getGraphData(that.session.activeNode.graphid).label.x);
+        $("#yLabel").val(that.session.getGraphData(that.session.activeNode.graphid).label.y);
+        $("#xUnit").val(that.session.getGraphData(that.session.activeNode.graphid).unit.x);
+        $("#yUnit").val(that.session.getGraphData(that.session.activeNode.graphid).unit.y);
 
         $("#setupModalSubmit").click(function(){
-          that.session.activeNode.data.label.x = $("#xLabel").val();
-          that.session.activeNode.data.label.y = $("#yLabel").val();
-          that.session.activeNode.data.unit.x = $("#xUnit").val();
-          that.session.activeNode.data.unit.y = $("#yUnit").val();
-          Util.renderGraph(that.session.activeNode, "#plot-preview");
+          that.session.getGraphData(that.session.activeNode.graphid).label.x = $("#xLabel").val();
+          that.session.getGraphData(that.session.activeNode.graphid).label.y = $("#yLabel").val();
+          that.session.getGraphData(that.session.activeNode.graphid).unit.x = $("#xUnit").val();
+          that.session.getGraphData(that.session.activeNode.graphid).unit.y = $("#yUnit").val();
+
+          Util.ajaxPOST("../data/change",
+                        {
+                          key: that.session.activeNode.graphid,
+                          data: that.session.getGraphData(that.session.activeNode.graphid)
+                        },
+                        function(){},
+                        function(){ console.log("data change went awry..."); },
+                        function(){});
+
+          Util.renderGraph(that.session.activeNode, "#plot-preview", that.session);
         });
       });
 
       $("#export-graph").click(function(){
 
         $("#export-graph").attr("disabled", "disabled");
-        var tempDat = jQuery.extend({}, JSON.decycle(that.session.activeNode.data));
-        delete tempDat['children'];
+        var tempDat = jQuery.extend({}, that.session.getGraphData(that.session.activeNode.graphid));
+        
+        // hacking it by just inserting ids here. need refactoring.
+        tempDat.userid = that.session.email;
+        tempDat.graphid = that.session.activeNode.graphid;
+
         tempDat = JSON.stringify(tempDat);
 
         Util.ajaxPOST("http://compute.getbombe.com/compute",
@@ -128,7 +137,7 @@ define([
                         },
                         function(res){
           
-                          Util.logAction(that.session.email, "Exported Graph", JSON.decycle(that.session.activeNode.data));
+                          Util.logAction(that.session.email, "Exported Graph", JSON.decycle(that.session.activeNode));
                           ga('send', 'event', 'button', 'click', 'export');
                       
                           var filename_pdf = res.result.filename_pdf;
@@ -154,10 +163,10 @@ define([
         window.idAfter = "new";
 
         Util.activateNodeById(that.session, treeData, window.idAfter);
-        Util.renderGraph(that.session.activeNode, "#plot-after");
+        Util.renderGraph(that.session.activeNode, "#plot-after", that.session);
 
         Util.activateNodeById(that.session, treeData, window.idBefore);
-        Util.renderGraph(that.session.activeNode, "#plot-before");
+        Util.renderGraph(that.session.activeNode, "#plot-before", that.session);
 
         Util.logAction(that.session.email, "Created New Graph", "null");
 
@@ -175,7 +184,7 @@ define([
               .separation(function(a, b) { return (a.parent == b.parent ? 0.5 : 1); })
               .children(function(d)
               {
-                  return (!d.data.children || d.data.children.length === 0) ? null : d.data.children;
+                  return (!d.children || d.children.length === 0) ? null : d.children;
               });
 
           var nodes = tree.nodes(treeData);
@@ -186,7 +195,6 @@ define([
                .append("svg:g")
                .attr("class", "container")
                .attr("transform", "translate(" + 80 + ",0)");
-
 
            // Edges between nodes as a <path class="link" />
            var link = d3.svg.diagonal()
@@ -207,7 +215,7 @@ define([
                .enter()
                .append("svg:g")
                .attr("class", "node")
-                 .attr("id", function(d){return d.data.graphid})
+                 .attr("id", function(d){return d.graphid})
                .attr("transform", function(d)
                {
                    return "translate(" + d.y + "," + d.x + ")";
@@ -225,35 +233,23 @@ define([
               .attr("y", -100/2)
               .attr("r", 60);
 
-          Util.miniGraph(treeData);
+          Util.miniGraph(treeData, that.session);
         }
-    }
+    },
+
+        updateSessionTree: function(tree, email){
+          Util.ajaxPOST("../newtree",
+              {
+                tree: JSON.stringify(JSON.decycle(tree)),
+                email: email
+              },
+              function(){
+              },
+              function(){ console.log("error: failed to save updated tree"); },
+              function(){});
+        }
   });
 
   return TreeView;
   
 });
-
-function writeTreeParent (id) {
-    if (id != undefined && id != null) {
-        window.idBefore = id;
-        console.log("ParentID: " + id);
-    }
-}
-
-function findTreeDataParent (tree, id) {
-    
-    currId = tree.data.graphid;
-
-    if (tree.children instanceof Array) {
-        tree.children.forEach( function(child){
-            if (child.data.graphid == id) {
-                writeTreeParent(currId);
-                return;
-            }
-            else {
-                findTreeDataParent (child, id); 
-            }  
-        });
-    } 
-}

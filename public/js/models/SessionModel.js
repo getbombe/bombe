@@ -25,6 +25,7 @@ define([
         if (this.graphData[key]) return this.graphData[key]
 
         var that = this;
+        var ret;
         $.ajax({
           type: "POST",
           url: "/data/load",
@@ -35,9 +36,10 @@ define([
         })
         .done(function(data){
           that.graphData[key] = data.graphData;
-          return that.graphData[key];
+          ret = that.graphData[key];
         })
         .fail(function() { console.log("Failed to load key: " + key); return []; });
+        return ret;
       },
 
       saveGraphData: function(data) {

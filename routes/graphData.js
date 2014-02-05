@@ -11,11 +11,27 @@ var save = function(req, res){
 	//db.once('error', console.error.bind(console, 'connection error:'));
 
 	var email = req.body.email;
-	var data = req.body.data;
+
+	var dataX = req.body.data.data.x;
+	var dataY = req.body.data.data.y;
+
+	var unitX = req.body.data.unit.x;
+	var unitY = req.body.data.unit.y;
+
+	var labelX = req.body.data.label.x;
+	var labelY = req.body.data.label.y;
 
 	var newGraphData = new GraphDataModel({
 		email: email,
-		graphData: data,
+		
+		dataX: dataX,
+		dataY: dataY,
+
+		unitX: unitX,
+		unitY: unitY,
+
+		labelX: labelX,
+		labelY: labelY
 	});
 	newGraphData.save(function (err, result){
 		res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -55,7 +71,7 @@ var load = function(req, res){
 	var key = req.body.key;
 
 	// replace if exist
-	GraphDataModel.findOne({_id: id}).exec(function(err, t){
+	GraphDataModel.findOne({_id: key}).exec(function(err, t){
 		if(err){
 			// nothing. it shouldn't happen
 			// TODO: make something happen in case of DB error
@@ -72,13 +88,26 @@ var load = function(req, res){
 			));
 			res.end();
 		} else {
-			// found data.. return
-			console.log(t);
+			var returnData = {
+				data: {
+					x: t.dataX,
+					y: t.dataY
+				},
+				unit: {
+					x: t.unitX,
+					y: t.unitY
+				},
+				label: {
+					x: t.labelX,
+					y: t.labelY
+				}
+			};
+
 			res.writeHead(200, { 'Content-Type': 'application/json' });
 			res.write(JSON.stringify(
 				{
 					success: true,
-					graphData: t.graphData
+					graphData: returnData
 				}
 			));
 
@@ -86,7 +115,42 @@ var load = function(req, res){
 		}
 	});
 };
+// change data
+var change = function(req, res){
+	// connect to MongoDB
+	if (!mongoose.connection.readyState){
+    	mongoose.connect('mongodb://localhost/bombe');
+	}
+	var db = mongoose.connection;
+	//db.once('error', console.error.bind(console, 'connection error:'));
+
+	var id = req.body.key;
+
+	var update = {
+		dataX: req.body.data.data.x,
+		dataY: req.body.data.data.y,
+
+		unitX: req.body.data.unit.x,
+		unitY: req.body.data.unit.y,
+
+		labelX: req.body.data.label.x,
+		labelY: req.body.data.label.y
+	}
+
+	GraphDataModel.update({ _id: id }, update, function (err, numberAffected, raw) {
+		if (err) return handleError(err);
+		res.writeHead(200, { 'Content-Type': 'application/json' });
+		res.write(JSON.stringify(
+			{
+				success: true
+			}
+		));
+
+		res.end();
+	});
+};
 
  // export functions
  exports.save = save;
  exports.load = load;
+ exports.change = change;

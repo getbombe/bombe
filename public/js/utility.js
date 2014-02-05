@@ -44,7 +44,7 @@ define([
 
 		activateNodeById: function(session, tree, id){
 		 	var that = this;
-			if (tree.data.graphid == id && id != null && id != undefined) {
+			if (tree.graphid == id && id != null && id != undefined) {
 				//console.log(session);
 				session.activeNode = tree;
 				//console.log(session.activeNode);
@@ -57,26 +57,22 @@ define([
 			}
 		},
 
-		deleteNode: function(ot, tree, graphid){
+		deleteNode: function(tree, graphid){
 			if (!(tree.children instanceof Array)) return false;
 
 			for (var i = 0; i < tree.children.length; i++) {
-				if (tree.children[i].data.graphid == graphid){
-					//console.log(tree);
+				if (tree.children[i].graphid == graphid){
 					tree.children.splice(i,1);
-					console.log(tree.children);
-					console.log(tree);
-					console.log(ot);
 					return true;
 				} else {
-					if (this.deleteNode(ot, tree.children[i], graphid)) return true;
+					if (this.deleteNode(tree.children[i], graphid)) return true;
 				}
 			}
 
 			return false;
 		},
 
-		renderGraph: function(graph, viewid) {
+		renderGraph: function(graph, viewid, session) {
 	
 				if (graph == null) {
 					return;
@@ -85,7 +81,7 @@ define([
 				$(viewid).html('');
 
 				var titleid = viewid + "-titlebar";
-				var id = graph['data']['graphid'];
+				var id = graph.graphid;
 
 				var that = this;
 
@@ -119,7 +115,8 @@ define([
 				  	.append("g")
 				    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-				var xyData = graph['data'];
+				// for new operation, directly input data. VERY hacky. TODO...
+				var xyData = session ? session.getGraphData(graph.graphid) : graph.data;
 				
 				xData = xyData.data.x.map(function(d){return parseFloat(d)});
 				yData = xyData.data.y.map(function(d){return parseFloat(d)});
@@ -165,8 +162,8 @@ define([
 				    .attr("d", line);
 		},
 
-		miniGraph: function(treeData) {
-
+		miniGraph: function(treeData, session) {
+			var that = this;
 			$('.node').each( function (index) {
 			    var width = 90;
 			    var height = 60;
@@ -197,10 +194,8 @@ define([
 
 				function findDataById (tree, id) {
 				
-				
-					if (tree.data.graphid == id) {
-					
-						writeXYData(tree.data.data);
+					if (tree.graphid == id) {
+						writeXYData(session.getGraphData(tree.graphid).data);
 					}
 					else if (tree.children instanceof Array) {
 					

@@ -3,12 +3,21 @@ var mongoose	=	require('mongoose'),
 	ObjectId	=	Schema.ObjectId;
 
 var GraphDataSchema = new Schema({
-	id        			: ObjectId,
-	// title  			   : { type: String, required: true, enum: ['Mr', 'Mrs', 'Mme', 'Miss'] },
-	email      			: { type: String, required: true, trim: true },
-	graphData 			: [ Number ],
-	created_on  : { type : Date, default : Date.now },
-	updated_on  : { type : Date, default : Date.now }
+	id        		: ObjectId,
+
+	email      		: { type: String, required: true, trim: true },
+
+	dataX 			: [ Number ],
+	dataY 			: [ Number ],
+
+	unitX 			: { type: String, required: true, trim: true, default : "Units" },
+	unitY 			: { type: String, required: true, trim: true, default : "Units" },
+
+	labelX 			: { type: String, required: true, trim: true, default : "X-Data" },
+	labelY 			: { type: String, required: true, trim: true, default : "Y-Data" },
+
+	created_on 		: { type : Date, default : Date.now },
+	updated_on  	: { type : Date, default : Date.now }
 });	
 
 module.exports = mongoose.model('GraphData', GraphDataSchema);

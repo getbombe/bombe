@@ -53,6 +53,7 @@ app.post('/landingpageemail', landing.email);
 
 app.post('/data/load', data.load);
 app.post('/data/save', data.save);
+app.post('/data/change', data.change);
 
 app.post('/log', log.entry);
 

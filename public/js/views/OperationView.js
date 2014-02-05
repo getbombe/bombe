@@ -26,11 +26,11 @@ define([
 
       $("#operate-options").hide();
     
-      Util.renderGraph(that.session.activeNode, "#plot-before");
+      Util.renderGraph(that.session.activeNode, "#plot-before", that.session);
 
       $(window).resize(function() {
-        Util.renderGraph(that.session.activeNode, "#plot-before");
-        Util.renderGraph(that.session.newNode, "#plot-after");
+        Util.renderGraph(that.session.activeNode, "#plot-before", that.session);
+        Util.renderGraph(that.session.newNode, "#plot-after", that.session);
       });
 
       $("#operate-done").click( function() {
@@ -42,19 +42,18 @@ define([
       this.$el.find("select#opselect").change(function(){
         var op = false;
         var data = {
-            'data' : {
-              'x' : that.session.activeNode.data.data.x,
-              'y' : that.session.activeNode.data.data.y
+            data : {
+              x : that.session.getGraphData(that.session.activeNode.graphid).data.x,
+              y : that.session.getGraphData(that.session.activeNode.graphid).data.y
             },
-            "unit" : {
-                "x" : "Units",
-                "y" : "Units"
+            unit : {
+                x : "Units",
+                y : "Units"
             },
-            "label" : {
-                "x" : "X-Data",
-                "y" : "Y-Data"
-            },
-            "userid" : that.session.email
+            label : {
+                x : "X-Data",
+                y : "Y-Data"
+            }
         };
 
         op = this.value;
@@ -77,9 +76,7 @@ define([
             } else {
               data.order = 1;
             }
-            
-            data.data.x = that.session.activeNode.data.data.x;
-            data.data.y = that.session.activeNode.data.data.y;
+
             compute(op, data);
           });
           $("#operate-help").html("(Choose polynomial order)");
@@ -97,9 +94,7 @@ define([
             } else {
               data.sigma = 1;
             }
-            
-            data.data.x = that.session.activeNode.data.data.x;
-            data.data.y = that.session.activeNode.data.data.y;
+
             compute(op, data);
           });
           $("#operate-help").html("(Choose sigma value)");
@@ -111,8 +106,7 @@ define([
           $("#smooth-select").change(function(){
         
           data.removal = $("#smooth-select").val();
-          data.data.x = that.session.activeNode.data.data.x;
-          data.data.y = that.session.activeNode.data.data.y;
+
           compute(op, data);
         
           });
@@ -135,9 +129,14 @@ define([
                         function(res){
                           Util.logAction(that.session.email, "Transformed Graph", $("#opselect").value);
                           data.data = res.result.data;
-                          data.graphid = Math.floor(Math.random() * (100000000 - 1)) + 1;
-                          Util.renderGraph({data: data}, "#plot-after");
-                          that.session.newNode = {data: data};
+                          Util.renderGraph({data: data}, "#plot-after", false);
+
+                          var newKey = that.session.saveGraphData(data);
+                          var newNode = {
+                            graphid: newKey,
+                            children: []
+                          }
+                          that.session.newNode = newNode;
                         },
                         function(){ console.log("Compute failed."); },
                         function(){});
