@@ -77,9 +77,11 @@ define([
               data.order = 1;
             }
 
+            data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
+            data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
             compute(op, data);
           });
-          $("#operate-help").html("(Choose polynomial order)");
+          $("#operate-help").html("Choose polynomial order");
 
         } else if(op == "background_spline"){
 
@@ -95,6 +97,8 @@ define([
               data.sigma = 1;
             }
 
+            data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
+            data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
             compute(op, data);
           });
           $("#operate-help").html("(Choose sigma value)");
@@ -103,14 +107,27 @@ define([
           $("#operate-textbox").html('<select id="smooth-select"><option value="none">None</option>'
            +'<option value="subtract">Subtraction</option>'
            +'<option value="divide">Division</option></select>');
-          $("#smooth-select").change(function(){
-        
-          data.removal = $("#smooth-select").val();
+          $("#operate-textbox").append('<input type="text" id="operate-text">');
+          
+          var splineCompute = function(){
+            data.removal = $("#smooth-select").val();
+            
+            if ($("#operate-text").val() == parseFloat($("#operate-text").val())) {
+              data.res = $("#operate-text").val();  
+            } else {
+              data.res = 1;
+            }
 
-          compute(op, data);
-        
-          });
-          $("#operate-help").html("(Choose BG removal)");
+            data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
+            data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
+            compute(op, data);
+          };
+
+          $("#smooth-select").on('change', splineCompute);
+          $("#operate-text").on('keyup change', splineCompute);
+          
+
+          $("#operate-help").html("Choose background removal type and enter smoothness parameter");
         } else {
           // select
         }

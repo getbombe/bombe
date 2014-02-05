@@ -31,7 +31,7 @@ class Transform:
 
 	@staticmethod
 	def gaussian_filter (data):
-		'''Gaussian window convolution'''
+		'''Gaussian window multiplication'''
 
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
@@ -39,7 +39,7 @@ class Transform:
 		sigma = float(data['sigma'])
 
 		 
-		gs = list(scipy.signal.gaussian(len(y_dat), sigma))
-		data['data']['y'] = list(scipy.signal.convolve(y_dat, gs, mode='same'))
+		gs = list(scipy.signal.gaussian(len(x_dat), sigma))
+		data['data']['y'] = list(multiply(y_dat, gs))
 
 		return data
