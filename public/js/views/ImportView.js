@@ -35,12 +35,14 @@ define([
           remote: false
         });  
 
+        $("#title").val(that.session.getGraphData(that.session.activeNode.graphid).title);
         $("#xLabel").val(that.session.getGraphData(that.session.activeNode.graphid).label.x);
         $("#yLabel").val(that.session.getGraphData(that.session.activeNode.graphid).label.y);
         $("#xUnit").val(that.session.getGraphData(that.session.activeNode.graphid).unit.x);
         $("#yUnit").val(that.session.getGraphData(that.session.activeNode.graphid).unit.y);
 
         $("#setupModalSubmit").click(function(){
+          that.session.getGraphData(that.session.activeNode.graphid).title = $("#title").val();
           that.session.getGraphData(that.session.activeNode.graphid).label.x = $("#xLabel").val();
           that.session.getGraphData(that.session.activeNode.graphid).label.y = $("#yLabel").val();
           that.session.getGraphData(that.session.activeNode.graphid).unit.x = $("#xUnit").val();
@@ -98,6 +100,7 @@ define([
             Util.logAction(that.session.email, "Uploaded Raw Data", "null");
 
             var data = {
+              title: "Graph title - edit me",
               data: {
                 x: res.x,
                 y: res.y

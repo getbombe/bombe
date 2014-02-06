@@ -42,6 +42,7 @@ define([
       this.$el.find("select#opselect").change(function(){
         var op = false;
         var data = {
+            title: "New Graph",
             data : {
               x : that.session.getGraphData(that.session.activeNode.graphid).data.x,
               y : that.session.getGraphData(that.session.activeNode.graphid).data.y

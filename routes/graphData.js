@@ -11,6 +11,7 @@ var save = function(req, res){
 	//db.once('error', console.error.bind(console, 'connection error:'));
 
 	var email = req.body.email;
+	var title = req.body.data.title;
 
 	var dataX = req.body.data.data.x;
 	var dataY = req.body.data.data.y;
@@ -24,6 +25,8 @@ var save = function(req, res){
 	var newGraphData = new GraphDataModel({
 		email: email,
 		
+		title: title,
+
 		dataX: dataX,
 		dataY: dataY,
 
@@ -89,6 +92,7 @@ var load = function(req, res){
 			res.end();
 		} else {
 			var returnData = {
+				title: t.title,
 				data: {
 					x: t.dataX,
 					y: t.dataY
@@ -127,6 +131,8 @@ var change = function(req, res){
 	var id = req.body.key;
 
 	var update = {
+		title: req.body.data.title,
+
 		dataX: req.body.data.data.x,
 		dataY: req.body.data.data.y,
 

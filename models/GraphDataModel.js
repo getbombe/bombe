@@ -7,6 +7,8 @@ var GraphDataSchema = new Schema({
 
 	email      		: { type: String, required: true, trim: true },
 
+	title      		: { type: String, required: true, trim: true },
+
 	dataX 			: [ Number ],
 	dataY 			: [ Number ],
 

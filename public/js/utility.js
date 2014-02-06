@@ -85,7 +85,9 @@ define([
 
 				var that = this;
 
-				$(titleid + " .graphid").html(id);
+				$(titleid + " .graphid").html("New Graph");
+				if (session)
+					$(titleid + " .graphid").html(session.getGraphData(id).title);
 
 				var margin = {top: 20, right: 20, bottom: 40, left: 70};
 			    var width = $(viewid).width() - margin.left - margin.right;
