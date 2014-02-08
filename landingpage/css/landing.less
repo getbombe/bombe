@@ -169,6 +169,13 @@ form {
 	padding: 1em;
 	background: @tertiary;
 	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
+
+	a {
+		color: #555555;
+	}
+	a:hover {
+		text-decoration: none;
+	}
 }
 .dark-block {
 	padding: 4em;
@@ -203,8 +210,8 @@ a.darkencss {
     //background: black;
     padding: 0;
 }
-a.darkencss img {
-    display: block;
+a.darkencss img, a.darkencss p {
+    //display: block;
    
     -webkit-transition: all 0.5s linear;
        -moz-transition: all 0.5s linear;
@@ -212,10 +219,10 @@ a.darkencss img {
          -o-transition: all 0.5s linear;
             transition: all 0.5s linear;
 }
-a.darkencss:hover img {
+a.darkencss:hover img, a.darkencss:hover p {
     -webkit-filter: brightness(20%);
 }
-a.darkencss:hover img.social {
+a.darkencss:hover img.social:hover {
     border: 4px @primary solid;
     -webkit-filter: brightness(100%);
     @media screen and (max-width: 480px) {border: 2px @primary solid;}

@@ -215,6 +215,12 @@ form #submit-button {
     padding: 2em;
   }
 }
+.contrast-block a {
+  color: #555555;
+}
+.contrast-block a:hover {
+  text-decoration: none;
+}
 .dark-block {
   padding: 4em;
   color: #ffffff;
@@ -267,23 +273,24 @@ a.darkencss {
   display: inline-block;
   padding: 0;
 }
-a.darkencss img {
-  display: block;
+a.darkencss img,
+a.darkencss p {
   -webkit-transition: all 0.5s linear;
   -moz-transition: all 0.5s linear;
   -ms-transition: all 0.5s linear;
   -o-transition: all 0.5s linear;
   transition: all 0.5s linear;
 }
-a.darkencss:hover img {
+a.darkencss:hover img,
+a.darkencss:hover p {
   -webkit-filter: brightness(20%);
 }
-a.darkencss:hover img.social {
+a.darkencss:hover img.social:hover {
   border: 4px #1a62aa solid;
   -webkit-filter: brightness(100%);
 }
 @media screen and (max-width: 480px) {
-  a.darkencss:hover img.social {
+  a.darkencss:hover img.social:hover {
     border: 2px #1a62aa solid;
   }
 }
