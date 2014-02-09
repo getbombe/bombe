@@ -49,7 +49,9 @@ app.post('/login', user.login);
 app.post('/upload', upload.upload);
 app.post('/newtree', tree.init);
 app.post('/gettree', tree.getTree);
+
 app.post('/landingpageemail', landing.email);
+app.get('/landingemail-bombebombe1337!!!w3s0k00l', landing.print);
 
 app.post('/data/load', data.load);
 app.post('/data/save', data.save);

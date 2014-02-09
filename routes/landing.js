@@ -7,4 +7,15 @@ var email = function(req, res){
 	});
 }
 
+var print = function(req, res){
+	fs.readFile('landingemail.txt', function (err, data) {
+		var emails = data.toString(); 
+		res.writeHead(200, { 'Content-Type': 'application/json' });
+
+		res.write(emails);
+		res.end();
+	});
+}
+
 exports.email = email
+exports.print = print
