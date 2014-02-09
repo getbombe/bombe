@@ -84,6 +84,11 @@ form #submit-button {
   -webkit-border-radius: 5px;
   border-radius: 5px;
 }
+.shadowed {
+  -webkit-box-shadow: 0px 2px 2px #e5e5e5;
+  -moz-box-shadow: 0px 2px 2px #e5e5e5;
+  box-shadow: 0px 2px 2px #e5e5e5;
+}
 #background {
   position: absolute;
   top: 0;
@@ -94,7 +99,7 @@ form #submit-button {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
-  -webkit-filter: brightness(45%);
+  -webkit-filter: brightness(35%);
   z-index: -9999;
 }
 .jumbotron {
@@ -147,7 +152,7 @@ form #submit-button {
   display: block;
   font-size: 20px;
   padding: 0.4em 1.2em;
-  margin: 2em auto;
+  margin: 2em auto 0 auto;
   -webkit-filter: none;
   font-weight: 100;
 }
@@ -180,14 +185,11 @@ form #submit-button {
   background: transparent;
   display: block;
   margin: 2.5em auto 1em auto;
-  padding: .3em;
-  height: 5em;
-  border: 4px #1f90c1 solid;
-}
-@media screen and (max-width: 480px) {
-  .explain-img {
-    border: 2px #1f90c1 solid;
-  }
+  padding: 0;
+  width: 90%;
+  -webkit-box-shadow: 0px 2px 2px #e5e5e5;
+  -moz-box-shadow: 0px 2px 2px #e5e5e5;
+  box-shadow: 0px 2px 2px #e5e5e5;
 }
 @media screen and (max-width: 480px) {
   .explain-img {
@@ -204,7 +206,7 @@ form #submit-button {
   }
 }
 .contrast-block {
-  padding: 4em;
+  padding: 1em;
   background: #e5e5e5;
 }
 @media screen and (max-width: 480px) {
@@ -212,6 +214,12 @@ form #submit-button {
     font-size: 14px;
     padding: 2em;
   }
+}
+.contrast-block a {
+  color: #555555;
+}
+.contrast-block a:hover {
+  text-decoration: none;
 }
 .dark-block {
   padding: 4em;
@@ -235,6 +243,17 @@ form #submit-button {
     height: 2em;
   }
 }
+.media {
+  display: inline;
+  padding: 0;
+  margin: 0 0.5em;
+  height: 2.0em;
+}
+@media screen and (max-width: 480px) {
+  .media {
+    height: 2em;
+  }
+}
 .social {
   padding: 0.3em;
   margin: 0 0.3em;
@@ -254,23 +273,24 @@ a.darkencss {
   display: inline-block;
   padding: 0;
 }
-a.darkencss img {
-  display: block;
+a.darkencss img,
+a.darkencss p {
   -webkit-transition: all 0.5s linear;
   -moz-transition: all 0.5s linear;
   -ms-transition: all 0.5s linear;
   -o-transition: all 0.5s linear;
   transition: all 0.5s linear;
 }
-a.darkencss:hover img {
+a.darkencss:hover img,
+a.darkencss:hover p {
   -webkit-filter: brightness(20%);
 }
-a.darkencss:hover img.social {
+a.darkencss:hover img.social:hover {
   border: 4px #1a62aa solid;
   -webkit-filter: brightness(100%);
 }
 @media screen and (max-width: 480px) {
-  a.darkencss:hover img.social {
+  a.darkencss:hover img.social:hover {
     border: 2px #1a62aa solid;
   }
 }
@@ -341,4 +361,7 @@ a.darkencss:hover img.social {
   padding: 0;
   width: 100%;
   height: 100%;
+}
+.jumbotron {
+  margin: 0;
 }

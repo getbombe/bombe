@@ -69,6 +69,12 @@ form {
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
+.shadowed {
+	-webkit-box-shadow: 0px 2px 2px @tertiary;
+  -moz-box-shadow:    0px 2px 2px @tertiary;
+  box-shadow:         0px 2px 2px @tertiary;
+}
+
 
 //Objects
 #background {
@@ -83,7 +89,7 @@ form {
     background-repeat:no-repeat;
     background-attachment: fixed;
     background-size:100% 100%;
-    -webkit-filter: brightness(45%); 
+    -webkit-filter: brightness(35%); 
     z-index: -9999;
 }
 .jumbotron {
@@ -118,7 +124,7 @@ form {
 			display: block;
 			font-size: 20px;
 			padding: 0.4em 1.2em;
-			margin: 2em auto;
+			margin: 2em auto 0 auto;
 			-webkit-filter: none;
 			.thin-font;
 
@@ -149,9 +155,9 @@ form {
 	background: transparent;
 	display: block;
 	margin: 2.5em auto 1em auto;
-	padding: .3em;
-	height: 5em;
-	.bordered;
+	padding:0;
+	width: 90%;
+	.shadowed;
 	@media screen and (max-width: 480px) {margin: 2.5em auto 0.5em auto;}
 }
 
@@ -160,9 +166,16 @@ form {
 	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
 }
 .contrast-block {
-	padding: 4em;
+	padding: 1em;
 	background: @tertiary;
 	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
+
+	a {
+		color: #555555;
+	}
+	a:hover {
+		text-decoration: none;
+	}
 }
 .dark-block {
 	padding: 4em;
@@ -178,6 +191,13 @@ form {
 	height: 5em;
 	@media screen and (max-width: 480px) {height: 2em;}
 }
+.media {
+	display: inline;
+	padding: 0;
+	margin:  0 0.5em;
+	height: 2.0em;
+	@media screen and (max-width: 480px) {height: 2em;}
+}
 .social {
 	padding: 0.3em;
 	margin:  0 0.3em;
@@ -190,8 +210,8 @@ a.darkencss {
     //background: black;
     padding: 0;
 }
-a.darkencss img {
-    display: block;
+a.darkencss img, a.darkencss p {
+    //display: block;
    
     -webkit-transition: all 0.5s linear;
        -moz-transition: all 0.5s linear;
@@ -199,10 +219,10 @@ a.darkencss img {
          -o-transition: all 0.5s linear;
             transition: all 0.5s linear;
 }
-a.darkencss:hover img {
+a.darkencss:hover img, a.darkencss:hover p {
     -webkit-filter: brightness(20%);
 }
-a.darkencss:hover img.social {
+a.darkencss:hover img.social:hover {
     border: 4px @primary solid;
     -webkit-filter: brightness(100%);
     @media screen and (max-width: 480px) {border: 2px @primary solid;}
@@ -239,4 +259,7 @@ a.darkencss:hover img.social {
 	padding: 0;
 	width: 100%;
 	height: 100%;
+}
+.jumbotron {
+	margin: 0;
 }
