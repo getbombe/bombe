@@ -51,16 +51,9 @@ function csv2json (csvdata, args) {
 	var delim = "";
 
 	var csvlines = csvdata.split("\n");
+
 	var csvheaders = ["x", "y"];
-	var csvrows = csvlines.slice(1, csvlines.length);
-
-	//Try to autodetect if the delim should be tabs or commas
-	if (csvrows[0].search(",") == -1) {
-		delim = " ";
-	} else {
-		delim = ",";
-	}
-
+	var csvrows = csvlines;
 
 	var ret = {};
 
@@ -76,17 +69,31 @@ function csv2json (csvdata, args) {
 			// Break if we're at the end of the file
 			if(row.length == 0) break;
 
-			var rowob = {};
-			for(var i = 0 ; i < 2; i ++) { // only x y
-				if (rowitems.hasOwnProperty(i)) {
-					var item = rowitems[i];
-
-					// Try to (intelligently) cast the item to a number, if applicable
-					if(!isNaN(item*1)) {
-						item = item*1;
+			// Don't parse commented lines
+			if (!(row[0] == "#" || row[0] == "!")) {
+		
+				//Try to autodetect if the delim should be tabs or commas
+				if (delim == "") {
+					if (row.search(",") == -1) {
+						delim = " ";
+					} else {
+						delim = ",";
 					}
+				}
 
-					ret[csvheaders[i]].push(item);
+				for(var i = 0 ; i < 2; i ++) { // only x y
+					if (rowitems.hasOwnProperty(i)) {
+						var item = rowitems[i];
+
+						// Try to (intelligently) cast the item to a number, if applicable
+						if(!isNaN(item*1)) {
+							item = item*1;
+							ret[csvheaders[i]].push(item);
+						}
+						else {
+							break;
+						}				
+					}
 				}
 			}
 		}
