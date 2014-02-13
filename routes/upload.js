@@ -64,7 +64,7 @@ function csv2json (csvdata, args) {
 	for(var r in csvrows) {
 		if (csvrows.hasOwnProperty(r)) {
 			var row = csvrows[r];
-			var rowitems = splitCSV(row, delim);
+			
 
 			// Break if we're at the end of the file
 			if(row.length == 0) break;
@@ -81,6 +81,8 @@ function csv2json (csvdata, args) {
 					}
 				}
 
+				var rowitems = splitCSV(row, delim);
+
 				for(var i = 0 ; i < 2; i ++) { // only x y
 					if (rowitems.hasOwnProperty(i)) {
 						var item = rowitems[i];
@@ -88,6 +90,7 @@ function csv2json (csvdata, args) {
 						// Try to (intelligently) cast the item to a number, if applicable
 						if(!isNaN(item*1)) {
 							item = item*1;
+							console.log(item);
 							ret[csvheaders[i]].push(item);
 						}
 						else {
