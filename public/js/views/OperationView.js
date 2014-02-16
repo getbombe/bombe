@@ -85,7 +85,20 @@ define([
           $("#operate-help").html("Choose polynomial order");
 
         } else if(op == "background_spline"){
+          $("#operate-options").show();
+          $("#operate-textbox").html('<input type="text" id="operate-text">');
+          $("#operate-text").keyup(function() {
+            if ($(this).val() == parseFloat($(this).val())) {
+              data.res = $(this).val();  
+            } else {
+              data.res = 1;
+            }
 
+            data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
+            data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
+            compute(op, data);
+          });
+          $("#operate-help").html("Choose spline resolution (larger = more spline points)");
         } else if(op == "transform_fourier"){
           data.real = "True";
         } else if(op == "transform_gaussian_filter"){
@@ -102,7 +115,7 @@ define([
             data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
             compute(op, data);
           });
-          $("#operate-help").html("(Choose sigma value)");
+          $("#operate-help").html("Choose sigma value");
         } else if(op == "background_spline_smooth"){
           $("#operate-options").show();
           $("#operate-textbox").html('<select id="smooth-select"><option value="none">None</option>'
@@ -128,7 +141,7 @@ define([
           $("#operate-text").on('keyup change', splineCompute);
           
 
-          $("#operate-help").html("Choose background removal type and enter smoothness parameter");
+          $("#operate-help").html("Choose background removal type and enter smoothness parameter (larger = smoother)");
         } else {
           // select
         }
