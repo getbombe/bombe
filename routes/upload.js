@@ -63,14 +63,14 @@ function csv2json (csvdata, args) {
 
 	for(var r in csvrows) {
 		if (csvrows.hasOwnProperty(r)) {
-			var row = csvrows[r];
+			var row = trim(csvrows[r]);
 			
 
 			// Break if we're at the end of the file
 			if(row.length == 0) break;
 
-			// Don't parse commented lines
-			if (!(row[0] == "#" || row[0] == "!")) {
+			// Don't parse commented lines or non numeric lines
+			if (!(row[0] == "#" || row[0] == "!" || isNaN(row[0]*1))) {
 		
 				//Try to autodetect if the delim should be tabs or commas
 				if (delim == "") {
