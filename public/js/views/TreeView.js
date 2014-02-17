@@ -80,14 +80,15 @@ define([
       $("#delete-graph").click( function(){
           if(that.session.activeNode.graphid == that.session.tree.graphid) {
             // can't delete root
-            alert("You cannot delete the root node!");
+            //alert("You cannot delete the root node!");
             return;
           }
 
           Util.deleteNode(treeData, that.session.activeNode.graphid);
 
           that.updateSessionTree(that.session.tree, that.session.currentTree);
-          renderTree(that.session.tree);
+          //renderTree(that.session.tree);
+          that.show();
           return;
       });
 
