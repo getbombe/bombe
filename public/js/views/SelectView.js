@@ -28,9 +28,9 @@ define([
       for (var i = 0; i < treeKeys.length; i++) {
         $("#selecttable")
           .append("<tr id='" + treeKeys[i] + "'><td id='"+i+"' class='treename'>" + treeNames[i] + "</td><td>" +
-            '<button id="' + treeKeys[i] + '" type="button" class="analyzebutton btn btn-primary">Analyze</button>&nbsp;&nbsp;&nbsp;&nbsp;' +
-            '<button id="' + i + '" type="button" class="renamebutton btn btn-primary">Rename</button></td><td style="float-right">' +
-            '<button id="' + i + '" type="button" class="deletebutton btn btn-danger">Delete</button>' +
+            '<div class="btn-group"><button id="' + treeKeys[i] + '" type="button" class="analyzebutton btn btn-primary">Analyze</button>' +
+            '<button id="' + i + '" type="button" class="renamebutton btn btn-default">Rename</button>' +
+            '<button id="' + i + '" type="button" class="deletebutton btn btn-default">Delete</button></div></td>' +
 
             "</td><tr/>");
 
