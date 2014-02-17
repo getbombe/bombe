@@ -56,7 +56,18 @@ define([
                 key: sourceId
               },
               function(data){
-                $("td#" + i).html(newName);
+                 Util.ajaxPOST("../getalltrees",
+                              {
+                                email: that.session.email
+                              },
+                              function(data) {
+                                if (!data.success) console.log("all tree aren't successful... proceeding anyways");
+                                that.session.treeKeys = data.keys;
+                                that.session.treeNames = data.names;
+                                that.render();
+                              },
+                              function() { console.log("could not get all trees"); },
+                              function() {});
               },
               function(){ console.log("error: failed to upload empty tree"); },
               function(){});
@@ -70,7 +81,18 @@ define([
               key: treeKeys[i]
             },
             function(data){
-              $("tr#" + treeKeys[i]).remove();
+               Util.ajaxPOST("../getalltrees",
+                            {
+                              email: that.session.email
+                            },
+                            function(data) {
+                              if (!data.success) console.log("all tree aren't successful... proceeding anyways");
+                              that.session.treeKeys = data.keys;
+                              that.session.treeNames = data.names;
+                              that.render();
+                            },
+                            function() { console.log("could not get all trees"); },
+                            function() {});
             },
             function(){ console.log("error: failed to upload empty tree"); },
             function(){});
