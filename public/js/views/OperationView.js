@@ -40,6 +40,8 @@ define([
 
 
       this.$el.find("select#opselect").change(function(){
+        
+    $("#operate-done").prop("disabled",true);
         var op = false;
         var data = {
             title: "New Graph",
@@ -148,6 +150,7 @@ define([
 
         compute(op, data);
 
+    $("#operate-done").prop("disabled",false);
       });
 
       function compute (op, data){
