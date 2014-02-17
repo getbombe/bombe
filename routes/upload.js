@@ -63,7 +63,7 @@ function csv2json (csvdata, args) {
 
 	for(var r in csvrows) {
 		if (csvrows.hasOwnProperty(r)) {
-			var row = trim(csvrows[r]);
+			var row = csvrows[r];
 			
 
 			// Break if we're at the end of the file
