@@ -70,7 +70,7 @@ function csv2json (csvdata, args) {
 			if(row.length == 0) break;
 
 			// Don't parse commented lines or non numeric lines
-			if (!(row[0] == "#" || row[0] == "!" || isNaN(row[0]*1))) {
+			if (!(row[0] == "#" || row[0] == "!")) {
 		
 				//Try to autodetect if the delim should be tabs or commas
 				if (delim == "") {
