@@ -42,7 +42,7 @@ define([
                           that.session.isLoggedIn = true;
                           that.session.email = email;
                           that.session.apiKey = data.key;
-                          window.location.href = "/#/import";
+                          window.location.href = "/#/select";
                         } else {
                           that.displayErrorMessage();
                         }

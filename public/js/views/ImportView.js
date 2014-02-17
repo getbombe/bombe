@@ -117,7 +117,6 @@ define([
 
             var newKey = that.session.saveGraphData(data);
             var newNode = {
-              //userid: that.session.email,
               graphid: newKey,
               children: []
             }
@@ -127,7 +126,9 @@ define([
             // save initial tree
             Util.ajaxPOST("../newtree",
                           {
+                            name: "New tree - rename me",
                             tree: JSON.stringify(tree),
+                            key: that.session.currentTree,
                             email: that.session.email
                           },
                           function(){
@@ -156,10 +157,13 @@ define([
       
       Util.logAction(this.session.email, "Viewed Import Page", "null");
 
-      if(!this.rendered) {
+      this.$el.html("");
+
+// render every time
+ //     if(!this.rendered) {
         this.render();
-        this.rendered = true;
-      }
+ //       this.rendered = true;
+ //     }
     }
   });
 

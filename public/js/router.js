@@ -11,8 +11,9 @@ define([
   'views/TreeView',
   'views/OperationView',
   'views/SettingsView',
-  'views/ProfileView'
-], function($, _, Backbone, SessionModel, BodyView, LoginView, RegisterView, ImportView, TreeView, OperationView, SettingsView, ProfileView) {
+  'views/ProfileView',
+  'views/SelectView'
+], function($, _, Backbone, SessionModel, BodyView, LoginView, RegisterView, ImportView, TreeView, OperationView, SettingsView, ProfileView, SelectView) {
 
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -22,6 +23,7 @@ define([
       'profile': 'profile',
       'tree': 'tree',
       'operation': 'operation',
+      'select': 'select',
       'login': 'login',
       'register': 'register',
       '*actions': 'unmapped'
@@ -42,6 +44,7 @@ define([
     profileView = new ProfileView(session);
     settingsView = new SettingsView(session);
 
+    selectView = new SelectView(session);
     importView = new ImportView(session);
     treeView = new TreeView(session);
     operationView = new OperationView(session);
@@ -75,7 +78,11 @@ define([
       if(!session.isLoggedIn){
         window.location.href = "#/login";
         return;
-      }
+      }      
+ /*     if(!session.currentTree){
+        window.location.href = "#/select";
+        return;
+      }*/
 
       // display import stuff
       switchView(importView);
@@ -105,15 +112,33 @@ define([
       if(!session.isLoggedIn){
         window.location.href = "#/login";
         return;
-      }
+      }      
+/*      if(!session.currentTree){
+        window.location.href = "#/select";
+        return;
+      }*/
 
       // display tree stuff
       switchView(treeView);
     });
 
+    app_router.on('route:select', function (actions) {
+      if(!session.isLoggedIn){
+        window.location.href = "#/login";
+        return;
+      }
+
+      // display select stuff
+      switchView(selectView);
+    });
+
     app_router.on('route:operation', function (actions) {
       if(!session.isLoggedIn){
         window.location.href = "#/login";
+        return;
+      }      
+      if(!session.currentTree){
+        window.location.href = "#/select";
         return;
       }
 

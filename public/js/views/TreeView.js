@@ -27,6 +27,11 @@ define([
     },
 
     show: function(){
+      if ($.isEmptyObject(this.session.tree)){
+        window.location.href = "#/import";
+        return;
+      }
+
       console.log(this.session.tree);
       this.$el.show();
 
@@ -48,7 +53,7 @@ define([
         }
         this.session.activeNode.children.push(this.session.newNode);
         
-        this.updateSessionTree(this.session.tree, this.session.email);
+        this.updateSessionTree(this.session.tree, this.session.currentTree);
   
         this.session.newNode = null;
       }
@@ -74,17 +79,14 @@ define([
 
       $("#delete-graph").click( function(){
           if(that.session.activeNode.graphid == that.session.tree.graphid) {
-            that.session.tree = {};
-            that.$el.find("#plot-preview").html("");
-
-            that.updateSessionTree(that.session.tree, that.session.email);
-            renderTree(that.session.tree);
+            // can't delete root
+            alert("You cannot delete the root node!");
             return;
           }
 
           Util.deleteNode(treeData, that.session.activeNode.graphid);
 
-          that.updateSessionTree(that.session.tree, that.session.email);
+          that.updateSessionTree(that.session.tree, that.session.currentTree);
           renderTree(that.session.tree);
           return;
       });
@@ -240,11 +242,11 @@ define([
         }
     },
 
-        updateSessionTree: function(tree, email){
+        updateSessionTree: function(tree, key){
           Util.ajaxPOST("../newtree",
               {
                 tree: JSON.stringify(JSON.decycle(tree)),
-                email: email
+                key: key
               },
               function(){
               },

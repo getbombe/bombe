@@ -6,6 +6,9 @@ define([
 
   var SessionModel = Backbone.Model.extend({
       graphData: [],
+      currentTree: false,
+      treeKeys: [],
+      treeNames: [],
 
   		defaults : {
         isLoggedIn: false,
@@ -59,6 +62,27 @@ define([
           ret = returnData.key;
         })
         .fail(function(err) { console.log("Failed to save data: " + err); ret = -1; });
+        return ret;
+      },
+
+      // tree getters and modifiers
+      getTree: function(key) {
+        var that = this;
+        var ret;
+        $.ajax({
+          type: "POST",
+          url: "/tree/get",
+          async: false,
+          data:
+            { 
+              key:key
+            },
+        })
+        .done(function(returnData){
+          // TODO: check db error
+          ret = returnData.tree;
+        })
+        .fail(function(err) { console.log("Failed to get tree: " + err); ret = -1; });
         return ret;
       }
     });

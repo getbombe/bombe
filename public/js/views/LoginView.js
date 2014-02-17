@@ -42,7 +42,20 @@ define([
 
                           Util.logAction(that.session.email, "Logged In", "null");
 
-                          // get the tree
+                          Util.ajaxPOST("../getalltrees",
+                                        {
+                                          email: that.session.email
+                                        },
+                                        function(data) {
+                                          if (!data.success) console.log("all tree aren't successful... proceeding anyways");
+                                          that.session.treeKeys = data.keys;
+                                          that.session.treeNames = data.names;
+                                          window.location.href = "/#/select";
+                                        },
+                                        function() { console.log("could not get all trees"); },
+                                        function() {});
+
+                          /*// get the tree
                           Util.ajaxPOST("../getTree",
                                         {
                                           email:that.session.email
@@ -58,10 +71,11 @@ define([
                                           else {
                                             //console.log("3");
                                             window.location.href = "/#/import";
-                                          } 
+                                          }
                                         },
                                         function(){ console.log("could not get tree"); },
                                         function(){});
+                          */
                         } else {
                           that.displayErrorMessage(data.error);
                         }

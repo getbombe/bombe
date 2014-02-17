@@ -5,7 +5,8 @@ var mongoose	=	require('mongoose'),
 var TreeSchema = new Schema({
 	id        			: ObjectId,
 	// title  			   : { type: String, required: true, enum: ['Mr', 'Mrs', 'Mme', 'Miss'] },
-	email      			: { type: String, required: true, trim: true, index: { unique: true, sparse: true } },
+	name				: { type: String, trim: true },
+	email      			: { type: String, required: true, trim: true },
 	tree				: { type: String, required: true, trim: true },
 	created_on  : { type : Date, default : Date.now },
 	updated_on  : { type : Date, default : Date.now }

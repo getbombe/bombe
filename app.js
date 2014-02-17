@@ -47,8 +47,13 @@ app.use('/', express.static(path.join(__dirname, '../public')));
 app.post('/register', user.register);
 app.post('/login', user.login);
 app.post('/upload', upload.upload);
+
 app.post('/newtree', tree.init);
-app.post('/gettree', tree.getTree);
+app.post('/tree/get', tree.getTree);
+app.post('/tree/changename', tree.changeName);
+app.post('/tree/deletetree', tree.deleteTree);
+
+app.post('/getalltrees', tree.getAllTrees);
 
 app.post('/landingpageemail', landing.email);
 app.get('/landingemail-bombebombe1337!!!w3s0k00l', landing.print);
