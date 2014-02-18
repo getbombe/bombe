@@ -106,7 +106,7 @@ form #submit-button {
   min-height: 100%;
   padding: 0;
   margin: 0;
-  padding-top: 20%;
+  padding-top: 10%;
   text-align: center;
   background: transparent;
 }
@@ -117,7 +117,7 @@ form #submit-button {
 }
 @media screen and (max-height: 540px) {
   .jumbotron {
-    padding-top: 5%;
+    padding-top: 8%;
   }
 }
 .jumbotron h3 {
@@ -152,9 +152,8 @@ form #submit-button {
   display: block;
   font-size: 20px;
   padding: 0.4em 1.2em;
-  margin: 2em auto 0 auto;
+  margin: 1em auto 0 auto;
   -webkit-filter: none;
-  font-weight: 100;
 }
 .jumbotron .header #signup a {
   text-decoration: none;
