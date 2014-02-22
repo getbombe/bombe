@@ -166,7 +166,8 @@ h4 {
   display: block;
   margin: 1em auto;
   padding: 0;
-  height: 20em;
+  width: 16em;
+  height: 16em;
 }
 .explain-img {
   background: transparent;
@@ -184,7 +185,7 @@ h4 {
   }
 }
 .block {
-  padding: 4em 4em 0 4em;
+  padding: 2em 4em 2em 4em;
 }
 @media screen and (max-width: 480px) {
   .block {
