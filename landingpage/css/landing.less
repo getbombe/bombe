@@ -3,7 +3,7 @@
 @secondary: #1F90C1;
 @tertiary: #E5E5E5;
 @white: #FFFFFF;
-@black: #000000;
+@black: #111111;
 @success: #2ecc71;
 @translucent-black: rgba(0,0,0,0.8);
 
@@ -36,34 +36,11 @@ h1, h2, h3, h4 {
 	padding: 0;
 	@media screen and (max-width: 480px) {font-size: 16px;}
 }
-form {
-	width: 100%;
-	padding: 1em;
-	margin: 2em auto;
-	text-align: center;
-
-	#email-input {
-		width: 60%;
-		height: 2.2em;
-		padding: 1em;
-		font-size: 18px;
-		@media screen and (max-width: 480px) {font-size: 12px;}
-		.rounded;
-	} 
-	#submit-button {
-		width: 8em;
-		padding: 0.2em 1em 0.2em 1em;
-		margin-top: 1em;
-		font-size: 18px;
-		@media screen and (max-width: 480px) {font-size: 12px;}
-	}
-
-}
 
 //Geometry
 .bordered {
-	border: 4px @secondary solid;
-	@media screen and (max-width: 480px) {border: 2px @secondary solid;}
+	border: 2px @secondary solid;
+	@media screen and (max-width: 480px) {border: 1px @secondary solid;}
 }
 .rounded {
 	-webkit-border-radius: 5px;
@@ -96,18 +73,23 @@ form {
 	min-height: 100%;
 	padding: 0;
 	margin: 0;
-	padding-top: 10%;
+	padding-top: 5%;
 	text-align: center;
 	background: transparent;
 	@media screen and (max-width: 480px) {font-size: 18px;}
-	@media screen and (max-height: 540px) {padding-top: 8%;}
+	@media screen and (max-height: 540px) {padding-top: 3%;}
+	@media screen and (max-width: 740px) {padding-top: 3%;}
+
+	hr {
+		width: 70%;
+	}
 
 	h3 {
 		color: white;	
 	} 
 
 	.header {
-		width: 70%;
+		width: 100%;
 		padding: 3em;
 		margin: 0 auto;
 		-webkit-filter: none;
@@ -116,15 +98,16 @@ form {
 
 		#logo-image {
 			width: 60%;
+			padding-top: 3em;
 			-webkit-filter: none;
-			@media screen and (max-width: 480px) {width: 100%;}
+			@media screen and (max-width: 480px) {width: 100%;padding-top: 0;}
+			@media screen and (max-width: 740px) {padding-top: 0;}
 		}
 
 		#signup {	
 			display: block;
-			font-size: 20px;
-			padding: 0.4em 1.2em;
-			margin: 1em auto 0 auto;
+			padding: 0;
+			margin: 3em auto 0 auto;
 			-webkit-filter: none;
 
 			a {
@@ -136,18 +119,23 @@ form {
 				border: none;
 			}
 
-			@media screen and (max-width: 480px) {font-size: 12px;}
+			@media screen and (max-width: 480px) {font-size: 14px;}
 			@media screen and (max-height: 540px) {margin-top: 0.5em;}
 		}
 	}	
 }
 
+
+.signup-btn {
+		font-size: 26px;
+		padding: .4em 1.2em;
+	}
 .feature-img {
-	background: @primary;
+	background: transparent;
 	display: block;
 	margin: 1em auto;
-	padding: 0.8em;
-	height: 4em;
+	padding: 0;
+	height: 20em;
 }
 
 .explain-img {
@@ -161,11 +149,11 @@ form {
 }
 
 .block {
-	padding: 4em;
+	padding: 4em 4em 0 4em;
 	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
 }
 .contrast-block {
-	padding: 1em;
+	padding: 2em;
 	background: @tertiary;
 	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
 
@@ -176,16 +164,20 @@ form {
 		text-decoration: none;
 	}
 }
-.dark-block {
-	padding: 4em;
+.contact-block {
+	padding: 7em 0 3em 0;
 	color: @white;
-	background: @black;
 	@media screen and (max-width: 480px) {font-size: 14px;padding: 2em;}
+
+	background-image: url("../img/toronto_map.png");
+  background-repeat:no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .inst {
 	display: inline;
-	padding: 0;
+	padding: .3em;
 	margin: 1em;
 	height: 5em;
 	@media screen and (max-width: 480px) {height: 2em;}
@@ -194,7 +186,7 @@ form {
 	display: inline;
 	padding: 0;
 	margin:  0 0.5em;
-	height: 2.0em;
+	height: 3.0em;
 	@media screen and (max-width: 480px) {height: 2em;}
 }
 .social {
@@ -222,15 +214,21 @@ a.darkencss:hover img, a.darkencss:hover p {
     -webkit-filter: brightness(20%);
 }
 a.darkencss:hover img.social:hover {
-    border: 4px @primary solid;
+    border: 2px @primary solid;
     -webkit-filter: brightness(100%);
-    @media screen and (max-width: 480px) {border: 2px @primary solid;}
+    @media screen and (max-width: 480px) {border: 1px @primary solid;}
 }
-#thankyou{
-	color: @success;
-	margin: 0.5em;
-	padding: 0.2em;
-	.rounded;
+#carousel-container {
+	width: 80%;
+	//height: 100%;
+	margin: 0 auto;
+	padding: 3% 4% 24% 4%;
+	background-image: url("../img/imac.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	overflow: hidden;
+	@media screen and (max-width: 480px) {margin-top: 2em;padding: 3% 3% 18.5% 3%;}
+	@media screen and (max-width: 740px) {margin-top: 2em;width:60%;height:60%;padding:  3% 3% 18.5% 3%;}
 }
 
 //Bootstrap Overrides
@@ -261,4 +259,27 @@ a.darkencss:hover img.social:hover {
 }
 .jumbotron {
 	margin: 0;
+}
+.btn-clear {
+	border: 2px solid white;
+	background: transparent;
+	color: white;
+
+	-webkit-transition: all 0.5s linear;
+     -moz-transition: all 0.5s linear;
+      -ms-transition: all 0.5s linear;
+       -o-transition: all 0.5s linear;
+          transition: all 0.5s linear;
+}
+.btn-clear:hover {
+	text-decoration: none;
+	text-transform: none;
+	color: @secondary;
+	border: 2px solid @secondary;
+}
+.jumbotron p {
+	text-align: left;
+	color: white;
+	padding: 0;
+			
 }

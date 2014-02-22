@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="shortcut icon" href="img/favicon.ico">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <title>Bombe</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/landing.css">
@@ -26,31 +27,56 @@
   <div id="background"></div>
     <div class="container">
       <div class="jumbotron">
-        <div class="header">
-          <img id="logo-image" src="img/logo.png">
-          <hr>
-          <h3>Data made <em>easy</em>.</h3>
-         <div id="buttonwrapper" style="width:50%; margin:0 auto;">
-            <div id="signup"><a href="http://app.getbombe.com" ><button id="signup" class="btn btn-success">Try it out</button></a>
+        <div class="header row">
+          <div class="col-lg-6 col-sm-6">  
+            <img id="logo-image" src="img/logo.png">
+            <hr>
+            <h3>Data made <em>easy</em>.</h3>
+            <div style="color:#EEEEEE; width:100%; margin: 0 auto; padding: 0;" class="fb-like" data-href="http://www.getbombe.com" data-colorscheme="dark" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+          </div>
+          <div class="col-lg-6 col-sm-6">
+            <div id="carousel-container">
+              <div id="carousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  <li data-target="#carousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#carousel" data-slide-to="1"></li>
+                  <li data-target="#carousel" data-slide-to="2"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="img/upload.png">
+                  </div>
+                  <div class="item">
+                    <img src="img/analyze.png">
+                  </div>
+                  <div class="item">
+                    <img src="img/compute.png">
+                  </div>
+                  <div class="item">
+                    <img src="img/export.png">
+                  </div>
+                </div>
+              </div>
             </div>
-            <br>
-            <div style="color:#EEEEEE; width:250px; margin: 0 auto; padding: 0;" class="fb-like" data-href="http://www.getbombe.com" data-colorscheme="dark" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+          </div>
         </div>
-        
+        <div id="signup" class="row">
+          <a href="http://app.getbombe.com" ><button class="btn btn-clear signup-btn">Try it out</button></a>
         </div>
       </div>
-
-      <div class="contrast-block text-center">
-      <a target="_blank" class="darkencss" href="http://thenext36.ca/news/next-36-introduces-impressive-2014-cohort"><img class="media" src="img/n36_logo.png"> </a>
-      <a target="_blank" class="darkencss" href="http://www.guelphmercury.com/news-story/4293619-university-of-guelph-student-creating-new-data-analytics-software/"><img class="media" src="img/guelphmercury_logo.png"> </a>
-      </div>
-
       <div class="row">
         <div class="col-lg-12 col-sm-12">
-          <div class="block">
-            <h2 class='text-center'>
+          <div class="block text-center">
+            <h2>
               Bombe is a <strong>powerful</strong> cloud-based data characterization platform for scientists.
             </h2>
+            <hr>
+            <h3> 
+              Read more about us on our <a href="https://medium.com/@GetBombe" target="_blank">blog</a>.
+            </h3>
           </div>
         </div>
       </div>
@@ -61,36 +87,32 @@
         <div class="row">
           <div class="col-lg-4 col-sm-12">
           
-            <img class="feature-img img-circle" src="img/tree.svg">
-            <p class='text-center'>
-              Bombe provides an intuitive interface that allows scientists to visually process and analyze experimental data. 
+            <img class="feature-img" src="img/end-to-end.png">
+            <p>
+              <strong>End-to-end design</strong>: we convert raw experimental data to publication-quality figures in mere minutes.
+            </p>
+          
+          </div> 
+          <div class="col-lg-4 col-sm-12">
+
+            <img class="feature-img" src="img/cloud-compute.png">
+            <p>
+              <strong>Cloud-based</strong>: Bombe allows scientists to perform distributed numerical computations, anytime, anywhere. 
+            </p>
+          </div>
+
+          <div class="col-lg-4 col-sm-12">
+          
+            <img class="feature-img" src="img/graph-search.png">
+            <p>
+              <strong>Simple to use</strong>: our intuitive interface allows scientists to visually analyze, sort and search experimental data. 
             </p>
           </div>
         
       
-          <div class="col-lg-4 col-sm-12">
-          
-            <img class="feature-img img-circle" src="img/gauge.svg">
-            <p class='text-center'>
-              Efficient end-to-end design expedites the analytical process, taking raw data to publication-quality figures in mere minutes.
-            </p>
-          
-          </div>
-      
-          <div class="col-lg-4 col-sm-12">
-          
-            <img class="feature-img img-circle" src="img/user.svg">
-            <p class='text-center'>
-              Bombe is a cloud-based platform, allowing scientists to collaborate with each other, anytime, anywhere. 
-            </p>
-          </div>
-        
+              
       </div>
     </div>
-
-      <div class="contrast-block">
-      <h2 class="text-center"><a class=" darkencss" href="https://medium.com/@GetBombe" target="_blank"><p>Read about us on our blog</p></a></h2>
-      </div>
 
       <div class="block">
         <div class="row">
@@ -139,23 +161,50 @@
           </div> 
         </div>
       </div>
+      
+      <hr>
+
+
+      <div class="row">
+        <div class="col-lg-12 col-sm-12">
+          <div class="block text-center">
+            <h1 class="strong-font">Bombe is currently in beta - try it now!</h1>
+            <br>
+            <a href="http://app.getbombe.com" ><button class="btn btn-lg btn-success signup-btn">Try the app</button></a>
+            
+          </div>
+        </div>
+      </div>
+      <br><br>
       <hr>
 
       <div class="row">
         <div class="col-lg-12 col-sm-12">
-          <div class="contrast-block">
+          <div class="block">
             <h3 class="text-uppercase text-center">Bombe is used by scientists at</h3>
             <div class="text-center">
               <a target="_blank" class="darkencss" href="http://www.wlu.ca"><img class="inst" src="img/laurier_logo.svg"> </a>
               <a target="_blank" class="darkencss" href="http://www.uoguelph.ca/"><img class="inst" src="img/uog_logo.svg"></a>
+              <a target="_blank" class="darkencss" href="http://www.queensu.ca/"><img class="inst" src="img/queens_logo.png"></a>
+            </div>
+          </div>    
+        </div>
+      </div>
+      <div class="row">
+        <div class="contrast-block">
+            <h3 class="text-uppercase text-center">As seen in</h3>
+            <br>
+            <div class="text-center">
+              <a target="_blank" class="darkencss" href="http://thenext36.ca/news/next-36-introduces-impressive-2014-cohort"><img class="media" src="img/n36_logo.png"> </a>
+              <a target="_blank" class="darkencss" href="http://www.guelphmercury.com/news-story/4293619-university-of-guelph-student-creating-new-data-analytics-software/"><img class="media" src="img/guelphmercury_logo.png"> </a>
             </div>
           </div>
         </div>
-      </div>
 
+      <div id="background-footer"></div>
       <div class="row">
         <div class="col-lg-12 col-sm-12">
-          <div class="dark-block">
+          <div class="contact-block">
             <h4 class="text-center">
               Keep in touch with us: <a href="mailto:info@getbombe.com">info@getbombe.com</a>
             </h4>
@@ -175,6 +224,11 @@
 
     <!-- Google Analytics -->
     <script>
+
+      $(".signup-btn").click(function(){
+        ga('send', 'event', 'button', 'click', 'tryapp');
+      });
+
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
