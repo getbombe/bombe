@@ -4,6 +4,7 @@ from lib.calculus import *
 from lib.stats import *
 from lib.graphical import *
 from lib.export import *
+from lib.minmax import *
 
 class ComputeRouter:
 	''' static, and should be used that way '''
@@ -30,7 +31,11 @@ class ComputeRouter:
 
 		#transforms
 		'transform_fourier': Transform.fourier,
-		'transform_gaussian_filter': Transform.gaussian_filter
+		'transform_gaussian_filter': Transform.gaussian_filter,
+
+		#min max
+		'minmax_min': MinMax.min,
+		'minmax_max': MinMax.max
 	}
 
 	def dataPreprocess(self, data):
@@ -146,3 +151,9 @@ if __name__ == '__main__':
 	plt.plot(gaus['data']['x'], gaus['data']['y'])
 	plt.show()
 
+	'''TEST MIN MAX FUNCTIONS'''
+	minn = cr.compute('minmax_min', data)
+	print (minn['data']['xAtYMin'], minn['data']['yMin'])
+
+	maxx = cr.compute('minmax_max', data)
+	print (maxx['data']['xAtYMax'], maxx['data']['yMax'])

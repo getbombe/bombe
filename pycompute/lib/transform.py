@@ -1,5 +1,6 @@
 from numpy import *
 import scipy
+import scipy.constants
 import scipy.fftpack
 import scipy.signal
 
@@ -41,5 +42,22 @@ class Transform:
 		 
 		gs = list(scipy.signal.gaussian(len(x_dat), sigma))
 		data['data']['y'] = list(multiply(y_dat, gs))
+
+		return data
+
+	@staticmethod
+	def k_space_transform(data):
+		'''Tranforms energy to momentum space'''
+
+		E_0 = data['E0']
+		x_dat = data['data']['x']
+		y_dat = data['data']['y']
+
+		transform = lambda x: ((2 * scipy.constants.m_e * (x - E_0)) / (scipy.constants.hbar ** 2) ** 0.5)
+
+		x_dat = map(transform, x_dat)
+
+		data['data']['x'] = x_dat;
+		data['data']['y'] = y_dat;
 
 		return data
