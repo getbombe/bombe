@@ -57,7 +57,23 @@ class Transform:
 
 		x_dat = map(transform, x_dat)
 
-		data['data']['x'] = x_dat;
-		data['data']['y'] = y_dat;
+		data['data']['x'] = list(x_dat)
+		data['data']['y'] = list(y_dat)
+
+		return data
+
+	@staticmethod
+	def x_weight(data):
+		'''amplifies y data by multiplying some power of x data'''
+		
+		power = data['power']
+		
+		x_dat = data['data']['x']
+		y_dat = data['data']['y']
+
+		for i in range(y_dat):
+			y_dat[i] *= pow(x_dat[i], power)
+
+		data['data']['y'] = list(y_dat)
 
 		return data
