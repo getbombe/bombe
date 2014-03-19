@@ -134,7 +134,22 @@ define([
             data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
             compute(op, data);
           });
-          $("#operate-help").html("Choose sigma value");
+          $("#operate-help").html("Specify absorption edge energy");
+        } else if(op == "transform_x_weight"){
+          $("#operate-options").show();
+          $("#operate-textbox").html('<input type="text" id="operate-text">');
+          $("#operate-text").keyup(function() {
+            if ($(this).val() == parseFloat($(this).val())) {
+              data.power = $(this).val();  
+            } else {
+              data.power = 1;
+            }
+
+            data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
+            data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
+            compute(op, data);
+          });
+          $("#operate-help").html("Specify X amplification exponent");
         } else {
           // select
         }
