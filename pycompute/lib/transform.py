@@ -49,7 +49,7 @@ class Transform:
 	def k_space_transform(data):
 		'''Tranforms energy to momentum space'''
 
-		E_0 = data['E0']
+		E_0 = data['E_zero']
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
 

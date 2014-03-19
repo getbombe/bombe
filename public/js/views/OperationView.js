@@ -67,6 +67,8 @@ define([
         data.order = 1;
         data.sigma = 10;
         data.removal = 'none';
+        data.E_zero = 0;
+        data.power = 1;
         $("#operate-textbox").unbind();
         $("#operate-text").unbind();
 
@@ -118,32 +120,21 @@ define([
             compute(op, data);
           });
           $("#operate-help").html("Choose sigma value");
-        } else if(op == "background_spline_smooth"){
+        } else if(op == "transform_k_space_transform"){
           $("#operate-options").show();
-          $("#operate-textbox").html('<select id="smooth-select"><option value="none">None</option>'
-           +'<option value="subtract">Subtraction</option>'
-           +'<option value="divide">Division</option></select>');
-          $("#operate-textbox").append('<input type="text" id="operate-text">');
-          
-          var splineCompute = function(){
-            data.removal = $("#smooth-select").val();
-            
-            if ($("#operate-text").val() == parseFloat($("#operate-text").val())) {
-              data.res = $("#operate-text").val();  
+          $("#operate-textbox").html('<input type="text" id="operate-text">');
+          $("#operate-text").keyup(function() {
+            if ($(this).val() == parseFloat($(this).val())) {
+              data.E_zero = $(this).val();  
             } else {
-              data.res = 1;
+              data.E_zero = 0;
             }
 
             data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
             data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
             compute(op, data);
-          };
-
-          $("#smooth-select").on('change', splineCompute);
-          $("#operate-text").on('keyup change', splineCompute);
-          
-
-          $("#operate-help").html("Choose background removal type and enter smoothness parameter (larger = smoother)");
+          });
+          $("#operate-help").html("Choose sigma value");
         } else {
           // select
         }
