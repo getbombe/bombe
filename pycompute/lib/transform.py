@@ -49,7 +49,8 @@ class Transform:
 	def k_space_transform(data):
 		'''Tranforms energy to momentum space'''
 
-		E_0 = data['E_zero']
+		E_0 = float(data['E_zero'])
+		
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
 
@@ -66,7 +67,7 @@ class Transform:
 	def x_weight(data):
 		'''amplifies y data by multiplying some power of x data'''
 		
-		power = data['power']
+		power = float(data['power'])
 		
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
