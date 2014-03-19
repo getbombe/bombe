@@ -5,7 +5,9 @@ require.config({
     backbone: 'http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min',
     'jquery.form': 'http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.46/jquery.form',
     bootstrap: 'http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min',
-    slider: '/js/lib/bootstrap-slider'
+    slider: '/js/lib/bootstrap-slider',
+    panzoom: '/js/lib/jquery.panzoom.min',
+    jqueryui: 'https://code.jquery.com/ui/1.10.4/jquery-ui.min'
   },
   shim: 
   { 
@@ -33,6 +35,14 @@ require.config({
 
     "slider": {
         deps: ["jquery", "bootstrap"]
+    },
+
+    "panzoom": {
+        deps: ["jquery"]
+    },
+
+    "jqueryui": {
+        deps: ["jquery"]
     }
 
   }    

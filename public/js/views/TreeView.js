@@ -4,8 +4,9 @@ define([
   'backbone',
   'utility',
   'text!templates/tree_view.html', 
-  'bootstrap'
-], function($, _, Backbone, Util, TreeViewTemplate, Bootstrap){
+  'bootstrap',
+  'panzoom'
+], function($, _, Backbone, Util, TreeViewTemplate, Bootstrap, Panzoom){
 
   var TreeView = Backbone.View.extend({
     el: $("#tree"),
@@ -20,6 +21,21 @@ define([
     render: function(){
       var template = _.template(TreeViewTemplate, {data: null});
       this.$el.html(template);
+
+      //$("#treeview").panzoom();  
+      var $section = $('#treeviewContainer');
+      var $panzoom = $section.find('#treeview').panzoom();
+      $panzoom.parent().on('mousewheel.focal', function( e ) {
+        e.preventDefault();
+        var delta = e.delta || e.originalEvent.wheelDelta;
+        var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
+        $panzoom.panzoom('zoom', zoomOut, {
+          increment: 0.1,
+          focal: e
+        });
+      });
+      
+      
     },
 
     hide: function(){
@@ -31,6 +47,8 @@ define([
         window.location.href = "#/import";
         return;
       }
+
+
 
       console.log(this.session.tree);
       this.$el.show();

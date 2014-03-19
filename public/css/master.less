@@ -245,12 +245,12 @@ nav {
 		margin-top: 2em;
 	}
 }
-#treeview {
+#treeviewContainer {
 	.med-pad;
 	height: @max-height;
 	background-color: @background;
 	max-height: @max-height;
-	overflow: scroll;
+	overflow: hidden;
 }
 #preview {
 	background-color: @background;
@@ -431,7 +431,7 @@ nav {
 .nodebox {
 	fill: @blank;
 	stroke: @subtle;
-	stroke-width: 2px;
+	stroke-width: 4px;
 
 	.active {
 		stroke: @highlight;
@@ -445,7 +445,7 @@ nav {
 .link {
 	fill: none;
 	stroke: @tree-link;
-	stroke-width: 0.2em;
+	stroke-width: 0.8em;
 }
 
 .line {

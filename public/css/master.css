@@ -211,12 +211,12 @@ nav ul img {
   color: #000000;
   margin-top: 2em;
 }
-#treeview {
+#treeviewContainer {
   padding: 1.5em;
   height: 100%;
   background-color: #ffffff;
   max-height: 100%;
-  overflow: scroll;
+  overflow: hidden;
 }
 #preview {
   background-color: #ffffff;
@@ -400,7 +400,7 @@ nav ul img {
 .nodebox {
   fill: #ffffff;
   stroke: #777777;
-  stroke-width: 2px;
+  stroke-width: 4px;
 }
 .nodebox .active {
   stroke: #1f90c1;
@@ -411,7 +411,7 @@ nav ul img {
 .link {
   fill: none;
   stroke: rgba(119, 119, 119, 0.5);
-  stroke-width: 0.2em;
+  stroke-width: 0.8em;
 }
 .line {
   fill: none;
