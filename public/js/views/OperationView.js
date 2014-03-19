@@ -165,6 +165,8 @@ define([
                           data.data = res.result.data;
                           Util.renderGraph({data: data}, "#plot-after", false);
 
+                          updateMinMax(data); 
+
                           var newKey = that.session.saveGraphData(data);
                           var newNode = {
                             graphid: newKey,
@@ -175,8 +177,39 @@ define([
                         function(){ console.log("Compute failed."); },
                         function(){});
         }
-      }
+      };
 
+      function updateMinMax (data){
+        if(data){
+          Util.ajaxPOST("http://compute.getbombe.com/compute",
+                        {
+                          operation: "minmax_min",
+                          data: JSON.stringify(JSON.decycle(data))
+                        },
+                        function(res){
+                          Util.logAction(that.session.email, "Transformed Graph", "minmax_min");
+                          $("#xymin-display").html(res.result.data.xAtYMin[0]);
+                          $("#ymin-display").html(res.result.data.yMin[0]);
+                          $("#minmax-display").show();
+                        },
+                        function(){ console.log("Min compute failed."); },
+                        function(){});
+
+          Util.ajaxPOST("http://compute.getbombe.com/compute",
+                        {
+                          operation: "minmax_max",
+                          data: JSON.stringify(JSON.decycle(data))
+                        },
+                        function(res){
+                          Util.logAction(that.session.email, "Transformed Graph", "minmax_max");
+                          $("#xymax-display").html(res.result.data.xAtYMax[0]);
+                          $("#ymax-display").html(res.result.data.yMax[0]);
+                          $("#minmax-display").show();
+                        },
+                        function(){ console.log("Min compute failed."); },
+                        function(){});
+        }
+      };
     },
 
     hide: function(){
