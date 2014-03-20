@@ -5,8 +5,9 @@ define([
   'utility',
   'text!templates/tree_view.html', 
   'bootstrap',
-  'panzoom'
-], function($, _, Backbone, Util, TreeViewTemplate, Bootstrap, Panzoom){
+  'panzoom',
+  'd3bootstrap'
+], function($, _, Backbone, Util, TreeViewTemplate, Bootstrap, Panzoom, D3bootstrap){
 
   var TreeView = Backbone.View.extend({
     el: $("#tree"),
@@ -21,6 +22,13 @@ define([
     render: function(){
       var template = _.template(TreeViewTemplate, {data: null});
       this.$el.html(template);
+
+      d3.selectAll(".link")
+      .call(bootstrap.tooltip()
+      .placement("top"));
+
+      $('#create-graph').tooltip();
+
 
       //$("#treeview").panzoom();  
       var $section = $('#treeviewContainer');
@@ -47,8 +55,6 @@ define([
         window.location.href = "#/import";
         return;
       }
-
-
 
       console.log(this.session.tree);
       this.$el.show();
@@ -181,7 +187,14 @@ define([
       });
 
 
-      $("#create-graph").click ( function(){
+      $("#create-graph").click(function(){
+        createGraph();
+      });
+      $(".nodebox").dblclick(function(){
+        createGraph();
+      });
+
+      function createGraph(){
         var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
         window.idBefore = graphid;
         window.idAfter = "new";
@@ -195,7 +208,7 @@ define([
         Util.logAction(that.session.email, "Created New Graph", "null");
 
         window.location.href = "/#/operation";
-      });
+      }
       
 
       function renderTree(treeData) {
@@ -232,6 +245,10 @@ define([
                .enter()
                .append("svg:path")
                .attr("class", "link")
+               .attr("data-toggle", "tooltip")
+               .attr("data-placement", "top")
+               .attr("data-trigger", "hover")
+               .attr("title", "Transformation Type")
                .attr("d", link);
 
            var nodeGroup = layoutRoot.selectAll("g.node")

@@ -7,7 +7,8 @@ require.config({
     bootstrap: 'http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min',
     slider: '/js/lib/bootstrap-slider',
     panzoom: '/js/lib/jquery.panzoom.min',
-    jqueryui: 'https://code.jquery.com/ui/1.10.4/jquery-ui.min'
+    jqueryui: 'https://code.jquery.com/ui/1.10.4/jquery-ui.min',
+    d3bootstrap: '/js/lib/d3-bootstrap.min'
   },
   shim: 
   { 

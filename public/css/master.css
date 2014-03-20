@@ -413,6 +413,9 @@ nav ul img {
   stroke: rgba(119, 119, 119, 0.5);
   stroke-width: 0.8em;
 }
+.link:hover {
+  stroke: #1f90c1;
+}
 .line {
   fill: none;
   stroke: #000000;
