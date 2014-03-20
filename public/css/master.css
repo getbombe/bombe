@@ -211,6 +211,12 @@ nav ul img {
   color: #000000;
   margin-top: 2em;
 }
+#minmax-display {
+  float: right;
+  text-align: right;
+  padding-top: 50px;
+  display: none;
+}
 #treeviewContainer {
   padding: 1.5em;
   height: 100%;

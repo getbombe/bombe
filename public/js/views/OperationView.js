@@ -67,6 +67,8 @@ define([
         data.order = 1;
         data.sigma = 10;
         data.removal = 'none';
+        data.E_zero = 0;
+        data.power = 1;
         $("#operate-textbox").unbind();
         $("#operate-text").unbind();
 
@@ -118,32 +120,36 @@ define([
             compute(op, data);
           });
           $("#operate-help").html("Choose sigma value");
-        } else if(op == "background_spline_smooth"){
+        } else if(op == "transform_k_space_transform"){
           $("#operate-options").show();
-          $("#operate-textbox").html('<select id="smooth-select"><option value="none">None</option>'
-           +'<option value="subtract">Subtraction</option>'
-           +'<option value="divide">Division</option></select>');
-          $("#operate-textbox").append('<input type="text" id="operate-text">');
-          
-          var splineCompute = function(){
-            data.removal = $("#smooth-select").val();
-            
-            if ($("#operate-text").val() == parseFloat($("#operate-text").val())) {
-              data.res = $("#operate-text").val();  
+          $("#operate-textbox").html('<input type="text" id="operate-text">');
+          $("#operate-text").keyup(function() {
+            if ($(this).val() == parseFloat($(this).val())) {
+              data.E_zero = $(this).val();  
             } else {
-              data.res = 1;
+              data.E_zero = 0;
             }
 
             data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
             data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
             compute(op, data);
-          };
+          });
+          $("#operate-help").html("Specify absorption edge energy");
+        } else if(op == "transform_x_weight"){
+          $("#operate-options").show();
+          $("#operate-textbox").html('<input type="text" id="operate-text">');
+          $("#operate-text").keyup(function() {
+            if ($(this).val() == parseFloat($(this).val())) {
+              data.power = $(this).val();  
+            } else {
+              data.power = 1;
+            }
 
-          $("#smooth-select").on('change', splineCompute);
-          $("#operate-text").on('keyup change', splineCompute);
-          
-
-          $("#operate-help").html("Choose background removal type and enter smoothness parameter (larger = smoother)");
+            data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
+            data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
+            compute(op, data);
+          });
+          $("#operate-help").html("Specify X amplification exponent");
         } else {
           // select
         }
@@ -165,6 +171,8 @@ define([
                           data.data = res.result.data;
                           Util.renderGraph({data: data}, "#plot-after", false);
 
+                          updateMinMax(data); 
+
                           var newKey = that.session.saveGraphData(data);
                           var newNode = {
                             graphid: newKey,
@@ -175,8 +183,39 @@ define([
                         function(){ console.log("Compute failed."); },
                         function(){});
         }
-      }
+      };
 
+      function updateMinMax (data){
+        if(data){
+          Util.ajaxPOST("http://compute.getbombe.com/compute",
+                        {
+                          operation: "minmax_min",
+                          data: JSON.stringify(JSON.decycle(data))
+                        },
+                        function(res){
+                          Util.logAction(that.session.email, "Transformed Graph", "minmax_min");
+                          $("#xymin-display").html(res.result.data.xAtYMin[0]);
+                          $("#ymin-display").html(res.result.data.yMin[0]);
+                          $("#minmax-display").show();
+                        },
+                        function(){ console.log("Min compute failed."); },
+                        function(){});
+
+          Util.ajaxPOST("http://compute.getbombe.com/compute",
+                        {
+                          operation: "minmax_max",
+                          data: JSON.stringify(JSON.decycle(data))
+                        },
+                        function(res){
+                          Util.logAction(that.session.email, "Transformed Graph", "minmax_max");
+                          $("#xymax-display").html(res.result.data.xAtYMax[0]);
+                          $("#ymax-display").html(res.result.data.yMax[0]);
+                          $("#minmax-display").show();
+                        },
+                        function(){ console.log("Min compute failed."); },
+                        function(){});
+        }
+      };
     },
 
     hide: function(){

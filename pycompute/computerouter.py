@@ -32,6 +32,8 @@ class ComputeRouter:
 		#transforms
 		'transform_fourier': Transform.fourier,
 		'transform_gaussian_filter': Transform.gaussian_filter,
+		'transform_k_space_transform': Transform.k_space_transform,
+		'transform_x_weight': Transform.x_weight,
 
 		#min max
 		'minmax_min': MinMax.min,
