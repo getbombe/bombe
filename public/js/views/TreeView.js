@@ -27,7 +27,7 @@ define([
       .call(bootstrap.tooltip()
       .placement("top"));
 
-      $('#create-graph').tooltip();
+      //$('#create-graph').tooltip();
 
 
       //$("#treeview").panzoom();  
