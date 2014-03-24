@@ -48,7 +48,7 @@ define([
         return;
       }
 
-      console.log(this.session.tree);
+      console.log(this.session);
       this.$el.show();
 
       Util.logAction(this.session.email, "Viewed Tree Page", "null");
@@ -132,6 +132,12 @@ define([
           that.session.getGraphData(that.session.activeNode.graphid).label.y = $("#yLabel").val();
           that.session.getGraphData(that.session.activeNode.graphid).unit.x = $("#xUnit").val();
           that.session.getGraphData(that.session.activeNode.graphid).unit.y = $("#yUnit").val();
+
+          renderTree(that.session.tree);
+          $(".nodebox").tooltip({
+            'container': 'body',
+            'placement': 'top'
+          });
 
           Util.ajaxPOST("../data/change",
                         {
@@ -258,7 +264,7 @@ define([
 
             nodeGroup.append("circle")
               .attr("class", "nodebox")
-              .attr("title", function(d){ return d.graphid})
+              .attr("title", function(d){ return that.session.getGraphData(d.graphid).title})
               .attr("x", -150/2)
               .attr("y", -100/2)
               .attr("r", 60);
