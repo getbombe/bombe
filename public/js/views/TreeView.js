@@ -23,14 +23,7 @@ define([
       var template = _.template(TreeViewTemplate, {data: null});
       this.$el.html(template);
 
-      d3.selectAll(".link")
-      .call(bootstrap.tooltip()
-      .placement("top"));
-
-      //$('#create-graph').tooltip();
-
-
-      //$("#treeview").panzoom();  
+      
       var $section = $('#treeviewContainer');
       var $panzoom = $section.find('#treeview').panzoom();
       $panzoom.parent().on('mousewheel.focal', function( e ) {
@@ -38,11 +31,10 @@ define([
         var delta = e.delta || e.originalEvent.wheelDelta;
         var zoomOut = delta ? delta < 0 : e.originalEvent.deltaY > 0;
         $panzoom.panzoom('zoom', zoomOut, {
-          increment: 0.1,
+          increment: 0.02,
           focal: e
         });
       });
-      
       
     },
 
@@ -95,6 +87,12 @@ define([
           Util.activateNodeById(that.session, treeData, $(this).attr("id"));
           Util.renderGraph(that.session.activeNode, "#plot-preview", that.session);
       });
+
+      $(".nodebox").tooltip({
+        'container': 'body',
+        'placement': 'top'
+      });
+  
 
       $(window).resize(function() {
           Util.renderGraph(that.session.activeNode, "#plot-preview", that.session);
@@ -245,10 +243,6 @@ define([
                .enter()
                .append("svg:path")
                .attr("class", "link")
-               .attr("data-toggle", "tooltip")
-               .attr("data-placement", "top")
-               .attr("data-trigger", "hover")
-               .attr("title", "Transformation Type")
                .attr("d", link);
 
            var nodeGroup = layoutRoot.selectAll("g.node")
@@ -262,14 +256,9 @@ define([
                    return "translate(" + d.y + "," + d.x + ")";
                });
 
-           /*nodeGroup.append("rect")
-               .attr("class", "nodebox")
-               .attr("x", -150/2)
-               .attr("y", -100/2)
-               .attr("width", 150)
-               .attr("height", 100);*/
             nodeGroup.append("circle")
               .attr("class", "nodebox")
+              .attr("title", function(d){ return d.graphid})
               .attr("x", -150/2)
               .attr("y", -100/2)
               .attr("r", 60);

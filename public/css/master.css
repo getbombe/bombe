@@ -223,6 +223,7 @@ nav ul img {
   background-color: #ffffff;
   max-height: 100%;
   overflow: hidden;
+  color: #000000;
 }
 #preview {
   background-color: #ffffff;
@@ -406,7 +407,7 @@ nav ul img {
 .nodebox {
   fill: #ffffff;
   stroke: #777777;
-  stroke-width: 4px;
+  stroke-width: 2px;
 }
 .nodebox .active {
   stroke: #1f90c1;
@@ -417,7 +418,7 @@ nav ul img {
 .link {
   fill: none;
   stroke: rgba(119, 119, 119, 0.5);
-  stroke-width: 0.8em;
+  stroke-width: 2px;
 }
 .link:hover {
   stroke: #1f90c1;
