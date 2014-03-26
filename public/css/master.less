@@ -173,10 +173,9 @@ table {
 	}
 }
 .analysis {
-	.med-pad;
+	.small-pad;
 	height: @max-height;
 	background-color: @background;
-	max-height: @max-height;
 	overflow: hidden;
 }
 #title-bar {
@@ -234,22 +233,36 @@ nav {
 	height: @max-height;
 	max-height: @max-height;
 }
+#operationContainer{
+	height: 70%;
+	.med-pad;
+}
 #operate {
 	background: @background;
-	.big-pad;
-	height: @max-height;
-	max-height: @max-height;
+	height: 30%;
+	.med-pad;
+	padding-top: 0;
+	margin-top: 0;
 
 	h1, h2, h3, h4 {
 		color: @body-font;
-		margin-top: 2em;
+		.small-pad;
+	}
+
+	select {
+		width: 95%;
+		.bordered;
+		.small-margin;
 	}
 }
+#operate-options {
+	.small-pad;
+	.small-margin;
+}
 #minmax-display {
-	float: right;
-	text-align: right;
-	padding-top: 50px;
-	display: none;
+	.bordered;
+	max-height: @max-height;
+	overflow: scroll;
 }
 #treeviewContainer {
 	.med-pad;
@@ -320,8 +333,8 @@ nav {
 	.small-pad;
 	.small-margin;
 	.centered;
-	text-align: left;
-	width: 100%;
+	text-align: center;
+	width: 90%;
 	h4 {
 		display: inline;
 		.small-margin;
@@ -331,6 +344,8 @@ nav {
 		border: 1px @subtle solid;
 		width: 100%;
 		.small-margin;
+		margin-right: auto;
+		margin-left: auto;
 	}
 
 	button {
@@ -381,10 +396,10 @@ nav {
 	overflow: hidden;
 }
 .operate {
+	.no-space;
 	.small-pad;
 	padding-left: 2em;
 	padding-right: 2em;
-	.no-space;
 }
 .tag {
 	padding: 2px;
@@ -432,6 +447,9 @@ nav {
 }
 .slider-track {
 	width: 80%;
+}
+#operate-done{
+	.no-space;
 }
 
 //D3

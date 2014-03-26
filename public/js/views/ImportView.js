@@ -100,7 +100,7 @@ define([
             Util.logAction(that.session.email, "Uploaded Raw Data", "null");
 
             var data = {
-              title: "Graph title - edit me",
+              title: "New Graph",
               data: {
                 x: res.x,
                 y: res.y

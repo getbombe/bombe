@@ -144,10 +144,9 @@ table {
   margin-right: auto;
 }
 .analysis {
-  padding: 1.5em;
+  padding: .5em;
   height: 100%;
   background-color: #ffffff;
-  max-height: 100%;
   overflow: hidden;
 }
 #title-bar {
@@ -198,24 +197,41 @@ nav ul img {
   height: 100%;
   max-height: 100%;
 }
+#operationContainer {
+  height: 70%;
+  padding: 1.5em;
+}
 #operate {
   background: #ffffff;
-  padding: 2.5em;
-  height: 100%;
-  max-height: 100%;
+  height: 30%;
+  padding: 1.5em;
+  padding-top: 0;
+  margin-top: 0;
 }
 #operate h1,
 #operate h2,
 #operate h3,
 #operate h4 {
   color: #000000;
-  margin-top: 2em;
+  padding: .5em;
+}
+#operate select {
+  width: 95%;
+  border: 1px solid #777777;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  margin: .5em;
+}
+#operate-options {
+  padding: .5em;
+  margin: .5em;
 }
 #minmax-display {
-  float: right;
-  text-align: right;
-  padding-top: 50px;
-  display: none;
+  border: 1px solid #777777;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  max-height: 100%;
+  overflow: scroll;
 }
 #treeviewContainer {
   padding: 1.5em;
@@ -292,8 +308,8 @@ nav ul img {
   margin: .5em;
   margin-left: auto;
   margin-right: auto;
-  text-align: left;
-  width: 100%;
+  text-align: center;
+  width: 90%;
 }
 .text-box h4 {
   display: inline;
@@ -306,6 +322,8 @@ nav ul img {
   border: 1px #777777 solid;
   width: 100%;
   margin: .5em;
+  margin-right: auto;
+  margin-left: auto;
 }
 .text-box button {
   width: 100%;
@@ -351,10 +369,10 @@ nav ul img {
   overflow: hidden;
 }
 .operate {
+  margin: 0;
   padding: .5em;
   padding-left: 2em;
   padding-right: 2em;
-  margin: 0;
 }
 .tag {
   padding: 2px;
@@ -403,6 +421,9 @@ nav ul img {
 }
 .slider-track {
   width: 80%;
+}
+#operate-done {
+  margin: 0;
 }
 .nodebox {
   fill: #ffffff;

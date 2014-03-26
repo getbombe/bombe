@@ -135,7 +135,7 @@ define([
 
           renderTree(that.session.tree);
           $(".nodebox").tooltip({
-            'container': 'body',
+            'container': 'treeView',
             'placement': 'top'
           });
 
@@ -221,7 +221,7 @@ define([
 
           var tree = d3.layout.tree()
               .sort(null)
-              .size([1000, 1000 - 20*10])
+              .size([800, 800 - 20*10])
               .separation(function(a, b) { return (a.parent == b.parent ? 0.5 : 1); })
               .children(function(d)
               {

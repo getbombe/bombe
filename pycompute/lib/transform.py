@@ -47,14 +47,14 @@ class Transform:
 
 	@staticmethod
 	def k_space_transform(data):
-		'''Tranforms energy to momentum space'''
+		'''Tranforms energy (assumed to be in eV) to momentum space'''
 
 		E_0 = float(data['E_zero'])
 
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
 
-		transform = lambda x: ((2 * scipy.constants.m_e * (x - E_0)) / (scipy.constants.hbar ** 2) ** 0.5)
+		transform = lambda x: ((2 * scipy.constants.m_e * (x - E_0) * scipy.constants.e ) / (scipy.constants.hbar ** 2)) ** 0.5
 
 		x_dat = map(transform, x_dat)
 

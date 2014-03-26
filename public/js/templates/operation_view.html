@@ -1,64 +1,60 @@
-<div class="row">
-  <div class="analysis col-sm-5">
-	<div class="graph">
-		<div id="plot-before-titlebar">
-      <p class="text-left"><span class="graphid"></span></p>
-    </div>
-		<div id="plot-before" class="plot">
-		</div>
-	</div>
-</div>
-  <div id="operate" class="col-sm-2">
-    <br>
-    <div class="text-box">
-      <div class="row">
-        <div class="col-lg-12">
-          <h4>Operation</h4> 
-          <select id="opselect">
-            <option>Select...</option>
-            <option value="calculus_differentiate">Derivative</option>
-            <option value="stats_poly_regression">Polynomial Regression</option>
-            <option value="background_spline">Spline Interpolation</option>
-            <option value="background_spline_smooth">Spline Smoothing</option>
-            <option value="transform_gaussian_filter">Gaussian Filter</option>
-            <option value="transform_fourier">Fourier Transform</option>
-            <option value="transform_k_space_transform">Energy to Reciprocal Space Transform</option>
-            <option value="transform_x_weight">X-Power Amplification</option>
-          </select>
-        </div>
+<div id="operationContainer">
+  <div class="row">
+    <div class="analysis col-sm-6">
+  	 <div class="graph">
+  		<div id="plot-before-titlebar">
+        <p class="text-left"><span class="graphid"></span></p>
       </div>
-    </div>
-    <div id="operate-options" class="text-box">
-      <div id="operate-textbox"></div>
-      <div id="operate-help" class="text-center" ></div>
-    </div>
-    <div class="text-box">
-      <div class="row">
-        <div class="col-lg-12">
-          <button id="operate-done" class="btn btn-primary operate">Done</button></a>
-        </div>
+  		<div id="plot-before" class="plot">
+  		</div>
+  	</div>
+  </div>
+  <div class="analysis col-sm-6">
+  	<div class="graph">
+  		<div id="plot-after-titlebar">
+        <p class="text-left"><span class="graphid"></span></p>
       </div>
-    </div>
-    <div id="minmax-display" class="text-box">
-      <div class="row">
-        <div class="col-lg-12">
-          <p>X at Y-min:</p><p><span id="xymin-display"></span></p>
-          <p>Y-min:</p><p><span id="ymin-display"></span></p>
-          <br />
-          <p>X at Y-max:</p><p><span id="xymax-display"></span></p>
-          <p>Y-max:</p><p><span id="ymax-display"></span></p>
-        </div>
-      </div>
+  		<div id="plot-after" class="plot">
+  		</div>
+  	</div>
     </div>
   </div>
-  <div class="analysis col-sm-5">
-	<div class="graph">
-		<div id="plot-after-titlebar">
-      <p class="text-left"><span class="graphid"></span></p>
+</div>
+<div id="operate">
+  <div class="row">
+    <div class="col-sm-6">
+      <h4>Operation</h4> 
+      <select multiple id="opselect">
+        <option value="calculus_differentiate">Derivative</option>
+        <option value="stats_poly_regression">Polynomial Regression</option>
+        <option value="background_spline">Spline Interpolation</option>
+        <option value="background_spline_smooth">Spline Smoothing</option>
+        <option value="transform_gaussian_filter">Gaussian Filter</option>
+        <option value="transform_fourier">Fourier Transform</option>
+        <option value="transform_k_space_transform">Energy to Reciprocal Space Transform</option>
+        <option value="transform_x_weight">X-Power Amplification</option>
+      </select>
+      <div class="text-box">
+        <button id="operate-done" class="btn btn-success operate">Done</button>     
+      </div>
     </div>
-		<div id="plot-after" class="plot">
-		</div>
-	</div>
+    <div class="col-sm-6">
+       <h4>Options</h4> 
+      <div id="operate-options" class="text-box">
+        <div id="operate-textbox"></div>
+        <div id="operate-help" class="text-center" ></div>
+      </div>
+    </div>
+    <!-- <div class="col-sm-4">
+       <h4>Summary</h4> 
+      <div id="minmax-display">
+        <p>X at Y-min:</p><p><span id="xymin-display"></span></p>
+        <p>Y-min:</p><p><span id="ymin-display"></span></p>
+        <br />
+        <p>X at Y-max:</p><p><span id="xymax-display"></span></p>
+        <p>Y-max:</p><p><span id="ymax-display"></span></p>
+      </div>
+    </div> -->
   </div>
 </div>
 
