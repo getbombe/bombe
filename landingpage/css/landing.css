@@ -69,7 +69,7 @@ h4 {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
-  -webkit-filter: brightness(35%);
+  -webkit-filter: blur(3px) brightness(35%);
   z-index: -9999;
 }
 .jumbotron {
@@ -225,9 +225,9 @@ h4 {
 }
 .inst {
   display: inline;
-  padding: .3em;
-  margin: 1em;
-  height: 5em;
+  padding: .2em;
+  margin: .5em;
+  height: 3em;
 }
 @media screen and (max-width: 480px) {
   .inst {
@@ -392,4 +392,8 @@ a.darkencss:hover img.social:hover {
   text-align: left;
   color: white;
   padding: 0;
+}
+.table {
+  width: 70%;
+  margin: 0 auto;
 }
