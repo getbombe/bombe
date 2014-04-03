@@ -40,7 +40,7 @@ class Transform:
 		sigma = float(data['sigma'])
 
 		 
-		gs = list(scipy.signal.gaussian(len(x_dat), sigma))
+		gs = list(scipy.signal.gaussian(len(y_dat), sigma))
 		data['data']['y'] = list(multiply(y_dat, gs))
 
 		return data
@@ -54,7 +54,7 @@ class Transform:
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
 
-		transform = lambda x: ((2 * scipy.constants.m_e * (x - E_0) * scipy.constants.e ) / (scipy.constants.hbar ** 2)) ** 0.5
+		transform = lambda x: (((2 * scipy.constants.m_e * (x - E_0) * scipy.constants.e ) / (scipy.constants.hbar ** 2)) ** 0.5 ) 10**(-10)
 
 		x_dat = map(transform, x_dat)
 
