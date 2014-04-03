@@ -178,10 +178,14 @@ define([
                           var filename_svg = res.result.filename_svg;
                           var filename_eps = res.result.filename_eps;
                           
-                          $("#exportModal-body").html('Download your graph in the following formats:'
-                          + ' <a target="_blank" href="http://compute.getbombe.com/static/uploads/' + filename_pdf + '">PDF</a>'
-                          + ' <a target="_blank" href="http://compute.getbombe.com/static/uploads/' + filename_svg + '">SVG</a>'
-                          + ' <a target="_blank" href="http://compute.getbombe.com/static/uploads/' + filename_eps + '">EPS</a>');
+                           $("#exportModal-body").html('<div id="export-buttons" class="btn-group">'
+                           + ' <a target="_blank" class="btn btn-default btn-lg" href="http://compute.getbombe.com/static/uploads/' + filename_pdf + '">Download PDF</a>'
+                           + ' <a target="_blank" class="btn btn-default btn-lg" href="http://compute.getbombe.com/static/uploads/' + filename_svg + '">Download SVG</a>'
+                           + ' <a target="_blank" class="btn btn-default btn-lg" href="http://compute.getbombe.com/static/uploads/' + filename_eps + '">Download EPS</a>'
+                           + '</div>');
+
+                           $("#exportModal-body").append('<div class="form-group text-left"><label>Share this figure:</label> <input onClick="this.select();" class="form-control" type="text" value="http://compute.getbombe.com/static/uploads/' + filename_pdf + '" readonly></div>');
+
                           $("#exportModal").modal();
                           $("#export-graph").removeAttr("disabled");
                         },

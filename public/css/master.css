@@ -425,6 +425,9 @@ nav ul img {
 #operate-done {
   margin: 0;
 }
+#export-buttons {
+  margin-bottom: 1.5em;
+}
 .nodebox {
   fill: #ffffff;
   stroke: #777777;
