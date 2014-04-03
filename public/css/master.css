@@ -4,7 +4,7 @@
   font-weight: 300;
 }
 .big-font {
-  font-size: 26px;
+  font-size: 20px;
 }
 .small-font {
   font-size: 14px;
@@ -288,11 +288,11 @@ nav ul img {
 .card-box {
   width: 70%;
   padding: 2.5em;
-  margin: 1.5em;
+  margin: 2.5em;
   margin-left: auto;
   margin-right: auto;
   text-align: left;
-  font-size: 26px;
+  font-size: 20px;
   border: 1px solid #777777;
   -webkit-border-radius: 3px;
   border-radius: 3px;
