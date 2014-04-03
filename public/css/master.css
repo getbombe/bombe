@@ -200,12 +200,12 @@ nav ul img {
 #operationContainer {
   height: 70%;
   padding: 1.5em;
+  border-bottom: 1px black solid;
 }
 #operate {
   background: #ffffff;
   height: 30%;
   padding: 1.5em;
-  padding-top: 0;
   margin-top: 0;
 }
 #operate h1,

@@ -87,6 +87,10 @@ define([
             compute(op, data);
           });
           $("#operate-help").html("Choose polynomial order");
+          $("#operate-explain").html("Uses a polynomial function of specified order to best fit the data. Default value is a linear (1st order) fit.");
+
+        } else if(op == "calculus_differentiate") {
+            $("#operate-explain").html("Uses a first-difference method to approximate the derivative of the dataset.");
 
         } else if(op == "background_spline"){
           $("#operate-options").show();
@@ -103,6 +107,7 @@ define([
             compute(op, data);
           });
           $("#operate-help").html("Choose spline resolution (larger = more spline points)");
+          $("#operate-explain").html("Uses a cubic spline function to interpolate the dataset. Spline resolution acts as a multiplier for the number of data points (e.g. entering 2.0 would result in a spline with 2x the number of data points as the original dataset).");
         } else if(op == "background_spline_smooth"){
           $("#operate-options").show();
           $("#operate-textbox").html('<select id="smooth-select"><option value="none">None</option>'
@@ -127,9 +132,11 @@ define([
           $("#smooth-select").on('change', splineCompute);
           $("#operate-text").on('keyup change', splineCompute);
           $("#operate-help").html("Choose removal type and enter smoothness parameter (larger = smoother)");
+          $("#operate-explain").html("Smoothes the dataset using a spline. This smoothed spline can either be subtracted or divided from the original dataset.");
 
         } else if(op == "transform_fourier"){
           data.real = "True";
+          $("#operate-explain").html("Performs a fourier transform on the dataset using the FFT algorithm. Only the positive part of the fourier transform are shown.");
         } else if(op == "transform_gaussian_filter"){
           $("#operate-options").show();
           $("#operate-textbox").html('<input type="text" id="operate-text">');
@@ -145,6 +152,7 @@ define([
             compute(op, data);
           });
           $("#operate-help").html("Choose sigma value");
+          $("#operate-explain").html("Filters the dataset by multiplying the data with a gaussian window function with a specified sigma value.");
         } else if(op == "transform_k_space_transform"){
           $("#operate-options").show();
           $("#operate-textbox").html('<input type="text" id="operate-text">');
@@ -160,6 +168,7 @@ define([
             compute(op, data);
           });
           $("#operate-help").html("Specify absorption edge energy");
+          $("#operate-explain").html("An XAFS-specific function used to transform x-axis values (in eV) to k-space (in inverse Angstroms).");
         } else if(op == "transform_x_weight"){
           $("#operate-options").show();
           $("#operate-textbox").html('<input type="text" id="operate-text">');
@@ -175,6 +184,7 @@ define([
             compute(op, data);
           });
           $("#operate-help").html("Specify X amplification exponent");
+          $("#operate-explain").html("Multiplies all y-values by the corresponding x-value to the power specified. Used to amplify decaying signals.");
         } else {
           // select
         }
