@@ -20,6 +20,8 @@ define([
       var template = _.template(ProfileViewTemplate, {data: null});
       this.$el.html(template);
       $("#user-email").html(this.session.email);
+      $("#user-api").html(this.session.apiKey);
+      $("#user-trees").html(this.session.treeNames.length);
     },
 
     hide: function(){
