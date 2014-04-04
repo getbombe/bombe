@@ -54,7 +54,7 @@ class Transform:
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
 
-		transform = lambda x: (((2 * scipy.constants.m_e * (x - E_0) * scipy.constants.e ) / (scipy.constants.hbar ** 2)) ** 0.5 ) 10**(-10)
+		transform = lambda x: (((2 * scipy.constants.m_e * (x - E_0) * scipy.constants.e ) / (scipy.constants.hbar ** 2)) ** 0.5 ) * 10**(-10)
 
 		x_dat = map(transform, x_dat)
 
