@@ -25,6 +25,9 @@ define([
       var treeNames = this.session.treeNames;
 
       var that = this;
+
+      $("#dataset-title").html((this.session.firstname) + "'s Datasets");
+
       for (var i = 0; i < treeKeys.length; i++) {
         $("#selecttable")
           .append("<tr id='" + treeKeys[i] + "'><td id='"+i+"' class='treename'>" + treeNames[i] + "</td><td class='text-right'>" +
