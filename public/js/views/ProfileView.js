@@ -19,8 +19,9 @@ define([
     render: function(){
       var template = _.template(ProfileViewTemplate, {data: null});
       this.$el.html(template);
-      $("#user-email").html(this.session.email);
-      $("#user-api").html(this.session.apiKey);
+      $("#user-name").html(this.session.firstname + " " + this.session.lastname);
+      $("#user-email").html(this.session.email); 
+      $("#user-inst").html(this.session.institution); 
       $("#user-trees").html(this.session.treeNames.length);
     },
 

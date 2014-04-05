@@ -37,6 +37,9 @@ define([
                           that.session.isLoggedIn = true;
                           that.session.email = email;
                           that.session.apiKey = data.key;
+                          that.session.firstname = data.firstname;
+                          that.session.lastname = data.lastname;
+                          that.session.institution = data.institution;
 
                           //console.log(that.session.email);
 

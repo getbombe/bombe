@@ -27,7 +27,7 @@ define([
       var that = this;
       for (var i = 0; i < treeKeys.length; i++) {
         $("#selecttable")
-          .append("<tr id='" + treeKeys[i] + "'><td id='"+i+"' class='treename'>" + treeNames[i] + "</td><td>" +
+          .append("<tr id='" + treeKeys[i] + "'><td id='"+i+"' class='treename'>" + treeNames[i] + "</td><td class='text-right'>" +
             '<div class="btn-group"><button id="' + treeKeys[i] + '" type="button" class="analyzebutton btn btn-primary">Analyze</button>' +
             '<button id="' + i + '" type="button" class="renamebutton btn btn-default">Rename</button>' +
             '<button id="' + i + '" type="button" class="deletebutton btn btn-default">Delete</button></div></td>' +
@@ -43,8 +43,8 @@ define([
 
         $("button.renamebutton").click(function(){
           var i = $(this).attr("id");
-          $("td#" + i).html("<input id='" + treeKeys[i] + "' class='treenameedit' type='text' value='" + that.session.treeNames[i] + "' />" +
-                                "<button id='" + treeKeys[i] + "' type='button' class='donerename btn btn-primary'>done</button>");
+          $("td#" + i).html("<form class='form-inline'><div class='form-group'><input id='" + treeKeys[i] + "' class='treenameedit form-control' type='text' value='" + that.session.treeNames[i] + "' >" +
+                                "</div><button id='" + treeKeys[i] + "' type='button' class='donerename btn btn-default'>Done</button></form>");
           $("button.donerename").click(function(){
             var sourceId = $(this).attr("id");
 

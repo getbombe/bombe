@@ -86,7 +86,11 @@ var login = function(req, res){
 					{
 						success: true,
 						// give back auth string
-						key: simpleauth.generateKey(email)
+						key: simpleauth.generateKey(email),
+						// also get other user info
+						firstname: user.firstname,
+						lastname: user.lastname,
+						institution: user.institution
 					}
 				));
 			} else {
