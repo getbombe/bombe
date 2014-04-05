@@ -74,8 +74,12 @@ define([
 
         if(op == "stats_poly_regression"){
           $("#operate-options").show();
-          $("#operate-textbox").html('<input type="text" id="operate-text">');
+          $("#operate-textbox").html('<select id="bg-select"><option value="none">None</option>'
+           +'<option value="subtract">Subtraction</option>'
+           +'<option value="divide">Division</option></select>');
+          $("#operate-textbox").append('<input type="text" id="operate-text">');
           $("#operate-text").keyup(function() {
+            data.removal = $("#bg-select").val();
             if ($(this).val() == parseInt($(this).val())) {
               data.order = $(this).val();  
             } else {
@@ -86,6 +90,14 @@ define([
             data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
             compute(op, data);
           });
+
+          $("#bg-select").on('change', function(){
+            data.removal = $("#bg-select").val();
+            data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
+            data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
+            compute(op, data);
+          });
+
           $("#operate-help").html("Choose polynomial order");
           $("#operate-explain").html("Uses a polynomial function of specified order to best fit the data. Default value is a linear (1st order) fit.");
 
@@ -108,6 +120,7 @@ define([
           });
           $("#operate-help").html("Choose spline resolution (larger = more spline points)");
           $("#operate-explain").html("Uses a cubic spline function to interpolate the dataset. Spline resolution acts as a multiplier for the number of data points (e.g. entering 2.0 would result in a spline with 2x the number of data points as the original dataset).");
+        
         } else if(op == "background_spline_smooth"){
           $("#operate-options").show();
           $("#operate-textbox").html('<select id="smooth-select"><option value="none">None</option>'

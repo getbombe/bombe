@@ -47,7 +47,7 @@ class Background:
 
 	@staticmethod
 	def knot_spline (data):
-		'''smothing spline with user-specified number of equally spaced knots'''
+		'''smoothing spline with user-specified number of equally spaced knots'''
 
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
