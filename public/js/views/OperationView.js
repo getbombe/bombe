@@ -41,7 +41,7 @@ define([
 
       this.$el.find("select#opselect").change(function(){
         
-    $("#operate-done").prop("disabled",true);
+        $("#operate-done").prop("disabled",true);
         var op = false;
         var data = {
             title: "New Graph",
@@ -74,12 +74,12 @@ define([
 
         if(op == "stats_poly_regression"){
           $("#operate-options").show();
-          $("#operate-textbox").html('<select id="bg-select"><option value="none">None</option>'
+          $("#operate-textbox").html('<select id="smooth-select"><option value="none">None</option>'
            +'<option value="subtract">Subtraction</option>'
            +'<option value="divide">Division</option></select>');
           $("#operate-textbox").append('<input type="text" id="operate-text">');
           $("#operate-text").keyup(function() {
-            data.removal = $("#bg-select").val();
+            data.removal = $("#smooth-select").val();
             if ($(this).val() == parseInt($(this).val())) {
               data.order = $(this).val();  
             } else {
@@ -91,8 +91,8 @@ define([
             compute(op, data);
           });
 
-          $("#bg-select").on('change', function(){
-            data.removal = $("#bg-select").val();
+          $("#smooth-select").on('change', function(){
+            data.removal = $("#smooth-select").val();
             data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
             data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
             compute(op, data);
