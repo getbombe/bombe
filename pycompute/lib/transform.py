@@ -50,11 +50,9 @@ class Transform:
 		#zero out the edges at 5% each
 		num_zeros = int(len(y_dat) * 0.05)
 		y_dat[:num_zeros] = [0]*num_zeros
-		y_dat[-num_zeros] = [0]*num_zeros
+		y_dat[-num_zeros:] = [0]*num_zeros
 
 		data['data']['y'] = list(y_dat)
-
-		print y_dat
 
 		return data
 
