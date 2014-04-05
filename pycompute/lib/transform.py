@@ -65,9 +65,20 @@ class Transform:
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
 
-		transform = lambda x: (((2 * scipy.constants.m_e * (x - E_0) * scipy.constants.e) / (scipy.constants.hbar ** 2)) ** 0.5 ) * 10**(-10)
+		def transform(energies):
+			for x, i in enumerate(energies):
+				root = ((2 * scipy.constants.m_e * (x - E_0) * scipy.constants.e) / (scipy.constants.hbar ** 2))
+				
+				if root < 0:
+						root = 0
+				else:
+					root = ( root ** 0.5 ) * 10**(-10)
 
-		x_dat = map(transform, x_dat)
+				energies[i] = root
+
+			return energies
+
+		x_dat = transform(x_dat)
 
 		data['data']['x'] = list(x_dat)
 		data['data']['y'] = list(y_dat)
