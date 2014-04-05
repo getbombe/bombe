@@ -18,7 +18,11 @@ class Transform:
 		#assume a constant spacing equal to 1st space
 		dx = x_dat[1] - x_dat[0]
 
-		x_ft = scipy.fftpack.fftfreq(len(x_dat), dx)
+		#add zero padding
+		num_zeros = int(len(x_dat) * 0.05) #5% of dataset length
+		y_dat = concatenate(zeros(num_zeros), y_dat, zeros(num_zeros))
+
+		x_ft = scipy.fftpack.fftfreq(len(x_dat + 2*num_zeros), dx)
 		y_ft = abs(scipy.fft(y_dat))
 
 		if real is True:
@@ -54,7 +58,7 @@ class Transform:
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
 
-		transform = lambda x: (((2 * scipy.constants.m_e * (x - E_0) * scipy.constants.e ) / (scipy.constants.hbar ** 2)) ** 0.5 ) * 10**(-10)
+		transform = lambda x: (((2 * scipy.constants.m_e * (x - E_0) * scipy.constants.e) / (scipy.constants.hbar ** 2)) ** 0.5 ) * 10**(-10)
 
 		x_dat = map(transform, x_dat)
 
