@@ -22,7 +22,7 @@ class Transform:
 		num_zeros = int(len(x_dat) * 0.05) #5% of dataset length
 		y_dat = concatenate((zeros(num_zeros), y_dat, zeros(num_zeros)))
 
-		x_ft = scipy.fftpack.fftfreq(len(x_dat + 2*num_zeros), dx)
+		x_ft = scipy.fftpack.fftfreq(len(x_dat) + 2*num_zeros, dx)
 		y_ft = abs(scipy.fft(y_dat))
 
 		if real is True:
