@@ -47,12 +47,14 @@ class Transform:
 		gs = list(scipy.signal.gaussian(len(y_dat), sigma))
 		y_dat = list(multiply(y_dat, gs))
 
-		#zero out the edges at 2.5% each
-		num_zeros = int(len(y_dat) * 0.025)
-		y_dat[0:num_zeros] = [0]*num_zeros
+		#zero out the edges at 5% each
+		num_zeros = int(len(y_dat) * 0.05)
+		y_dat[:num_zeros] = [0]*num_zeros
 		y_dat[-num_zeros] = [0]*num_zeros
 
 		data['data']['y'] = list(y_dat)
+
+		print y_dat
 
 		return data
 
