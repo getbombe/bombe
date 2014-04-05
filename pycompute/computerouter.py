@@ -37,7 +37,8 @@ class ComputeRouter:
 
 		#min max
 		'minmax_min': MinMax.min,
-		'minmax_max': MinMax.max
+		'minmax_max': MinMax.max,
+		'minmax_clip': MinMax.clip
 	}
 
 	def dataPreprocess(self, data):
