@@ -66,7 +66,7 @@ class Transform:
 		y_dat = data['data']['y']
 
 		def transform(energies):
-			for x, i in enumerate(energies):
+			for i, x in enumerate(energies):
 				root = ((2 * scipy.constants.m_e * (x - E_0) * scipy.constants.e) / (scipy.constants.hbar ** 2))
 				
 				if root < 0:
