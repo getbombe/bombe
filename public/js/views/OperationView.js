@@ -39,7 +39,7 @@ define([
       });
 
 
-      this.$el.find("select#opselect").change(function(){
+      $(".opbutton").click(function(){
         
         $("#operate-done").prop("disabled",true);
         var op = false;
@@ -59,7 +59,7 @@ define([
             }
         };
 
-        op = this.value;
+        op = this.id;
         $("#operate-options").hide();
       
         //Defaults
@@ -242,8 +242,8 @@ define([
                         },
                         function(res){
                           Util.logAction(that.session.email, "Transformed Graph", "minmax_min");
-                          $("#xymin-display").html(res.result.data.xAtYMin[0]);
-                          $("#ymin-display").html(res.result.data.yMin[0]);
+                          $("#xymin-display").html(parseFloat(res.result.data.xAtYMin[0]).toFixed(3));
+                          $("#ymin-display").html(parseFloat(res.result.data.yMin[0]).toFixed(3));
                           $("#minmax-display").show();
                         },
                         function(){ console.log("Min compute failed."); },
@@ -256,8 +256,8 @@ define([
                         },
                         function(res){
                           Util.logAction(that.session.email, "Transformed Graph", "minmax_max");
-                          $("#xymax-display").html(res.result.data.xAtYMax[0]);
-                          $("#ymax-display").html(res.result.data.yMax[0]);
+                          $("#xymax-display").html(parseFloat(res.result.data.xAtYMax[0]).toFixed(3));
+                          $("#ymax-display").html(parseFloat(res.result.data.yMax[0]).toFixed(3));
                           $("#minmax-display").show();
                         },
                         function(){ console.log("Min compute failed."); },

@@ -22,40 +22,55 @@
 </div>
 <div id="operate">
   <div class="row">
+    <div class="col-sm-4">
+      <div class="btn-group">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Calculus <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a id="calculus_differentiate" class="opbutton">Derivative</a></li>
+          </ul>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Background <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a id="stats_poly_regression" class="opbutton">Polynomial Regression</a></li>
+            <li><a id="background_spline" class="opbutton">Spline Interpolation</a></li>
+            <li><a id="background_spline_smooth" class="opbutton">Spline Smoothing</a></li>
+          </ul>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            Transforms <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a id="transform_fourier" class="opbutton">Fourier Transform</a></li>
+            <li><a id="transform_gaussian_filter" class="opbutton">Gaussian Window</a></li>
+            <li><a id="transform_k_space_transform" class="opbutton">Inverse-Space Transform</a></li>
+            <li><a id="transform_x_weight" class="opbutton">X-Power Weighting</a></li>
+          </ul>
+        </div>
+      </div>
+      <p id="operate-explain"></p> 
+    </div>
     <div class="col-sm-3">
-      <select multiple id="opselect">
-        <option value="calculus_differentiate">Derivative</option>
-        <option value="stats_poly_regression">Polynomial Regression</option>
-        <option value="background_spline">Spline Interpolation</option>
-        <option value="background_spline_smooth">Spline Smoothing</option>
-        <option value="transform_gaussian_filter">Gaussian Filter</option>
-        <option value="transform_fourier">Fourier Transform</option>
-        <option value="transform_k_space_transform">Energy to Reciprocal Space Transform</option>
-        <option value="transform_x_weight">X-Power Amplification</option>
-      </select>
-      <div class="text-box">
-        <button id="operate-done" class="btn btn-success operate">Done</button>     
+      <div id="minmax-display">
+        <p>X at Y-min: <span id="xymin-display"></span></p>
+        <p>Y-min: <span id="ymin-display"></span></p>
+        <br />
+        <p>X at Y-max: <span id="xymax-display"></span></p>
+        <p>Y-max: <span id="ymax-display"></span></p>
       </div>
     </div>
-    <div class="col-sm-3">
-      <p id="operate-explain"></p>
-    </div>
-    <div class="col-sm-6">
+    <div class="col-sm-5">
       <div id="operate-options" class="text-box">
         <div id="operate-textbox"></div>
         <div id="operate-help" class="text-center" ></div>
       </div>
     </div>
-    <!-- <div class="col-sm-4">
-       <h4>Summary</h4> 
-      <div id="minmax-display">
-        <p>X at Y-min:</p><p><span id="xymin-display"></span></p>
-        <p>Y-min:</p><p><span id="ymin-display"></span></p>
-        <br />
-        <p>X at Y-max:</p><p><span id="xymax-display"></span></p>
-        <p>Y-max:</p><p><span id="ymax-display"></span></p>
-      </div>
-    </div> -->
   </div>
 </div>
-
+<button id="operate-done" class="btn btn-md btn-success">Apply Operation</button>
