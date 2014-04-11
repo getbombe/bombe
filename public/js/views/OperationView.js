@@ -68,13 +68,14 @@ define([
         data.removal = 'none';
         data.E_zero = 0;
         data.power = 1;
-        data.clip_min = 1;
-        data.clip_max = 10;
+        data.clip_min = Math.min.apply(Math, that.session.getGraphData(that.session.activeNode.graphid).data.x);
+        data.clip_max = Math.max.apply(Math, that.session.getGraphData(that.session.activeNode.graphid).data.x);
 
         $("#operate-textbox").unbind();
         $("#operate-text").unbind();
 
         if(op == "stats_poly_regression"){
+          $("#operate-textbox2").hide();
           $("#operate-options").show();
           $("#operate-textbox").html('<select id="smooth-select"><option value="none">None</option>'
            +'<option value="subtract">Subtraction</option>'
@@ -104,9 +105,11 @@ define([
           $("#operate-explain").html("Uses a polynomial function of specified order to best fit the data. Default value is a linear (1st order) fit.");
 
         } else if(op == "calculus_differentiate") {
+          $("#operate-textbox2").hide();
             $("#operate-explain").html("Uses a first-difference method to approximate the derivative of the dataset.");
 
         } else if(op == "background_spline"){
+          $("#operate-textbox2").hide();
           $("#operate-options").show();
           $("#operate-textbox").html('<input type="text" id="operate-text">');
           $("#operate-text").keyup(function() {
@@ -124,6 +127,7 @@ define([
           $("#operate-explain").html("Uses a cubic spline function to interpolate the dataset. Spline resolution acts as a multiplier for the number of data points (e.g. entering 2.0 would result in a spline with 2x the number of data points as the original dataset).");
         
         } else if(op == "background_spline_smooth"){
+          $("#operate-textbox2").hide();
           $("#operate-options").show();
           $("#operate-textbox").html('<select id="smooth-select"><option value="none">None</option>'
            +'<option value="subtract">Subtraction</option>'
@@ -150,9 +154,11 @@ define([
           $("#operate-explain").html("Smoothes the dataset using a spline. This smoothed spline can either be subtracted or divided from the original dataset.");
 
         } else if(op == "transform_fourier"){
+          $("#operate-textbox2").hide();
           data.real = "True";
           $("#operate-explain").html("Performs a fourier transform on the dataset using the FFT algorithm. Only the positive part of the fourier transform are shown.");
         } else if(op == "transform_gaussian_filter"){
+          $("#operate-textbox2").hide();
           $("#operate-options").show();
           $("#operate-textbox").html('<input type="text" id="operate-text">');
           $("#operate-text").keyup(function() {
@@ -169,6 +175,7 @@ define([
           $("#operate-help").html("Choose sigma value");
           $("#operate-explain").html("Filters the dataset by multiplying the data with a gaussian window function with a specified sigma value.");
         } else if(op == "transform_k_space_transform"){
+          $("#operate-textbox2").hide();
           $("#operate-options").show();
           $("#operate-textbox").html('<input type="text" id="operate-text">');
           $("#operate-text").keyup(function() {
@@ -185,6 +192,7 @@ define([
           $("#operate-help").html("Specify absorption edge energy");
           $("#operate-explain").html("An XAFS-specific function used to transform x-axis values (in eV) to k-space (in inverse Angstroms).");
         } else if(op == "transform_x_weight"){
+          $("#operate-textbox2").hide();
           $("#operate-options").show();
           $("#operate-textbox").html('<input type="text" id="operate-text">');
           $("#operate-text").keyup(function() {
@@ -197,9 +205,10 @@ define([
             data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
             data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
             compute(op, data);
-          });
+            
           $("#operate-help").html("Specify X amplification exponent");
           $("#operate-explain").html("Multiplies all y-values by the corresponding x-value to the power specified. Used to amplify decaying signals.");
+          });
         } else if(op == "minmax_clip"){
           $("#operate-options").show();
           $("#operate-textbox2").show();
@@ -211,7 +220,7 @@ define([
             if ($(this).val() == parseFloat($(this).val())) {
               data.clip_min = $(this).val();  
             } else {
-              data.clip_min = 1; //Math.min(that.session.getGraphData(that.session.activeNode.graphid).data.x);
+              data.clip_min = Math.min.apply(Math, that.session.getGraphData(that.session.activeNode.graphid).data.x);
             }
 
             data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
@@ -223,15 +232,15 @@ define([
             if ($(this).val() == parseFloat($(this).val())) {
               data.clip_max = $(this).val();  
             } else {
-              data.clip_max = 10; //Math.max(that.session.getGraphData(that.session.activeNode.graphid).data.x);
+              data.clip_max = Math.max.apply(Math, that.session.getGraphData(that.session.activeNode.graphid).data.x);
             }
 
             data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
             data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
             compute(op, data);
           });
-          $("#operate-help").html("Specify X amplification exponent");
-          $("#operate-explain").html("Multiplies all y-values by the corresponding x-value to the power specified. Used to amplify decaying signals.");
+          $("#operate-help").html("Indicate subset range to be clipped.");
+          $("#operate-explain").html("Deletes all points where x-coordinate does not fall in between specified range.");
         } else {
           // select
         }
@@ -306,8 +315,6 @@ define([
 
     show: function(){
       this.$el.show();
-
-      $("#operate-textbox2").hide();
 
       Util.logAction(this.session.email, "Viewed Operation Page", "null");
 
