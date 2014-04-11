@@ -206,12 +206,8 @@ define([
         var graphid = parseFloat($("#plot-preview-titlebar .graphid").html());
         window.idBefore = graphid;
         window.idAfter = "new";
-
-        Util.activateNodeById(that.session, treeData, window.idAfter);
-        Util.renderGraph(that.session.activeNode, "#plot-after", that.session);
-
+        
         Util.activateNodeById(that.session, treeData, window.idBefore);
-        Util.renderGraph(that.session.activeNode, "#plot-before", that.session);
 
         Util.logAction(that.session.email, "Created New Graph", "null");
 

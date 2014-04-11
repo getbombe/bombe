@@ -8,7 +8,8 @@ require.config({
     slider: '/js/lib/bootstrap-slider',
     panzoom: '/js/lib/jquery.panzoom.min',
     jqueryui: 'https://code.jquery.com/ui/1.10.4/jquery-ui.min',
-    d3bootstrap: '/js/lib/d3-bootstrap.min'
+    d3bootstrap: '/js/lib/d3-bootstrap.min',
+    highcharts: 'http://code.highcharts.com/highcharts'
   },
   shim: 
   { 
@@ -44,8 +45,12 @@ require.config({
 
     "jqueryui": {
         deps: ["jquery"]
-    }
+    },
 
+    "highcharts": {
+        "exports": "Highcharts",
+        "deps": ["jquery"] 
+    }
   }    
 
 });

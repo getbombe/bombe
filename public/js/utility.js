@@ -6,7 +6,8 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-], function($, _, Backbone) {
+	'highcharts'
+], function($, _, Backbone, highcharts) {
 	var utility = {
 		ajaxGET: function(dest, data, onDone, onFail, onAlways){
 			$.ajax({
@@ -73,7 +74,70 @@ define([
 		},
 
 		renderGraph: function(graph, viewid, session) {
-	
+			console.log(graph);
+
+			if (graph == null) return;
+
+			$(viewid).html('');
+
+			var id = graph.graphid;
+			var that = this;
+
+			// hacky as hell. need to refactor. TODO....
+			var data = session ? session.getGraphData(id) : graph.data;
+
+			var datalist = [];
+			for(var i = 0; i < data.data.x.length; i++) {
+				var datapoint = [data.data.x[i], data.data.y[i]];
+				datalist.push(datapoint);
+			}
+
+	        $("div" + viewid).highcharts({
+	            title: {
+	                text: data.title,
+	                x: -20 //center
+		        },
+	            chart: {
+	                zoomType: 'x',
+	            },
+	            xAxis: {
+	                title: {
+	                    text: data.label.x + " (" + data.unit.x + ")",
+	                }
+	            },
+	            yAxis: {
+	                title: {
+	                    text: data.label.y + " (" + data.unit.y + ")",
+	                }
+	            },
+	            tooltip: {
+	                shared: true,
+	                formatter: function() {
+		                return '<b>('+ this.x +
+		                    ' , '+ this.y +')</b>';
+		            }
+	            },
+	            plotOptions: {
+				    line: {
+				        marker: {
+				            enabled: false
+				        }
+				    }
+	            },
+	            legend: {
+	                enabled: false
+	            },
+	            credits: {
+				    enabled: false
+				},
+	    
+	            series: [{
+	                data: datalist
+	            }]
+	        });
+    
+
+	/*
 				if (graph == null) {
 					return;
 				}
@@ -162,6 +226,7 @@ define([
 				    .datum(data)
 				    .attr("class", "line")
 				    .attr("d", line);
+				    */
 		},
 
 		miniGraph: function(treeData, session) {
