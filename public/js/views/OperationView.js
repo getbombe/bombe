@@ -205,7 +205,7 @@ define([
             data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
             data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
             compute(op, data);
-            
+
           $("#operate-help").html("Specify X amplification exponent");
           $("#operate-explain").html("Multiplies all y-values by the corresponding x-value to the power specified. Used to amplify decaying signals.");
           });
@@ -252,6 +252,7 @@ define([
 
       function compute (op, data){
         if(op && data){
+          $("#plot-after").html("Loading...");
           Util.ajaxPOST("http://compute.getbombe.com/compute",
                         {
                           operation: op,
