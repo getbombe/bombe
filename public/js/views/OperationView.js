@@ -21,7 +21,6 @@ define([
     render: function(){
       var template = _.template(OperationViewTemplate, {data: null});
       this.$el.html(template);
-
       var that = this;
 
       $("#operate-options").hide();
@@ -69,6 +68,9 @@ define([
         data.removal = 'none';
         data.E_zero = 0;
         data.power = 1;
+        data.clip_min = 1;
+        data.clip_max = 10;
+
         $("#operate-textbox").unbind();
         $("#operate-text").unbind();
 
@@ -198,6 +200,38 @@ define([
           });
           $("#operate-help").html("Specify X amplification exponent");
           $("#operate-explain").html("Multiplies all y-values by the corresponding x-value to the power specified. Used to amplify decaying signals.");
+        } else if(op == "minmax_clip"){
+          $("#operate-options").show();
+          $("#operate-textbox2").show();
+          $("#operate-textbox").html('<input type="text" id="operate-text1">');
+          $("#operate-textbox2").html('<input type="text" id="operate-text2">');
+
+
+          $("#operate-text1").keyup(function() {
+            if ($(this).val() == parseFloat($(this).val())) {
+              data.clip_min = $(this).val();  
+            } else {
+              data.clip_min = 1; //Math.min(that.session.getGraphData(that.session.activeNode.graphid).data.x);
+            }
+
+            data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
+            data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
+            compute(op, data);
+          });
+
+          $("#operate-text2").keyup(function() {
+            if ($(this).val() == parseFloat($(this).val())) {
+              data.clip_max = $(this).val();  
+            } else {
+              data.clip_max = 10; //Math.max(that.session.getGraphData(that.session.activeNode.graphid).data.x);
+            }
+
+            data.data.x = that.session.getGraphData(that.session.activeNode.graphid).data.x
+            data.data.y = that.session.getGraphData(that.session.activeNode.graphid).data.y
+            compute(op, data);
+          });
+          $("#operate-help").html("Specify X amplification exponent");
+          $("#operate-explain").html("Multiplies all y-values by the corresponding x-value to the power specified. Used to amplify decaying signals.");
         } else {
           // select
         }
@@ -272,6 +306,8 @@ define([
 
     show: function(){
       this.$el.show();
+
+      $("#operate-textbox2").hide();
 
       Util.logAction(this.session.email, "Viewed Operation Page", "null");
 

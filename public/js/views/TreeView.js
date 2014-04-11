@@ -22,7 +22,6 @@ define([
     render: function(){
       var template = _.template(TreeViewTemplate, {data: null});
       this.$el.html(template);
-
       
       var $section = $('#treeviewContainer');
       var $panzoom = $section.find('#treeview').panzoom();

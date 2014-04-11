@@ -35,13 +35,22 @@ class MinMax:
 		x_dat = data['data']['x']
 		y_dat = data['data']['y']
 
-		clip_min = data['clip_min']
-		clip_max = data['clip_max']
+		clip_min = float(data['clip_min'])
+		clip_max = float(data['clip_max'])
 
-		x_dat = x_dat[clip_min:clip_max]
-		y_dat = y_dat[clip_min:clip_max]
+		diff = 0;
 
-		data['data']['x'] = x_dat 
-		data['data']['y'] = y_dat
+		new_x = [];
+		new_y = [];
+
+		for i, x in enumerate(x_dat):
+			print x
+			print i
+			if x >= clip_min and x <= clip_max:
+				new_x.append(x);
+				new_y.append(y_dat[i]);
+
+		data['data']['x'] = new_x 
+		data['data']['y'] = new_y
 
 		return data 

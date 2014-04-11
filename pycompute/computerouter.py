@@ -105,6 +105,8 @@ if __name__ == '__main__':
 	data['real'] = 'True'
 	data['graphtype'] = 'pdf'
 	data['sigma'] = '3'
+	data['clip_min'] = '3'
+	data['clip_max'] = '5'
 	data['label'] = {}
 	data['label']['x'] = 'derp'
 	data['label']['y'] = 'derp'
@@ -130,10 +132,6 @@ if __name__ == '__main__':
 	plt.plot(diff['data']['x'], diff['data']['y'])
 	plt.show()
 
-	'''TEST EXPORT FUNCTIONS'''
-	expr = cr.compute('export_export', data)
-	print expr['filename']
-
 	'''TEST GRAPHICAL FUNCTIONS'''
 	dxdy = cr.compute('graphical_xy_dists', data)
 	print (dxdy['dx'], dxdy['dy']) 
@@ -147,12 +145,13 @@ if __name__ == '__main__':
 
 	'''TEST TRANSFORM FUNCTIONS'''
 	ftr = cr.compute('transform_fourier', data)
+	print(ftr)
 	plt.plot(ftr['data']['x'], ftr['data']['y'])
 	plt.show()
 
-	gaus = cr.compute('transform_gaussian_filter', data)
+	'''gaus = cr.compute('transform_gaussian_filter', data)
 	plt.plot(gaus['data']['x'], gaus['data']['y'])
-	plt.show()
+	plt.show()'''
 
 	'''TEST MIN MAX FUNCTIONS'''
 	minn = cr.compute('minmax_min', data)
@@ -160,3 +159,6 @@ if __name__ == '__main__':
 
 	maxx = cr.compute('minmax_max', data)
 	print (maxx['data']['xAtYMax'], maxx['data']['yMax'])
+
+	cropp = cr.compute('minmax_clip', data)
+	print(cropp)
