@@ -98,7 +98,7 @@ define([
 	                x: -20 //center
 		        },
 	            chart: {
-	                zoomType: 'x',
+	                zoomType: 'xy',
 	            },
 	            xAxis: {
 	                title: {
