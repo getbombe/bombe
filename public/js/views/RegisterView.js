@@ -65,7 +65,7 @@ define([
     },
 
     displayErrorMessage: function(){
-      this.$el.find("div.errordisplay").show().html("Please enter all mandatory fields.");
+      this.$el.find("div.errordisplay").show().html("Please enter all mandatory fields.<br />If you already have an account, email jack@getbombe.com to get it reset.");
     },
 
     hide: function(){
