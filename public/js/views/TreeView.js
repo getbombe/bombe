@@ -47,7 +47,7 @@ define([
         return;
       }
 
-      console.log(this.session);
+      //console.log(this.session);
       this.$el.show();
 
       Util.logAction(this.session.email, "Viewed Tree Page", "null");
@@ -218,10 +218,13 @@ define([
 
           that.$el.find("#treeview").html("");
 
+          var treeX = 600;
+          var treeY = 600;
+
           var tree = d3.layout.tree()
               .sort(null)
-              .size([800, 800 - 20*10])
-              .separation(function(a, b) { return (a.parent == b.parent ? 0.5 : 1); })
+              .size([treeX, treeY])
+              .separation(function(a, b) { return (a.parent == b.parent ? .5 : 1); })
               .children(function(d)
               {
                   return (!d.children || d.children.length === 0) ? null : d.children;
@@ -231,10 +234,10 @@ define([
           var links = tree.links(nodes);
 
            var layoutRoot = d3.select('#treeview')
-               .append("svg:svg").attr("width", 1000).attr("height", 1000)
+               .append("svg:svg").attr("width", treeX*1.5).attr("height", treeY*1.2)
                .append("svg:g")
                .attr("class", "container")
-               .attr("transform", "translate(" + 80 + ",0)");
+               .attr("transform", "translate(100,0)");
 
            // Edges between nodes as a <path class="link" />
            var link = d3.svg.diagonal()
@@ -264,9 +267,9 @@ define([
             nodeGroup.append("circle")
               .attr("class", "nodebox")
               .attr("title", function(d){ return that.session.getGraphData(d.graphid).title})
-              .attr("x", -150/2)
-              .attr("y", -100/2)
-              .attr("r", 60);
+              .attr("x", -750/2)
+              .attr("y", -50/2)
+              .attr("r", 30);
 
           Util.miniGraph(treeData, that.session);
         }

@@ -242,7 +242,7 @@ nav ul img {
   bottom: 1em;
 }
 #minmax-display {
-  overflow: scroll;
+  overflow: none;
 }
 #treeviewContainer {
   padding: 1.5em;
