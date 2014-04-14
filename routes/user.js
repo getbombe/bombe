@@ -40,7 +40,12 @@ var register = function(req, res){
 			res.write(JSON.stringify(
 				{
 					success: true,
-					key: simpleauth.generateKey(email)
+					// give back auth string
+					key: simpleauth.generateKey(email),
+					// also get other user info
+					firstname: newUser.firstname,
+					lastname: newUser.lastname,
+					institution: newUser.institution
 				}
 			));
 		}
