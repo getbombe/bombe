@@ -10,13 +10,17 @@
           <form id="importform"
               enctype="multipart/form-data"
               onsubmit="return false;" >
-          <div id="import" class="form-group">
-            <p class="help-block"> Upload your two-column data file here.
-            <br>Don't have data? Download some <a href="/uploads/real_data.csv">sample data</a> </p>
-            <br>
-             <input type="file" name="uploadedfile" id="inputfile">
-          </div>
+            <div id="import" class="form-group">
+              <h2 class="help-block"> Upload your data file:</h2>
+               <input type="file" name="uploadedfile" id="inputfile">
+            </div>
           </form>
+
+          <h2 class="help-block">Don't have any data? Use some sample data:</h2>
+          <div class="btn-group">
+            <a href="/uploads/xafs.csv"><button class="btn btn-lg btn-default">XAFS Spectra</button></a>
+            <a href="/uploads/atr.prn"><button class="btn btn-lg btn-default">ATR-IR Spectra</button></a>
+          </div>
         </div>
         <div class="tab-pane text-center" id="step2">
           <div id="import-preview">

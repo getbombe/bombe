@@ -74,7 +74,7 @@ define([
 		},
 
 		renderGraph: function(graph, viewid, session) {
-			console.log(graph);
+			//console.log(graph);
 
 			if (graph == null) return;
 
@@ -232,8 +232,8 @@ define([
 		miniGraph: function(treeData, session) {
 			var that = this;
 			$('.node').each( function (index) {
-			    var width = 90;
-			    var height = 60;
+			    var width = 40;
+			    var height = 30;
 			    var id = $(this).attr("id");
 
 				var x = d3.scale.linear()
@@ -296,7 +296,7 @@ define([
 			      	.attr("d", line)
 			     	.attr("transform", function(d)
 				    {
-			         	return "translate(" + -42 + "," + -25 + ")";
+			         	return "translate(" + -21 + "," + -12 + ")";
 			     	});
 				      
 				
