@@ -11,7 +11,7 @@ class ComputeRouter:
 	
 	computeMap = {
 		#background removal and interpolation
-		'background_linear': Background.linear,
+		'background_linear_subtract': Background.linear_subtract,
 		'background_spline': Background.spline,
 		'background_spline_smooth': Background.spline_smooth,
 

@@ -92,49 +92,56 @@ define([
 				datalist.push(datapoint);
 			}
 
-	        $("div" + viewid).highcharts({
-	            title: {
-	                text: data.title,
-	                x: -20 //center
-		        },
-	            chart: {
-	                zoomType: 'xy',
-	            },
-	            xAxis: {
-	                title: {
-	                    text: data.label.x + " (" + data.unit.x + ")",
-	                }
-	            },
-	            yAxis: {
-	                title: {
-	                    text: data.label.y + " (" + data.unit.y + ")",
-	                }
-	            },
-	            tooltip: {
-	                shared: true,
-	                formatter: function() {
-		                return '<b>('+ this.x +
-		                    ' , '+ this.y +')</b>';
-		            }
-	            },
-	            plotOptions: {
-				    line: {
-				        marker: {
-				            enabled: false
-				        }
-				    }
-	            },
-	            legend: {
-	                enabled: false
-	            },
-	            credits: {
-				    enabled: false
-				},
-	    
-	            series: [{
-	                data: datalist
-	            }]
-	        });
+			var pt; //stores whatever point you're hovering over; there's probably a better way to do this
+      $("div" + viewid).highcharts({
+          title: {
+              text: data.title,
+              x: -20 //center
+        },
+          chart: {
+              zoomType: 'xy',
+          },
+          xAxis: {
+              title: {
+                  text: data.label.x + " (" + data.unit.x + ")",
+              }
+          },
+          yAxis: {
+              title: {
+                  text: data.label.y + " (" + data.unit.y + ")",
+              }
+          },
+          tooltip: {
+              shared: true,
+              formatter: function() {
+              	pt = this;
+                return '<b>('+ this.x.toFixed(3) +
+                    ' , '+ this.y.toFixed(3) +')</b>';
+            }
+          },
+          plotOptions: {
+		    line: {
+		        marker: {
+		            enabled: false
+		        }
+		    }
+          },
+          legend: {
+              enabled: false
+          },
+          credits: {
+		    enabled: false
+		},
+  
+          series: [{
+              data: datalist,
+              events: {
+              	click: function(){
+              		//console.log(pt.x); //We will activate these things later, probably... 
+              	}
+              }
+          }]
+      });
     
 
 	/*

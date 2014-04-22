@@ -70,19 +70,17 @@ class Background:
 
 
 	@staticmethod
-	def linear (data):
-		'''given two points, returns the line to subtract'''
+	def linear_subtract (data):
+		'''given two points, returns data with a line subtracted'''
 
-		i1 = int(data['p1'])
-		i2 = int(data['p2'])
-		p1 = [data['data']['x'][i1], data['data']['y'][i1]]
-		p2 = [data['data']['x'][i2], data['data']['y'][i2]]
+		p1 = [data['data']['x1'], data['data']['y1']]
+		p2 = [data['data']['x2'], data['data']['y2']]
 
 		coeffs = polyfit(p1, p2, 1)
 		linear = poly1d (coeffs)
 
 		y_fit = list(linear(data['data']['x']))
 
-		data['data']['y'] = y_fit
+		data['data']['y'] -= y_fit
 		
 		return data
