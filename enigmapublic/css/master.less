@@ -1,0 +1,538 @@
+
+//Base Colors
+@background: #FFFFFF;
+@subtle: #777777;
+@blank: #FFFFFF;
+@translucent: rgba(255, 255, 255, 0.8);
+@dark-translucent: rgba(0, 0, 0, 0.8);
+@highlight: #1F90C1;
+@dark-highlight: #1A62AA;
+@head-font: @body-font;
+@body-font: #000000;
+@tree-link: rgba(119, 119, 119, 0.5);
+@error-bg-red: #FF6666;
+@error-text-red: #990000;
+@success-bg-green: #66FF66;
+@success-text-green: #009900;
+
+//Geometry
+@little-height: 35px;
+@big-height: 100%;
+@max-height : 100%;
+
+//Typography
+@import url(http://fonts.googleapis.com/css?family=Lato:300,700);
+.main-font {
+	font-family: 'Lato', 'Helvetica Neue', 'Arial';
+	font-weight: 300;
+}
+.big-font {
+	font-size: 20px;
+}
+.small-font {
+	font-size: 14px;
+}
+.stronger-font {
+	font-weight: 700;
+}
+
+//Spacing
+.centered {
+	margin-left: auto;
+	margin-right: auto;
+}
+.no-space {
+	margin: 0;
+}
+.no-pad {
+	padding: 0;
+}
+.small-pad {
+	padding: .5em;
+}
+.med-pad {
+	padding: 1.5em;
+}
+.big-pad {
+	padding: 2.5em;
+}
+.huge-pad {
+	padding: 10em;
+}
+.small-margin {
+	margin: .5em;
+}
+.med-margin {
+	margin: 1.5em;
+}
+.big-margin {
+	margin: 2.5em;
+}
+.pad-right {
+	padding-right: 1em;
+}
+
+//Decoration
+.bordered {
+	border: 1px solid @subtle;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+.shadowed {
+	-webkit-box-shadow: 0px 2px 2px @subtle;
+  -moz-box-shadow:    0px 2px 2px @subtle;
+  box-shadow:         0px 2px 2px @subtle;
+}
+
+//General
+html, body {
+	background-color: @background;
+	.main-font;
+	.no-space;
+	.no-pad;
+	color: @body-font;
+	width: 100%;
+	min-height: @max-height;
+	height: @max-height;
+}
+h1, h2, h3, h4, h5 {
+	color: @head-font;
+	text-align: center;
+	.main-font;
+	.no-space;
+}
+strong {
+	.stronger-font;
+}
+form {
+	.small-font;
+}
+table {
+	.big-pad;
+}
+
+
+//Layout
+#body {
+	width: 100%;
+	height: @max-height;
+	.no-space;
+	.no-pad;
+}
+.container {
+	width: 100%;
+	height: inherit;
+	.no-space;
+	.no-pad;
+	padding-top: @little-height;
+}
+.viewcontainer {
+	display: none;
+	width: 100%;
+	height: @big-height;
+	.no-space;
+	.no-pad;
+}
+.row {
+	height: @max-height;
+	width: 100%;
+}
+#tagline {
+	.huge-pad;
+	color: @blank;
+	background: url('/img/tagline.jpg') no-repeat;
+	background-size: 100% auto;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+
+	#tagline-container {
+		.med-pad;
+		width: 100%;
+		background: @dark-translucent;
+	}
+
+	p {
+		//background: @translucent;
+	}
+}
+#upload {
+	background-color: @background;
+	height: @max-height;
+	max-height: @max-height;
+	text-align: center;
+	.big-pad;
+
+	#upload-container {
+		background-color: @blank;
+		margin: 5% auto 5% auto;
+		width: 90%;
+		height: 90%;
+		.med-pad;
+		.bordered;
+
+		input {
+			.centered;
+		}
+	}
+}
+.analysis {
+	.small-pad;
+	height: @max-height;
+	background-color: @background;
+	overflow: hidden;
+}
+#title-bar {
+	background: url('/img/bombe.png') no-repeat;
+	background-position: left center;
+	background-size: auto 100%;
+	background-color: @dark-highlight;
+	.no-pad;
+	.no-space;
+	height: @little-height;
+	.shadowed;
+
+  z-index:99999;
+}
+nav {
+	overflow: hidden;
+	height: @max-height;
+	float: right;
+	text-align: right;
+	padding-top: 15px;
+
+	ul {
+		list-style-type: none;
+		padding-right: 1em;
+
+		li {
+			display: inline;
+			padding: 15px;
+			a {
+				color: @blank;
+			}
+			a:hover {
+				color: @highlight;
+				text-decoration: none;
+			}
+		}
+		
+
+		img {
+			width: 2.0em;
+			.small-margin;
+			padding-right: .5em;
+			padding-top: .4em;
+		}
+
+		li:hover {
+			
+		}
+	}
+}
+#controls {
+	background: @background;
+	border-left: 1px @subtle solid;
+	.big-pad;
+	height: @max-height;
+	max-height: @max-height;
+}
+#operationContainer{
+	height: 70%;
+	.med-pad;
+	border-bottom: 1px black solid;
+}
+#operate {
+	background: @background;
+	height: 30%;
+	.med-pad;
+	margin-top: 0;
+
+	h1, h2, h3, h4 {
+		color: @body-font;
+		.small-pad;
+	}
+
+	select {
+		width: 95%;
+		.bordered;
+		.small-margin;
+	}
+}
+#operate-options {
+	.small-pad;
+	.small-margin;
+}
+#operate-explain {
+	.med-pad;
+}
+#operate-done-container {
+	padding:  0 20% 0 20%;
+}
+#operate-done {
+	width: 60%;
+	margin: 0.5em auto;
+	position: absolute;
+	bottom: 1em;
+}
+#minmax-display {
+	overflow: none;
+}
+#treeviewContainer {
+	.med-pad;
+	height: @max-height;
+	background-color: @background;
+	max-height: @max-height;
+	overflow: hidden;
+	color: @body-font;
+}
+#preview {
+	background-color: @background;
+	border-left: 1px @subtle solid;
+	text-align: center;
+	.med-pad;
+	height: @max-height;
+	max-height: @max-height;
+
+	.shadowed;
+
+	.graph {
+		height: 60%;
+	}
+}
+.tab-content, .tab-pane, #step2 {
+	width: 100%;
+	height: 100%;
+}
+#import-preview {
+	width: 90%;
+	height: 80%;
+	.centered;
+}
+#footer {
+	color: @body-font;
+	text-align: center;
+	.no-pad;
+	.no-space;
+	margin-bottom: 1em;
+
+	hr {
+		border: @subtle 1px solid;
+	}
+}
+
+//Objects
+.logo {
+	.no-space;
+	.small-pad;
+	display: block;
+	.centered;
+	width: 30%;
+}
+.card-box {
+	width: 70%;
+	.big-pad;
+	.big-margin;
+	.centered;
+	text-align: left;
+	.big-font;
+	.bordered;
+	background: @blank;
+
+	input, select, option {
+		width: 90%;
+	}
+}
+.text-box {
+	.small-pad;
+	.small-margin;
+	.centered;
+	text-align: center;
+	width: 90%;
+	h4 {
+		display: inline;
+		.small-margin;
+	}
+	select, input, option {
+		background-color: @translucent;
+		border: 1px @subtle solid;
+		width: 100%;
+		.small-margin;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	button {
+		width: 100%;
+		.small-margin;
+	}
+}
+.graph {
+	width: 90%;
+	height: 90%;
+	//border: 2px @subtle solid;
+	background: @blank;
+	color: @body-font;
+	.med-pad;
+	.med-margin;
+	.centered;
+	.bordered;
+
+	.title {
+		color: @body-font;
+		text-align: left;
+		margin-left: 2.5em;
+	}
+
+	.graphid {
+		color: @dark-highlight;
+		//background: @dark-highlight;
+		.no-pad;
+		.no-space;
+		//float: left;
+		//max-width: 5em;
+	}
+
+	.lineage {
+		.small-pad;
+		.no-space;
+		float: right;
+		max-width: 15em;
+	}
+}
+.plot {
+	width: 100%;
+	height: 85%;
+	.centered;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	.no-pad;
+	overflow: hidden;
+}
+.operate {
+	.no-space;
+	.small-pad;
+	padding-left: 2em;
+	padding-right: 2em;
+}
+.tag {
+	padding: 2px;
+	color: @blank;
+	background: @dark-highlight;
+}
+.tag:hover {
+	background: @highlight;
+}
+.help-block {
+	margin-top: @little-height;
+	margin-bottom: @little-height;
+}
+.errordisplay{
+	background-color: @error-bg-red;
+	color: @error-text-red;
+	text-align: center;
+	display: none;
+	width: 100%;
+	.small-pad;
+	.no-space;
+	margin-bottom: 1em;
+}
+.successdisplay{
+	background-color: @success-bg-green;
+	color: @success-text-green;
+	text-align: center;
+	display: none;
+	width: 100%;
+	.small-pad;
+	.no-space;
+	margin-bottom: 1em;
+}
+
+.infodisplay{
+	.bordered;
+	border-color: @highlight;
+	text-align: center;
+	width: 50%;
+	.small-pad;
+	.no-space;
+	margin: 1em auto;
+}
+#graphModal, #setupModal, #exportModal {
+	padding-top: 10%;
+}
+.slider-track {
+	width: 80%;
+}
+#operate-done{
+	.no-space;
+}
+#export-buttons{
+	margin-bottom: 1.5em;
+}
+
+//D3
+.nodebox {
+	fill: @blank;
+	stroke: @subtle;
+	stroke-width: 2px;
+
+	.active {
+		stroke: @highlight;
+	}
+}
+
+.nodebox:hover, {
+ 	stroke: @highlight;
+}
+
+.link {
+	fill: none;
+	stroke: @tree-link;
+	stroke-width: 2px;
+}
+
+.line {
+	fill: none;
+	stroke: @body-font;
+	stroke-width: 1.0px;
+}
+
+.axis path,
+.axis line {
+	fill: none;
+	stroke: #000;
+	shape-rendering: crispEdges;
+}
+
+.dot {
+	stroke: #000;
+}
+
+
+
+//Bootstrap Overrides
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, 
+.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, 
+.col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, 
+.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, 
+.col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, 
+.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, 
+.col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, 
+.col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, 
+.col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, 
+.col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, 
+.col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, 
+.col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+	padding-left: 0;
+	padding-right: 0;
+}
+.row {
+	margin-left: 0;
+	margin-right: 0;
+}
+.btn-group {
+	margin-left: .5em;
+	margin-right: .5em;
+}
+.glyphicon {
+	margin-top: 5px;
+}

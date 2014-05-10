@@ -29,6 +29,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.bodyParser());
 app.use(app.router);
+app.use('/enigma', express.static(path.join(__dirname, 'enigmapublic')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
