@@ -29,7 +29,8 @@ define([
           $(this).progressbar({
             value: randNum()
           });
-        });
+        }
+      );
     },
 
     hide: function(){

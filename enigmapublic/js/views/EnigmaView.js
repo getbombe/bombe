@@ -42,13 +42,26 @@ define([
           $("#enigma").append(drawTask(workflow[i], i));
         }
 
+        $(".newnote").click(function(){
+          $(this).hide();
+          $(this).parent().find(".notearea").show();
+        });
+
+        $(".savenote").click(function(){
+          $(".newnote").show();
+          $(".notearea").hide();
+        });
+
         activateTask("1");
+
       });
 
       function drawTask(task, id){
         var ret = '<div id="task-' + id + '" class="card-box"><h2 class="text-left"><strong>[' + id + ']</strong> ';
         ret += task.name;
         ret += '</h2><hr>';
+        ret += 'Attached files:<br/><br/>'
+        ret += '<button type="button" class="btn btn-info">Attach new file</button>&nbsp;&nbsp;<button type="button" class="newnote btn btn-warning">Write new note</button>';
 
         if (task.type == "Review"){
           ret += '<hr><span>Reviewers: ';
@@ -59,7 +72,11 @@ define([
           ret += '</span>';
         }
 
-        ret += '</div>'
+        ret += '<br/><br/><div class="notearea" style="display:none">';
+        ret += '<textarea rows="4" cols="50">Notes will be automatically saved...</textarea>';
+        ret += '&nbsp&nbsp<button type="button" class="savenote btn btn-primary">Save note</button>';
+        ret += '</div>';
+        ret += '</div>';
 
         return ret
       }
