@@ -50,6 +50,15 @@ define([
         ret += task.name;
         ret += '</h2><hr>';
 
+        if (task.type == "Review"){
+          ret += '<hr><span>Reviewers: ';
+          for (var i = 0; i < task.reviewee.length; i++){
+            ret += task.reviewee[i];
+            if (i+1 < task.reviewee.length) ret+= ", ";
+          }
+          ret += '</span>';
+        }
+
         ret += '</div>'
 
         return ret
