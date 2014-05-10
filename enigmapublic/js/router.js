@@ -5,27 +5,13 @@ define([
   'backbone',
   'models/SessionModel',
   'views/BodyView',
-  'views/LoginView',
-  'views/RegisterView',
-  'views/ImportView',
-  'views/TreeView',
-  'views/OperationView',
-  'views/SettingsView',
-  'views/ProfileView',
-  'views/SelectView'
-], function($, _, Backbone, SessionModel, BodyView, LoginView, RegisterView, ImportView, TreeView, OperationView, SettingsView, ProfileView, SelectView) {
+  'views/EnigmaView'
+], function($, _, Backbone, SessionModel, BodyView, EnigmaView) {
 
   var AppRouter = Backbone.Router.extend({
     routes: {
-      '': 'register',
-      'import': 'import',
-      'settings': 'settings',
-      'profile': 'profile',
-      'tree': 'tree',
-      'operation': 'operation',
-      'select': 'select',
-      'login': 'login',
-      'register': 'register',
+      '': 'index',
+      'enigma': 'enigma',
       '*actions': 'unmapped'
     }
   });
@@ -38,16 +24,7 @@ define([
 
     // initialize views
     bodyView = new BodyView(session);
-
-    loginView = new LoginView(session);
-    registerView = new RegisterView(session);
-    profileView = new ProfileView(session);
-    settingsView = new SettingsView(session);
-
-    selectView = new SelectView(session);
-    importView = new ImportView(session);
-    treeView = new TreeView(session);
-    operationView = new OperationView(session);
+    enigmaView = new EnigmaView(session);
 
     bodyView.render(); //Load body on all pages
 
@@ -64,86 +41,9 @@ define([
       currentView.show();
     }
 
-    app_router.on('route:login', function (actions) {
-      // display import stuff
-      switchView(loginView);
-    });
 
-    app_router.on('route:register', function (actions) {
-      // display import stuff
-      switchView(registerView);
-    });
-
-    app_router.on('route:import', function (actions) {
-      if(!session.isLoggedIn){
-        window.location.href = "#/login";
-        return;
-      }      
- /*     if(!session.currentTree){
-        window.location.href = "#/select";
-        return;
-      }*/
-
-      // display import stuff
-      switchView(importView);
-    });
-
-    app_router.on('route:settings', function (actions) {
-      if(!session.isLoggedIn){
-        window.location.href = "#/login";
-        return;
-      }
-
-      // display import stuff
-      switchView(settingsView);
-    });
-
-    app_router.on('route:profile', function (actions) {
-      if(!session.isLoggedIn){
-        window.location.href = "#/login";
-        return;
-      }
-
-      // display import stuff
-      switchView(profileView);
-    });
-
-    app_router.on('route:tree', function (actions) {
-      if(!session.isLoggedIn){
-        window.location.href = "#/login";
-        return;
-      }      
-/*      if(!session.currentTree){
-        window.location.href = "#/select";
-        return;
-      }*/
-
-      // display tree stuff
-      switchView(treeView);
-    });
-
-    app_router.on('route:select', function (actions) {
-      if(!session.isLoggedIn){
-        window.location.href = "#/login";
-        return;
-      }
-
-      // display select stuff
-      switchView(selectView);
-    });
-
-    app_router.on('route:operation', function (actions) {
-      if(!session.isLoggedIn){
-        window.location.href = "#/login";
-        return;
-      }      
-      if(!session.currentTree){
-        window.location.href = "#/select";
-        return;
-      }
-
-      // display operation stuff
-      switchView(operationView);
+    app_router.on('route:enigma', function (actions) {
+      switchView(enigmaView);
     });
 
     app_router.on('route:unmapped', function (actions) {
