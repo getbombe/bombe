@@ -11,7 +11,7 @@ define([
 
   var AppRouter = Backbone.Router.extend({
     routes: {
-      '': 'index',
+      '': 'enigma',
       'enigma': 'enigma',
       'dashboard': 'dashboard',
       '*actions': 'unmapped'
