@@ -1,0 +1,100 @@
+{
+	"projectType": "CLS Industrial Science",
+	"defaultAssignee": "Jeff Cutler",
+	
+	"workflow": [
+		{
+			"name": "Discuss High Level Design",
+			"type": "linear"
+		},
+
+		{
+			"name": "Discuss Discuss Projects of Interest",
+			"type": "linear"
+		},
+
+		{
+			"name": "Create First Contact Sheet",
+			"type": "linear"
+		},
+
+		{
+			"name": "Preliminary Research",
+			"type": "linear"
+		},
+
+		{
+			"name": "Review Statement of Work with Director",
+			"type": "Review",
+			"reviewee": [
+				"Jeff Cutler", "Joel Reid"
+			]
+		},
+
+		{
+			"name": "Review Statement of Work with Client",
+			"type": "Review",
+			"reviewee": [
+				"Joe Aerospace", "Sarah Pharma"
+			]
+		},
+		
+		{
+			"name": "Prepare Formal Statement of Work",
+			"type": "linear"
+		},
+		
+		{
+			"name": "Send Formal Statement of Work",
+			"type": "linear"
+		},
+
+		{
+			"name": "Received Approved Statement of Work",
+			"type": "linear"
+		},
+
+		{
+			"name": "Schedule Experiment",
+			"type": "linear"
+		},
+
+		{
+			"name": "Run Experiment/Data Collection",
+			"type": "linear"
+		},
+
+		{
+			"name": "Data Analysis",
+			"type": "linear"
+		},
+
+		{
+			"name": "Notification of Completion",
+			"type": "linear"
+		},
+
+		{
+			"name": "Draft Report of Investigation",
+			"type": "linear"
+		},
+
+		{
+			"name": "Review of Report Investigation",
+			"type": "Review",
+			"reviewee": [
+				"Jeff Cutler", "Joel Reid"
+			]
+		},
+
+		{
+			"name": "Finance Invoice to Client",
+			"type": "linear"
+		},
+
+		{
+			"name": "End of Run Debrief",
+			"type": "linear"
+		}
+	]
+}
