@@ -18,20 +18,6 @@ define([
     render: function(){
       var template = _.template(EnigmaViewTemplate, {data: null});
       this.$el.html(template);
-    },
-
-    hide: function(){
-      this.$el.hide();
-    },
-
-    show: function(){      
-      this.$el.show();
-       if(!this.rendered) {
-         this.render();
-         this.rendered = true;
-       }
-
-      var activeId = 1;
 
       $.getJSON("workflow.json", function(json) {
         console.log(json);
@@ -55,65 +41,101 @@ define([
         activateTask("1");
 
       });
+    },
 
-      function drawTask(task, id){
-        var ret = '<div id="task-' + id + '" class="card-box"><h2 class="text-left"><strong>[' + id + ']</strong> ';
-        ret += task.name;
-        ret += '</h2><hr>';
-        ret += 'Attached files:<br/><br/>'
-        ret += '<button type="button" class="btn btn-info">Attach new file</button>&nbsp;&nbsp;<button type="button" class="newnote btn btn-warning">Write new note</button>';
+    hide: function(){
+      this.$el.hide();
+    },
 
-        if (task.type == "Review"){
-          ret += '<hr><span>Reviewers: ';
-          for (var i = 0; i < task.reviewee.length; i++){
-            ret += task.reviewee[i];
-            if (i+1 < task.reviewee.length) ret+= ", ";
-          }
-          ret += '</span>';
-        }
+    show: function(){      
+      this.$el.show();
+       if(!this.rendered) {
+         this.render();
+         this.rendered = true;
+       }
 
-        ret += '<br/><br/><div class="notearea" style="display:none">';
-        ret += '<textarea rows="4" cols="50">Notes will be automatically saved...</textarea>';
-        ret += '&nbsp&nbsp<button type="button" class="savenote btn btn-primary">Save note</button>';
-        ret += '</div>';
-        ret += '</div>';
-
-        return ret
-      }
-
-      function activateTask(id){
-        $("#task-"+id).attr('class', 'card-box active-box');
-        
-        if (id == 1) {
-          $("#task-"+id).append('<span id="buttons-'+id+'" class="pull-right text-right"> <button class="btn btn-large btn-success complete-task">Finish Task</button></span>');
-        } else {
-          $("#task-"+id).append('<span id="buttons-'+id+'" class="pull-right text-right"> <button class="btn btn-large btn-danger undo-task">Undo Task</button> <button class="btn btn-large btn-success complete-task">Finish Task</button></span>');
-        }
-
-        $(".complete-task").click(function(e){
-          e.preventDefault();
-          deactivateTask(activeId);
-          activateTask(activeId+1);
-          activeId += 1;
-        });
-
-        $(".undo-task").click(function(e){
-          e.preventDefault();
-          deactivateTask(activeId); 
-          activateTask(activeId-1); 
-          activeId -= 1;
-        });
-      }
-
-      function deactivateTask(id){
-
-        $("#task-"+id).removeClass('active-box');
-        $("#buttons-"+id).remove();
-
-      }
-
+      
     }
 	});
 
   return EnigmaView;
 });
+
+var activeId = 1;
+
+function drawTask(task, id){
+  console.log("drawdrawdraw")
+  if (task.type == 'Review') {
+    var ret = '<div id="task-' + id + '" class="review-box card-box "><h2 class="text-left"><strong>[' + id + ']</strong> ';
+  } else {
+    var ret = '<div id="task-' + id + '" class="card-box"><h2 class="text-left"><strong>[' + id + ']</strong> ';
+  }
+  ret += task.name;
+  ret += '</h2><hr>';
+  ret += 'Attached files:<br/><br/>'
+  ret += '<button type="button" class="btn btn-info">Attach new file</button>&nbsp;&nbsp;<button class="btn btn-large btn-primary add-note" data-toggle="modal" data-target="#myModal">Add Note</button>';
+
+  ret += '<div id="task-bd-' + id + '"></div>'
+  ret += '<div id="task-ft-' + id + '">'
+
+  if (task.type == "Review"){
+    ret += '<span>Reviewers: ';
+    for (var i = 0; i < task.reviewee.length; i++){
+      ret += task.reviewee[i];
+      if (i+1 < task.reviewee.length) ret+= ", ";
+    }
+    ret += '</span></div>';
+  }
+  ret += '<br/><br/><div class="notearea" style="display:none">';
+  ret += '<textarea rows="4" cols="50">Notes will be automatically saved...</textarea>';
+  ret += '&nbsp&nbsp<button type="button" class="savenote btn btn-primary">Save note</button>';
+  ret += '</div>';
+  ret += '</div>';
+
+  return ret
+}
+
+function activateTask(id){
+  console.log("activate");
+  $("#task-"+id).addClass('active-box');
+  
+  if (id == 1) {
+    $("#task-ft-"+id).append('<span id="buttons-'+id+'" class="pull-right text-right">  <button class="btn btn-large btn-success complete-task">Finish Task</button></span>');
+  } else {
+    $("#task-ft-"+id).append('<span id="buttons-'+id+'" class="pull-right text-right"><button class="btn btn-large btn-primary add-note" data-toggle="modal" data-target="#myModal">Add Note</button> <button class="btn btn-large btn-danger undo-task">Undo Task</button> <button class="btn btn-large btn-success complete-task">Finish Task</button></span>');
+  }
+
+  $(".complete-task").click(function(e){
+    e.preventDefault();
+    deactivateTask(activeId);
+    activateTask(activeId+1);
+    activeId += 1;
+  });
+
+  $(".undo-task").click(function(e){
+    e.preventDefault();
+    deactivateTask(activeId); 
+    activateTask(activeId-1); 
+    activeId -= 1;
+  });
+
+  $("#enter-note").click(function(e){
+    e.preventDefault();
+    if ($("#note-content").val().length > 0){
+      $("#task-bd-"+activeId).append("<p>&#183; " + $("#note-content").val() + "</p>");
+    }
+    $("#note-content").val('');
+  });
+
+  $("#close-note").click(function(e){
+    e.preventDefault();
+    $("#note-content").val('');
+  });
+}
+
+function deactivateTask(id){
+
+  $("#task-"+id).removeClass('active-box');
+  $("#buttons-"+id).remove();
+
+}
