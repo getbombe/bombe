@@ -308,8 +308,12 @@ nav ul img {
   width: 90%;
 }
 .active-box {
-  border: 1px #01b0f0 solid;
-  border-left: 2em #01b0f0 solid;
+  border: 1px #01b0f0 solid !important;
+  border-left: 2em #01b0f0 solid !important;
+}
+.review-box {
+  border: 1px #ff358b solid;
+  border-left: 2em #ff358b solid;
 }
 .new-box {
   border: 1px #aeee00 solid;
@@ -373,6 +377,9 @@ nav ul img {
   padding: .5em;
   margin: 0;
   margin: 1em auto;
+}
+#myModal {
+  padding-top: 10%;
 }
 .col-xs-1,
 .col-sm-1,

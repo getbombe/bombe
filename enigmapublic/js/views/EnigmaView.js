@@ -54,51 +54,71 @@ define([
 var activeId = 1;
 
 function drawTask(task, id){
-      var ret = '<div id="task-' + id + '" class="card-box"><h2 class="text-left"><strong>[' + id + ']</strong> ';
-      ret += task.name;
-      ret += '</h2><hr>';
+  if (task.type == 'Review') {
+    var ret = '<div id="task-' + id + '" class="review-box card-box "><h2 class="text-left"><strong>[' + id + ']</strong> ';
+  } else {
+    var ret = '<div id="task-' + id + '" class="card-box"><h2 class="text-left"><strong>[' + id + ']</strong> ';
+  }
+  ret += task.name;
+  ret += '</h2><hr>';
 
-      if (task.type == "Review"){
-        ret += '<hr><span>Reviewers: ';
-        for (var i = 0; i < task.reviewee.length; i++){
-          ret += task.reviewee[i];
-          if (i+1 < task.reviewee.length) ret+= ", ";
-        }
-        ret += '</span>';
-      }
+  ret += '<div id="task-bd-' + id + '"></div>'
+  ret += '<div id="task-ft-' + id + '">'
 
-      ret += '</div>'
-
-      return ret
+  if (task.type == "Review"){
+    ret += '<span>Reviewers: ';
+    for (var i = 0; i < task.reviewee.length; i++){
+      ret += task.reviewee[i];
+      if (i+1 < task.reviewee.length) ret+= ", ";
     }
+    ret += '</span></div>';
+  }
 
-    function activateTask(id){
-      $("#task-"+id).attr('class', 'card-box active-box');
-      
-      if (id == 1) {
-        $("#task-"+id).append('<span id="buttons-'+id+'" class="pull-right text-right"> <button class="btn btn-large btn-success complete-task">Finish Task</button></span>');
-      } else {
-        $("#task-"+id).append('<span id="buttons-'+id+'" class="pull-right text-right"> <button class="btn btn-large btn-danger undo-task">Undo Task</button> <button class="btn btn-large btn-success complete-task">Finish Task</button></span>');
-      }
+  ret += '</div>'
 
-      $(".complete-task").click(function(e){
-        e.preventDefault();
-        deactivateTask(activeId);
-        activateTask(activeId+1);
-        activeId += 1;
-      });
+  return ret
+}
 
-      $(".undo-task").click(function(e){
-        e.preventDefault();
-        deactivateTask(activeId); 
-        activateTask(activeId-1); 
-        activeId -= 1;
-      });
+function activateTask(id){
+  $("#task-"+id).addClass('active-box');
+  
+  if (id == 1) {
+    $("#task-ft-"+id).append('<span id="buttons-'+id+'" class="pull-right text-right"> <button class="btn btn-large btn-primary add-note" data-toggle="modal" data-target="#myModal">Add Note</button> <button class="btn btn-large btn-success complete-task">Finish Task</button></span>');
+  } else {
+    $("#task-ft-"+id).append('<span id="buttons-'+id+'" class="pull-right text-right"><button class="btn btn-large btn-primary add-note" data-toggle="modal" data-target="#myModal">Add Note</button> <button class="btn btn-large btn-danger undo-task">Undo Task</button> <button class="btn btn-large btn-success complete-task">Finish Task</button></span>');
+  }
+
+  $(".complete-task").click(function(e){
+    e.preventDefault();
+    deactivateTask(activeId);
+    activateTask(activeId+1);
+    activeId += 1;
+  });
+
+  $(".undo-task").click(function(e){
+    e.preventDefault();
+    deactivateTask(activeId); 
+    activateTask(activeId-1); 
+    activeId -= 1;
+  });
+
+  $("#enter-note").click(function(e){
+    e.preventDefault();
+    if ($("#note-content").val().length > 0){
+      $("#task-bd-"+activeId).append("<p>&#183; " + $("#note-content").val() + "</p>");
     }
+    $("#note-content").val('');
+  });
 
-    function deactivateTask(id){
+  $("#close-note").click(function(e){
+    e.preventDefault();
+    $("#note-content").val('');
+  });
+}
 
-      $("#task-"+id).removeClass('active-box');
-      $("#buttons-"+id).remove();
+function deactivateTask(id){
 
-    }
+  $("#task-"+id).removeClass('active-box');
+  $("#buttons-"+id).remove();
+
+}
