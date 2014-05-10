@@ -31,6 +31,7 @@ define([
   });
 
   var initialize = function(){
+    console.log("NEGATIVE BRO");
     var app_router = new AppRouter;
 
     // THE session... singular. put all shared stuff in this variable

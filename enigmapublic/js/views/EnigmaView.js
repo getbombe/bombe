@@ -4,14 +4,15 @@ define([
   'backbone',
   'text!templates/enigma_view.html', 
   'bootstrap'
-], function($, _, Backbone, Bootstrap){
+], function($, _, Backbone, EnigmaViewTemplate, Bootstrap){
 	var EnigmaView = Backbone.View.extend({
 		el: $("#enigma"),
     session: null,
 
     rendered: false,
     
-    initialize: function(){
+    initialize: function(session){
+      this.session = session;
     },
 
     render: function(){
@@ -23,8 +24,14 @@ define([
       this.$el.hide();
     },
 
-    show: function(){
-    	this.el.show());
+    show: function(){      
+      this.$el.show();
+       if(!this.rendered) {
+         this.render();
+         this.rendered = true;
+       }
     }
-	}
+	});
+
+  return EnigmaView;
 });

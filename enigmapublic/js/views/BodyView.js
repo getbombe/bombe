@@ -6,8 +6,10 @@ define([
 
   var BodyView = Backbone.View.extend({
     el: $("#body"),
+    session: null,
     
-    initialize: function(){
+    initialize: function(session){
+      this.session = session;
     },
 
     render: function(){
