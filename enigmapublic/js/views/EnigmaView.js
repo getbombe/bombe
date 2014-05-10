@@ -72,14 +72,16 @@ function drawTask(task, id){
   }
   ret += task.name;
   ret += '</h2><hr>';
-  ret += 'Attached files:<br/><br/>'
-  ret += '<button type="button" class="btn btn-info">Attach new file</button>&nbsp;&nbsp;<button class="btn btn-large btn-primary add-note" data-toggle="modal" data-target="#myModal">Add Note</button>';
 
   ret += '<div id="task-bd-' + id + '"></div>'
   ret += '<div id="task-ft-' + id + '">'
 
+  ret += '<span>Attached files: ';
+  ret += '<button type="button" class="btn btn-info">Attach new file</button>&nbsp;&nbsp;<button class="btn btn-large btn-primary add-note" data-toggle="modal" data-target="#myModal">Add Note</button>';
+  ret += '</span>';
+
   if (task.type == "Review"){
-    ret += '<span>Reviewers: ';
+    ret += '<br><br><span class="pull-left">Reviewers: ';
     for (var i = 0; i < task.reviewee.length; i++){
       ret += task.reviewee[i];
       if (i+1 < task.reviewee.length) ret+= ", ";
