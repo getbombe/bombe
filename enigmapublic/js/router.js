@@ -5,13 +5,15 @@ define([
   'backbone',
   'models/SessionModel',
   'views/BodyView',
-  'views/EnigmaView'
-], function($, _, Backbone, SessionModel, BodyView, EnigmaView) {
+  'views/EnigmaView',
+  'views/DashboardView'
+], function($, _, Backbone, SessionModel, BodyView, EnigmaView, DashboardView) {
 
   var AppRouter = Backbone.Router.extend({
     routes: {
       '': 'index',
       'enigma': 'enigma',
+      'dashboard': 'dashboard',
       '*actions': 'unmapped'
     }
   });
@@ -25,6 +27,7 @@ define([
     // initialize views
     bodyView = new BodyView(session);
     enigmaView = new EnigmaView(session);
+    dashboardView = new DashboardView(session);
 
     bodyView.render(); //Load body on all pages
 
@@ -44,6 +47,10 @@ define([
 
     app_router.on('route:enigma', function (actions) {
       switchView(enigmaView);
+    });
+
+    app_router.on('route:dashboard', function (actions) {
+      switchView(dashboardView);
     });
 
     app_router.on('route:unmapped', function (actions) {
